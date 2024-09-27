@@ -1,0 +1,14 @@
+import { Icons } from '../icons/icons';
+
+export default function FullPageLoadingOverlay() {
+  return (
+    <div className="w-full h-full absolute inset-0 bg-background z-50">
+      <div className="flex gap-2 justify-center items-center mt-[50vh] text-primary">
+        <Icons.spinner className="h-1000 w-1000 animate-spin" />
+        <div className="text-center flex flex-col justify-center text-xl">
+          Loading...
+        </div>
+      </div>
+    </div>
+  );
+}

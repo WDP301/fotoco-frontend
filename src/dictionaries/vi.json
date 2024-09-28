@@ -2,5 +2,64 @@
   "demo": {
     "title": "Bài thử",
     "description": "Đây là bài thử"
+  },
+  "lang": "vi",
+  "home": "Trang chủ",
+  "auth": {
+    "quote": "Khoảnh khắc của bạn, ký ức của chúng tôi - chia sẻ khoảnh khắc của bạn với thế giới.",
+    "author": "Chat GPT",
+    "title": "Xác thực",
+    "description": "Trang đăng nhập và đăng ký cho người dùng."
+  },
+  "register": {
+    "title": "Đăng ký",
+    "description": "Mô tả trang đăng ký",
+    "heading": "Đăng ký tài khoản của bạn",
+    "loading": "Đang tải biểu mẫu đăng ký..."
+  },
+  "homePage": {
+    "title": "Trang chủ",
+    "description": "Chào mừng bạn đến với trang web của chúng tôi - nơi tốt nhất để chia sẻ khoảnh khắc của bạn với thế giới."
+  },
+  "validation": {
+    "registerFormSchema": {
+      "fullName": {
+        "required": "Họ tên không được để trống",
+        "min": "Họ tên phải có ít nhất 3 ký tự",
+        "max": "Họ tên phải tối đa 50 ký tự"
+      },
+      "username": {
+        "required": "Tên người dùng không được để trống",
+        "min": "Tên người dùng phải có ít nhất 3 ký tự",
+        "max": "Tên người dùng phải tối đa 50 ký tự"
+      },
+      "email": {
+        "required": "Email không được để trống",
+        "invalid": "Email phải là một email hợp lệ"
+      },
+      "phoneNumber": {
+        "min": "Số điện thoại phải có ít nhất 10 ký tự"
+      },
+      "password": {
+        "required": "Mật khẩu không được để trống",
+        "min": "Mật khẩu phải có ít nhất 8 ký tự",
+        "pattern": "Mật khẩu phải chứa ít nhất một chữ cái và một số"
+      }
+    }
+  },
+  "form": {
+    "fullName": "Họ tên",
+    "username": "Tên người dùng",
+    "email": "Email",
+    "phoneNumber": "Số điện thoại",
+    "password": "Mật khẩu",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "register": "Đăng ký",
+    "login": "Đăng nhập",
+    "forgotPassword": "Quên mật khẩu?"
+  },
+  "button": {
+    "login": "Đăng nhập",
+    "register": "Đăng ký"
   }
 }

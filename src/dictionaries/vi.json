@@ -15,7 +15,12 @@
     "title": "Đăng ký",
     "description": "Mô tả trang đăng ký",
     "heading": "Đăng ký tài khoản của bạn",
-    "loading": "Đang tải biểu mẫu đăng ký..."
+    "loading": "Đang tải biểu mẫu đăng ký...",
+    "message": {
+      "success": "Đăng ký thành công",
+      "error": "Đăng ký thất bại",
+      "successInfo": "Tài khoản của bạn đã được tạo thành công. Vui lòng kiểm tra email của bạn để kích hoạt tài khoản của bạn."
+    }
   },
   "homePage": {
     "title": "Trang chủ",

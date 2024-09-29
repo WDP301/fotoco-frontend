@@ -13,11 +13,11 @@ export const getRegisterFormSchema = (lang: Locale) => {
   return z.object({
     fullName: z
       .string({ required_error: messages.fullName.required })
-      .min(3, { message: messages.fullName.min })
+      .min(6, { message: messages.fullName.min })
       .max(50, { message: messages.fullName.max }),
     username: z
       .string({ required_error: messages.username.required })
-      .min(3, { message: messages.username.min })
+      .min(6, { message: messages.username.min })
       .max(20, { message: messages.username.max }),
     email: z
       .string({ required_error: messages.email.required })

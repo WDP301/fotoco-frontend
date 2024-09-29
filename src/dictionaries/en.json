@@ -15,7 +15,12 @@
     "title": "Register",
     "description": "Register page description",
     "heading": "Register your account",
-    "loading": "Load register form..."
+    "loading": "Load register form...",
+    "message": {
+      "success": "Register successfully",
+      "error": "Register failed",
+      "successInfo": "Your account has been created successfully. Please check your email to activate your account."
+    }
   },
   "homePage": {
     "title": "Home",

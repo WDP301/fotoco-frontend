@@ -69,6 +69,10 @@
       "description": "Share and enjoy your group’s favorite memories, all in one app."
     }
   },
+  "commentSection": {
+    "title": "What people are saying",
+    "description": "See what our customers are saying about us"
+  },
   "notFound": {
     "title": "404",
     "description": "Page not found",

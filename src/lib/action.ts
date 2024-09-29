@@ -26,14 +26,14 @@ export const register = async (
       })
       .then((res) => {
         return {
-          isSuccess: true,
+          isSuccess: res.data.success,
           error: '',
         };
       })
       .catch((error) => {
         return {
           isSuccess: false,
-          error: error?.response?.data?.error.message || 'Unknown error',
+          error: error?.response?.data?.message || 'Unknown error',
         };
       });
     return response;

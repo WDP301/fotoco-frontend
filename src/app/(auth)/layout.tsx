@@ -2,18 +2,14 @@ import { Metadata } from 'next';
 import React from 'react';
 import LogoSite from '@/components/overview/logo-site';
 import Link from 'next/link';
-import { cn, getDictionary } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { siteConfig } from '@/config/site';
 import SwitchPage from '@/components/auth/switch-page';
-import { Locale } from '@/lib/define';
+import { getDictionary } from '@/lib/dictionaries';
 
-export const generateMetadata = async ({
-  params,
-}: {
-  params: { lang: Locale };
-}): Promise<Metadata> => {
-  const dict = getDictionary(params.lang);
+export const generateMetadata = async (): Promise<Metadata> => {
+  const dict = await getDictionary();
 
   return {
     title: {
@@ -26,14 +22,13 @@ export const generateMetadata = async ({
 
 export default async function AuthLayout({
   children,
-  params: { lang },
-}: Readonly<{ children: React.ReactNode; params: { lang: Locale } }>) {
-  const dict = getDictionary(lang);
+}: Readonly<{ children: React.ReactNode }>) {
+  const dict = await getDictionary();
 
   return (
     <div className="container relative min-h-[100vh] flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-2 lg:px-0">
       <Link
-        href={`/${lang}/`}
+        href="/"
         className={cn(
           buttonVariants({ variant: 'ghost' }),
           'absolute lg:hidden left-4 top-4'

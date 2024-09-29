@@ -1,23 +1,14 @@
 import { UserAuthRegisterForm } from '@/components/auth/register/user-auth-register-form';
 import { siteConfig } from '@/config/site';
 import { Locale } from '@/lib/define';
-import { getDictionary } from '@/lib/utils';
+import { getDictionary } from '@/lib/dictionaries';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 
 import React from 'react';
 
-// export const metadata: Metadata = {
-//   title: 'Register',
-//   description: 'Register page description',
-// };
-
-export const generateMetadata = async ({
-  params,
-}: {
-  params: { lang: Locale };
-}): Promise<Metadata> => {
-  const dict = getDictionary(params.lang);
+export const generateMetadata = async (): Promise<Metadata> => {
+  const dict = await getDictionary();
 
   return {
     title: {
@@ -28,8 +19,8 @@ export const generateMetadata = async ({
   };
 };
 
-export default function RegisterPage({ params }: { params: { lang: Locale } }) {
-  const dict = getDictionary(params.lang);
+export default async function RegisterPage() {
+  const dict = await getDictionary();
 
   return (
     <>

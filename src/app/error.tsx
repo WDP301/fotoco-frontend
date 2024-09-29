@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect } from 'react';
+import { useLanguage } from '@/components/provider/language-provider';
 
 const Error = ({
   error,
@@ -12,6 +13,7 @@ const Error = ({
   error: Error & { digest?: string };
   reset: () => void;
 }) => {
+  const { dict } = useLanguage();
   useEffect(() => {
     // Log the error to an error reporting service
     console.error(error);
@@ -21,11 +23,9 @@ const Error = ({
       <div className="w-full h-[90vh] flex flex-col justify-center">
         <div className="flex flex-col gap-10">
           <div className="flex flex-col gap-3">
-            <div className="text-center text-xl">
-              Oops! Undefine error
-            </div>
+            <div className="text-center text-xl">{dict.error.heading}</div>
             <div className="text-center text-lg text-neutral-600">
-              Sorry, something went wrong. Please try again later.
+              {dict.error.info}
             </div>
           </div>
           <div className="flex justify-center ">

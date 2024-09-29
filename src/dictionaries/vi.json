@@ -21,6 +21,18 @@
     "title": "Trang chủ",
     "description": "Chào mừng bạn đến với trang web của chúng tôi - nơi tốt nhất để chia sẻ khoảnh khắc của bạn với thế giới."
   },
+  "notFound": {
+    "title": "404",
+    "description": "Không tìm thấy trang",
+    "heading": "Oops! Trang bạn đang tìm kiếm không thể tìm thấy",
+    "info": "Trang bạn đang tìm kiếm có thể đã bị xóa, đã thay đổi tên hoặc tạm thời không khả dụng."
+  },
+  "error": {
+    "title": "Lỗi",
+    "description": "Đã xảy ra lỗi",
+    "heading": "Opp! Đã xảy ra lỗi",
+    "info": "Đã xảy ra lỗi khi xử lý yêu cầu của bạn. Vui lòng thử lại sau."
+  },
   "validation": {
     "registerFormSchema": {
       "fullName": {
@@ -60,6 +72,8 @@
   },
   "button": {
     "login": "Đăng nhập",
-    "register": "Đăng ký"
+    "register": "Đăng ký",
+    "home": "Trang chủ",
+    "refresh": "Làm mới"
   }
 }

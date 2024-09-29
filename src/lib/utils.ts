@@ -10,4 +10,7 @@ export function cn(...inputs: ClassValue[]) {
 
 const dictionaries = { en, vi };
 
-export const getDictionary = (locale: Locale) => dictionaries[locale];
+export const getDictionary = (locale?: Locale) => {
+  const selectedLocale = locale || 'en';
+  return dictionaries[selectedLocale];
+};

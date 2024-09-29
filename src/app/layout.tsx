@@ -3,7 +3,7 @@
 import type { Viewport } from 'next';
 // import localFont from 'next/font/local';
 import { Inter as FontSans } from 'next/font/google';
-import '../globals.css';
+import './globals.css';
 import { ThemeProvider } from '@/components/provider/theme-provider';
 import { Locale } from '@/lib/define';
 import { LanguageProvider } from '@/components/provider/language-provider';
@@ -33,17 +33,15 @@ export const viewport: Viewport = {
 
 export default function RootLayout({
   children,
-  params,
 }: {
   children: React.ReactNode;
-  params: { lang: Locale };
 }) {
   return (
-    <html lang={params.lang || 'en'} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${fontSans.variable} min-h-screen bg-background font-sans antialiased transition-colors duration-1000`}
       >
-        <LanguageProvider lang={params.lang}>
+        <LanguageProvider>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"

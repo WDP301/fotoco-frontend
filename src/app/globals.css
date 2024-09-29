@@ -15,6 +15,7 @@ body {
 @layer base {
   :root {
     /* Custom basic */
+    --auth-image: url('/auth/blue-sky.png');
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --muted: 210 40% 96.1%;
@@ -45,6 +46,7 @@ body {
   }
   .dark {
     /* Custom basic */
+    --auth-image: url('/auth/dark-sky.png');
     --background: 217.5 9.09% 17.25%;
     --foreground: 334 34% 98%;
     --muted: 210 9.09% 12.94%;

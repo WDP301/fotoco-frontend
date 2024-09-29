@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Locale } from '@/lib/define';
 import { getDictionary } from '@/lib/utils';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface HomeProps {
   params: {
@@ -10,8 +11,8 @@ interface HomeProps {
   };
 }
 
-export default async function Home({ params: { lang } }: HomeProps) {
-  const dict = await getDictionary(lang); // Fetch translations based on lang
+export default function Home({ params: { lang } }: HomeProps) {
+  const dict = getDictionary(lang);
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
@@ -30,8 +31,13 @@ export default async function Home({ params: { lang } }: HomeProps) {
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
           <ModeToggle />
-          <Button>Deploy on Vercel</Button>
-          <Button variant="secondary">Read our docs</Button>
+
+          <Button asChild>
+            <Link href={`/register`}>{dict.button.register}</Link>
+          </Button>
+          <Button asChild>
+            <Link href={`/login`}>{dict.button.login}</Link>
+          </Button>
         </div>
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">

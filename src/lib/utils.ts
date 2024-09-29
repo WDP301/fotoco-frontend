@@ -1,14 +1,13 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { Locale } from './define';
+import en from '../dictionaries/en.json';
+import vi from '../dictionaries/vi.json';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-const dictionaries: Record<Locale, () => Promise<any>> = {
-  en: () => import('../dictionaries/en.json').then((module) => module.default),
-  vi: () => import('../dictionaries/vi.json').then((module) => module.default),
-};
+const dictionaries = { en, vi };
 
-export const getDictionary = async (locale: Locale) => dictionaries[locale]();
+export const getDictionary = (locale: Locale) => dictionaries[locale];

@@ -1,0 +1,23 @@
+'use client';
+
+import { cn } from '@/lib/utils';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { buttonVariants } from '@/components/ui/button';
+import { useLanguage } from '../provider/language-provider';
+
+export default function SwitchPage() {
+  const { dict } = useLanguage();
+  const pathName = usePathname();
+  return (
+    <Link
+      href={pathName.startsWith('/login') ? '/register' : '/login'}
+      className={cn(
+        buttonVariants({ variant: 'ghost' }),
+        'absolute right-4 top-4 md:right-8 md:top-8'
+      )}
+    >
+      {pathName.startsWith('/login') ? dict.button.register : dict.button.login}
+    </Link>
+  );
+}

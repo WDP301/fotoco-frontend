@@ -2,5 +2,64 @@
   "demo": {
     "title": "Demo",
     "description": "This is a demo"
+  },
+  "lang": "en",
+  "home": "Home",
+  "auth": {
+    "quote": "Your moments, our memories - share your snapshots with the world.",
+    "author": "Chat GPT",
+    "title": "Authentication",
+    "description": "Authen page for user login and register."
+  },
+  "register": {
+    "title": "Register",
+    "description": "Register page description",
+    "heading": "Register your account",
+    "loading": "Load register form..."
+  },
+  "homePage": {
+    "title": "Home",
+    "description": "Welcome to our site - the best place to share your moments with the world."
+  },
+  "validation": {
+    "registerFormSchema": {
+      "fullName": {
+        "required": "Full name can not be empty",
+        "min": "Full name must be at least 3 characters",
+        "max": "Full name must be maximum 50 characters"
+      },
+      "username": {
+        "required": "Username can not be empty",
+        "min": "Username must be at least 3 characters",
+        "max": "Username must be maximum 50 characters"
+      },
+      "email": {
+        "required": "Email can not be empty",
+        "invalid": "Email must be a valid email"
+      },
+      "phoneNumber": {
+        "min": "Phone number must be at least 10 characters"
+      },
+      "password": {
+        "required": "Password can not be empty",
+        "min": "Password must be at least 8 characters",
+        "pattern": "Password must contain at least one letter and one number"
+      }
+    }
+  },
+  "form": {
+    "fullName": "Full name",
+    "username": "Username",
+    "email": "Email",
+    "phoneNumber": "Phone number",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "register": "Register",
+    "login": "Login",
+    "forgotPassword": "Forgot password?"
+  },
+  "button": {
+    "login": "Login",
+    "register": "Register"
   }
 }

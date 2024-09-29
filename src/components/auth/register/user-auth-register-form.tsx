@@ -74,10 +74,10 @@ export function UserAuthRegisterForm({
       <Alert>
         <EnvelopeOpenIcon className="h-4 w-4 text-primary" />
         <AlertTitle className="text-primary">
-          {dict.register.success}
+          {dict.register.message.success}
         </AlertTitle>
         <AlertDescription className="text-primary">
-          {dict.register.successInfo}
+          {dict.register.message.successInfo}
         </AlertDescription>
       </Alert>
     );
@@ -88,7 +88,7 @@ export function UserAuthRegisterForm({
       {registerResult?.error && (
         <Alert variant="destructive">
           <ExclamationTriangleIcon className="h-4 w-4" />
-          <AlertTitle>{dict.register.error}</AlertTitle>
+          <AlertTitle>{dict.register.message.error}</AlertTitle>
           <AlertDescription>{registerResult?.error}</AlertDescription>
         </Alert>
       )}

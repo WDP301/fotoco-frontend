@@ -21,6 +21,18 @@
     "title": "Home",
     "description": "Welcome to our site - the best place to share your moments with the world."
   },
+  "notFound": {
+    "title": "404",
+    "description": "Page not found",
+    "heading": "Oops! The page you are looking for could not be found",
+    "info": "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable."
+  },
+  "error": {
+    "title": "Error",
+    "description": "An error occurred",
+    "heading": "Oops! An error occurred",
+    "info": "An error occurred while processing your request. Please try again later."
+  },
   "validation": {
     "registerFormSchema": {
       "fullName": {
@@ -60,6 +72,8 @@
   },
   "button": {
     "login": "Login",
-    "register": "Register"
+    "register": "Register",
+    "home": "Home",
+    "refresh": "Refresh"
   }
 }

@@ -1,7 +1,15 @@
-// context/LanguageContext.tsx
-import React, { createContext, useContext, ReactNode } from 'react';
+'use client';
+
+import React, {
+  createContext,
+  useContext,
+  ReactNode,
+  useEffect,
+  useState,
+} from 'react';
 import { Locale } from '@/lib/define';
 import { getDictionary } from '@/lib/utils';
+import { getCookie } from 'cookies-next';
 
 interface LanguageContextType {
   lang: Locale;
@@ -12,14 +20,17 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
   undefined
 );
 
-export const LanguageProvider = ({
-  lang,
-  children,
-}: {
-  lang: Locale;
-  children: ReactNode;
-}) => {
-  const dict = getDictionary(lang);
+export const LanguageProvider = ({ children }: { children: ReactNode }) => {
+  const [lang, setLang] = useState<Locale>('en');
+  const [dict, setDict] = useState<Record<string, any>>(getDictionary('en'));
+
+  useEffect(() => {
+    const langFromCookie = getCookie('lang') as Locale;
+    const selectedLang = langFromCookie || 'en'; // Fallback to 'en' if cookie is not set
+    setLang(selectedLang);
+    setDict(getDictionary(selectedLang));
+  }, []); // Only run once on mount
+
   return (
     <LanguageContext.Provider value={{ lang, dict }}>
       {children}

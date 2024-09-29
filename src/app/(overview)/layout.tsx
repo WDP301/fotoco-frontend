@@ -3,15 +3,10 @@ import type { Metadata } from 'next';
 // import HeaderSite from '@/components/overview/header/header-site';
 // import FooterSite from '@/components/overview/footer/footer-site';
 import { siteConfig } from '@/config/site';
-import { Locale } from '@/lib/define';
-import { getDictionary } from '@/lib/utils';
+import { getDictionary } from '@/lib/dictionaries';
 
-export const generateMetadata = async ({
-  params,
-}: {
-  params: { lang: Locale };
-}): Promise<Metadata> => {
-  const dict = getDictionary(params.lang);
+export const generateMetadata = async (): Promise<Metadata> => {
+  const dict = await getDictionary();
 
   return {
     title: {

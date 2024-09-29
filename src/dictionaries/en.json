@@ -85,6 +85,12 @@
     "heading": "Oops! An error occurred",
     "info": "An error occurred while processing your request. Please try again later."
   },
+  "header": {
+    "mainNav": {
+      "aboutUs": "About Us",
+      "pricing": "Pricing"
+    }
+  },
   "validation": {
     "registerFormSchema": {
       "fullName": {

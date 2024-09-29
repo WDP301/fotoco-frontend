@@ -34,6 +34,23 @@
     "title": "Home",
     "description": "Welcome to our site - the best place to share your moments with the world."
   },
+  "joinNow": {
+    "intro": "Join Us and Keep Your Group's Story Alive",
+    "typewriter": [
+      { "text": "Preserve" },
+      { "text": "Your" },
+      { "text": "Group's" },
+      { "text": "Memories" },
+      {
+        "text": "in One Place",
+        "className": "text-blue-500 dark:text-blue-500"
+      }
+    ],
+    "button": {
+      "login": "Login",
+      "joinNow": "Join Now"
+    }
+  },
   "notFound": {
     "title": "404",
     "description": "Page not found",

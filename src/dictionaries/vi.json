@@ -34,6 +34,20 @@
     "title": "Trang chủ",
     "description": "Chào mừng bạn đến với trang web của chúng tôi - nơi tốt nhất để chia sẻ khoảnh khắc của bạn với thế giới."
   },
+  "joinNow": {
+    "intro": "Tham gia và lưu giữ câu chuyện của nhóm bạn",
+    "typewriter": [
+      { "text": "Lưu giữ" },
+      { "text": "Câu chuyện" },
+      { "text": "của" },
+      { "text": "Nhóm bạn" },
+      { "text": "ở một nơi", "className": "text-blue-500 dark:text-blue-500" }
+    ],
+    "button": {
+      "login": "Đăng nhập",
+      "joinNow": "Tham gia ngay"
+    }
+  },
   "notFound": {
     "title": "404",
     "description": "Không tìm thấy trang",

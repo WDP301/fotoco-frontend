@@ -7,13 +7,10 @@ import Link from 'next/link';
 
 export function JoinNow() {
   const { dict } = useLanguage();
-
-  // Get words for the typewriter effect from the language dictionary
   const words = dict.joinNow.typewriter;
-
   return (
     <div className="flex flex-col items-center justify-center my-10">
-      <p className="text-neutral-600 dark:text-neutral-200 text-xs sm:text-base">
+      <p className="text-neutral-600 dark:text-neutral-200 text-xs sm:text-base  ">
         {dict.joinNow.intro}
       </p>
       <TypewriterEffectSmooth words={words} />

@@ -48,6 +48,24 @@
       "joinNow": "Tham gia ngay"
     }
   },
+  "photoSection": {
+    "skeletonOne": {
+      "title": "Lưu lại và Trân trọng từng khoảnh khắc bên nhau",
+      "description": "Dễ dàng lưu trữ và sắp xếp ảnh của nhóm bạn ở một nơi an toàn."
+    },
+    "skeletonTwo": {
+      "title": "Bảo tồn Ký ức của Nhóm bạn ở Một Nơi",
+      "description": "Tạo một album chung đẹp đẽ cho tất cả các khoảnh khắc không thể nào quên."
+    },
+    "skeletonThree": {
+      "title": "Kho ảnh Tuyệt vời cho Nhóm của bạn",
+      "description": "Giữ tất cả ảnh của nhóm bạn an toàn, có tổ chức và truy cập được bất cứ lúc nào."
+    },
+    "skeletonFour": {
+      "title": "Sống lại những Khoảnh khắc Tuyệt vời cùng Bạn bè",
+      "description": "Chia sẻ và tận hưởng những kỷ niệm yêu thích của nhóm bạn, tất cả trong một ứng dụng."
+    }
+  },
   "notFound": {
     "title": "404",
     "description": "Không tìm thấy trang",

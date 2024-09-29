@@ -51,6 +51,24 @@
       "joinNow": "Join Now"
     }
   },
+  "photoSection": {
+    "skeletonOne": {
+      "title": "Capture and Cherish Every Moment Together",
+      "description": "Easily store and organize your group’s photos in one secure place."
+    },
+    "skeletonTwo": {
+      "title": "Preserve Your Group’s Memories in One Place",
+      "description": "Create a beautiful, shared album for all your unforgettable moments."
+    },
+    "skeletonThree": {
+      "title": "The Ultimate Photo Hub for Your Crew",
+      "description": "Keep all your group’s photos safe, organized, and accessible anytime."
+    },
+    "skeletonFour": {
+      "title": "Relive the Best Moments with Your Friends",
+      "description": "Share and enjoy your group’s favorite memories, all in one app."
+    }
+  },
   "notFound": {
     "title": "404",
     "description": "Page not found",

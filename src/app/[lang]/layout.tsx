@@ -5,8 +5,6 @@ import type { Viewport } from 'next';
 import { Inter as FontSans } from 'next/font/google';
 import '../globals.css';
 import { ThemeProvider } from '@/components/provider/theme-provider';
-import { Suspense } from 'react';
-import FullPageLoadingOverlay from '@/components/shared/full-page-loading-overlay';
 import { Locale } from '@/lib/define';
 import { LanguageProvider } from '@/components/provider/language-provider';
 
@@ -45,18 +43,16 @@ export default function RootLayout({
       <body
         className={`${fontSans.variable} min-h-screen bg-background font-sans antialiased transition-colors duration-1000`}
       >
-        <Suspense fallback={<FullPageLoadingOverlay />}>
-          <LanguageProvider lang={params.lang}>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              {children}
-            </ThemeProvider>
-          </LanguageProvider>
-        </Suspense>
+        <LanguageProvider lang={params.lang}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

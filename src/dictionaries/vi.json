@@ -22,6 +22,14 @@
       "successInfo": "Tài khoản của bạn đã được tạo thành công. Vui lòng kiểm tra email của bạn để kích hoạt tài khoản của bạn."
     }
   },
+  "active": {
+    "title": "Kích hoạt",
+    "description": "Mô tả trang kích hoạt",
+    "message": {
+      "success": "Kích hoạt thành công",
+      "error": "Kích hoạt thất bại"
+    }
+  },
   "homePage": {
     "title": "Trang chủ",
     "description": "Chào mừng bạn đến với trang web của chúng tôi - nơi tốt nhất để chia sẻ khoảnh khắc của bạn với thế giới."

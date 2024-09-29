@@ -34,6 +34,45 @@
     "title": "Home",
     "description": "Welcome to our site - the best place to share your moments with the world."
   },
+  "joinNow": {
+    "intro": "Join Us and Keep Your Group's Story Alive",
+    "typewriter": [
+      { "text": "Preserve" },
+      { "text": "Your" },
+      { "text": "Group's" },
+      { "text": "Memories" },
+      {
+        "text": "in One Place",
+        "className": "text-blue-500 dark:text-blue-500"
+      }
+    ],
+    "button": {
+      "login": "Login",
+      "joinNow": "Join Now"
+    }
+  },
+  "photoSection": {
+    "skeletonOne": {
+      "title": "Capture and Cherish Every Moment Together",
+      "description": "Easily store and organize your group’s photos in one secure place."
+    },
+    "skeletonTwo": {
+      "title": "Preserve Your Group’s Memories in One Place",
+      "description": "Create a beautiful, shared album for all your unforgettable moments."
+    },
+    "skeletonThree": {
+      "title": "The Ultimate Photo Hub for Your Crew",
+      "description": "Keep all your group’s photos safe, organized, and accessible anytime."
+    },
+    "skeletonFour": {
+      "title": "Relive the Best Moments with Your Friends",
+      "description": "Share and enjoy your group’s favorite memories, all in one app."
+    }
+  },
+  "commentSection": {
+    "title": "What people are saying",
+    "description": "See what our customers are saying about us"
+  },
   "notFound": {
     "title": "404",
     "description": "Page not found",
@@ -45,6 +84,12 @@
     "description": "An error occurred",
     "heading": "Oops! An error occurred",
     "info": "An error occurred while processing your request. Please try again later."
+  },
+  "header": {
+    "mainNav": {
+      "aboutUs": "About Us",
+      "pricing": "Pricing"
+    }
   },
   "validation": {
     "registerFormSchema": {

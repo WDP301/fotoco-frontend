@@ -34,6 +34,42 @@
     "title": "Trang chủ",
     "description": "Chào mừng bạn đến với trang web của chúng tôi - nơi tốt nhất để chia sẻ khoảnh khắc của bạn với thế giới."
   },
+  "joinNow": {
+    "intro": "Tham gia và lưu giữ câu chuyện của nhóm bạn",
+    "typewriter": [
+      { "text": "Lưu giữ" },
+      { "text": "Câu chuyện" },
+      { "text": "của" },
+      { "text": "Nhóm bạn" },
+      { "text": "ở một nơi", "className": "text-blue-500 dark:text-blue-500" }
+    ],
+    "button": {
+      "login": "Đăng nhập",
+      "joinNow": "Tham gia ngay"
+    }
+  },
+  "photoSection": {
+    "skeletonOne": {
+      "title": "Lưu lại và Trân trọng từng khoảnh khắc bên nhau",
+      "description": "Dễ dàng lưu trữ và sắp xếp ảnh của nhóm bạn ở một nơi an toàn."
+    },
+    "skeletonTwo": {
+      "title": "Bảo tồn Ký ức của Nhóm bạn ở Một Nơi",
+      "description": "Tạo một album chung đẹp đẽ cho tất cả các khoảnh khắc không thể nào quên."
+    },
+    "skeletonThree": {
+      "title": "Kho ảnh Tuyệt vời cho Nhóm của bạn",
+      "description": "Giữ tất cả ảnh của nhóm bạn an toàn, có tổ chức và truy cập được bất cứ lúc nào."
+    },
+    "skeletonFour": {
+      "title": "Sống lại những Khoảnh khắc Tuyệt vời cùng Bạn bè",
+      "description": "Chia sẻ và tận hưởng những kỷ niệm yêu thích của nhóm bạn, tất cả trong một ứng dụng."
+    }
+  },
+  "commentSection": {
+    "title": "Mọi người đang nói gì",
+    "description": "Xem khách hàng của chúng tôi nói gì về chúng tôi"
+  },
   "notFound": {
     "title": "404",
     "description": "Không tìm thấy trang",
@@ -45,6 +81,12 @@
     "description": "Đã xảy ra lỗi",
     "heading": "Opp! Đã xảy ra lỗi",
     "info": "Đã xảy ra lỗi khi xử lý yêu cầu của bạn. Vui lòng thử lại sau."
+  },
+  "header": {
+    "mainNav": {
+      "aboutUs": "Về chúng tôi",
+      "pricing": "Giá cả"
+    }
   },
   "validation": {
     "registerFormSchema": {

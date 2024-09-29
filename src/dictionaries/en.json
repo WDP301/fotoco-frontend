@@ -22,6 +22,14 @@
       "successInfo": "Your account has been created successfully. Please check your email to activate your account."
     }
   },
+  "active": {
+    "title": "Active",
+    "description": "Active page description",
+    "message": {
+      "success": "Active successfully",
+      "error": "Active failed"
+    }
+  },
   "homePage": {
     "title": "Home",
     "description": "Welcome to our site - the best place to share your moments with the world."

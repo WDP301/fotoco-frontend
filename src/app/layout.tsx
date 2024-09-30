@@ -5,8 +5,8 @@ import type { Viewport } from 'next';
 import { Inter as FontSans } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/provider/theme-provider';
-import { Locale } from '@/lib/define';
 import { LanguageProvider } from '@/components/provider/language-provider';
+import { Toaster } from '@/components/ui/toaster';
 
 // const geistSans = localFont({
 //   src: '../fonts/GeistVF.woff',
@@ -51,6 +51,7 @@ export default function RootLayout({
             {children}
           </ThemeProvider>
         </LanguageProvider>
+        <Toaster />
       </body>
     </html>
   );

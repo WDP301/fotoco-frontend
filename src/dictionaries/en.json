@@ -133,5 +133,29 @@
     "register": "Register",
     "home": "Home",
     "refresh": "Refresh"
+  },
+  "footer": {
+    "sections": {
+      "team": "Fotoco Team",
+      "resources": "Resources",
+      "legal": "Legal",
+      "support": "Support"
+    },
+    "teamMembers": [
+      "Pham Tuan Minh",
+      "Luong Huu Duc Duy",
+      "Tran Huy Tuan",
+      "Nguyen Duc Dat",
+      "Thai Xuan Khanh"
+    ],
+    "resourcesLinks": [
+      "About us",
+      "Pricing",
+      "Register page",
+      "Login page",
+      "Forgot password page"
+    ],
+    "legalLinks": ["Policy", "Terms of Use", "Privacy"],
+    "supportLinks": ["Facebook", "Google", "Youtube"]
   }
 }

@@ -130,5 +130,29 @@
     "register": "Đăng ký",
     "home": "Trang chủ",
     "refresh": "Làm mới"
+  },
+  "footer": {
+    "sections": {
+      "team": "Đội ngũ Fotoco",
+      "resources": "Tài nguyên",
+      "legal": "Pháp lý",
+      "support": "Hỗ trợ"
+    },
+    "teamMembers": [
+      "Phạm Tuấn Minh",
+      "Lương Hữu Đức Duy",
+      "Trần Huy Tuấn",
+      "Nguyễn Đức Đạt",
+      "Thái Xuân Khánh"
+    ],
+    "resourcesLinks": [
+      "Về chúng tôi",
+      "Giá cả",
+      "Trang đăng ký",
+      "Trang đăng nhập",
+      "Trang quên mật khẩu"
+    ],
+    "legalLinks": ["Chính sách", "Điều khoản sử dụng", "Riêng tư"],
+    "supportLinks": ["Facebook", "Google", "Youtube"]
   }
 }

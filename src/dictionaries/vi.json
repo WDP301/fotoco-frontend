@@ -154,9 +154,5 @@
     ],
     "legalLinks": ["Chính sách", "Điều khoản sử dụng", "Riêng tư"],
     "supportLinks": ["Facebook", "Google", "Youtube"]
-  },
-  "errorCode": {
-    "UC-00-BR-00": "Đã xảy ra lỗi không mong muốn",
-    "UC-01-BR-02": "Email hoặc tên người dùng đã được đăng ký!"
   }
 }

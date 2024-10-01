@@ -157,9 +157,5 @@
     ],
     "legalLinks": ["Policy", "Terms of Use", "Privacy"],
     "supportLinks": ["Facebook", "Google", "Youtube"]
-  },
-  "errorCode": {
-    "UC-00-BR-00": "An unexpected error occurred",
-    "UC-01-BR-02": "Email or username already registered!"
   }
 }

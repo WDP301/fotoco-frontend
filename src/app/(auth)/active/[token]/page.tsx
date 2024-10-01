@@ -24,9 +24,6 @@ export default async function Page({
   const result = await active(params.token, searchParams.active);
   const dict = await getDictionary();
 
-  result.message =
-    dict.errorCode[result.code as keyof typeof dict.errorCode] ||
-    result.message;
   return (
     <>
       {result.isSuccess ? (
@@ -44,7 +41,7 @@ export default async function Page({
           <ExclamationTriangleIcon className="h-4 w-4" />
           <AlertTitle>{dict.active.message.error}</AlertTitle>
           <AlertDescription>
-            {result?.message || 'Unknown error'}
+            {result?.error || 'Unknown error'}
           </AlertDescription>
         </Alert>
       )}

@@ -27,24 +27,20 @@ export const register = async (
       .then((res) => {
         return {
           isSuccess: res.data.success,
-          message: '',
-          code: '',
+          error: '',
         };
       })
       .catch((error) => {
         return {
           isSuccess: false,
-          message:
-            (error?.response?.data?.message as string) || 'Unknown error',
-          code: (error?.response?.data?.code as string) || 'UC-00-BR-00',
+          error: (error?.response?.data?.message as string) || 'Unknown error',
         };
       });
     return response;
   } catch (error: any) {
     return {
       isSuccess: false,
-      message: error.message || 'Unknown error',
-      code: 'UC-00-BR-00',
+      error: error.message || 'Unknown error',
     };
   }
 };
@@ -57,15 +53,13 @@ export const active = async (token: string, active: string) => {
     .then((res) => {
       return {
         isSuccess: true,
-        message: res.data.message as string,
-        code: '',
+        error: res.data.message as string,
       };
     })
     .catch((error) => {
       return {
         isSuccess: false,
-        message: (error?.response?.data?.message as string) || 'Unknown error',
-        code: (error?.response?.data?.code as string) || 'UC-00-BR-00',
+        error: (error?.response?.data?.message as string) || 'Unknown error',
       };
     });
 };

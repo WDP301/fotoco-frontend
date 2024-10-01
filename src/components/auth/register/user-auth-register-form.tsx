@@ -64,7 +64,7 @@ export function UserAuthRegisterForm({
       push('/register?success=true');
     } else {
       setRegisterResult({
-        error: dict.errorCode[result.code] || result.message || 'Unknown error',
+        error: result.error || 'Unknown error',
       });
     }
 

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { refreshAccessToken } from './lib/action';
 import { base64Decode } from './lib/utils';
-import { User } from './lib/define';
+import { UserJWT } from './lib/define';
 
 const MAX_AGE_REFRESH_TOKEN = process.env.MAX_AGE_REFRESH_TOKEN
   ? +process.env.MAX_AGE_REFRESH_TOKEN
@@ -50,7 +50,7 @@ export async function middleware(req: NextRequest) {
       const response = NextResponse.next();
 
       let payload = base64Decode(newAccessToken.split('.')[1]);
-      const user = JSON.parse(payload) as User;
+      const user = JSON.parse(payload) as UserJWT;
 
       response.cookies.set('signature', signature, {
         httpOnly: true,

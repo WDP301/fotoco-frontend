@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { getLoginFormSchema, getRegisterFormSchema } from './form-schema';
 import http from '@/config/axios';
 import { cookies } from 'next/headers';
-import { AuthResponse, User } from './define';
+import { AuthResponse, UserJWT } from './define';
 import { v4 as uuidv4 } from 'uuid';
 import { base64Decode } from './utils';
 
@@ -92,7 +92,7 @@ export const login = async (
 
         let payload = base64Decode(accessToken.split('.')[1]);
         const cookie = cookies();
-        const user = JSON.parse(payload) as User;
+        const user = JSON.parse(payload) as UserJWT;
         cookie.set('refresh-token', refreshToken, {
           maxAge: MAX_AGE_REFRESH_TOKEN,
         });

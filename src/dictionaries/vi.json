@@ -145,7 +145,8 @@
     "login": "Đăng nhập",
     "register": "Đăng ký",
     "home": "Trang chủ",
-    "refresh": "Làm mới"
+    "refresh": "Làm mới",
+    "logout": "Đăng xuất"
   },
   "footer": {
     "sections": {

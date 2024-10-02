@@ -1,8 +1,14 @@
 'use server';
 
 import { z } from 'zod';
-import { getRegisterFormSchema } from './form-schema';
+import { getLoginFormSchema, getRegisterFormSchema } from './form-schema';
 import http from '@/config/axios';
+import { cookies } from 'next/headers';
+import { AuthResponse, User } from './define';
+import { v4 as uuidv4 } from 'uuid';
+import { base64Decode } from './utils';
+
+const MAX_AGE_REFRESH_TOKEN = 60 * 60 * 24 * 90;
 
 export const register = async (
   formData: z.infer<ReturnType<typeof getRegisterFormSchema>>
@@ -33,14 +39,16 @@ export const register = async (
       .catch((error) => {
         return {
           isSuccess: false,
-          error: (error?.response?.data?.message as string) || 'Unknown error',
+          error:
+            (error?.response?.data?.message as string) ||
+            'An unexpected error occurred',
         };
       });
     return response;
   } catch (error: any) {
     return {
       isSuccess: false,
-      error: error.message || 'Unknown error',
+      error: error.message || 'An unexpected error occurred',
     };
   }
 };
@@ -59,7 +67,71 @@ export const active = async (token: string, active: string) => {
     .catch((error) => {
       return {
         isSuccess: false,
-        error: (error?.response?.data?.message as string) || 'Unknown error',
+        error:
+          (error?.response?.data?.message as string) ||
+          'An unexpected error occurred',
       };
     });
 };
+
+export const login = async (
+  formData: z.infer<ReturnType<typeof getLoginFormSchema>>
+) => {
+  try {
+    const { email, password }: z.infer<ReturnType<typeof getLoginFormSchema>> =
+      formData;
+    const signature = uuidv4();
+    const response = await http
+      .post('/auth/login', {
+        email,
+        password,
+        signature,
+      })
+      .then((res) => {
+        const { accessToken, refreshToken } = res.data;
+
+        let payload = base64Decode(accessToken.split('.')[1]);
+        const cookie = cookies();
+        const user = JSON.parse(payload) as User;
+        cookie.set('refresh-token', refreshToken, {
+          maxAge: MAX_AGE_REFRESH_TOKEN,
+        });
+        cookie.set('signature', signature, { maxAge: MAX_AGE_REFRESH_TOKEN });
+        let expiryDate = new Date(user.exp * 1000);
+        cookie.set('access-token', accessToken, {
+          expires: expiryDate,
+        });
+
+        return {
+          isSuccess: true,
+          error: '',
+        };
+      })
+      .catch((error) => {
+        return {
+          isSuccess: false,
+          error: error?.response?.data?.error.message || 'Unknown error',
+        };
+      });
+    return response;
+  } catch (error: any) {
+    return {
+      isSuccess: false,
+      error: error.message || 'Unknown error',
+    };
+  }
+};
+
+export async function refreshAccessToken(token: string, signature: string) {
+  return await http
+    .post(`/auth/refresh-token`, {
+      refreshToken: token,
+      signature,
+    })
+    .then((res) => {
+      return res.data as AuthResponse;
+    })
+    .catch((error) => {
+      throw error;
+    });
+}

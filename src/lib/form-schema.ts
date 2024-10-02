@@ -36,3 +36,16 @@ export const getRegisterFormSchema = (lang: Locale) => {
       }),
   });
 };
+
+export const getLoginFormSchema = (lang: Locale) => {
+  const { loginFormSchema: messages } = getValidationMessages(lang);
+
+  return z.object({
+    email: z
+      .string({ required_error: messages.email.required })
+      .email({ message: messages.email.invalid }),
+    password: z
+      .string({ required_error: messages.password.required })
+      .min(8, { message: messages.password.min }),
+  });
+};

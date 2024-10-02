@@ -110,7 +110,7 @@ export const login = async (
       .catch((error) => {
         return {
           isSuccess: false,
-          error: error?.response?.data?.error.message || 'Unknown error',
+          error: error?.response?.data?.message || 'Unknown error',
         };
       });
     return response;
@@ -135,3 +135,23 @@ export async function refreshAccessToken(token: string, signature: string) {
       throw error;
     });
 }
+
+export const logout = async () => {
+  const refreshToken = cookies().get('refresh-token')?.value;
+  const signature = cookies().get('signature')?.value;
+  try {
+    cookies().delete('access-token');
+    cookies().delete('refresh-token');
+    cookies().delete('signature');
+    await http.delete('/auth/logout', { data: { refreshToken, signature } });
+    return {
+      isSuccess: true,
+      error: '',
+    };
+  } catch (error: any) {
+    return {
+      isSuccess: false,
+      error: error.message || 'Unknown error',
+    };
+  }
+};

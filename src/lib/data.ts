@@ -11,5 +11,5 @@ export const getUser = async () => {
     .then((res) => res.json())
     .catch(() => null);
 
-  return response.user as User;
+  return response?.user as User;
 };

@@ -22,6 +22,12 @@
       "successInfo": "Your account has been created successfully. Please check your email to activate your account."
     }
   },
+  "login": {
+    "title": "Login",
+    "description": "Login page description",
+    "heading": "Login",
+    "loading": "Load login form..."
+  },
   "active": {
     "title": "Active",
     "description": "Active page description",
@@ -114,6 +120,16 @@
         "required": "Password can not be empty",
         "min": "Password must be at least 8 characters",
         "pattern": "Password must contain at least one letter and one number"
+      }
+    },
+    "loginFormSchema": {
+      "email": {
+        "required": "Email can not be empty",
+        "invalid": "Email must be a valid email"
+      },
+      "password": {
+        "required": "Password can not be empty",
+        "min": "Password must be at least 8 characters"
       }
     }
   },

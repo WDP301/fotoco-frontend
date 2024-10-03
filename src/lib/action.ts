@@ -1,7 +1,11 @@
 'use server';
 
 import { z } from 'zod';
-import { getLoginFormSchema, getRegisterFormSchema } from './form-schema';
+import {
+  getJoinGroupSchema,
+  getLoginFormSchema,
+  getRegisterFormSchema,
+} from './form-schema';
 import http from '@/config/axios';
 import { cookies } from 'next/headers';
 import { AuthResponse, UserJWT } from './define';
@@ -154,4 +158,29 @@ export const logout = async () => {
       error: error.message || 'Unknown error',
     };
   }
+};
+
+export const joinGroup = async (
+  formData: z.infer<ReturnType<typeof getJoinGroupSchema>>
+) => {
+  const { code }: z.infer<ReturnType<typeof getJoinGroupSchema>> = formData;
+
+  const response = await http
+    .post('/groups/join', {
+      groupCode: code,
+    })
+    .then((res) => {
+      return {
+        isSuccess: true,
+        error: '',
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.message || 'Unknown error',
+      };
+    });
+
+  return response;
 };

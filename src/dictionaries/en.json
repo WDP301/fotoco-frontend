@@ -95,6 +95,9 @@
     "mainNav": {
       "aboutUs": "About Us",
       "pricing": "Pricing"
+    },
+    "action": {
+      "title": "Actions"
     }
   },
   "validation": {
@@ -131,6 +134,13 @@
         "required": "Password can not be empty",
         "min": "Password must be at least 8 characters"
       }
+    },
+    "joinGroupSchema": {
+      "code": {
+        "min": "Group code must be 6 characters.",
+        "max": "Group code must be 6 characters.",
+        "required": "Group code can not be empty"
+      }
     }
   },
   "form": {
@@ -142,14 +152,28 @@
     "confirmPassword": "Confirm password",
     "register": "Register",
     "login": "Login",
-    "forgotPassword": "Forgot password?"
+    "forgotPassword": "Forgot password?",
+    "code": "Group code"
   },
   "button": {
     "login": "Login",
     "register": "Register",
     "home": "Home",
     "refresh": "Refresh",
-    "logout": "Logout"
+    "logout": "Logout",
+    "cancel": "Cancel",
+    "join": "Join"
+  },
+  "joinGroup": {
+    "title": "Join Group",
+    "description": "Join group page description",
+    "heading": "Enter the group code to join",
+    "headingInfo": "You can find the group code in the group settings",
+    "message": {
+      "error": "Error",
+      "successInfo": "Join group successfully",
+      "errorInfo": "Join group failed. Please check your group code again."
+    }
   },
   "footer": {
     "sections": {

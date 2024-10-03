@@ -49,3 +49,14 @@ export const getLoginFormSchema = (lang: Locale) => {
       .min(8, { message: messages.password.min }),
   });
 };
+
+export const getJoinGroupSchema = (lang: Locale) => {
+  const { joinGroupSchema: messages } = getValidationMessages(lang);
+
+  return z.object({
+    code: z
+      .string({ required_error: messages.code.required })
+      .min(6, { message: messages.code.min })
+      .max(6, { message: messages.code.max }),
+  });
+};

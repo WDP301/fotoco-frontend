@@ -92,6 +92,9 @@
     "mainNav": {
       "aboutUs": "Về chúng tôi",
       "pricing": "Giá cả"
+    },
+    "action": {
+      "title": "Hành động"
     }
   },
   "validation": {
@@ -128,6 +131,13 @@
         "required": "Mật khẩu không được để trống",
         "min": "Mật khẩu phải có ít nhất 8 ký tự"
       }
+    },
+    "joinGroupSchema": {
+      "code": {
+        "min": "Mã nhóm phải có 6 ký tự.",
+        "max": "Mã nhóm phải có 6 ký tự.",
+        "required": "Mã nhóm không được để trống"
+      }
     }
   },
   "form": {
@@ -139,14 +149,28 @@
     "confirmPassword": "Xác nhận mật khẩu",
     "register": "Đăng ký",
     "login": "Đăng nhập",
-    "forgotPassword": "Quên mật khẩu?"
+    "forgotPassword": "Quên mật khẩu?",
+    "code": "Mã nhóm"
   },
   "button": {
     "login": "Đăng nhập",
     "register": "Đăng ký",
     "home": "Trang chủ",
     "refresh": "Làm mới",
-    "logout": "Đăng xuất"
+    "logout": "Đăng xuất",
+    "cancel": "Hủy",
+    "join": "Tham gia"
+  },
+  "joinGroup": {
+    "title": "Tham gia nhóm",
+    "description": "Mô tả trang tham gia nhóm",
+    "heading": "Nhập mã nhóm để tham gia",
+    "headingInfo": "Nhập mã nhóm để tham gia nhóm của bạn",
+    "message": {
+      "error": "Lỗi",
+      "successInfo": "Tham gia nhóm thành công",
+      "errorInfo": "Tham gia nhóm thất bại. Mã nhóm không hợp lệ."
+    }
   },
   "footer": {
     "sections": {

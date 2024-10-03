@@ -39,10 +39,10 @@ import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
 import { useToast } from '@/hooks/use-toast';
 import { getJoinGroupSchema } from '@/lib/form-schema';
 import { useLanguage } from '@/components/provider/language-provider';
+import { toast } from 'sonner';
 
 export default function JoinGroupDialog() {
   const router = useRouter();
-  const { toast } = useToast();
   const { dict } = useLanguage();
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
@@ -64,15 +64,11 @@ export default function JoinGroupDialog() {
     const result = await joinGroup(data);
     if (!result?.isSuccess) {
       setResult(result);
-      toast({
-        variant: 'destructive',
-        title: dict.joinGroup.message.error,
+      toast.error(dict.joinGroup.message.error, {
         description: result.error,
       });
     } else {
-      toast({
-        description: dict.joinGroup.message.successInfo,
-      });
+      toast.success(dict.joinGroup.message.successInfo);
       setResult({ isSuccess: true });
       setOpen(false);
       router.push('/groups');

@@ -112,6 +112,13 @@
         "min": "Mật khẩu phải có ít nhất 8 ký tự",
         "pattern": "Mật khẩu phải chứa ít nhất một chữ cái và một số"
       }
+    },
+    "createGroupFormSchema": {
+      "title": {
+        "required": "Tên nhóm không được để trống",
+        "min": "Tên nhóm phải có nhất 3 ký tự",
+        "max": "Tên nhóm phải tối đa 50 ký tự"
+      }
     }
   },
   "form": {

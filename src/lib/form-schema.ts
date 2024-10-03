@@ -36,3 +36,19 @@ export const getRegisterFormSchema = (lang: Locale) => {
       }),
   });
 };
+
+export const getCreateGroupFormSchema = (lang: Locale) => {
+  const { createGroupFormSchema: messages } = getValidationMessages(lang);
+
+  return z.object({
+    title: z
+      .string({ required_error: messages.title.required })
+      .min(3, { message: messages.title.min })
+      .max(50, { message: messages.title.max }),
+    description: z
+      .string()
+      .optional()
+      .or(z.literal(''))
+      .transform((e) => (e === '' ? undefined : e)),
+  });
+}

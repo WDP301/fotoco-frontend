@@ -115,6 +115,13 @@
         "min": "Password must be at least 8 characters",
         "pattern": "Password must contain at least one letter and one number"
       }
+    },
+    "createGroupFormSchema": {
+      "title": {
+        "required": "Group title can not be empty",
+        "min": "Group title must be at least 3 characters",
+        "max": "Group title must be maximum 50 characters"
+      }
     }
   },
   "form": {

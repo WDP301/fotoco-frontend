@@ -1,7 +1,7 @@
 'use server';
 
 import { z } from 'zod';
-import { getRegisterFormSchema } from './form-schema';
+import { getCreateGroupFormSchema, getRegisterFormSchema } from './form-schema';
 import http from '@/config/axios';
 
 export const register = async (
@@ -63,3 +63,35 @@ export const active = async (token: string, active: string) => {
       };
     });
 };
+
+export const createGroup = async (
+  formData: z.infer<ReturnType<typeof getCreateGroupFormSchema>>
+) => {
+  try {
+    const { title, description }: z.infer<ReturnType<typeof getCreateGroupFormSchema>> = formData;
+
+    const response = await http
+      .post('/group/create', {
+        title,
+        description,
+      })
+      .then((res) => {
+        return {
+          isSuccess: res.data.success,
+          error: '',
+        };
+      })
+      .catch((error) => {
+        return {
+          isSuccess: false,
+          error: (error?.response?.data?.message as string) || 'Unknown error',
+        };
+      });
+    return response;
+  } catch (error: any) {
+    return {
+      isSuccess: false,
+      error: error.message || 'Unknown error',
+    };
+  }
+}

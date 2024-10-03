@@ -10,7 +10,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { SquarePlus } from "lucide-react"
-import AddGroupForm from "./create-group-form"
+import CreateGroupForm from "./create-group-form"
 
 export default function CreateGroupDiaLog() {
   return (
@@ -28,10 +28,7 @@ export default function CreateGroupDiaLog() {
             Let&apos;s create a Group and invite your friends.
           </DialogDescription>
         </DialogHeader>
-        <AddGroupForm />
-        <DialogFooter>
-          <Button type="submit">Submit</Button>
-        </DialogFooter>
+        <CreateGroupForm setOpen={() => {}} />
       </DialogContent>
     </Dialog>
   )

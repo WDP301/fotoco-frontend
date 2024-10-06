@@ -5,7 +5,7 @@ import { getDictionary } from '@/lib/dictionaries';
 import Link from 'next/link';
 
 export default async function GroupList() {
-  const { groups } = await getAllGroup({ page: 1, pageSize: 6 });
+  const { groups } = await getAllGroup({ page: 1, pageSize: 8 });
   const dict = await getDictionary();
   if (!groups || groups.length === 0) {
     return (

@@ -48,6 +48,26 @@ export type Group = {
   updatedAt: string;
 };
 
+export type RecentPhoto = {
+  _id: string;
+  owner: {
+    _id: string;
+    fullName: string;
+    email: string;
+    username: string;
+    img: string;
+  };
+  type: string;
+  belonging: string;
+  status: string;
+  mimeType: string;
+  fileSize: number;
+  title: string;
+  url: string;
+  tags: string[];
+  viewedAt: string;
+};
+
 export type SearchGroupParams = {
   sort?: string;
   page?: number;
@@ -56,6 +76,12 @@ export type SearchGroupParams = {
   status?: string;
   type?: string;
   filter?: string;
+};
+
+export type SearchRecentViewParams = {
+  sort?: string;
+  page?: number;
+  pageSize?: number;
 };
 
 export type PageMeta = {

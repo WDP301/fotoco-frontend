@@ -8,9 +8,14 @@ export function GroupCard({ group }: { group: Group }) {
     <Link href={`/groups/${group._id}`} className="max-w-xs w-full group/card">
       <div
         className={cn(
-          'cursor-pointer overflow-hidden relative card h-96 rounded-md shadow-xl  max-w-sm mx-auto backgroundImage flex flex-col justify-between p-4',
-          `bg-[url('${group?.groupImg || '/background/default-vertical.jpg'}')] bg-cover bg-center`
+          ' cursor-pointer overflow-hidden relative card h-96 rounded-md shadow-xl max-w-sm mx-auto backgroundImage flex flex-col justify-between p-4'
         )}
+        // Need to use inline style to set background image, use className not working
+        style={{
+          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)), url(${group.groupImg || '/background/default-vertical.jpg'})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
       >
         <div className="absolute w-full h-full top-0 left-0 transition duration-300 group-hover/card:bg-black opacity-60"></div>
         <div className="flex flex-col">

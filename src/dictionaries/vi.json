@@ -50,7 +50,8 @@
       "introText": "Lưu trữ tất cả ảnh của nhóm bạn an toàn, có tổ chức và truy cập được bất cứ lúc nào.",
       "myGroup": "Nhóm của tôi",
       "recentView": "Xem gần đây",
-      "viewAllGroups": "Xem tất cả nhóm"
+      "viewAllGroups": "Xem tất cả nhóm",
+      "viewAllPhotos": "Xem tất cả ảnh gần đây"
     }
   },
   "joinNow": {
@@ -210,6 +211,7 @@
     "supportLinks": ["Facebook", "Google", "Youtube"]
   },
   "errorMessage": {
-    "noGroupFound": "Không tìm thấy nhóm"
+    "noGroupFound": "Không tìm thấy nhóm",
+    "noPhotoFound": "Không tìm thấy ảnh"
   }
 }

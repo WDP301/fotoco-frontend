@@ -1,7 +1,14 @@
 'use server';
 
 import customFetch from '@/config/fetch';
-import { Group, PageMeta, SearchGroupParams, User } from './define';
+import {
+  Group,
+  PageMeta,
+  RecentPhoto,
+  SearchGroupParams,
+  SearchRecentViewParams,
+  User,
+} from './define';
 
 function objectToQueryString(params: Record<string, any>): string {
   return new URLSearchParams(params).toString();
@@ -45,5 +52,29 @@ export const getAllGroup = async (searchParams: SearchGroupParams) => {
   return {
     pageMeta: pageMetaDefault as PageMeta,
     groups: [] as Group[],
+  };
+};
+
+export const getRecentViewPhotos = async (
+  searchParams: SearchRecentViewParams
+) => {
+  const queryString = objectToQueryString(searchParams);
+  const response = await customFetch(`/photos/recent-views?${queryString}`, {
+    method: 'GET',
+    next: { revalidate: 120 },
+  })
+    .then((res) => res.json())
+    .catch((error) => null);
+
+  if (response?.success) {
+    return {
+      pageMeta: response.pageMeta as PageMeta,
+      photos: response.photos as RecentPhoto[],
+    };
+  }
+
+  return {
+    pageMeta: pageMetaDefault as PageMeta,
+    photos: [] as RecentPhoto[],
   };
 };

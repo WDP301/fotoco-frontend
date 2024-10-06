@@ -50,7 +50,8 @@
       "introText": "Keep all your group’s photos safe, organized, and accessible anytime.",
       "myGroup": "My Group",
       "recentView": "Recent View",
-      "viewAllGroups": "View all groups"
+      "viewAllGroups": "View all groups",
+      "viewAllPhotos": "View all recent photos"
     }
   },
   "joinNow": {
@@ -213,6 +214,7 @@
     "supportLinks": ["Facebook", "Google", "Youtube"]
   },
   "errorMessage": {
-    "noGroupFound": "No group found"
+    "noGroupFound": "No group found",
+    "noPhotoFound": "No photo found"
   }
 }

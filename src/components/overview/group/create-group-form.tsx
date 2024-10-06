@@ -19,6 +19,9 @@ import { Icons } from '@/components/icons/icons';
 
 import { toast } from 'sonner';
 
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
+
 import {
   Form,
   FormControl,
@@ -37,11 +40,11 @@ export default function CreateGroupForm({
 }) {
 
   const router = useRouter();
-  const { dict } = useLanguage();
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<
-        { error?: string; errorType?: string; isSuccess?: boolean } | undefined
-    >(undefined);
+  { error?: string; errorType?: string; isSuccess?: boolean } | undefined
+  >(undefined);
+  const { dict } = useLanguage();
 
   const form = useForm<z.infer<ReturnType<typeof getCreateGroupFormSchema>>>({
     resolver: zodResolver(getCreateGroupFormSchema(dict.lang)),
@@ -60,7 +63,7 @@ export default function CreateGroupForm({
       toast.success(result.isSuccess);
       setResult({isSuccess: true});
       setOpen(false);
-      router.push('/groups');
+      // router.push('/groups'); // Co the dung 1 trong 2 cai
       router.refresh();
     }
     setIsLoading(false);
@@ -69,12 +72,16 @@ export default function CreateGroupForm({
   return (
     <>
       {result?.error && (
-          toast.error(result.error)
+          <Alert variant="destructive">
+          <ExclamationTriangleIcon className="h-4 w-4" />
+          <AlertTitle>Error</AlertTitle>
+          <AlertDescription>{result?.error}</AlertDescription>
+      </Alert>
       )}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleCreateGroup)}>
           <div className="grid gap-4 py-4">
-            <FormField 
+            <FormField
               control={form.control}
               name="title"
               render={({ field }) => 

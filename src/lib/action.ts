@@ -1,8 +1,19 @@
 'use server';
 
 import { z } from 'zod';
-import { getCreateGroupFormSchema, getRegisterFormSchema } from './form-schema';
+import { 
+  getCreateGroupFormSchema,
+  getRegisterFormSchema,
+  getJoinGroupSchema,
+  getLoginFormSchema,
+ } from './form-schema';
 import http from '@/config/axios';
+import { cookies } from 'next/headers';
+import { AuthResponse, UserJWT } from './define';
+import { v4 as uuidv4 } from 'uuid';
+import { base64Decode } from './utils';
+
+const MAX_AGE_REFRESH_TOKEN = 60 * 60 * 24 * 90;
 
 export const register = async (
   formData: z.infer<ReturnType<typeof getRegisterFormSchema>>
@@ -33,14 +44,16 @@ export const register = async (
       .catch((error) => {
         return {
           isSuccess: false,
-          error: (error?.response?.data?.message as string) || 'Unknown error',
+          error:
+            (error?.response?.data?.message as string) ||
+            'An unexpected error occurred',
         };
       });
     return response;
   } catch (error: any) {
     return {
       isSuccess: false,
-      error: error.message || 'Unknown error',
+      error: error.message || 'An unexpected error occurred',
     };
   }
 };
@@ -59,25 +72,133 @@ export const active = async (token: string, active: string) => {
     .catch((error) => {
       return {
         isSuccess: false,
-        error: (error?.response?.data?.message as string) || 'Unknown error',
+        error:
+          (error?.response?.data?.message as string) ||
+          'An unexpected error occurred',
       };
     });
+};
+
+export const login = async (
+  formData: z.infer<ReturnType<typeof getLoginFormSchema>>
+) => {
+  try {
+    const { email, password }: z.infer<ReturnType<typeof getLoginFormSchema>> =
+      formData;
+    const signature = uuidv4();
+    const response = await http
+      .post('/auth/login', {
+        email,
+        password,
+        signature,
+      })
+      .then((res) => {
+        const { accessToken, refreshToken } = res.data;
+
+        let payload = base64Decode(accessToken.split('.')[1]);
+        const cookie = cookies();
+        const user = JSON.parse(payload) as UserJWT;
+        cookie.set('refresh-token', refreshToken, {
+          maxAge: MAX_AGE_REFRESH_TOKEN,
+        });
+        cookie.set('signature', signature, { maxAge: MAX_AGE_REFRESH_TOKEN });
+        let expiryDate = new Date(user.exp * 1000);
+        cookie.set('access-token', accessToken, {
+          expires: expiryDate,
+        });
+
+        return {
+          isSuccess: true,
+          error: '',
+        };
+      })
+      .catch((error) => {
+        return {
+          isSuccess: false,
+          error: error?.response?.data?.message || 'Unknown error',
+        };
+      });
+    return response;
+  } catch (error: any) {
+    return {
+      isSuccess: false,
+      error: error.message || 'Unknown error',
+    };
+  }
+};
+
+export async function refreshAccessToken(token: string, signature: string) {
+  return await http
+    .post(`/auth/refresh-token`, {
+      refreshToken: token,
+      signature,
+    })
+    .then((res) => {
+      return res.data as AuthResponse;
+    })
+    .catch((error) => {
+      throw error;
+    });
+}
+
+export const logout = async () => {
+  const refreshToken = cookies().get('refresh-token')?.value;
+  const signature = cookies().get('signature')?.value;
+  try {
+    cookies().delete('access-token');
+    cookies().delete('refresh-token');
+    cookies().delete('signature');
+    await http.delete('/auth/logout', { data: { refreshToken, signature } });
+    return {
+      isSuccess: true,
+      error: '',
+    };
+  } catch (error: any) {
+    return {
+      isSuccess: false,
+      error: error.message || 'Unknown error',
+    };
+  }
+};
+
+export const joinGroup = async (
+  formData: z.infer<ReturnType<typeof getJoinGroupSchema>>
+) => {
+  const { code }: z.infer<ReturnType<typeof getJoinGroupSchema>> = formData;
+
+  const response = await http
+    .post('/groups/join', {
+      groupCode: code,
+    })
+    .then((res) => {
+      return {
+        isSuccess: true,
+        error: '',
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.message || 'Unknown error',
+      };
+    });
+
+  return response;
 };
 
 export const createGroup = async (
   formData: z.infer<ReturnType<typeof getCreateGroupFormSchema>>
 ) => {
-  try {
     const { title, description }: z.infer<ReturnType<typeof getCreateGroupFormSchema>> = formData;
 
     const response = await http
-      .post('/group/create', {
+      .post('/groups/create', {
         title,
         description,
       })
       .then((res) => {
         return {
-          isSuccess: res.data.success,
+          isSuccess: true,
           error: '',
         };
       })
@@ -88,10 +209,4 @@ export const createGroup = async (
         };
       });
     return response;
-  } catch (error: any) {
-    return {
-      isSuccess: false,
-      error: error.message || 'Unknown error',
-    };
-  }
 }

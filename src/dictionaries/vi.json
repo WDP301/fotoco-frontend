@@ -22,6 +22,12 @@
       "successInfo": "Tài khoản của bạn đã được tạo thành công. Vui lòng kiểm tra email của bạn để kích hoạt tài khoản của bạn."
     }
   },
+  "login": {
+    "title": "Đăng nhập",
+    "description": "Mô tả trang đăng nhập",
+    "heading": "Đăng nhập",
+    "loading": "Đang tải biểu mẫu đăng nhập..."
+  },
   "active": {
     "title": "Kích hoạt",
     "description": "Mô tả trang kích hoạt",
@@ -86,6 +92,9 @@
     "mainNav": {
       "aboutUs": "Về chúng tôi",
       "pricing": "Giá cả"
+    },
+    "action": {
+      "title": "Hành động"
     }
   },
   "validation": {
@@ -119,6 +128,23 @@
         "min": "Tên nhóm phải có nhất 3 ký tự",
         "max": "Tên nhóm phải tối đa 50 ký tự"
       }
+    },
+    "loginFormSchema": {
+      "email": {
+        "required": "Email không được để trống",
+        "invalid": "Email phải là một email hợp lệ"
+      },
+      "password": {
+        "required": "Mật khẩu không được để trống",
+        "min": "Mật khẩu phải có ít nhất 8 ký tự"
+      }
+    },
+    "joinGroupSchema": {
+      "code": {
+        "min": "Mã nhóm phải có 6 ký tự.",
+        "max": "Mã nhóm phải có 6 ký tự.",
+        "required": "Mã nhóm không được để trống"
+      }
     }
   },
   "form": {
@@ -130,13 +156,28 @@
     "confirmPassword": "Xác nhận mật khẩu",
     "register": "Đăng ký",
     "login": "Đăng nhập",
-    "forgotPassword": "Quên mật khẩu?"
+    "forgotPassword": "Quên mật khẩu?",
+    "code": "Mã nhóm"
   },
   "button": {
     "login": "Đăng nhập",
     "register": "Đăng ký",
     "home": "Trang chủ",
-    "refresh": "Làm mới"
+    "refresh": "Làm mới",
+    "logout": "Đăng xuất",
+    "cancel": "Hủy",
+    "join": "Tham gia"
+  },
+  "joinGroup": {
+    "title": "Tham gia nhóm",
+    "description": "Mô tả trang tham gia nhóm",
+    "heading": "Nhập mã nhóm để tham gia",
+    "headingInfo": "Nhập mã nhóm để tham gia nhóm của bạn",
+    "message": {
+      "error": "Lỗi",
+      "successInfo": "Tham gia nhóm thành công",
+      "errorInfo": "Tham gia nhóm thất bại. Mã nhóm không hợp lệ."
+    }
   },
   "footer": {
     "sections": {

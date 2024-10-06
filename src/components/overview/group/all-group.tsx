@@ -1,16 +1,15 @@
 import { cn } from "@/lib/utils";
 import { TabsContent } from "@/components/ui/tabs";
+import { getGroups } from "@/lib/data";
 
 
 export default async function AllGroupList() {
-  const data = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=10');
-  const groups = await data.json() as { id: number, title: string }[];
-
+  const groups = await getGroups();
   return (
     <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-      {groups.map(group => (
+      {groups?.map((group) => (
         <TabsContent
-          key={group.id}
+          key={group._id}
           value="all-groups"
           className="h-full flex-col border-none p-0 data-[state=active]:flex"
         >
@@ -29,7 +28,7 @@ export default async function AllGroupList() {
                   {group.title}
                 </h1>
                 <p className="font-normal text-sm text-gray-50 relative z-10 my-4">
-                  {group.id} album(s)
+                  {group._id} album(s)
                 </p>
               </div>
             </div>
@@ -39,3 +38,4 @@ export default async function AllGroupList() {
     </div>
   );
 }
+

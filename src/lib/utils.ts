@@ -14,3 +14,12 @@ export const getDictionary = (locale?: Locale) => {
   const selectedLocale = locale || 'en';
   return dictionaries[selectedLocale];
 };
+
+export const base64Decode = (str: string) => {
+  // Convert Base64 encoded bytes to percent-encoding, and then get the original string.
+  const percentEncodedStr = atob(str.replace(/_/g, '/').replace(/-/g, '+'))
+    .split('')
+    .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+    .join('');
+  return decodeURIComponent(percentEncodedStr);
+};

@@ -7,6 +7,18 @@ export type UserJWT = {
   exp: number;
 };
 
+export type BreadItem = {
+  title: string;
+  url: string;
+  active: boolean;
+};
+
+export type SortOption = {
+  label: string;
+  value: string;
+  field: string;
+};
+
 export type AuthResponse = {
   accessToken: string;
   refreshToken?: string;
@@ -67,6 +79,17 @@ export type RecentPhoto = {
   tags: string[];
   viewedAt: string;
 };
+
+export enum SearchParams {
+  SORT = 'sort',
+  PAGE = 'page',
+  PER_PAGE = 'perPage',
+  SEARCH = 'search',
+  STATUS = 'status',
+  TYPE = 'type',
+  FILTER = 'filter',
+  MODE = 'mode',
+}
 
 export type SearchGroupParams = {
   sort?: string;

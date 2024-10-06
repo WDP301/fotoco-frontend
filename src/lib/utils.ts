@@ -6,6 +6,7 @@ import { vi as dateFnsVi, enUS } from 'date-fns/locale';
 import { Locale } from './define';
 import en from '../dictionaries/en.json';
 import vi from '../dictionaries/vi.json';
+import { ReadonlyURLSearchParams } from 'next/navigation';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -19,6 +20,16 @@ export const getDateFormatted = (
   const dateFormat = isThisYear(date) ? 'd MMM, HH:mm' : 'd MMM, yyyy, HH:mm';
   const dateFnsLocale = locale === 'vi' ? dateFnsVi : enUS;
   return format(date, dateFormat, { locale: dateFnsLocale });
+};
+
+export const createUrl = (
+  pathname: string,
+  params: URLSearchParams | ReadonlyURLSearchParams
+) => {
+  const paramsString = params.toString();
+  const queryString = `${paramsString.length ? '?' : ''}${paramsString}`;
+
+  return `${pathname}${queryString}`;
 };
 
 const dictionaries = { en, vi };

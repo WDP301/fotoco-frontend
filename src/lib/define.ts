@@ -115,3 +115,9 @@ export type PageMeta = {
   hasNext: boolean;
   hasPrev: boolean;
 };
+
+export type FilterOption = {
+  label: string;
+  value: string;
+  field: string;
+};

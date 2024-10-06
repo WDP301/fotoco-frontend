@@ -176,7 +176,9 @@
     "refresh": "Refresh",
     "logout": "Logout",
     "cancel": "Cancel",
-    "join": "Join"
+    "join": "Join",
+    "sort": "Sort",
+    "filter": "Filter"
   },
   "joinGroup": {
     "title": "Join Group",
@@ -216,5 +218,21 @@
   "errorMessage": {
     "noGroupFound": "No group found",
     "noPhotoFound": "No photo found"
+  },
+  "breadcrumb": {
+    "home": "Home", 
+    "group": "Groups"
+  },
+  "group": {
+    "title": "Groups",
+    "description": "Group List page description"
+  },
+  "sortOptions": {
+    "newest": "Newest",
+    "oldest": "Oldest"
+  },
+  "filterOptions": {
+    "mine": "My Groups",
+    "sharedWithMe": "Shared with me"
   }
 }

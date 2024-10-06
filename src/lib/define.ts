@@ -35,3 +35,34 @@ export type User = {
   updatedAt: string;
   __v: number;
 };
+
+export type Group = {
+  _id: string;
+  title: string;
+  description: string;
+  groupImg: string;
+  membersCount: number;
+  ownersCount: number;
+  albumCount: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type SearchGroupParams = {
+  sort?: string;
+  page?: number;
+  pageSize?: number;
+  search?: string;
+  status?: string;
+  type?: string;
+  filter?: string;
+};
+
+export type PageMeta = {
+  totalPages: number;
+  page: number;
+  totalElements: number;
+  pageSize: number;
+  hasNext: boolean;
+  hasPrev: boolean;
+};

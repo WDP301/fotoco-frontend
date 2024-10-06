@@ -40,6 +40,20 @@
     "title": "Trang chủ",
     "description": "Chào mừng bạn đến với trang web của chúng tôi - nơi tốt nhất để chia sẻ khoảnh khắc của bạn với thế giới."
   },
+  "userHome": {
+    "greeting": {
+      "morning": "Chào buổi sáng",
+      "afternoon": "Chào buổi chiều",
+      "night": "Chúc bạn ngủ ngon"
+    },
+    "home": {
+      "introText": "Lưu trữ tất cả ảnh của nhóm bạn an toàn, có tổ chức và truy cập được bất cứ lúc nào.",
+      "myGroup": "Nhóm của tôi",
+      "recentView": "Xem gần đây",
+      "viewAllGroups": "Xem tất cả nhóm",
+      "viewAllPhotos": "Xem tất cả ảnh gần đây"
+    }
+  },
   "joinNow": {
     "intro": "Tham gia và lưu giữ câu chuyện của nhóm bạn",
     "typewriter": [
@@ -195,5 +209,9 @@
     ],
     "legalLinks": ["Chính sách", "Điều khoản sử dụng", "Riêng tư"],
     "supportLinks": ["Facebook", "Google", "Youtube"]
+  },
+  "errorMessage": {
+    "noGroupFound": "Không tìm thấy nhóm",
+    "noPhotoFound": "Không tìm thấy ảnh"
   }
 }

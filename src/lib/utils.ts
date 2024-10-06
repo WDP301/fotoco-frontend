@@ -1,5 +1,8 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { format, formatDistanceToNow, isThisYear } from 'date-fns';
+import { vi as dateFnsVi, enUS } from 'date-fns/locale';
+
 import { Locale } from './define';
 import en from '../dictionaries/en.json';
 import vi from '../dictionaries/vi.json';
@@ -7,6 +10,16 @@ import vi from '../dictionaries/vi.json';
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+export const getDateFormatted = (
+  params: string,
+  locale: 'en' | 'vi' = 'en'
+) => {
+  const date = new Date(params);
+  const dateFormat = isThisYear(date) ? 'd MMM, HH:mm' : 'd MMM, yyyy, HH:mm';
+  const dateFnsLocale = locale === 'vi' ? dateFnsVi : enUS;
+  return format(date, dateFormat, { locale: dateFnsLocale });
+};
 
 const dictionaries = { en, vi };
 

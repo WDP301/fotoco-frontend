@@ -40,6 +40,20 @@
     "title": "Home",
     "description": "Welcome to our site - the best place to share your moments with the world."
   },
+  "userHome": {
+    "greeting": {
+      "morning": "Good morning",
+      "afternoon": "Good afternoon",
+      "night": "Good night"
+    },
+    "home": {
+      "introText": "Keep all your group’s photos safe, organized, and accessible anytime.",
+      "myGroup": "My Group",
+      "recentView": "Recent View",
+      "viewAllGroups": "View all groups",
+      "viewAllPhotos": "View all recent photos"
+    }
+  },
   "joinNow": {
     "intro": "Join Us and Keep Your Group's Story Alive",
     "typewriter": [
@@ -198,5 +212,9 @@
     ],
     "legalLinks": ["Policy", "Terms of Use", "Privacy"],
     "supportLinks": ["Facebook", "Google", "Youtube"]
+  },
+  "errorMessage": {
+    "noGroupFound": "No group found",
+    "noPhotoFound": "No photo found"
   }
 }

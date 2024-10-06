@@ -35,3 +35,60 @@ export type User = {
   updatedAt: string;
   __v: number;
 };
+
+export type Group = {
+  _id: string;
+  title: string;
+  description: string;
+  groupImg: string;
+  membersCount: number;
+  ownersCount: number;
+  albumCount: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type RecentPhoto = {
+  _id: string;
+  owner: {
+    _id: string;
+    fullName: string;
+    email: string;
+    username: string;
+    img: string;
+  };
+  type: string;
+  belonging: string;
+  status: string;
+  mimeType: string;
+  fileSize: number;
+  title: string;
+  url: string;
+  tags: string[];
+  viewedAt: string;
+};
+
+export type SearchGroupParams = {
+  sort?: string;
+  page?: number;
+  pageSize?: number;
+  search?: string;
+  status?: string;
+  type?: string;
+  filter?: string;
+};
+
+export type SearchRecentViewParams = {
+  sort?: string;
+  page?: number;
+  pageSize?: number;
+};
+
+export type PageMeta = {
+  totalPages: number;
+  page: number;
+  totalElements: number;
+  pageSize: number;
+  hasNext: boolean;
+  hasPrev: boolean;
+};

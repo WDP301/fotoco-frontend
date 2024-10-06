@@ -173,7 +173,9 @@
     "refresh": "Làm mới",
     "logout": "Đăng xuất",
     "cancel": "Hủy",
-    "join": "Tham gia"
+    "join": "Tham gia",
+    "sort":"Sắp xếp",
+    "filter": "Lọc"
   },
   "joinGroup": {
     "title": "Tham gia nhóm",
@@ -213,5 +215,21 @@
   "errorMessage": {
     "noGroupFound": "Không tìm thấy nhóm",
     "noPhotoFound": "Không tìm thấy ảnh"
+  },
+  "breadcrumb": {
+    "home": "Trang chủ", 
+    "group": "Nhóm"
+  },
+  "group": {
+    "title": "Nhóm",
+    "description": "Mô tả trang danh sách nhóm"
+  },
+  "sortOptions": {
+    "newest": "Mới nhất",
+    "oldest": "Cũ nhất"
+  },
+  "filterOptions": {
+    "mine": "Nhóm của tôi",
+    "sharedWithMe": "Chia sẻ với tôi"
   }
 }

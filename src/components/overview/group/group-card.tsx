@@ -19,10 +19,7 @@ export function GroupCard({ group }: { group: Group }) {
       >
         <div className="absolute w-full h-full top-0 left-0 transition duration-300 group-hover/card:bg-black opacity-60"></div>
         <div className="flex flex-col">
-          <p className="font-normal text-base text-gray-50 relative z-10">
-            {group?.membersCount || 0} members
-          </p>
-          <p className="text-sm text-gray-400">
+        <p className="text-sm text-gray-400">
             {group?.albumCount || 0} albums
           </p>
         </div>
@@ -30,8 +27,8 @@ export function GroupCard({ group }: { group: Group }) {
           <h1 className="font-bold text-xl md:text-2xl text-gray-50 relative z-10 line-clamp-1">
             {group?.title}
           </h1>
-          <p className="font-normal text-sm text-gray-50 relative z-10 my-4 line-clamp-2">
-            {group?.description}
+          <p className="font-normal text-base text-gray-50 relative z-10">
+            {group?.membersCount || 0} members
           </p>
         </div>
       </div>

@@ -5,7 +5,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { Button } from '@/components/ui/button';
 import { useDebouncedCallback } from 'use-debounce';
 import {
   Command,
@@ -22,15 +21,28 @@ import { cn, createUrl } from '@/lib/utils';
 import { CheckIcon } from '@radix-ui/react-icons';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { SearchParams, SortOption } from '@/lib/define';
+import { VariantProps } from 'class-variance-authority';
+import { Button, buttonVariants } from '@/components/ui/button';
+import { useLanguage } from '../provider/language-provider';
+
+interface SortSelectProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  sort?: string;
+  options: SortOption[];
+  url: string;
+}
 
 export default function SortSelect({
   sort,
   options,
   url,
-}: Readonly<{ sort?: string; options: SortOption[]; url: string }>) {
+  ...props
+}: Readonly<SortSelectProps>) {
   const { push } = useRouter();
   const searchParams = useSearchParams();
   const [selected, setSelected] = React.useState<string[]>([]);
+  const { dict } = useLanguage();
 
   useEffect(() => {
     if (sort) setSelected(sort.split(','));
@@ -47,9 +59,9 @@ export default function SortSelect({
     <div>
       <Popover>
         <PopoverTrigger asChild>
-          <Button variant="outline">
+          <Button {...props}>
             <ArrowDownUp className="mr-2 size-4 text-sky-500" />
-            Sort
+            {dict.button.sort}
             {selected.length > 0 && (
               <>
                 <Separator orientation="vertical" className="mx-2 h-4" />

@@ -34,6 +34,7 @@ const pageMetaDefault = {
 } as PageMeta;
 
 export const getAllGroup = async (searchParams: SearchGroupParams) => {
+  await new Promise((resolve) => setTimeout(resolve, 5000));
   const queryString = objectToQueryString(searchParams);
   const response = await customFetch(`/groups?${queryString}`, {
     method: 'GET',
@@ -58,6 +59,7 @@ export const getAllGroup = async (searchParams: SearchGroupParams) => {
 export const getRecentViewPhotos = async (
   searchParams: SearchRecentViewParams
 ) => {
+  await new Promise((resolve) => setTimeout(resolve, 3000));
   const queryString = objectToQueryString(searchParams);
   const response = await customFetch(`/photos/recent-views?${queryString}`, {
     method: 'GET',

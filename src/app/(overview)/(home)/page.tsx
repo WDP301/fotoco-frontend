@@ -1,7 +1,7 @@
+import GroupListLoading from '@/components/overview/group/loading/group-list-loading';
 import LandingPage from '@/components/overview/home/landing-page/landing-page';
 import GroupList from '@/components/overview/home/user-home/group/group-list';
 import RecentViewList from '@/components/overview/home/user-home/recent-view/recent-view-list';
-import UserHome from '@/components/overview/home/user-home/user-home';
 import SpinLoading from '@/components/shared/spin-loading';
 import { getUser } from '@/lib/data';
 import { getDictionary } from '@/lib/dictionaries';
@@ -42,15 +42,19 @@ export default async function Home() {
           <span className={`text-2xl font-bold`}>
             {dict.userHome.home.myGroup}
           </span>
-          <Suspense fallback={<SpinLoading />}>
-            <GroupList />
-          </Suspense>
+          <div className="my-5">
+            <Suspense fallback={<GroupListLoading />}>
+              <GroupList />
+            </Suspense>
+          </div>
           <span className={`text-2xl font-bold`}>
             {dict.userHome.home.recentView}
           </span>
-          <Suspense fallback={<SpinLoading />}>
-            <RecentViewList />
-          </Suspense>
+          <div className="my-5">
+            <Suspense fallback={<GroupListLoading />}>
+              <RecentViewList />
+            </Suspense>
+          </div>
         </div>
       ) : (
         <LandingPage />

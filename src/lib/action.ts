@@ -2,6 +2,7 @@
 
 import { z } from 'zod';
 import {
+  getCreateAlbumSchema,
   getCreateGroupSchema,
   getJoinGroupSchema,
   getLoginFormSchema,
@@ -196,6 +197,33 @@ export const createGroup = async (
       title,
       description,
       type: formData.type,
+    })
+    .then((res) => {
+      return {
+        isSuccess: true,
+        error: '',
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.message || 'Unknown error',
+      };
+    });
+
+  return response;
+}
+
+export const createAlbum = async (
+  groupId: string,
+  formData: z.infer<ReturnType<typeof getCreateAlbumSchema>>
+) => {
+  const { title, description } : z.infer<ReturnType<typeof getCreateAlbumSchema>> = formData;
+
+  const response = await http 
+    .post(`/groups/${groupId}/create-album`, {
+      title,
+      description
     })
     .then((res) => {
       return {

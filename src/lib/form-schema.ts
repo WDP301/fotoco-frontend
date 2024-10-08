@@ -83,3 +83,24 @@ export const getCreateGroupSchema = (lang: Locale) => {
     type: z.enum(['PUBLIC', 'PRIVATE', 'HIDDEN'])
   });
 };
+
+export const getCreateAlbumSchema = (lang: Locale) => {
+  const { createAlbumSchema: messages } = getValidationMessages(lang);
+
+  return z.object({
+    title: z
+      .string({ required_error: messages.title.required })
+      .min(2, { message: messages.title.min })
+      .max(50, { message: messages.title.max }),
+    
+    description: z
+      .string()
+      .optional()
+      .refine((val) => val === undefined || val === '' || val.length >= 10, {
+        message: messages.description.min
+      })
+      .refine((val) => val === undefined || val === '' || val.length <= 300, {
+        message: messages.description.max
+      }),
+  });
+};

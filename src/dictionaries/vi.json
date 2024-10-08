@@ -163,6 +163,17 @@
         "min": "Mô tả nhóm phải có ít nhất 10 ký tự",
         "max": "Mô tả nhóm phải tối đa 300 ký tự"
       }
+    },
+    "createAlbumSchema":{
+      "title": {
+        "required": "Tên album không được để trống",
+        "min": "Tên album phải có ít nhất 2 kí tự",
+        "max": "Tên album dùng phải tối đa 50 ký tự"
+      },
+      "description": {
+        "min": "Mô tả album phải có ít nhất 10 ký tự",
+        "max": "Mô tả nhóm phải tối đa 300 ký tự"
+      }
     }
   },
   "form": {
@@ -188,7 +199,8 @@
     "sort": "Sắp xếp",
     "filter": "Lọc",
     "tryAgain": "Thử lại",
-    "createGroup": "Tạo nhóm"
+    "createGroup": "Tạo nhóm",
+    "createAlbum": "Tạo album"
   },
   "joinGroup": {
     "title": "Tham gia nhóm",
@@ -272,6 +284,18 @@
       "success": "Nhóm được tạo thành công"
     },
     "tooltipContent": "Các nhóm có quyền truy cập Ẩn không hiển thị với những người dùng khác. Chỉ những thành viên được mời rõ ràng mới có thể xem và truy cập nhóm này. Sử dụng cài đặt này cho các cuộc thảo luận nhạy cảm hoặc riêng tư."
+  },
+  "createAlbum": {
+    "dialogTitle": "Tạo album",
+    "dialogDescription": "Tạo một album và chia sẻ những khoảng khắc của bạn",
+    "title": "Tên album",
+    "titlePlaceholder": "Nhâp tên album ở đây.",
+    "description": "Mô tả album",
+    "descriptionPlaceholder": "Nhâp mô tả album ở đây",
+    "button": "Tạo album",
+    "message": {
+      "success": "Album được tạo thành công"
+    }
   },
   "groupCard": {
     "members": "thành viên"

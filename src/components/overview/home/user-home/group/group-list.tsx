@@ -21,7 +21,7 @@ export default async function GroupList() {
           <GroupCard key={group._id} group={group} />
         ))}
       </div>
-      <div className="w-full flex justify-center mb-5">
+      <div className="w-full flex justify-center my-5">
         <Button asChild>
           <Link href="/groups">{dict.userHome.home.viewAllGroups}</Link>
         </Button>

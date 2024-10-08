@@ -34,9 +34,9 @@ export default async function Home() {
       {user ? (
         <div>
           <div className="w-full text-center mb-5">
-            <h1 className="text-2xl font-bold">
+            <h2>
               {getGreeting()}, {user.fullName}
-            </h1>
+            </h2>
             <p className="mt-2">{dict.userHome.home.introText}</p>
           </div>
           <span className={`text-2xl font-bold`}>

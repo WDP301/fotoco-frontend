@@ -21,7 +21,7 @@ export default async function RecentViewList() {
           <RecentViewCard key={photo._id} photo={photo} />
         ))}
       </div>
-      <div className=" w-full flex justify-center mb-5">
+      <div className=" w-full flex justify-center my-5">
         <Button asChild>
           <Link href="/recent-views">{dict.userHome.home.viewAllPhotos}</Link>
         </Button>

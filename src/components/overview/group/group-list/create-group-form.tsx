@@ -144,7 +144,6 @@ export default function CreateGroupForm({
                       placeholder={dict.createGroup.descriptionPlaceholder}
                       autoCapitalize="none"
                       autoCorrect="off"
-                      autoFocus
                       disabled={isLoading}
                       {...field}
                       />

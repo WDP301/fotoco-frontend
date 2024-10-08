@@ -217,15 +217,21 @@
   },
   "errorMessage": {
     "noGroupFound": "No group found",
+    "noAlbumFound": "No album found",
     "noPhotoFound": "No photo found"
   },
   "breadcrumb": {
-    "home": "Home", 
-    "group": "Groups"
+    "home": "Home",
+    "group": "Groups",
+    "album": "Albums"
   },
   "group": {
     "title": "Groups",
     "description": "Group List page description"
+  },
+  "album": {
+    "title": "Albums",
+    "description": "Album List page description"
   },
   "sortOptions": {
     "newest": "Newest",

@@ -174,7 +174,7 @@
     "logout": "Đăng xuất",
     "cancel": "Hủy",
     "join": "Tham gia",
-    "sort":"Sắp xếp",
+    "sort": "Sắp xếp",
     "filter": "Lọc"
   },
   "joinGroup": {
@@ -214,15 +214,21 @@
   },
   "errorMessage": {
     "noGroupFound": "Không tìm thấy nhóm",
+    "noAlbumFound": "Không tìm thấy bộ ảnh",
     "noPhotoFound": "Không tìm thấy ảnh"
   },
   "breadcrumb": {
-    "home": "Trang chủ", 
-    "group": "Nhóm"
+    "home": "Trang chủ",
+    "group": "Nhóm",
+    "album": "Bộ ảnh"
   },
   "group": {
     "title": "Nhóm",
     "description": "Mô tả trang danh sách nhóm"
+  },
+  "album": {
+    "title": "Bộ ảnh",
+    "description": "Mô tả trang danh sách bộ ảnh"
   },
   "sortOptions": {
     "newest": "Mới nhất",

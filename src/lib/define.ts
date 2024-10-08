@@ -121,3 +121,25 @@ export type FilterOption = {
   value: string;
   field: string;
 };
+
+export type Album = {
+  _id: string;
+  title: string;
+  description: string;
+  albumImg: string;
+  membersCount: number;
+  ownersCount: number;
+  contributorsCount: number;
+  photosCount: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type SearchAlbumParams = {
+  sort?: string;
+  page?: number;
+  pageSize?: number;
+  search?: string;
+  status?: string;
+  filter?: string;
+};

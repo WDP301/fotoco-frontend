@@ -1,13 +1,11 @@
-import GroupList from '@/components/overview/group/group-list/group-list';
-import GroupListLoading from '@/components/overview/group/loading/group-list-loading';
+import AlbumList from '@/components/overview/group/album-section/album-list/album-list';
 import BreadcrumbComponent from '@/components/shared/breadcrumb-component';
 import FilterSelect from '@/components/shared/filter-selection';
 import SortSelect from '@/components/shared/sort-select';
-import SpinLoading from '@/components/shared/spin-loading';
 import {
   BreadItem,
   FilterOption,
-  SearchGroupParams,
+  SearchAlbumParams,
   SortOption,
 } from '@/lib/define';
 import { getDictionary } from '@/lib/dictionaries';
@@ -22,21 +20,28 @@ export const generateMetadata = async (): Promise<Metadata> => {
     description: dict.group.description,
   };
 };
+
 export default async function GroupPage({
+  params,
   searchParams,
 }: {
-  searchParams: SearchGroupParams;
+  params: { id: string };
+  searchParams: SearchAlbumParams;
 }) {
   const dict = await getDictionary();
-
+  const { id } = params;
   const breadItems = [
     {
       title: dict.breadcrumb.group,
       url: '/groups',
     },
+    {
+      title: dict.breadcrumb.album,
+      url: '/albums',
+    },
   ] as BreadItem[];
 
-  const selectOptions = [
+  const sortOptions = [
     {
       label: dict.sortOptions.newest,
       value: 'desc',
@@ -68,13 +73,13 @@ export default async function GroupPage({
         <BreadcrumbComponent breadcrumbs={breadItems} />
       </div>
       <div className="flex items-center justify-between space-y-2">
-        <span className={`text-2xl font-bold`}>{dict.group.title}</span>
+        <span className="text-2xl font-bold">{dict.album.title}</span>
         <div className="flex items-center space-x-2">
           <SortSelect
             variant="ghost"
             sort={searchParams.sort}
-            options={selectOptions}
-            url="/groups"
+            options={sortOptions}
+            url={'/groups'}
           />
           <FilterSelect
             variant="ghost"
@@ -87,7 +92,6 @@ export default async function GroupPage({
       </div>
       <div className="mt-5">
         <Suspense
-          fallback={<GroupListLoading />}
           key={
             searchParams.page ||
             '1' + searchParams.sort ||
@@ -95,11 +99,10 @@ export default async function GroupPage({
               searchParams.pageSize +
               searchParams.filter +
               searchParams.status +
-              searchParams.type ||
-            'all' + searchParams.search
+              searchParams.search
           }
         >
-          <GroupList searchParams={searchParams} />
+          <AlbumList groupId={id} searchParams={searchParams} />
         </Suspense>
       </div>
     </>

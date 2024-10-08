@@ -152,6 +152,17 @@
         "max": "Mã nhóm phải có 6 ký tự.",
         "required": "Mã nhóm không được để trống"
       }
+    },
+    "createGroupSchema": {
+      "title": {
+        "required": "Tên nhóm không được để trống",
+        "min": "Tên nhóm phải có ít nhất 3 ký tự",
+        "max": "Tên nhóm phải tối đa 50 ký tự"
+      },
+      "description": {
+        "min": "Mô tả nhóm phải có ít nhất 10 ký tự",
+        "max": "Mô tả nhóm phải tối đa 300 ký tự"
+      }
     }
   },
   "form": {
@@ -175,7 +186,8 @@
     "cancel": "Hủy",
     "join": "Tham gia",
     "sort":"Sắp xếp",
-    "filter": "Lọc"
+    "filter": "Lọc",
+    "createGroup": "Tạo nhóm"
   },
   "joinGroup": {
     "title": "Tham gia nhóm",
@@ -231,5 +243,25 @@
   "filterOptions": {
     "mine": "Nhóm của tôi",
     "sharedWithMe": "Chia sẻ với tôi"
+  },
+  "createGroup": {
+    "dialogTitle": "Tạo nhóm mới",
+    "dialogDescription": "Tạo một nhóm mới và mời bạn bè của bạn cùng tham gia",
+    "title" : "Tên nhóm",
+    "titlePlaceholder": "Nhâp tên nhóm ở đây.",
+    "description": "Mô tả nhóm",
+    "descriptionPlaceholder": "Nhâp mô tả nhóm ở đây.",
+    "type": "Phạm vi truy cập",
+    "public": "Công khai",
+    "private": "Riêng tư",
+    "hidden": "Ẩn giấu",
+    "button": "Tạo nhóm",
+    "message":{
+      "success": "Nhóm được tạo thành công"
+    },
+    "tooltipContent": "Các nhóm có quyền truy cập Ẩn không hiển thị với những người dùng khác. Chỉ những thành viên được mời rõ ràng mới có thể xem và truy cập nhóm này. Sử dụng cài đặt này cho các cuộc thảo luận nhạy cảm hoặc riêng tư."
+  },
+  "groupCard": {
+    "members" : "thành viên"
   }
 }

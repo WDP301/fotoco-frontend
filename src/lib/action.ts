@@ -2,6 +2,7 @@
 
 import { z } from 'zod';
 import {
+  getCreateGroupSchema,
   getJoinGroupSchema,
   getLoginFormSchema,
   getRegisterFormSchema,
@@ -184,3 +185,30 @@ export const joinGroup = async (
 
   return response;
 };
+
+export const createGroup = async (
+  formData: z.infer<ReturnType<typeof getCreateGroupSchema>>
+) => {
+  const { title, description } : z.infer<ReturnType<typeof getCreateGroupSchema>> = formData;
+
+  const response = await http
+    .post('/groups/create', {
+      title,
+      description,
+      type: formData.type,
+    })
+    .then((res) => {
+      return {
+        isSuccess: true,
+        error: '',
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.message || 'Unknown error',
+      };
+    });
+
+  return response;
+}

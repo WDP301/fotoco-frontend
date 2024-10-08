@@ -1,9 +1,13 @@
 'use client';
+import { useLanguage } from '@/components/provider/language-provider';
 import { Group } from '@/lib/define';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
 export function GroupCard({ group }: { group: Group }) {
+
+  const { dict } = useLanguage();
+
   return (
     <Link href={`/groups/${group._id}`} className="max-w-xs w-full group/card">
       <div
@@ -28,7 +32,7 @@ export function GroupCard({ group }: { group: Group }) {
             {group?.title}
           </h1>
           <p className="font-normal text-base text-gray-50 relative z-10">
-            {group?.membersCount || 0} members
+            {group?.membersCount || 0} {dict.groupCard.members}
           </p>
         </div>
       </div>

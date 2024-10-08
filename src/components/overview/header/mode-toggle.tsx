@@ -11,8 +11,10 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
+import { useLanguage } from '@/components/provider/language-provider';
 
 export function ModeToggle() {
+  const { dict } = useLanguage();
   const { setTheme } = useTheme();
 
   return (
@@ -26,13 +28,13 @@ export function ModeToggle() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => setTheme('light')}>
-          Light
+          {dict.modeToggle.light}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme('dark')}>
-          Dark
+          {dict.modeToggle.dark}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme('system')}>
-          System
+          {dict.modeToggle.system}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

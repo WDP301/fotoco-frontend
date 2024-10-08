@@ -278,5 +278,10 @@
   },
   "groupCard": {
     "members": "members"
+  },
+  "modeToggle": {
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System"
   }
 }

@@ -107,6 +107,14 @@ export type SearchRecentViewParams = {
   pageSize?: number;
 };
 
+export type SearchGroupMembersParams = {
+  sort?: string;
+  page?: number;
+  pageSize?: number;
+  search?: string;
+  filter?: string;
+};
+
 export type PageMeta = {
   totalPages: number;
   page: number;
@@ -120,4 +128,21 @@ export type FilterOption = {
   label: string;
   value: string;
   field: string;
+};
+
+export type GroupInfo = {
+  title: string;
+  description: string;
+  groupImg: string;
+  type: string;
+};
+
+export type GroupUser = {
+  _id: string;
+  username: string;
+  fullName: string;
+  img: string;
+  email: string;
+  createdAt: string;
+  updatedAt: string;
 };

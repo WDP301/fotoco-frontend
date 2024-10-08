@@ -39,6 +39,18 @@ export const getDictionary = (locale?: Locale) => {
   return dictionaries[selectedLocale];
 };
 
+export const formatNumber = (num: number) => {
+  if (num >= 1000000000) {
+    return (num / 1000000000).toFixed(1) + 'B';
+  } else if (num >= 1000000) {
+    return (num / 1000000).toFixed(1) + 'M';
+  } else if (num >= 1000) {
+    return (num / 1000).toFixed(1) + 'K';
+  } else {
+    return num.toString();
+  }
+};
+
 export const base64Decode = (str: string) => {
   // Convert Base64 encoded bytes to percent-encoding, and then get the original string.
   const percentEncodedStr = atob(str.replace(/_/g, '/').replace(/-/g, '+'))

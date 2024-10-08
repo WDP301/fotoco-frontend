@@ -178,7 +178,8 @@
     "cancel": "Cancel",
     "join": "Join",
     "sort": "Sort",
-    "filter": "Filter"
+    "filter": "Filter",
+    "tryAgain": "Try again"
   },
   "joinGroup": {
     "title": "Join Group",
@@ -220,12 +221,17 @@
     "noPhotoFound": "No photo found"
   },
   "breadcrumb": {
-    "home": "Home", 
+    "home": "Home",
     "group": "Groups"
   },
   "group": {
     "title": "Groups",
-    "description": "Group List page description"
+    "description": "Group List page description",
+    "type": {
+      "private": "Private Group",
+      "public": "Public Group",
+      "hidden": "Hidden Group"
+    }
   },
   "sortOptions": {
     "newest": "Newest",
@@ -234,5 +240,11 @@
   "filterOptions": {
     "mine": "My Groups",
     "sharedWithMe": "Shared with me"
+  },
+  "groupNotFound": {
+    "title": "Group not found",
+    "description": "Group not found page description",
+    "heading": "Oops! The group you are looking for does not exist",
+    "info": "The group you are looking for may have been removed or does not exist."
   }
 }

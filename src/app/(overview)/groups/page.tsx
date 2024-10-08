@@ -1,9 +1,11 @@
+import CreateGroupDiaLog from '@/components/overview/group/group-list/create-group-dialog';
 import GroupList from '@/components/overview/group/group-list/group-list';
 import GroupListLoading from '@/components/overview/group/loading/group-list-loading';
 import BreadcrumbComponent from '@/components/shared/breadcrumb-component';
 import FilterSelect from '@/components/shared/filter-selection';
 import SortSelect from '@/components/shared/sort-select';
-import SpinLoading from '@/components/shared/spin-loading';
+import { Button } from '@/components/ui/button';
+
 import {
   BreadItem,
   FilterOption,
@@ -11,6 +13,7 @@ import {
   SortOption,
 } from '@/lib/define';
 import { getDictionary } from '@/lib/dictionaries';
+import { SquarePlus } from 'lucide-react';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 
@@ -70,6 +73,12 @@ export default async function GroupPage({
       <div className="flex items-center justify-between space-y-2">
         <span className={`text-2xl font-bold`}>{dict.group.title}</span>
         <div className="flex items-center space-x-2">
+          <CreateGroupDiaLog>
+            <Button variant="ghost">
+                <SquarePlus className="mr-2 h-4 w-4" />
+                {dict.button.createGroup}
+            </Button>
+          </CreateGroupDiaLog>
           <SortSelect
             variant="ghost"
             sort={searchParams.sort}

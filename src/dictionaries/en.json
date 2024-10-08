@@ -155,6 +155,17 @@
         "max": "Group code must be 6 characters.",
         "required": "Group code can not be empty"
       }
+    },
+    "createGroupSchema": {
+      "title": {
+        "required": "Group title can not be empty",
+        "min": "Group title must be at least 3 characters.",
+        "max": "Group title must be maximum 50 characters."
+      },
+      "description": {
+        "min": "Group description must be at least 10 characters.",
+        "max": "Group description must be maximum 300 characters."
+      }
     }
   },
   "form": {
@@ -178,7 +189,8 @@
     "cancel": "Cancel",
     "join": "Join",
     "sort": "Sort",
-    "filter": "Filter"
+    "filter": "Filter",
+    "createGroup": "Create Group"
   },
   "joinGroup": {
     "title": "Join Group",
@@ -234,5 +246,25 @@
   "filterOptions": {
     "mine": "My Groups",
     "sharedWithMe": "Shared with me"
+  },
+  "createGroup": {
+    "dialogTitle": "Create Group",
+    "dialogDescription": "Create a group and invite your friends to join",
+    "title" : "Group title",
+    "titlePlaceholder": "Enter group title here.",
+    "description": "Group description",
+    "descriptionPlaceholder": "Enter group description here.",
+    "type": "General Access",
+    "public": "Public",
+    "private": "Private",
+    "hidden": "Hidden",
+    "button": "Create",
+    "message":{
+      "success": "Group created successfully!"
+    },
+    "tooltipContent": "Groups with Hidden access are not visible to other users. Only members who have been explicitly invited can see and access this group. Use this setting for sensitive or private discussions."
+  },
+  "groupCard": {
+    "members" : "members"
   }
 }

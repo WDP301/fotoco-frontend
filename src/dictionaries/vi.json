@@ -185,6 +185,9 @@
     "logout": "Đăng xuất",
     "cancel": "Hủy",
     "join": "Tham gia",
+    "sort": "Sắp xếp",
+    "filter": "Lọc",
+    "tryAgain": "Thử lại"
     "sort":"Sắp xếp",
     "filter": "Lọc",
     "createGroup": "Tạo nhóm"
@@ -229,12 +232,17 @@
     "noPhotoFound": "Không tìm thấy ảnh"
   },
   "breadcrumb": {
-    "home": "Trang chủ", 
+    "home": "Trang chủ",
     "group": "Nhóm"
   },
   "group": {
     "title": "Nhóm",
-    "description": "Mô tả trang danh sách nhóm"
+    "description": "Mô tả trang danh sách nhóm",
+    "type": {
+      "private": "Nhóm riêng tư",
+      "public": "Nhóm công khai",
+      "hidden": "Nhóm ẩn"
+    }
   },
   "sortOptions": {
     "newest": "Mới nhất",
@@ -243,6 +251,12 @@
   "filterOptions": {
     "mine": "Nhóm của tôi",
     "sharedWithMe": "Chia sẻ với tôi"
+  },
+  "groupNotFound": {
+    "title": "Không tìm thấy nhóm",
+    "description": "Mô tả trang không tìm thấy nhóm",
+    "heading": "Opp! Không tìm thấy nhóm",
+    "info": "Nhóm bạn đang tìm kiếm có thể đã bị xóa, đã thay đổi tên hoặc tạm thời không khả dụng."
   },
   "createGroup": {
     "dialogTitle": "Tạo nhóm mới",

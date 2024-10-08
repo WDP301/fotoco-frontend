@@ -37,10 +37,12 @@ const pageMetaDefault = {
 } as PageMeta;
 
 export const getAllGroup = async (searchParams: SearchGroupParams) => {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   const queryString = objectToQueryString(searchParams);
   const response = await customFetch(`/groups?${queryString}`, {
     method: 'GET',
-    next: { revalidate: 60 },
+    // next: { revalidate: 60 },
+    cache: 'no-store',
   })
     .then((res) => res.json())
     .catch((error) => null);

@@ -4,8 +4,12 @@ import { getAllGroup } from '@/lib/data';
 import { getDictionary } from '@/lib/dictionaries';
 import Link from 'next/link';
 
-export default async function GroupList() {
-  const { groups } = await getAllGroup({ page: 1, pageSize: 8 });
+export default async function MyGroupList() {
+  const { groups } = await getAllGroup({
+    page: 1,
+    pageSize: 8,
+    filter: 'mine',
+  });
   const dict = await getDictionary();
   if (!groups || groups.length === 0) {
     return (
@@ -23,7 +27,9 @@ export default async function GroupList() {
       </div>
       <div className="w-full flex justify-center my-5">
         <Button asChild>
-          <Link href="/groups">{dict.userHome.home.viewAllGroups}</Link>
+          <Link href="/groups?filter=mine">
+            {dict.userHome.home.viewAllGroups}
+          </Link>
         </Button>
       </div>
     </div>

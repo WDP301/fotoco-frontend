@@ -1,11 +1,10 @@
 import GroupListLoading from '@/components/overview/group/loading/group-list-loading';
 import LandingPage from '@/components/overview/home/landing-page/landing-page';
-import GroupList from '@/components/overview/home/user-home/group/group-list';
 import RecentViewList from '@/components/overview/home/user-home/recent-view/recent-view-list';
-import SpinLoading from '@/components/shared/spin-loading';
 import { getUser } from '@/lib/data';
-import { getDictionary } from '@/lib/dictionaries';
 import { Suspense } from 'react';
+import GroupSection from '@/components/overview/home/user-home/group/group-section';
+import { getDictionary } from '@/lib/dictionaries';
 
 const message: [number, number, 'morning' | 'afternoon' | 'night'][] = [
   [0, 4, 'night'],
@@ -14,7 +13,11 @@ const message: [number, number, 'morning' | 'afternoon' | 'night'][] = [
   [18, 24, 'night'],
 ];
 
-export default async function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: { filter?: string };
+}) {
   const user = await getUser();
   const dict = await getDictionary();
 
@@ -39,14 +42,7 @@ export default async function Home() {
             </h2>
             <p className="mt-2">{dict.userHome.home.introText}</p>
           </div>
-          <span className={`text-2xl font-bold`}>
-            {dict.userHome.home.myGroup}
-          </span>
-          <div className="my-5">
-            <Suspense fallback={<GroupListLoading />}>
-              <GroupList />
-            </Suspense>
-          </div>
+
           <span className={`text-2xl font-bold`}>
             {dict.userHome.home.recentView}
           </span>
@@ -55,6 +51,12 @@ export default async function Home() {
               <RecentViewList />
             </Suspense>
           </div>
+
+          <span className={`text-2xl font-bold`}>
+            {dict.userHome.home.myGroup}
+          </span>
+
+          <GroupSection filter={searchParams.filter} />
         </div>
       ) : (
         <LandingPage />

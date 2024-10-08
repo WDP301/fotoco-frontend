@@ -117,7 +117,6 @@ export default function CreateAlbumForm({
                             placeholder={dict.createAlbum.descriptionPlaceholder}
                             autoCapitalize="none"
                             autoCorrect="off"
-                            autoFocus
                             disabled={isLoading}
                             {...field}
                             />

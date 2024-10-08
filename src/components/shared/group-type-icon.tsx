@@ -1,9 +1,9 @@
 import {
   EyeOff,
-  Folder,
-  FolderLock,
+  Lock,
   LucideProps,
   ShieldQuestion,
+  Users,
 } from 'lucide-react';
 
 interface GroupTypeIconProps extends Omit<LucideProps, 'ref'> {
@@ -17,9 +17,9 @@ export default function GroupTypeIcon({
   const getGroupTypeIcon = () => {
     switch (type) {
       case 'PUBLIC':
-        return <Folder {...props} />;
+        return <Users {...props} />;
       case 'PRIVATE':
-        return <FolderLock {...props} />;
+        return <Lock {...props} />;
       case 'HIDDEN':
         return <EyeOff {...props} />;
       default:

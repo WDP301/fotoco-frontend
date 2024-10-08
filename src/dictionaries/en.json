@@ -190,7 +190,7 @@
     "join": "Join",
     "sort": "Sort",
     "filter": "Filter",
-    "tryAgain": "Try again"
+    "tryAgain": "Try again",
     "createGroup": "Create Group"
   },
   "joinGroup": {
@@ -262,7 +262,7 @@
   "createGroup": {
     "dialogTitle": "Create Group",
     "dialogDescription": "Create a group and invite your friends to join",
-    "title" : "Group title",
+    "title": "Group title",
     "titlePlaceholder": "Enter group title here.",
     "description": "Group description",
     "descriptionPlaceholder": "Enter group description here.",
@@ -271,12 +271,12 @@
     "private": "Private",
     "hidden": "Hidden",
     "button": "Create",
-    "message":{
+    "message": {
       "success": "Group created successfully!"
     },
     "tooltipContent": "Groups with Hidden access are not visible to other users. Only members who have been explicitly invited can see and access this group. Use this setting for sensitive or private discussions."
   },
   "groupCard": {
-    "members" : "members"
+    "members": "members"
   }
 }

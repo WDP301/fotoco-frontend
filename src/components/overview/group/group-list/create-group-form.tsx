@@ -122,11 +122,12 @@ export default function CreateGroupForm({
                     <FormControl>
                       <Textarea
                         id="description"
-                        className="col-span-3"
+                        className="col-span-3 resize-none"
                         placeholder={dict.createGroup.descriptionPlaceholder}
                         autoCapitalize="none"
                         autoCorrect="off"
                         disabled={isLoading}
+                        rows={4}
                         {...field}
                       />
                     </FormControl>

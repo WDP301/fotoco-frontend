@@ -251,6 +251,11 @@
     "oldest": "Oldest"
   },
   "filterOptions": {
+    "album": {
+      "all": "All",
+      "mine": "My Albums",
+      "sharedWithMe": "Shared with me"
+    },
     "mine": "My Groups",
     "sharedWithMe": "Shared with me"
   },

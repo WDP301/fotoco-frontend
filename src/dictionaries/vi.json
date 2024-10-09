@@ -248,6 +248,11 @@
     "oldest": "Cũ nhất"
   },
   "filterOptions": {
+    "album": {
+      "all": "Tất cả",
+      "mine": "Album của tôi",
+      "sharedWithMe": "Chia sẻ với tôi"
+    },
     "mine": "Nhóm của tôi",
     "sharedWithMe": "Chia sẻ với tôi"
   },

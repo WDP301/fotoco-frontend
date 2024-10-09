@@ -34,8 +34,6 @@ export default function CreateAlbumForm({
 
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
-    const [result, setResult] = useState<
-    { error?: string; errorType?: string; isSuccess?: boolean } | undefined>(undefined);
     const { dict } = useLanguage();
 
 
@@ -54,7 +52,6 @@ export default function CreateAlbumForm({
             toast.error(dict.createAlbum.message.error)
         }else{
           toast.success(dict.createAlbum.message.success);
-          setResult({isSuccess: true});
           setOpen(false);
           router.refresh();
         }
@@ -123,7 +120,7 @@ export default function CreateAlbumForm({
                         </div>
                     }/>
                 </div>
-                <Button type="submit" disabled={isLoading}>
+                <Button type="submit" disabled={isLoading} className="w-full mt-4">
                     {isLoading && (
                         <Icons.spinner className=" mr-2 h-4 w-4 animate-spin" />
                     )}

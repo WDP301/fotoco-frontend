@@ -45,9 +45,6 @@ export default function CreateGroupForm({
 }) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [result, setResult] = useState<
-    { error?: string; errorType?: string; isSuccess?: boolean } | undefined
-  >(undefined);
   const { dict } = useLanguage();
 
   const form = useForm<z.infer<ReturnType<typeof getCreateGroupSchema>>>({
@@ -68,7 +65,6 @@ export default function CreateGroupForm({
       toast.error(dict.createGroup.message.error)
     }else{
       toast.success(dict.createGroup.message.success);
-      setResult({ isSuccess: true });
       setOpen(false);
       router.refresh();
     }
@@ -203,7 +199,7 @@ export default function CreateGroupForm({
               }}
             />
           </div>
-          <Button type="submit" disabled={isLoading}>
+          <Button type="submit" disabled={isLoading} className='w-full mt-4'>
             {isLoading && (
               <Icons.spinner className=" mr-2 h-4 w-4 animate-spin" />
             )}

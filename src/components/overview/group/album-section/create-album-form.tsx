@@ -51,7 +51,7 @@ export default function CreateAlbumForm({
         setIsLoading(true);
         const result = await createAlbum(groupId, values);
         if (!result?.isSuccess) {
-          setResult(result);
+            toast.error(dict.createAlbum.message.error)
         }else{
           toast.success(dict.createAlbum.message.success);
           setResult({isSuccess: true});
@@ -63,10 +63,6 @@ export default function CreateAlbumForm({
 
     return (
         <>
-            {result?.error && (
-                toast.error(result.error)
-            )}
-
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(handleCreateAlbum)}>
                 <div className="grid gap-4 py-4">

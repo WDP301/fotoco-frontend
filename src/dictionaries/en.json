@@ -284,7 +284,8 @@
     "hidden": "Hidden",
     "button": "Create",
     "message": {
-      "success": "Group created successfully!"
+      "success": "Group created successfully!",
+      "error": "Group creation failed!"
     },
     "tooltipContent": "Groups with Hidden access are not visible to other users. Only members who have been explicitly invited can see and access this group. Use this setting for sensitive or private discussions."
   },
@@ -297,7 +298,8 @@
     "descriptionPlaceholder": "Enter album description here.",
     "button": "Create",
     "message": {
-      "success": "Album created successfully!"
+      "success": "Album created successfully!",
+      "error": "Album creation failed!"
     }
   },
   "groupCard": {

@@ -72,7 +72,7 @@ export default function CreateGroupForm({
     setIsLoading(true);
     const result = await createGroup(values);
     if (!result?.isSuccess) {
-      setResult(result);
+      toast.error(dict.createGroup.message.error)
     }else{
       toast.success(dict.createGroup.message.success);
       setResult({isSuccess: true});
@@ -84,9 +84,6 @@ export default function CreateGroupForm({
 
   return (
     <>
-      {result?.error && (
-          toast.error(result.error)
-      )}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleCreateGroup)}>
           <div className="grid gap-4 py-4">

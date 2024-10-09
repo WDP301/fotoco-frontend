@@ -281,7 +281,8 @@
     "hidden": "Ẩn giấu",
     "button": "Tạo nhóm",
     "message": {
-      "success": "Nhóm được tạo thành công"
+      "success": "Nhóm được tạo thành công",
+      "error": "Tạo nhóm thất bại"
     },
     "tooltipContent": "Các nhóm có quyền truy cập Ẩn không hiển thị với những người dùng khác. Chỉ những thành viên được mời rõ ràng mới có thể xem và truy cập nhóm này. Sử dụng cài đặt này cho các cuộc thảo luận nhạy cảm hoặc riêng tư."
   },
@@ -294,7 +295,8 @@
     "descriptionPlaceholder": "Nhâp mô tả album ở đây",
     "button": "Tạo album",
     "message": {
-      "success": "Album được tạo thành công"
+      "success": "Album được tạo thành công",
+      "error": "Tạo Album thất bại"
     }
   },
   "groupCard": {

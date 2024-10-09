@@ -1,4 +1,6 @@
 {
+  "A-01": "Incorrect login information!",
+  "A-02": "Account is currently unavailable!",
   "demo": {
     "title": "Demo",
     "description": "This is a demo"

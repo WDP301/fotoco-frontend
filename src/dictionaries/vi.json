@@ -1,4 +1,6 @@
 {
+  "A-01": "Thông tin đăng nhập không chính xác!",
+  "A-02": "Tài khoản hiện không đang khả dụng!",
   "demo": {
     "title": "Bài thử",
     "description": "Đây là bài thử"

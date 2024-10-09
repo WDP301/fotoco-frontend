@@ -1,5 +1,7 @@
+import AlbumSection from '@/components/overview/group/album-section/album-section';
 import GroupHeader from '@/components/overview/group/group-header/group-header';
 import { getGroupInfo } from '@/lib/data';
+import { SearchAlbumParams } from '@/lib/define';
 import { Metadata } from 'next';
 
 type Props = {
@@ -25,12 +27,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function GroupDetailPage({
   params,
+  searchParams,
 }: {
   params: { id: string };
+  searchParams: SearchAlbumParams;
 }) {
   return (
     <div>
       <GroupHeader groupId={params.id} />
+      <AlbumSection groupId={params.id} searchParams={searchParams} />
     </div>
   );
 }

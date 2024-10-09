@@ -242,7 +242,8 @@
   },
   "errorMessage": {
     "noGroupFound": "No group found",
-    "noPhotoFound": "No photo found"
+    "noPhotoFound": "No photo found",
+    "noAlbumFound": "No album found"
   },
   "breadcrumb": {
     "home": "Home",
@@ -262,6 +263,11 @@
     "oldest": "Oldest"
   },
   "filterOptions": {
+    "album": {
+      "all": "All",
+      "mine": "My Albums",
+      "sharedWithMe": "Shared with me"
+    },
     "mine": "My Groups",
     "sharedWithMe": "Shared with me"
   },

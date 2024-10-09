@@ -239,7 +239,8 @@
   },
   "errorMessage": {
     "noGroupFound": "Không tìm thấy nhóm",
-    "noPhotoFound": "Không tìm thấy ảnh"
+    "noPhotoFound": "Không tìm thấy ảnh",
+    "noAlbumFound": "Không tìm thấy album"
   },
   "breadcrumb": {
     "home": "Trang chủ",
@@ -259,6 +260,11 @@
     "oldest": "Cũ nhất"
   },
   "filterOptions": {
+    "album": {
+      "all": "Tất cả",
+      "mine": "Album của tôi",
+      "sharedWithMe": "Chia sẻ với tôi"
+    },
     "mine": "Nhóm của tôi",
     "sharedWithMe": "Chia sẻ với tôi"
   },

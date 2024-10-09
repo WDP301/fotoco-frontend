@@ -146,3 +146,26 @@ export type GroupUser = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type Album = {
+  _id: string;
+  title: string;
+  description: string;
+  albumImg: string[];
+  lastPhotos: string[];
+  membersCount: number;
+  ownersCount: number;
+  contributorsCount: number;
+  photosCount: number;
+  type: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type SearchAlbumParams = {
+  sort?: string;
+  page?: number;
+  pageSize?: number;
+  search?: string;
+  filter?: string;
+};

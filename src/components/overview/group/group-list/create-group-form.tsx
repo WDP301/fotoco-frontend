@@ -40,15 +40,6 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import GroupTypeIcon from '@/components/shared/group-type-icon';
-import { group } from 'console';
-// import { CircleHelpIcon } from "lucide-react"
-
-// import {
-//   Tooltip,
-//   TooltipContent,
-//   TooltipProvider,
-//   TooltipTrigger,
-// } from "@/components/ui/tooltip"
 
 export default function CreateGroupForm({
   setOpen,
@@ -185,30 +176,30 @@ export default function CreateGroupForm({
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="PUBLIC">
+                        <SelectItem value="PUBLIC" title={dict.createGroup.tooltipContent.public}>
                           <div className="flex items-center gap-3">
                             <GroupTypeIcon
                               type="PUBLIC"
-                              className="inline-block w-5 h-5"
+                              className="inline-block w-4 h-4"
                             />
                             <div>{dict.createGroup.public}</div>
                           </div>
                         </SelectItem>
-                        <SelectItem value="PRIVATE">
+                        <SelectItem value="PRIVATE" title={dict.createGroup.tooltipContent.private}>
                           <div className="flex items-center gap-3">
                             <GroupTypeIcon
                               type="PRIVATE"
-                              className="inline-block w-5 h-5"
+                              className="inline-block w-4 h-4"
                             />
                             <div>{dict.createGroup.private}</div>
                           </div>
                         </SelectItem>
-                        <SelectItem value="HIDDEN">
+                        <SelectItem value="HIDDEN" title={dict.createGroup.tooltipContent.hidden}>
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-3">
                               <GroupTypeIcon
                                 type="HIDDEN"
-                                className="inline-block w-5 h-5"
+                                className="inline-block w-4 h-4"
                               />
                               <div>{dict.createGroup.hidden}</div>
                             </div>

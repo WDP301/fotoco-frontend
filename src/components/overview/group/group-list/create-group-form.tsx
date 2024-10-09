@@ -19,9 +19,6 @@ import { Icons } from '@/components/icons/icons';
 
 import { toast } from 'sonner';
 
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
-
 import {
   Form,
   FormControl,
@@ -68,8 +65,8 @@ export default function CreateGroupForm({
     setIsLoading(true);
     const result = await createGroup(values);
     if (!result?.isSuccess) {
-      setResult(result);
-    } else {
+      toast.error(dict.createGroup.message.error)
+    }else{
       toast.success(dict.createGroup.message.success);
       setResult({ isSuccess: true });
       setOpen(false);
@@ -80,13 +77,6 @@ export default function CreateGroupForm({
 
   return (
     <>
-      {result?.error && (
-        <Alert variant="destructive">
-          <ExclamationTriangleIcon className="h-4 w-4" />
-          <AlertTitle>Error</AlertTitle>
-          <AlertDescription>{result?.error}</AlertDescription>
-        </Alert>
-      )}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleCreateGroup)}>
           <div className="grid gap-4 py-4">

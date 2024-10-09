@@ -163,6 +163,17 @@
         "min": "Mô tả nhóm phải có ít nhất 10 ký tự",
         "max": "Mô tả nhóm phải tối đa 300 ký tự"
       }
+    },
+    "createAlbumSchema":{
+      "title": {
+        "required": "Tên album không được để trống",
+        "min": "Tên album phải có ít nhất 2 kí tự",
+        "max": "Tên album dùng phải tối đa 50 ký tự"
+      },
+      "description": {
+        "min": "Mô tả album phải có ít nhất 10 ký tự",
+        "max": "Mô tả nhóm phải tối đa 300 ký tự"
+      }
     }
   },
   "form": {
@@ -188,7 +199,8 @@
     "sort": "Sắp xếp",
     "filter": "Lọc",
     "tryAgain": "Thử lại",
-    "createGroup": "Tạo nhóm"
+    "createGroup": "Tạo nhóm",
+    "createAlbum": "Tạo album"
   },
   "joinGroup": {
     "title": "Tham gia nhóm",
@@ -269,12 +281,26 @@
     "hidden": "Ẩn giấu",
     "button": "Tạo nhóm",
     "message": {
-      "success": "Nhóm được tạo thành công"
+      "success": "Nhóm được tạo thành công",
+      "error": "Tạo nhóm thất bại"
     },
     "tooltipContent": {
       "public": "Nhóm công khai mở cửa cho mọi người. Bất kỳ ai cũng có thể xem, tham gia và tham gia vào các cuộc thảo luận cũng như hoạt động trong nhóm. Cài đặt này rất phù hợp cho các nhóm hướng đến cộng đồng, nơi thông tin được chia sẻ công khai và sự hợp tác được khuyến khích. Các thành viên có thể tự do mời người khác tham gia, và tất cả nội dung của nhóm đều được hiển thị công khai.",
       "private": "Nhóm riêng tư hạn chế quyền truy cập chỉ dành cho những thành viên được mời. Chỉ những người đã được mời cụ thể mới có thể xem nhóm, thành viên và nội dung của nó. Cài đặt này phù hợp cho các cuộc thảo luận hoặc hoạt động yêu cầu tính bảo mật hoặc khán giả hạn chế. Các thành viên có thể quản lý lời mời và kiểm soát ai có thể tham gia, đảm bảo thông tin nhạy cảm được giữ kín trong nhóm.",
       "hidden": "Nhóm ẩn không hiển thị công khai và không xuất hiện trong kết quả tìm kiếm. Chỉ những thành viên được mời mới có thể truy cập nhóm, và họ không thể thấy bất kỳ thông tin nào về nhóm trừ khi họ là một phần của nó. Cài đặt này rất lý tưởng cho các cuộc thảo luận yêu cầu tối đa tính bảo mật và riêng tư. Ngay cả sự tồn tại của nhóm cũng không được biết đến đối với những người không phải là thành viên, làm cho nó phù hợp cho các chủ đề nhạy cảm hoặc hợp tác riêng tư."
+    }
+  },
+  "createAlbum": {
+    "dialogTitle": "Tạo album",
+    "dialogDescription": "Tạo một album và chia sẻ những khoảng khắc của bạn",
+    "title": "Tên album",
+    "titlePlaceholder": "Nhâp tên album ở đây.",
+    "description": "Mô tả album",
+    "descriptionPlaceholder": "Nhâp mô tả album ở đây",
+    "button": "Tạo album",
+    "message": {
+      "success": "Album được tạo thành công",
+      "error": "Tạo Album thất bại"
     }
   },
   "groupCard": {

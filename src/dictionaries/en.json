@@ -178,7 +178,11 @@
     "register": "Register",
     "login": "Login",
     "forgotPassword": "Forgot password?",
-    "code": "Group code"
+    "code": "Group code",
+    "formDescription": {
+      "register": "Already have an account ? ",
+      "login": "Don't have an account ?"
+    }
   },
   "button": {
     "login": "Login",

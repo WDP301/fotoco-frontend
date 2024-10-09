@@ -102,10 +102,17 @@ export default function UserAuthLoginForm({ message }: { message?: string }) {
               name="password"
               render={({ field }) => (
                 <FormItem>
+                  <FormLabel htmlFor="password" className="text-primary">
+                    {dict.form.password}
+                  </FormLabel>
+                  <FormControl>
+                    <PasswordInput
+                      id="password"
+                      disabled={isLoading}
+                      {...field}
+                    />
+                  </FormControl>
                   <div className="flex justify-between">
-                    <FormLabel htmlFor="pasword" className="text-primary">
-                      {dict.form.password}
-                    </FormLabel>
                     <FormDescription className="items-start">
                       <Link
                         href={'/forgot-password'}
@@ -115,13 +122,6 @@ export default function UserAuthLoginForm({ message }: { message?: string }) {
                       </Link>
                     </FormDescription>
                   </div>
-                  <FormControl>
-                    <PasswordInput
-                      id="password"
-                      disabled={isLoading}
-                      {...field}
-                    />
-                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -137,6 +137,18 @@ export default function UserAuthLoginForm({ message }: { message?: string }) {
               )}
               {dict.form.login}
             </Button>
+            <FormDescription className='text-center mt-3'>
+              {dict.form.formDescription.login}
+            </FormDescription>
+            <Link href="/register">
+              <Button
+                type="button"
+                className="mt-2 w-full"
+                variant="default"
+              >
+                {dict.form.register}
+              </Button>
+            </Link>
           </div>
         </form>
       </Form>

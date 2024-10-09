@@ -175,7 +175,11 @@
     "register": "Đăng ký",
     "login": "Đăng nhập",
     "forgotPassword": "Quên mật khẩu?",
-    "code": "Mã nhóm"
+    "code": "Mã nhóm",
+    "formDescription": {
+      "register": "Bạn đã có tài khoản ? ",
+      "login": "Bạn chưa có tài khoản ?"
+    }
   },
   "button": {
     "login": "Đăng nhập",

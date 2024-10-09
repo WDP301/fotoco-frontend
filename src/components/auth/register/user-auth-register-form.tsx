@@ -13,6 +13,7 @@ import { z } from 'zod';
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -25,6 +26,7 @@ import { Icons } from '@/components/icons/icons';
 import { register } from '@/lib/action';
 import { getRegisterFormSchema } from '@/lib/form-schema';
 import { useLanguage } from '@/components/provider/language-provider';
+import Link from 'next/link';
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -205,6 +207,18 @@ export function UserAuthRegisterForm({
               )}
               {dict.form.register}
             </Button>
+            <FormDescription className='text-center mt-3'>
+              {dict.form.formDescription.register}
+            </FormDescription>
+            <Link href="/login">
+              <Button
+                type="button"
+                className="mt-2 w-full"
+                variant="default"
+              >
+                {dict.form.login}
+              </Button>
+            </Link>
           </div>
         </form>
       </Form>

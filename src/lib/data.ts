@@ -2,11 +2,13 @@
 
 import customFetch from '@/config/fetch';
 import {
+  Album,
   Group,
   GroupInfo,
   GroupUser,
   PageMeta,
   RecentPhoto,
+  SearchAlbumParams,
   SearchGroupMembersParams,
   SearchGroupParams,
   SearchRecentViewParams,
@@ -127,6 +129,43 @@ export const getGroupMembers = async (
     return {
       pageMeta: pageMetaDefault as PageMeta,
       users: [] as GroupUser[],
+    };
+  }
+};
+
+export const getAlbumsByGroupId = async (
+  groupId: string,
+  searchParams: SearchAlbumParams
+) => {
+  try {
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    const queryString = objectToQueryString(searchParams);
+    const response = await customFetch(
+      `/groups/${groupId}/albums?${queryString}`,
+      {
+        method: 'GET',
+        // next: { revalidate: 3600 },
+        cache: 'no-store',
+      }
+    )
+      .then((res) => res.json())
+      .catch((error) => null);
+
+    if (response?.success) {
+      return {
+        pageMeta: response.pageMeta as PageMeta,
+        albums: response.albums as Album[],
+      };
+    }
+
+    return {
+      pageMeta: pageMetaDefault as PageMeta,
+      albums: response.albums as Album[],
+    };
+  } catch (error) {
+    return {
+      pageMeta: pageMetaDefault as PageMeta,
+      albums: [] as Album[],
     };
   }
 };

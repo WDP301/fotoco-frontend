@@ -227,7 +227,8 @@
   },
   "errorMessage": {
     "noGroupFound": "Không tìm thấy nhóm",
-    "noPhotoFound": "Không tìm thấy ảnh"
+    "noPhotoFound": "Không tìm thấy ảnh",
+    "noAlbumFound": "Không tìm thấy album"
   },
   "breadcrumb": {
     "home": "Trang chủ",

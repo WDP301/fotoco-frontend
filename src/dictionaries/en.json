@@ -230,7 +230,8 @@
   },
   "errorMessage": {
     "noGroupFound": "No group found",
-    "noPhotoFound": "No photo found"
+    "noPhotoFound": "No photo found",
+    "noAlbumFound": "No album found"
   },
   "breadcrumb": {
     "home": "Home",

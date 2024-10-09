@@ -8,25 +8,20 @@ import { useRouter } from 'next/navigation';
 export default function TabListGroupSection() {
   const { dict } = useLanguage();
   const { replace } = useRouter();
-  const handleTabChange = (filter: string, event: React.MouseEvent) => {
-    // TODO: Tab change allays scroll to top
-    event.preventDefault();
+  const handleTabChange = (filter: string) => {
     const searchParams = new URLSearchParams(location.search);
     const pathName = location.pathname;
     searchParams.set('filter', filter);
-    replace(createUrl(pathName, searchParams));
+    replace(createUrl(pathName, searchParams), { scroll: false });
   };
   return (
     <TabsList className="grid grid-cols-2 w-[400px]">
-      <TabsTrigger
-        value="mine"
-        onClick={(event) => handleTabChange('mine', event)}
-      >
+      <TabsTrigger value="mine" onClick={(event) => handleTabChange('mine')}>
         {dict.filterOptions.mine}
       </TabsTrigger>
       <TabsTrigger
         value="shared-with-me"
-        onClick={(event) => handleTabChange('shared-with-me', event)}
+        onClick={(event) => handleTabChange('shared-with-me')}
       >
         {dict.filterOptions.sharedWithMe}
       </TabsTrigger>

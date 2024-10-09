@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
 import React from 'react';
-import LogoSite from '@/components/overview/logo-site';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { siteConfig } from '@/config/site';
 import SwitchPage from '@/components/auth/switch-page';
 import { getDictionary } from '@/lib/dictionaries';
+import { AuthBackground } from '../../components/auth/auth-background';
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const dict = await getDictionary();
@@ -37,17 +37,8 @@ export default async function AuthLayout({
         {dict.home}
       </Link>
       <SwitchPage />
-      <div className="relative hidden h-full flex-col bg-muted p-10 text-white lg:flex dark:border-r">
-        <div className="absolute inset-0 bg-zinc-900 bg-auth bg-cover" />
-        <div className="relative z-20 flex items-center text-lg font-medium">
-          <LogoSite />
-        </div>
-        <div className="relative z-20 mt-auto">
-          <blockquote className="space-y-2 text-primary">
-            <p className="text-lg">&ldquo;{dict.auth.quote}&rdquo;</p>
-            <footer className="text-sm">{dict.auth.author}</footer>
-          </blockquote>
-        </div>
+      <div className="relative hidden h-full flex-col bg-muted text-white lg:flex dark:border-r">
+        <AuthBackground />
       </div>
       <div className="lg:p-8">
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">

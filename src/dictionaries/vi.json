@@ -284,7 +284,11 @@
       "success": "Nhóm được tạo thành công",
       "error": "Tạo nhóm thất bại"
     },
-    "tooltipContent": "Các nhóm có quyền truy cập Ẩn không hiển thị với những người dùng khác. Chỉ những thành viên được mời rõ ràng mới có thể xem và truy cập nhóm này. Sử dụng cài đặt này cho các cuộc thảo luận nhạy cảm hoặc riêng tư."
+    "tooltipContent": {
+      "public": "Nhóm công khai mở cửa cho mọi người. Bất kỳ ai cũng có thể xem, tham gia và tham gia vào các cuộc thảo luận cũng như hoạt động trong nhóm. Cài đặt này rất phù hợp cho các nhóm hướng đến cộng đồng, nơi thông tin được chia sẻ công khai và sự hợp tác được khuyến khích. Các thành viên có thể tự do mời người khác tham gia, và tất cả nội dung của nhóm đều được hiển thị công khai.",
+      "private": "Nhóm riêng tư hạn chế quyền truy cập chỉ dành cho những thành viên được mời. Chỉ những người đã được mời cụ thể mới có thể xem nhóm, thành viên và nội dung của nó. Cài đặt này phù hợp cho các cuộc thảo luận hoặc hoạt động yêu cầu tính bảo mật hoặc khán giả hạn chế. Các thành viên có thể quản lý lời mời và kiểm soát ai có thể tham gia, đảm bảo thông tin nhạy cảm được giữ kín trong nhóm.",
+      "hidden": "Nhóm ẩn không hiển thị công khai và không xuất hiện trong kết quả tìm kiếm. Chỉ những thành viên được mời mới có thể truy cập nhóm, và họ không thể thấy bất kỳ thông tin nào về nhóm trừ khi họ là một phần của nó. Cài đặt này rất lý tưởng cho các cuộc thảo luận yêu cầu tối đa tính bảo mật và riêng tư. Ngay cả sự tồn tại của nhóm cũng không được biết đến đối với những người không phải là thành viên, làm cho nó phù hợp cho các chủ đề nhạy cảm hoặc hợp tác riêng tư."
+    }
   },
   "createAlbum": {
     "dialogTitle": "Tạo album",
@@ -301,5 +305,10 @@
   },
   "groupCard": {
     "members": "thành viên"
+  },
+  "modeToggle": {
+    "dark": "Tối",
+    "light": "Sáng",
+    "system": "Hệ thống"
   }
 }

@@ -22,9 +22,7 @@ export default async function LoginPage({
   return (
     <>
       <div className="flex flex-col space-y-2 text-center">
-        <h1 className="text-2xl font-semibold tracking-tight text-primary">
-          {dict.login.heading}
-        </h1>
+        <h3 className="text-primary">{dict.login.heading}</h3>
       </div>
       <div className="grid gap-6">
         <Suspense

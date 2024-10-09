@@ -40,7 +40,7 @@ export const getAllGroup = async (searchParams: SearchGroupParams) => {
   const queryString = objectToQueryString(searchParams);
   const response = await customFetch(`/groups?${queryString}`, {
     method: 'GET',
-    next: { revalidate: 60 },
+    // next: { revalidate: 60 },
   })
     .then((res) => res.json())
     .catch((error) => null);

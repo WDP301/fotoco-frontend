@@ -26,7 +26,7 @@ import { register } from '@/lib/action';
 import { getRegisterFormSchema } from '@/lib/form-schema';
 import { useLanguage } from '@/components/provider/language-provider';
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 
 export function UserAuthRegisterForm({
   className,

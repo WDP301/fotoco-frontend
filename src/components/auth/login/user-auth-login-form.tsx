@@ -25,14 +25,13 @@ import { PasswordInput } from '@/components/ui/password-input';
 import { getLoginFormSchema } from '@/lib/form-schema';
 import { useLanguage } from '@/components/provider/language-provider';
 
-export default function UserAuthLoginForm({ message }: { message?: string }) {
+export default function UserAuthLoginForm() {
   const router = useRouter();
   const { dict } = useLanguage();
   const [isLoading, setIsLoading] = useState(false);
   const [loginResult, setLoginResult] = useState<
-    { error?: string; errorType?: string; isSuccess?: boolean } | undefined
+    { error?: string; isSuccess?: boolean } | undefined
   >(undefined);
-  const [isSessionExpired, setIsSessionExpired] = useState(message);
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl');
   const form = useForm<z.infer<ReturnType<typeof getLoginFormSchema>>>({
@@ -49,7 +48,6 @@ export default function UserAuthLoginForm({ message }: { message?: string }) {
 
     const result = await login(values);
     if (!result?.isSuccess) {
-      setIsSessionExpired(undefined);
       setLoginResult(result);
     } else {
       setLoginResult({ isSuccess: true });

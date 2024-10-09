@@ -4,7 +4,6 @@ import { Suspense } from 'react';
 import AlbumListLoading from './loading/album-list-loading';
 import SortSelect from '@/components/shared/sort-select';
 import FilterSelect from '@/components/shared/filter-selection';
-import { useLanguage } from '@/components/provider/language-provider';
 import { getDictionary } from '@/lib/dictionaries';
 
 export default async function AlbumSection({

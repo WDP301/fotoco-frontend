@@ -16,12 +16,12 @@ export default function TabListGroupSection() {
   };
   return (
     <TabsList className="grid grid-cols-2 w-[400px]">
-      <TabsTrigger value="mine" onClick={(event) => handleTabChange('mine')}>
+      <TabsTrigger value="mine" onClick={() => handleTabChange('mine')}>
         {dict.filterOptions.mine}
       </TabsTrigger>
       <TabsTrigger
         value="shared-with-me"
-        onClick={(event) => handleTabChange('shared-with-me')}
+        onClick={() => handleTabChange('shared-with-me')}
       >
         {dict.filterOptions.sharedWithMe}
       </TabsTrigger>

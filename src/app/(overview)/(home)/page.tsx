@@ -22,7 +22,7 @@ export default async function Home({
   const dict = await getDictionary();
 
   const getGreeting = () => {
-    let hour: number = new Date().getHours();
+    const hour: number = new Date().getHours();
     for (let i = 0; i < message.length; i++) {
       if (hour >= Number(message[i][0]) && hour <= Number(message[i][1])) {
         return dict.userHome.greeting[

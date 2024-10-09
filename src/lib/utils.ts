@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { format, formatDistanceToNow, isThisYear } from 'date-fns';
+import { format, isThisYear } from 'date-fns';
 import { vi as dateFnsVi, enUS } from 'date-fns/locale';
 
 import { Locale } from './define';

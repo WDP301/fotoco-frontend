@@ -1,6 +1,4 @@
 import { UserAuthRegisterForm } from '@/components/auth/register/user-auth-register-form';
-import { siteConfig } from '@/config/site';
-import { Locale } from '@/lib/define';
 import { getDictionary } from '@/lib/dictionaries';
 import { Metadata } from 'next';
 import { Suspense } from 'react';

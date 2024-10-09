@@ -45,7 +45,7 @@ export const getAllGroup = async (searchParams: SearchGroupParams) => {
     // next: { revalidate: 60 },
   })
     .then((res) => res.json())
-    .catch((error) => null);
+    .catch(() => null);
 
   if (response?.success) {
     return {
@@ -69,7 +69,7 @@ export const getRecentViewPhotos = async (
     next: { revalidate: 120 },
   })
     .then((res) => res.json())
-    .catch((error) => null);
+    .catch(() => null);
 
   if (response?.success) {
     return {
@@ -91,9 +91,9 @@ export const getGroupInfo = async (groupId: string) => {
       next: { revalidate: 120 },
     })
       .then((res) => res.json())
-      .catch((error) => null);
+      .catch(() => null);
     return response as GroupInfo;
-  } catch (error) {
+  } catch {
     return {} as GroupInfo;
   }
 };
@@ -112,7 +112,7 @@ export const getGroupMembers = async (
       }
     )
       .then((res) => res.json())
-      .catch((error) => null);
+      .catch(() => null);
 
     if (response?.success) {
       return {
@@ -125,7 +125,7 @@ export const getGroupMembers = async (
       pageMeta: pageMetaDefault as PageMeta,
       users: response.users as GroupUser[],
     };
-  } catch (error) {
+  } catch {
     return {
       pageMeta: pageMetaDefault as PageMeta,
       users: [] as GroupUser[],
@@ -149,7 +149,7 @@ export const getAlbumsByGroupId = async (
       }
     )
       .then((res) => res.json())
-      .catch((error) => null);
+      .catch(() => null);
 
     if (response?.success) {
       return {
@@ -162,7 +162,7 @@ export const getAlbumsByGroupId = async (
       pageMeta: pageMetaDefault as PageMeta,
       albums: response.albums as Album[],
     };
-  } catch (error) {
+  } catch {
     return {
       pageMeta: pageMetaDefault as PageMeta,
       albums: [] as Album[],

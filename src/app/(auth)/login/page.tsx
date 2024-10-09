@@ -13,11 +13,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
   };
 };
 
-export default async function LoginPage({
-  searchParams,
-}: {
-  searchParams: { message?: string };
-}) {
+export default async function LoginPage() {
   const dict = await getDictionary();
   return (
     <>
@@ -28,7 +24,7 @@ export default async function LoginPage({
         <Suspense
           fallback={<div className="text-center">{dict.login.loading}</div>}
         >
-          <UserAuthLoginForm message={searchParams.message} />
+          <UserAuthLoginForm />
         </Suspense>
       </div>
     </>

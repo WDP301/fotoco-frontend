@@ -10,7 +10,7 @@ import {
 } from './form-schema';
 import http from '@/config/axios';
 import { cookies } from 'next/headers';
-import { AuthResponse, User, UserJWT } from './define';
+import { AuthResponse, UserJWT } from './define';
 import { v4 as uuidv4 } from 'uuid';
 import { base64Decode } from './utils';
 
@@ -96,14 +96,14 @@ export const login = async (
       .then((res) => {
         const { accessToken, refreshToken } = res.data;
 
-        let payload = base64Decode(accessToken.split('.')[1]);
+        const payload = base64Decode(accessToken.split('.')[1]);
         const cookie = cookies();
         const user = JSON.parse(payload) as UserJWT;
         cookie.set('refresh-token', refreshToken, {
           maxAge: MAX_AGE_REFRESH_TOKEN,
         });
         cookie.set('signature', signature, { maxAge: MAX_AGE_REFRESH_TOKEN });
-        let expiryDate = new Date(user.exp * 1000);
+        const expiryDate = new Date(user.exp * 1000);
         cookie.set('access-token', accessToken, {
           expires: expiryDate,
         });
@@ -171,7 +171,7 @@ export const joinGroup = async (
     .post('/groups/join', {
       groupCode: code,
     })
-    .then((res) => {
+    .then(() => {
       return {
         isSuccess: true,
         error: '',
@@ -201,7 +201,7 @@ export const createGroup = async (
       description,
       type: formData.type,
     })
-    .then((res) => {
+    .then(() => {
       return {
         isSuccess: true,
         error: '',
@@ -231,7 +231,7 @@ export const createAlbum = async (
       title,
       description,
     })
-    .then((res) => {
+    .then(() => {
       return {
         isSuccess: true,
         error: '',

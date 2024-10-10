@@ -321,5 +321,8 @@
     "dark": "Dark",
     "light": "Light",
     "system": "System"
+  },
+  "common": {
+    "orContinueWith": "Or continue with"
   }
 }

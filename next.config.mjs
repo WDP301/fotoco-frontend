@@ -21,6 +21,10 @@ const nextConfig = {
       },
     ],
   },
+  env: {
+    API_URL: process.env.API_URL || 'http://localhost:9999',
+    FRONTEND_SITE_NAME: process.env.FRONTEND_SITE_NAME || 'Fotoco',
+  }
 };
 
 export default nextConfig;

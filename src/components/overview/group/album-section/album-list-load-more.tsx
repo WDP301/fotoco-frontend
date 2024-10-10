@@ -26,7 +26,6 @@ const AlbumList = ({ groupId }: { groupId: string }) => {
         page: page + 1,
         pageSize: 6,
       });
-      console.log(albums);
       setProducts((prev) => [...prev, ...albums]);
       setPage((prev) => prev + 1);
 

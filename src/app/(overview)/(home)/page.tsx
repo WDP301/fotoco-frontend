@@ -1,10 +1,10 @@
 import GroupListLoading from '@/components/overview/group/loading/group-list-loading';
 import LandingPage from '@/components/overview/home/landing-page/landing-page';
 import RecentViewList from '@/components/overview/home/user-home/recent-view/recent-view-list';
-import { getUser } from '@/lib/data';
 import { Suspense } from 'react';
 import GroupSection from '@/components/overview/home/user-home/group/group-section';
 import { getDictionary } from '@/lib/dictionaries';
+import { getUser } from '@/lib/data';
 
 const message: [number, number, 'morning' | 'afternoon' | 'night'][] = [
   [0, 4, 'night'],

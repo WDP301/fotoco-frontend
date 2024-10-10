@@ -10,7 +10,7 @@ import {
 } from './form-schema';
 import http from '@/config/axios';
 import { cookies } from 'next/headers';
-import { AuthResponse, UserJWT } from './define';
+import { AuthResponse, User, UserJWT } from './define';
 import { v4 as uuidv4 } from 'uuid';
 import { base64Decode } from './utils';
 
@@ -190,7 +190,10 @@ export const joinGroup = async (
 export const createGroup = async (
   formData: z.infer<ReturnType<typeof getCreateGroupSchema>>
 ) => {
-  const { title, description } : z.infer<ReturnType<typeof getCreateGroupSchema>> = formData;
+  const {
+    title,
+    description,
+  }: z.infer<ReturnType<typeof getCreateGroupSchema>> = formData;
 
   const response = await http
     .post('/groups/create', {
@@ -212,18 +215,21 @@ export const createGroup = async (
     });
 
   return response;
-}
+};
 
 export const createAlbum = async (
   groupId: string,
   formData: z.infer<ReturnType<typeof getCreateAlbumSchema>>
 ) => {
-  const { title, description } : z.infer<ReturnType<typeof getCreateAlbumSchema>> = formData;
+  const {
+    title,
+    description,
+  }: z.infer<ReturnType<typeof getCreateAlbumSchema>> = formData;
 
-  const response = await http 
+  const response = await http
     .post(`/groups/${groupId}/create-album`, {
       title,
-      description
+      description,
     })
     .then((res) => {
       return {
@@ -239,4 +245,4 @@ export const createAlbum = async (
     });
 
   return response;
-}
+};

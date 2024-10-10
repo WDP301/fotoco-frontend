@@ -2,11 +2,11 @@ import LogoSite from '@/components/overview/logo-site';
 import { ModeToggle } from './mode-toggle';
 import { MainNav } from './main-nav';
 import ButtonLogin from './button-login';
-import { getUser } from '@/lib/data';
 import { User } from '@/lib/define';
 import { UserNav } from './user-nav';
 import { SideBarMobile } from './side-bar-mobile/side-bar-mobile';
 import HeaderActionPopover from './action/header-action-popover';
+import { getUser } from '@/lib/data';
 
 export default async function HeaderSite() {
   const user = (await getUser()) as User;

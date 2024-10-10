@@ -14,20 +14,46 @@ import {
   SearchRecentViewParams,
   User,
 } from './define';
+import http from '@/config/axios';
 
 function objectToQueryString(params: Record<string, any>): string {
   return new URLSearchParams(params).toString();
 }
 
-export const getUser = async () => {
-  const response = await customFetch('/users/me', {
-    method: 'GET',
-    next: { revalidate: 3600 },
-  })
-    .then((res) => res.json())
-    .catch(() => null);
+// export const getUser = async () => {
+//   try {
+//     const response = await customFetch('/users/me', {
+//       method: 'GET',
+//       next: { revalidate: 3600 },
+//     });
 
-  return response?.user as User;
+//     if (!response.ok) {
+//       if (response.status === 401) {
+//         return {} as User;
+//       }
+//       throw new Error('Failed to fetch user data');
+//     }
+
+//     const data = await response.json();
+//     return data.user as User;
+//   } catch (error) {
+//     console.error('Error fetching user data:', error);
+//     return {} as User;
+//   }
+// };
+
+// TODO: Can't use customFetch
+export const getUser = async () => {
+  const response = await http
+    .get('/users/me')
+    .then((res) => {
+      return res.data as User;
+    })
+    .catch(() => {
+      return null;
+    });
+
+  return response;
 };
 
 const pageMetaDefault = {

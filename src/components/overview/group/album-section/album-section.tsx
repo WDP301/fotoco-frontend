@@ -5,6 +5,7 @@ import AlbumListLoading from './loading/album-list-loading';
 import SortSelect from '@/components/shared/sort-select';
 import FilterSelect from '@/components/shared/filter-selection';
 import { getDictionary } from '@/lib/dictionaries';
+import CreateAlbumDiaLog from './create-album-dialog';
 
 export default async function AlbumSection({
   groupId,
@@ -47,6 +48,7 @@ export default async function AlbumSection({
       <div className="flex items-center justify-between space-y-2">
         <h3>Album</h3>
         <div className="flex items-center space-x-2">
+          <CreateAlbumDiaLog groupId={groupId} />
           <SortSelect
             variant="ghost"
             sort={searchParams.sort}

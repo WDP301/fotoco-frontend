@@ -21,25 +21,27 @@ export function AlbumCard({
       <div className={cn('relative group', className)} {...props}>
         {/* Conditional rendering based on the number of images */}
         <div className="grid overflow-hidden rounded-lg aspect-square">
-          {album.lastPhotos.length === 1 ? (
+          {album.lastPhotos.length === 1 || album.lastPhotos.length === 0 ? (
             // Single image full width
             <Image
-              src={album.lastPhotos[0]} // Assuming images is an array of image URLs
+              src={album.lastPhotos[0] || '/background/default-vertical.jpg'} // Assuming images is an array of image URLs
               alt={album.title}
               width={width}
               height={height}
-              className="object-cover w-full h-full"
+              className="object-cover w-full h-full overflow-hidden"
             />
           ) : album.lastPhotos.length === 2 ? (
             // Two images: one larger, one smaller
             <div className="grid grid-cols-3 gap-1">
               <div className="col-span-2 h-full">
                 <Image
-                  src={album.lastPhotos[0]}
+                  src={
+                    album.lastPhotos[0] || '/background/default-vertical.jpg'
+                  }
                   alt={album.title}
                   width={width * 0.66}
                   height={height}
-                  className="object-cover w-full h-full"
+                  className="object-cover w-full h-full overflow-hidden"
                 />
               </div>
               <div className="h-full">
@@ -48,7 +50,7 @@ export function AlbumCard({
                   alt={album.title}
                   width={width * 0.33}
                   height={height}
-                  className="object-cover w-full h-full"
+                  className="object-cover w-full h-full overflow-hidden"
                 />
               </div>
             </div>
@@ -57,11 +59,13 @@ export function AlbumCard({
             <div className="grid grid-cols-3 gap-1">
               <div className="col-span-2 h-full">
                 <Image
-                  src={album.lastPhotos[0]}
+                  src={
+                    album.lastPhotos[0] || '/background/default-vertical.jpg'
+                  }
                   alt={album.title}
                   width={width * 0.66}
                   height={height}
-                  className="object-cover w-full h-full"
+                  className="object-cover w-full h-full overflow-hidden"
                 />
               </div>
               <div className="grid grid-rows-2 gap-1 h-full">
@@ -70,14 +74,14 @@ export function AlbumCard({
                   alt={album.title}
                   width={width * 0.33}
                   height={height * 0.5}
-                  className="object-cover w-full h-full"
+                  className="object-cover w-full h-full overflow-hidden"
                 />
                 <Image
                   src={album.lastPhotos[2]}
                   alt={album.title}
                   width={width * 0.33}
                   height={height * 0.5}
-                  className="object-cover w-full h-full"
+                  className="object-cover w-full h-full overflow-hidden"
                 />
               </div>
             </div>

@@ -40,8 +40,8 @@ export default async function GroupInfo({ groupId }: { groupId: string }) {
         </Link>
       </div>
 
-      <div className="flex gap-2 mt-2">
-        <GroupTypeIcon type={group.type} className="inline" />
+      <div className="flex gap-2 mt-2 items-center">
+        <GroupTypeIcon type={group.type} className="inline h-4 w-4" />
         <p>
           {
             dict.group.type[

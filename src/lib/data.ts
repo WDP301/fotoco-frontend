@@ -47,7 +47,7 @@ export const getUser = async () => {
   const response = await http
     .get('/users/me')
     .then((res) => {
-      return res.data as User;
+      return res.data.user as User;
     })
     .catch(() => {
       return null;

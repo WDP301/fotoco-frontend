@@ -14,11 +14,11 @@ export const config = {
 const apiRequireAuth = ['/api/auth/update-token'];
 
 const urlRequireAuthenticated = [
-  '/group',
-  '/group/*',
-  '/album',
-  '/album/*',
-  '/photo/*',
+  '/groups',
+  '/groups/*',
+  '/albums',
+  '/albums/*',
+  '/photos/*',
 ];
 
 const urlRequireUnauthenticated = ['/login', '/register', '/active/*'];

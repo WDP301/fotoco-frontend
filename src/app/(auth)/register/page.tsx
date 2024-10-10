@@ -1,4 +1,6 @@
+import OtherOauth from '@/components/auth/other-oauth';
 import { UserAuthRegisterForm } from '@/components/auth/register/user-auth-register-form';
+import { Separator } from '@/components/ui/separator';
 import { getDictionary } from '@/lib/dictionaries';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
@@ -27,9 +29,14 @@ export default async function RegisterPage() {
         <Suspense
           fallback={<div className="text-center">{dict.register.loading}</div>}
         >
+          <OtherOauth />
+          <div className="flex items-center gap-4">
+            <Separator className="flex-1" />
+            <span className="text-muted-foreground">{dict.common.orContinueWith}</span>
+            <Separator className="flex-1" />
+          </div>
           <UserAuthRegisterForm />
         </Suspense>
-        {/* <OtherLoginMethod /> */}
       </div>
     </>
   );

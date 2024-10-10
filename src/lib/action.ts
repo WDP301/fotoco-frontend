@@ -13,6 +13,7 @@ import { cookies } from 'next/headers';
 import { AuthResponse, UserJWT } from './define';
 import { v4 as uuidv4 } from 'uuid';
 import { base64Decode } from './utils';
+import { redirect } from 'next/navigation';
 
 const MAX_AGE_REFRESH_TOKEN = 60 * 60 * 24 * 90;
 
@@ -80,6 +81,33 @@ export const active = async (token: string, active: string) => {
     });
 };
 
+const handleStoreUserCredentials = (
+  signature: string,
+  accessToken: string,
+  refreshToken: string
+): void => {
+  const payload = base64Decode(accessToken.split('.')[1]);
+  const cookie = cookies();
+  const user = JSON.parse(payload) as UserJWT;
+  cookie.set('refresh-token', refreshToken, {
+    maxAge: MAX_AGE_REFRESH_TOKEN,
+  });
+  cookie.set('signature', signature, { maxAge: MAX_AGE_REFRESH_TOKEN });
+  const expiryDate = new Date(user.exp * 1000);
+  cookie.set('access-token', accessToken, {
+    expires: expiryDate,
+  });
+};
+
+export const oauthSuccess = (
+  signature: string,
+  accessToken: string,
+  refreshToken: string
+): void => {
+  handleStoreUserCredentials(signature, accessToken, refreshToken);
+  redirect('/');
+};
+
 export const login = async (
   formData: z.infer<ReturnType<typeof getLoginFormSchema>>
 ) => {
@@ -96,17 +124,7 @@ export const login = async (
       .then((res) => {
         const { accessToken, refreshToken } = res.data;
 
-        const payload = base64Decode(accessToken.split('.')[1]);
-        const cookie = cookies();
-        const user = JSON.parse(payload) as UserJWT;
-        cookie.set('refresh-token', refreshToken, {
-          maxAge: MAX_AGE_REFRESH_TOKEN,
-        });
-        cookie.set('signature', signature, { maxAge: MAX_AGE_REFRESH_TOKEN });
-        const expiryDate = new Date(user.exp * 1000);
-        cookie.set('access-token', accessToken, {
-          expires: expiryDate,
-        });
+        handleStoreUserCredentials(signature, accessToken, refreshToken);
 
         return {
           isSuccess: true,

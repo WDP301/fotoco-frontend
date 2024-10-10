@@ -10,6 +10,8 @@ import { oauthSuccess } from '@/lib/action';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
+const INTERVAL_CHECK_CONNECT_TIMER = 500;
+
 const OtherOauth = () => {
   const router = useRouter();
   const [isConnecting, setIsConnecting] = useState('');
@@ -60,7 +62,7 @@ const OtherOauth = () => {
           }
         } catch (error) { }  // catch error of not same host
       }
-    }, 500);
+    }, INTERVAL_CHECK_CONNECT_TIMER);
   }
 
   const resetConnect = () => {

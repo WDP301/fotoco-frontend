@@ -55,7 +55,7 @@ export type Group = {
   groupImg: string;
   membersCount: number;
   ownersCount: number;
-  albumCount: number;
+  albumsCount: number;
   createdAt: string;
   updatedAt: string;
 };

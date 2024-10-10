@@ -5,7 +5,6 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
 export function GroupCard({ group }: { group: Group }) {
-
   const { dict } = useLanguage();
 
   return (
@@ -23,8 +22,8 @@ export function GroupCard({ group }: { group: Group }) {
       >
         <div className="absolute w-full h-full top-0 left-0 transition duration-300 group-hover/card:bg-black opacity-60"></div>
         <div className="flex flex-col">
-        <p className="text-sm text-gray-400">
-            {group?.albumCount || 0} albums
+          <p className="text-sm text-gray-400">
+            {group?.albumsCount || 0} albums
           </p>
         </div>
         <div className="text content">

@@ -166,7 +166,7 @@
         "max": "Mô tả nhóm phải tối đa 300 ký tự"
       }
     },
-    "createAlbumSchema":{
+    "createAlbumSchema": {
       "title": {
         "required": "Tên album không được để trống",
         "min": "Tên album phải có ít nhất 2 kí tự",
@@ -321,5 +321,13 @@
   },
   "common": {
     "orContinueWith": "Hoặc tiếp tục với"
+  },
+  "searchBar": {
+    "group": {
+      "placeholders": ["Tìm nhóm của bạn ở đây", "Tìm nhóm theo tiêu đề"]
+    },
+    "album": {
+      "placeholders": ["Tìm album của bạn ở đây", "Tìm album theo tiêu đề"]
+    }
   }
 }

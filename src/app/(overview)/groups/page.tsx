@@ -3,6 +3,7 @@ import GroupList from '@/components/overview/group/group-list/group-list';
 import GroupListLoading from '@/components/overview/group/loading/group-list-loading';
 import BreadcrumbComponent from '@/components/shared/breadcrumb-component';
 import FilterSelect from '@/components/shared/filter-selection';
+import SearchBar from '@/components/shared/search-bar';
 import SortSelect from '@/components/shared/sort-select';
 import { Button } from '@/components/ui/button';
 
@@ -70,13 +71,17 @@ export default async function GroupPage({
       <div className="mt-2">
         <BreadcrumbComponent breadcrumbs={breadItems} />
       </div>
+      <div className="my-5">
+        <SearchBar placeholder={dict.searchBar.group.placeholders} />
+      </div>
+
       <div className="flex items-center justify-between space-y-2">
         <span className={`text-2xl font-bold`}>{dict.group.title}</span>
         <div className="flex items-center space-x-2">
           <CreateGroupDiaLog>
             <Button variant="ghost">
-                <SquarePlus className="mr-2 h-4 w-4" />
-                {dict.button.createGroup}
+              <SquarePlus className="mr-2 h-4 w-4" />
+              {dict.button.createGroup}
             </Button>
           </CreateGroupDiaLog>
           <SortSelect

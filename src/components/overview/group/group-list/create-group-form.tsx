@@ -62,11 +62,11 @@ export default function CreateGroupForm({
     setIsLoading(true);
     const result = await createGroup(values);
     if (!result?.isSuccess) {
-      toast.error(dict.createGroup.message.error)
-    }else{
+      toast.error(dict.createGroup.message.error);
+    } else {
       toast.success(dict.createGroup.message.success);
       setOpen(false);
-      router.refresh();
+      router.push('/groups');
     }
     setIsLoading(false);
   };
@@ -163,7 +163,10 @@ export default function CreateGroupForm({
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="PUBLIC" title={dict.createGroup.tooltipContent.public}>
+                        <SelectItem
+                          value="PUBLIC"
+                          title={dict.createGroup.tooltipContent.public}
+                        >
                           <div className="flex items-center gap-3">
                             <GroupTypeIcon
                               type="PUBLIC"
@@ -172,7 +175,10 @@ export default function CreateGroupForm({
                             <div>{dict.createGroup.public}</div>
                           </div>
                         </SelectItem>
-                        <SelectItem value="PRIVATE" title={dict.createGroup.tooltipContent.private}>
+                        <SelectItem
+                          value="PRIVATE"
+                          title={dict.createGroup.tooltipContent.private}
+                        >
                           <div className="flex items-center gap-3">
                             <GroupTypeIcon
                               type="PRIVATE"
@@ -181,7 +187,10 @@ export default function CreateGroupForm({
                             <div>{dict.createGroup.private}</div>
                           </div>
                         </SelectItem>
-                        <SelectItem value="HIDDEN" title={dict.createGroup.tooltipContent.hidden}>
+                        <SelectItem
+                          value="HIDDEN"
+                          title={dict.createGroup.tooltipContent.hidden}
+                        >
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-3">
                               <GroupTypeIcon
@@ -200,7 +209,7 @@ export default function CreateGroupForm({
               }}
             />
           </div>
-          <Button type="submit" disabled={isLoading} className='w-full mt-4'>
+          <Button type="submit" disabled={isLoading} className="w-full mt-4">
             {isLoading && (
               <Icons.spinner className=" mr-2 h-4 w-4 animate-spin" />
             )}

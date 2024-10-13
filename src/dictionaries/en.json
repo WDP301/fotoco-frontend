@@ -169,7 +169,7 @@
         "max": "Group description must be maximum 300 characters."
       }
     },
-    "createAlbumSchema":{
+    "createAlbumSchema": {
       "title": {
         "required": "Album title can not be empty",
         "min": "Album title must be at least 2 characters.",
@@ -324,5 +324,13 @@
   },
   "common": {
     "orContinueWith": "Or continue with"
+  },
+  "searchBar": {
+    "group": {
+      "placeholders": ["Search groups here", "Find groups by title"]
+    },
+    "album": {
+      "placeholders": ["Search albums here", "Find albums by title"]
+    }
   }
 }

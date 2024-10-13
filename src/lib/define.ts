@@ -91,6 +91,15 @@ export enum SearchParams {
   MODE = 'mode',
 }
 
+export type SearchPhotoParams = {
+  sort?: string;
+  page?: number;
+  pageSize?: number;
+  search?: string;
+  filter?: string;
+  mode?: string;
+};
+
 export type SearchGroupParams = {
   sort?: string;
   page?: number;
@@ -135,6 +144,20 @@ export type GroupInfo = {
   description: string;
   groupImg: string;
   type: string;
+};
+
+export type AlbumInfo = {
+  _id: string;
+  title: string;
+  description: string;
+  type: string;
+  group: {
+    _id: string;
+    title: string;
+  };
+  photosCount: number;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type GroupUser = {

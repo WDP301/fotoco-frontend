@@ -3,6 +3,7 @@
 import customFetch from '@/config/fetch';
 import {
   Album,
+  AlbumInfo,
   Group,
   GroupInfo,
   GroupUser,
@@ -121,6 +122,20 @@ export const getGroupInfo = async (groupId: string) => {
     return response as GroupInfo;
   } catch {
     return {} as GroupInfo;
+  }
+};
+
+export const getAlbumInfo = async (albumId: string) => {
+  try {
+    const response = await customFetch(`/albums/${albumId}`, {
+      method: 'GET',
+      next: { revalidate: 120 },
+    })
+      .then((res) => res.json())
+      .catch(() => null);
+    return response as AlbumInfo;
+  } catch {
+    return {} as AlbumInfo;
   }
 };
 

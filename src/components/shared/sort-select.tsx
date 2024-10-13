@@ -60,7 +60,7 @@ export default function SortSelect({
       <Popover>
         <PopoverTrigger asChild>
           <Button {...props}>
-            <ArrowDownUp className="mr-2 size-4 text-sky-500" />
+            <ArrowDownUp className="mr-2 size-4 text-primary" />
             {dict.button.sort}
             {selected.length > 0 && (
               <>

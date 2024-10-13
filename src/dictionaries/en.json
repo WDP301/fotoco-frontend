@@ -169,7 +169,7 @@
         "max": "Group description must be maximum 300 characters."
       }
     },
-    "createAlbumSchema":{
+    "createAlbumSchema": {
       "title": {
         "required": "Album title can not be empty",
         "min": "Album title must be at least 2 characters.",
@@ -278,6 +278,12 @@
     "description": "Group not found page description",
     "heading": "Oops! The group you are looking for does not exist",
     "info": "The group you are looking for may have been removed or does not exist."
+  },
+  "albumNotFound": {
+    "title": "Album not found",
+    "description": "Album not found page description",
+    "heading": "Oops! The album you are looking for does not exist",
+    "info": "The album you are looking for may have been removed or does not exist."
   },
   "createGroup": {
     "dialogTitle": "Create Group",

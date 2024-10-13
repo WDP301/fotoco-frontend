@@ -166,7 +166,7 @@
         "max": "Mô tả nhóm phải tối đa 300 ký tự"
       }
     },
-    "createAlbumSchema":{
+    "createAlbumSchema": {
       "title": {
         "required": "Tên album không được để trống",
         "min": "Tên album phải có ít nhất 2 kí tự",
@@ -275,6 +275,12 @@
     "description": "Mô tả trang không tìm thấy nhóm",
     "heading": "Opp! Không tìm thấy nhóm",
     "info": "Nhóm bạn đang tìm kiếm có thể đã bị xóa, đã thay đổi tên hoặc tạm thời không khả dụng."
+  },
+  "albumNotFound": {
+    "title": "Không tìm thấy album",
+    "description": "Mô tả trang không tìm thấy album",
+    "heading": "Opp! Không tìm thấy album",
+    "info": "Album bạn đang tìm kiếm có thể đã bị xóa, đã thay đổi tên hoặc tạm thời không khả dụng."
   },
   "createGroup": {
     "dialogTitle": "Tạo nhóm mới",

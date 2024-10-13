@@ -3,6 +3,7 @@ import GroupList from '@/components/overview/group/group-list/group-list';
 import GroupListLoading from '@/components/overview/group/loading/group-list-loading';
 import BreadcrumbComponent from '@/components/shared/breadcrumb-component';
 import FilterSelect from '@/components/shared/filter-selection';
+import SearchBadge from '@/components/shared/search-badge';
 import SearchBar from '@/components/shared/search-bar';
 import SortSelect from '@/components/shared/sort-select';
 import { Button } from '@/components/ui/button';
@@ -75,29 +76,34 @@ export default async function GroupPage({
         <SearchBar placeholder={dict.searchBar.group.placeholders} />
       </div>
 
-      <div className="flex items-center justify-between space-y-2">
-        <span className={`text-2xl font-bold`}>{dict.group.title}</span>
-        <div className="flex items-center space-x-2">
-          <CreateGroupDiaLog>
-            <Button variant="ghost">
-              <SquarePlus className="mr-2 h-4 w-4" />
-              {dict.button.createGroup}
-            </Button>
-          </CreateGroupDiaLog>
-          <SortSelect
-            variant="ghost"
-            sort={searchParams.sort}
-            options={selectOptions}
-            url={'/groups'}
-          />
-          <FilterSelect
-            variant="ghost"
-            filter={searchParams.filter}
-            options={filterOptions}
-            url="/groups"
-            field="filter"
-          />
+      <div className="flex flex-col md:flex-row items-center justify-between space-y-2 md:space-y-0">
+        <h3 className="text-lg md:text-xl">{dict.group.title}</h3>
+        <div className="flex flex-col md:flex-row items-center space-y-2 md:space-x-2 md:space-y-0">
+          <div className="flex gap-2">
+            <CreateGroupDiaLog>
+              <Button variant="ghost">
+                <SquarePlus className="mr-2 h-4 w-4" />
+                {dict.button.createGroup}
+              </Button>
+            </CreateGroupDiaLog>
+            <SortSelect
+              variant="ghost"
+              sort={searchParams.sort}
+              options={selectOptions}
+              url={`/groups`}
+            />
+            <FilterSelect
+              variant="ghost"
+              filter={searchParams.filter}
+              options={filterOptions}
+              url={`/groups`}
+              field="filter"
+            />
+          </div>
         </div>
+      </div>
+      <div className="flex justify-center md:justify-start">
+        {searchParams.search && <SearchBadge query={searchParams.search} />}
       </div>
       <div className="mt-5">
         <Suspense

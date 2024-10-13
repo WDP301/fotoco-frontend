@@ -320,7 +320,8 @@
     "system": "Hệ thống"
   },
   "common": {
-    "orContinueWith": "Hoặc tiếp tục với"
+    "orContinueWith": "Hoặc tiếp tục với",
+    "searchResultsFor": "Kết quả tìm kiếm cho"
   },
   "searchBar": {
     "group": {

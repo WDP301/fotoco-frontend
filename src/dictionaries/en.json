@@ -323,7 +323,8 @@
     "system": "System"
   },
   "common": {
-    "orContinueWith": "Or continue with"
+    "orContinueWith": "Or continue with",
+    "searchResultsFor": "Search results for"
   },
   "searchBar": {
     "group": {

@@ -6,6 +6,7 @@ import SortSelect from '@/components/shared/sort-select';
 import FilterSelect from '@/components/shared/filter-selection';
 import { getDictionary } from '@/lib/dictionaries';
 import CreateAlbumDiaLog from './create-album-dialog';
+import SearchBadge from '@/components/shared/search-badge';
 
 export default async function AlbumSection({
   groupId,
@@ -45,25 +46,31 @@ export default async function AlbumSection({
   return (
     <div className="mt-10 mb-5">
       {/* <h3 className="mb-5">Album</h3> */}
-      <div className="flex items-center justify-between space-y-2">
-        <h3>Album</h3>
-        <div className="flex items-center space-x-2">
-          <CreateAlbumDiaLog groupId={groupId} />
-          <SortSelect
-            variant="ghost"
-            sort={searchParams.sort}
-            options={selectOptions}
-            url={`/groups/${groupId}`}
-          />
-          <FilterSelect
-            variant="ghost"
-            filter={searchParams.filter}
-            options={filterOptions}
-            url={`/groups/${groupId}`}
-            field="filter"
-          />
+      <div className="flex flex-col md:flex-row items-center justify-between space-y-2 md:space-y-0">
+        <h3 className="text-lg md:text-xl">Album</h3>
+        <div className="flex flex-col md:flex-row items-center space-y-2 md:space-x-2 md:space-y-0">
+          <div className="flex gap-2">
+            <CreateAlbumDiaLog groupId={groupId} />
+            <SortSelect
+              variant="ghost"
+              sort={searchParams.sort}
+              options={selectOptions}
+              url={`/groups/${groupId}`}
+            />
+            <FilterSelect
+              variant="ghost"
+              filter={searchParams.filter}
+              options={filterOptions}
+              url={`/groups/${groupId}`}
+              field="filter"
+            />
+          </div>
         </div>
       </div>
+      <div className="flex justify-center md:justify-start">
+        {searchParams.search && <SearchBadge query={searchParams.search} />}
+      </div>
+
       <Suspense
         fallback={<AlbumListLoading />}
         key={

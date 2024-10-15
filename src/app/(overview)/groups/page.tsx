@@ -77,7 +77,7 @@ export default async function GroupPage({
       </div>
 
       <div className="flex flex-col md:flex-row items-center justify-between space-y-2 md:space-y-0">
-        <h3 className="text-lg md:text-xl">{dict.group.title}</h3>
+        <h3>{dict.group.title}</h3>
         <div className="flex flex-col md:flex-row items-center space-y-2 md:space-x-2 md:space-y-0">
           <div className="flex gap-2">
             <CreateGroupDiaLog>

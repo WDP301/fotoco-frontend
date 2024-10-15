@@ -2,6 +2,8 @@ import AlbumHeader from '@/components/overview/album/album-header/album-header';
 import AlbumNotFound from '@/components/overview/album/album-not-found';
 import PhotoList from '@/components/overview/album/photo-list';
 import FilterSelect from '@/components/shared/filter-selection';
+import SearchBadge from '@/components/shared/search-badge';
+import SearchBar from '@/components/shared/search-bar';
 import SortSelect from '@/components/shared/sort-select';
 import { getAlbumInfo } from '@/lib/data';
 import { FilterOption, SearchPhotoParams, SortOption } from '@/lib/define';
@@ -65,28 +67,34 @@ export default async function AlbumPage({
   return (
     <div>
       <AlbumHeader albumId={params.id} />
-      <div className="flex items-center justify-between space-y-2">
-        <span className={`text-2xl font-bold`}>{dict.photo.title}</span>
-        <div className="flex items-center space-x-2">
-          {/* <CreateGroupDiaLog>
-            <Button variant="ghost">
-                <SquarePlus className="mr-2 h-4 w-4" />
-                {dict.button.createGroup}
-            </Button>
-          </CreateGroupDiaLog> */}
-          <SortSelect
-            variant="ghost"
-            sort={searchParams.sort}
-            options={selectOptions}
-            url={`/albums/${params.id}`}
-          />
-          <FilterSelect
-            variant="ghost"
-            filter={searchParams.filter}
-            options={filterOptions}
-            url={`/albums/${params.id}`}
-            field="filter"
-          />
+      <div className="my-5">
+        <SearchBar placeholder={dict.searchBar.photo.placeholders} />
+      </div>
+      <div className="mt-10 mb-5">
+        {/* <h3 className="mb-5">Album</h3> */}
+        <div className="flex flex-col md:flex-row items-center justify-between space-y-2 md:space-y-0">
+          <h3>{dict.photo.title}</h3>
+          <div className="flex flex-col md:flex-row items-center space-y-2 md:space-x-2 md:space-y-0">
+            <div className="flex gap-2">
+              {/* <CreateAlbumDiaLog groupId={groupId} /> */}
+              <SortSelect
+                variant="ghost"
+                sort={searchParams.sort}
+                options={selectOptions}
+                url={`/albums/${params.id}`}
+              />
+              <FilterSelect
+                variant="ghost"
+                filter={searchParams.filter}
+                options={filterOptions}
+                url={`/albums/${params.id}`}
+                field="filter"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-center md:justify-start">
+          {searchParams.search && <SearchBadge query={searchParams.search} />}
         </div>
       </div>
       <div className="mt-5">

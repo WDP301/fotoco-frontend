@@ -350,6 +350,13 @@
     },
     "album": {
       "placeholders": ["Tìm album của bạn ở đây", "Tìm album theo tiêu đề"]
+    },
+    "photo": {
+      "placeholders": [
+        "Tìm ảnh của bạn ở đây",
+        "Tìm ảnh theo tiêu đề",
+        "Tìm ảnh theo thẻ"
+      ]
     }
   }
 }

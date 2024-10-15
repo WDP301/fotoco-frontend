@@ -39,9 +39,7 @@ export default async function GroupDetailPage({
     <div>
       <GroupHeader groupId={params.id} />
       <div className="my-5">
-        <div className="my-5">
-          <SearchBar placeholder={dict.searchBar.album.placeholders} />
-        </div>
+        <SearchBar placeholder={dict.searchBar.album.placeholders} />
       </div>
       <AlbumSection groupId={params.id} searchParams={searchParams} />
     </div>

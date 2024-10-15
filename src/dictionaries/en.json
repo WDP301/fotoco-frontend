@@ -353,6 +353,13 @@
     },
     "album": {
       "placeholders": ["Search albums here", "Find albums by title"]
+    },
+    "photo": {
+      "placeholders": [
+        "Search photos here",
+        "Find photos by title",
+        "Find photos by tags"
+      ]
     }
   }
 }

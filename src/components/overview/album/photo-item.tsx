@@ -17,7 +17,7 @@ const PhotoItem = ({ photo }: { photo: Photo }) => {
       className="relative overflow-hidden rounded-lg"
     >
       <Link href={`/photos/${photo._id}`}>
-        <div className={`group relative cursor-pointer`}>
+        <div className="group relative cursor-pointer">
           <Image
             className="object-cover rounded-lg h-full transition-transform duration-300 ease-in-out group-hover:scale-110"
             src={photo.url}
@@ -26,9 +26,9 @@ const PhotoItem = ({ photo }: { photo: Photo }) => {
             alt={photo.title || `Photo ${photo._id}`}
           />
           <div
-            className={`absolute inset-0 flex flex-col justify-end p-4 text-white opacity-0 transition-all duration-500 ease-in-out group-hover:opacity-100 group-hover:bg-black group-hover:bg-opacity-50 md:opacity-100 md:group-hover:opacity-100 rounded-lg ${
-              isHovered ? 'shadow-lg' : ''
-            }`}
+            className={`absolute inset-0 flex flex-col justify-end p-4 text-white transition-opacity duration-500 ease-in-out ${
+              isHovered ? 'opacity-100 delay-75' : 'opacity-0'
+            } bg-black bg-opacity-50 rounded-lg`}
           >
             <div className="flex items-center mb-2">
               <AvatarPicture

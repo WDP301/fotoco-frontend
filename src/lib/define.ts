@@ -202,6 +202,7 @@ export type Photo = {
     username: string;
     fullName: string;
     email: string;
+    img: string;
   };
   fileSize: number;
   mimeType: string;

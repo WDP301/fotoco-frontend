@@ -14,12 +14,7 @@ const buildPhotoItems = (photos: Photo[]) => {
             return photoIndex % 4 === index - 1;
           })
           .map((filteredPhoto) => (
-            <PhotoItem
-              key={filteredPhoto._id}
-              image={filteredPhoto.url}
-              _id={filteredPhoto._id}
-              title={filteredPhoto?.title}
-            />
+            <PhotoItem key={filteredPhoto._id} photo={filteredPhoto} />
           ))}
       </div>
     );

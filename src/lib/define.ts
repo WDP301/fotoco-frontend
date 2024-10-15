@@ -192,3 +192,22 @@ export type SearchAlbumParams = {
   search?: string;
   filter?: string;
 };
+
+export type Photo = {
+  _id: string;
+  title: string;
+  url: string;
+  owner: {
+    _id: string;
+    username: string;
+    fullName: string;
+    email: string;
+  };
+  fileSize: number;
+  mimeType: string;
+  tags: string[];
+  commentsCount: number;
+  reactsCount: number;
+  createdAt: string;
+  updatedAt: string;
+};

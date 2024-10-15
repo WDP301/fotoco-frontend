@@ -3,14 +3,17 @@
 import customFetch from '@/config/fetch';
 import {
   Album,
+  AlbumInfo,
   Group,
   GroupInfo,
   GroupUser,
   PageMeta,
+  Photo,
   RecentPhoto,
   SearchAlbumParams,
   SearchGroupMembersParams,
   SearchGroupParams,
+  SearchPhotoParams,
   SearchRecentViewParams,
   User,
 } from './define';
@@ -124,6 +127,20 @@ export const getGroupInfo = async (groupId: string) => {
   }
 };
 
+export const getAlbumInfo = async (albumId: string) => {
+  try {
+    const response = await customFetch(`/albums/${albumId}`, {
+      method: 'GET',
+      next: { revalidate: 120 },
+    })
+      .then((res) => res.json())
+      .catch(() => null);
+    return response as AlbumInfo;
+  } catch {
+    return {} as AlbumInfo;
+  }
+};
+
 export const getGroupMembers = async (
   groupId: string,
   searchParams: SearchGroupMembersParams
@@ -159,6 +176,41 @@ export const getGroupMembers = async (
   }
 };
 
+export const getAlbumMembers = async (
+  albumId: string,
+  searchParams: SearchGroupMembersParams
+) => {
+  try {
+    const queryString = objectToQueryString(searchParams);
+    const response = await customFetch(
+      `/albums/${albumId}/members?${queryString}`,
+      {
+        method: 'GET',
+        // next: { revalidate: 3600 },
+      }
+    )
+      .then((res) => res.json())
+      .catch(() => null);
+
+    if (response?.success) {
+      return {
+        pageMeta: response.pageMeta as PageMeta,
+        users: response.users as GroupUser[],
+      };
+    }
+
+    return {
+      pageMeta: pageMetaDefault as PageMeta,
+      users: response.users as GroupUser[],
+    };
+  } catch {
+    return {
+      pageMeta: pageMetaDefault as PageMeta,
+      users: [] as GroupUser[],
+    };
+  }
+};
+
 export const getAlbumsByGroupId = async (
   groupId: string,
   searchParams: SearchAlbumParams
@@ -170,7 +222,6 @@ export const getAlbumsByGroupId = async (
       {
         method: 'GET',
         // next: { revalidate: 3600 },
-        cache: 'no-store',
       }
     )
       .then((res) => res.json())
@@ -191,6 +242,41 @@ export const getAlbumsByGroupId = async (
     return {
       pageMeta: pageMetaDefault as PageMeta,
       albums: [] as Album[],
+    };
+  }
+};
+
+export const getPhotosByAlbumId = async (
+  albumId: string,
+  searchParams: SearchPhotoParams
+) => {
+  try {
+    const queryString = objectToQueryString(searchParams);
+    const response = await customFetch(
+      `/albums/${albumId}/photos?${queryString}`,
+      {
+        method: 'GET',
+        // next: { revalidate: 3600 },
+      }
+    )
+      .then((res) => res.json())
+      .catch(() => null);
+
+    if (response?.success) {
+      return {
+        photos: response.photos as Photo[],
+        pageMeta: response.pageMeta as PageMeta,
+      };
+    }
+
+    return {
+      photos: [] as Photo[],
+      pageMeta: pageMetaDefault as PageMeta,
+    };
+  } catch (error) {
+    return {
+      photos: [] as Photo[],
+      pageMeta: pageMetaDefault as PageMeta,
     };
   }
 };

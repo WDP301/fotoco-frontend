@@ -257,6 +257,11 @@
       "hidden": "Nhóm ẩn"
     }
   },
+  "photo": {
+    "title": "Ảnh",
+    "description": "Mô tả trang danh sách ảnh",
+    "upload": "Tải ảnh lên"
+  },
   "sortOptions": {
     "newest": "Mới nhất",
     "oldest": "Cũ nhất"
@@ -267,6 +272,10 @@
       "mine": "Album của tôi",
       "sharedWithMe": "Chia sẻ với tôi"
     },
+    "photo": {
+      "all": "Tất cả",
+      "mine": "Ảnh của tôi"
+    },
     "mine": "Nhóm của tôi",
     "sharedWithMe": "Chia sẻ với tôi"
   },
@@ -275,6 +284,18 @@
     "description": "Mô tả trang không tìm thấy nhóm",
     "heading": "Opp! Không tìm thấy nhóm",
     "info": "Nhóm bạn đang tìm kiếm có thể đã bị xóa, đã thay đổi tên hoặc tạm thời không khả dụng."
+  },
+  "albumNotFound": {
+    "title": "Không tìm thấy album",
+    "description": "Mô tả trang không tìm thấy album",
+    "heading": "Opp! Không tìm thấy album",
+    "info": "Album bạn đang tìm kiếm có thể đã bị xóa, đã thay đổi tên hoặc tạm thời không khả dụng."
+  },
+  "photoNotFound": {
+    "title": "Không tìm thấy ảnh",
+    "description": "Mô tả trang không tìm thấy ảnh",
+    "heading": "Opp! Không tìm thấy ảnh",
+    "info": "Ảnh bạn đang tìm kiếm có thể đã bị xóa, đã thay đổi tên hoặc tạm thời không khả dụng."
   },
   "createGroup": {
     "dialogTitle": "Tạo nhóm mới",

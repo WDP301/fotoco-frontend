@@ -5,7 +5,7 @@ import {
   Flag,
   Heart,
   MessageCircleIcon,
-  ShareIcon,
+  Share2,
 } from "lucide-react"
 
 import {
@@ -72,7 +72,7 @@ export default function Post() {
                 </Button>
               </div>
           </div>
-          <div className="flex-1 whitespace-pre-wrap pt-4 py-4 text-sm">
+          <div className="flex-1 whitespace-pre-wrap py-3 text-sm">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel scelerisque ligula. Aenean lacinia pulvinar dui vitae sollicitudin. Suspendisse potenti.
           </div>
           <div className="flex flex-wrap gap-1">
@@ -80,25 +80,21 @@ export default function Post() {
               <Badge key={tag} className="text-xs">{tag}</Badge>
             ))}
           </div>
-          <div className="flex flex-col justify-between pt-4 py-4 w-1/2">
+          <div className="flex flex-col justify-between py-3 w-1/2">
             <div className="flex items-center w-full">
-                <div className="flex items-center mr-4">
-                    <Button variant="ghost" size="icon" className="hover:bg-muted">
-                        <Heart className="h-5 w-5" />
-                    </Button>
+                <div className="flex items-center mr-5">
+                    <Heart className="h-5 w-5 mr-2 hover:text-primary cursor-pointer transition-colors duration-200" />
                     <div className="font-semibold">1.2k</div>
                 </div>
                 <div className="flex items-center mr-4">
-                    <Button variant="ghost" size="icon" className="hover:bg-muted">
-                        <MessageCircleIcon className="h-5 w-5" />
-                    </Button>
+                    <MessageCircleIcon className="h-5 w-5 mr-2 hover:text-primary cursor-pointer transition-colors duration-200" />
                     <div className="font-semibold">1.2k</div>
                 </div>
                 <div className="mr-4">
                     <Dialog>
                         <DialogTrigger asChild>
                             <Button variant="ghost" size="icon" className="hover:bg-muted">
-                                <ShareIcon className="h-5 w-5" />
+                                <Share2 className="h-5 w-5" />
                             </Button>
                         </DialogTrigger>
                         <DialogContent className="sm:max-w-md">

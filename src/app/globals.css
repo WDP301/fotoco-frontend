@@ -98,3 +98,12 @@ body {
     @apply scroll-m-20 text-xl font-semibold tracking-tight;
   }
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

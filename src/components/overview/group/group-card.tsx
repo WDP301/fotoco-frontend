@@ -1,7 +1,7 @@
 'use client';
 import { useLanguage } from '@/components/provider/language-provider';
 import { Group } from '@/lib/define';
-import { cn } from '@/lib/utils';
+import { cn, formatNumber } from '@/lib/utils';
 import Link from 'next/link';
 
 export function GroupCard({ group }: { group: Group }) {
@@ -23,7 +23,7 @@ export function GroupCard({ group }: { group: Group }) {
         <div className="absolute w-full h-full top-0 left-0 transition duration-300 group-hover/card:bg-black opacity-60"></div>
         <div className="flex flex-col">
           <p className="text-sm text-gray-400">
-            {group?.albumsCount || 0} albums
+            {formatNumber(group?.albumsCount || 0)} albums
           </p>
         </div>
         <div className="text content">
@@ -31,7 +31,7 @@ export function GroupCard({ group }: { group: Group }) {
             {group?.title}
           </h1>
           <p className="font-normal text-base text-gray-50 relative z-10">
-            {group?.membersCount || 0} {dict.groupCard.members}
+            {formatNumber(group?.membersCount || 0)} {dict.groupCard.members}
           </p>
         </div>
       </div>

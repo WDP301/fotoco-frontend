@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { Photo } from '@/lib/define';
 import AvatarPicture from '@/components/shared/avatar-picture';
 import { Heart, MessageCircle } from 'lucide-react';
+import { formatNumber } from '@/lib/utils';
 
 const PhotoItem = ({ photo }: { photo: Photo }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -48,11 +49,11 @@ const PhotoItem = ({ photo }: { photo: Photo }) => {
             <div className="flex space-x-6">
               <span className="flex items-center space-x-1">
                 <Heart className="h-5 w-5" />
-                <span>{photo.reactsCount}</span>
+                <span>{formatNumber(photo.reactsCount)}</span>
               </span>
               <span className="flex items-center space-x-1">
                 <MessageCircle className="h-5 w-5" />
-                <span>{photo.commentsCount}</span>
+                <span>{formatNumber(photo.commentsCount)}</span>
               </span>
             </div>
           </div>

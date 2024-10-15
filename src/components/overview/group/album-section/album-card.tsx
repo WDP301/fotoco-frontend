@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { cn } from '@/lib/utils';
+import { cn, formatNumber } from '@/lib/utils';
 import { Album } from '@/lib/define';
 import Link from 'next/link';
 
@@ -94,7 +94,7 @@ export function AlbumCard({
             {album.title}
           </h4>
           <p className="text-sm text-gray-300 transform transition-transform duration-500 ease-in-out group-hover:translate-y-0 translate-y-4">
-            {album.photosCount} items
+            {formatNumber(album.photosCount || 0)} items
           </p>
         </div>
       </div>

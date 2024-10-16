@@ -37,10 +37,10 @@ const PhotoItem = ({ photo }: { photo: Photo }) => {
                 className="border-2 border-white rounded-full"
               />
               <div className="ml-2">
-                <span className="font-bold text-lg">
+                <span className="font-bold text-lg line-clamp-1">
                   {photo.owner.fullName}
                 </span>
-                <span className="block text-sm text-gray-300">
+                <span className="block text-sm text-gray-300 line-clamp-1">
                   @{photo.owner.username}
                 </span>
               </div>

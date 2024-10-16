@@ -203,7 +203,8 @@
     "tryAgain": "Thử lại",
     "createGroup": "Tạo nhóm",
     "createAlbum": "Tạo album",
-    "clear": "Xóa"
+    "clear": "Xóa",
+    "profile": "Hồ sơ"
   },
   "joinGroup": {
     "title": "Tham gia nhóm",
@@ -256,6 +257,18 @@
       "private": "Nhóm riêng tư",
       "public": "Nhóm công khai",
       "hidden": "Nhóm ẩn"
+    },
+    "setting": {
+      "title": "Cài đặt nhóm",
+      "description": "Bạn có thể quản lý cài đặt nhóm của mình tại đây",
+      "general": {
+        "title": "Cài đặt chung",
+        "description": "Cài đặt chung cho nhóm của bạn"
+      },
+      "member": {
+        "title": "Thành viên",
+        "description": "Quản lý thành viên của nhóm"
+      }
     }
   },
   "photo": {
@@ -276,6 +289,10 @@
     "photo": {
       "all": "Tất cả",
       "mine": "Ảnh của tôi"
+    },
+    "user": {
+      "owner": "Chủ sở hữu",
+      "member": "Thành viên"
     },
     "mine": "Nhóm của tôi",
     "sharedWithMe": "Chia sẻ với tôi"
@@ -351,6 +368,13 @@
     },
     "album": {
       "placeholders": ["Tìm album của bạn ở đây", "Tìm album theo tiêu đề"]
+    },
+    "user": {
+      "placeholders": [
+        "Tìm người dùng ở đây",
+        "Tìm người dùng theo tên",
+        "Tìm người dùng theo biệt danh"
+      ]
     },
     "photo": {
       "placeholders": [

@@ -206,7 +206,8 @@
     "tryAgain": "Try again",
     "createGroup": "Create Group",
     "createAlbum": "Create Album",
-    "clear": "Clear"
+    "clear": "Clear",
+    "profile": "Profile"
   },
   "joinGroup": {
     "title": "Join Group",
@@ -259,6 +260,18 @@
       "private": "Private Group",
       "public": "Public Group",
       "hidden": "Hidden Group"
+    },
+    "setting": {
+      "title": "Group Settings",
+      "description": "You can manage your group settings here",
+      "general": {
+        "title": "General",
+        "description": "General settings for your group"
+      },
+      "member": {
+        "title": "Members",
+        "description": "Manage your group members"
+      }
     }
   },
   "photo": {
@@ -279,6 +292,10 @@
     "photo": {
       "all": "All",
       "mine": "My Photos"
+    },
+    "user": {
+      "owner": "Owner",
+      "member": "Member"
     },
     "mine": "My Groups",
     "sharedWithMe": "Shared with me"
@@ -354,6 +371,13 @@
     },
     "album": {
       "placeholders": ["Search albums here", "Find albums by title"]
+    },
+    "user": {
+      "placeholders": [
+        "Search users here",
+        "Find users by name",
+        "Find users by username"
+      ]
     },
     "photo": {
       "placeholders": [

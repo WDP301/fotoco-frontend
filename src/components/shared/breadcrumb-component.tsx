@@ -21,8 +21,8 @@ export default function BreadcrumbComponent({
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem key="home-item">
-          <BreadcrumbLink href="/" className="flex gap-1">
-            <Home className="w-4 h-4" />
+          <BreadcrumbLink href="/" className="flex gap-1 items-center">
+            <Home className="w-4 h-4 " />
             {dict.home}
           </BreadcrumbLink>
         </BreadcrumbItem>

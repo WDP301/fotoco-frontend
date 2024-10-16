@@ -40,7 +40,7 @@ export default async function AlbumInfo({ albumId }: { albumId: string }) {
           <h1>{album.title}</h1>
         </BasicTooltip>
 
-        <Link href={`/albums/${albumId}/setting`}>
+        <Link href={`/albums/${albumId}/settings`}>
           <Button variant="ghost">
             <Settings />
           </Button>

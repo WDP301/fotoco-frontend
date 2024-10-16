@@ -5,7 +5,7 @@ import { getPhotosByAlbumId } from '@/lib/data';
 import { getDictionary } from '@/lib/dictionaries';
 
 const buildPhotoItems = (photos: Photo[]) => {
-  let items = [];
+  const items = [];
   for (let index = 1; index < 5; index++) {
     items.push(
       <div key={index} className="flex flex-col justify-start gap-4">

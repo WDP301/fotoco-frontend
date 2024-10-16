@@ -117,7 +117,7 @@ export const getGroupInfo = async (groupId: string) => {
   try {
     const response = await customFetch(`/groups/${groupId}`, {
       method: 'GET',
-      next: { revalidate: 120 },
+      // next: { revalidate: 120 },
     })
       .then((res) => res.json())
       .catch(() => null);
@@ -131,7 +131,7 @@ export const getAlbumInfo = async (albumId: string) => {
   try {
     const response = await customFetch(`/albums/${albumId}`, {
       method: 'GET',
-      next: { revalidate: 120 },
+      // next: { revalidate: 120 },
     })
       .then((res) => res.json())
       .catch(() => null);
@@ -151,7 +151,7 @@ export const getGroupMembers = async (
       `/groups/${groupId}/members?${queryString}`,
       {
         method: 'GET',
-        next: { revalidate: 3600 },
+        // next: { revalidate: 3600 },
       }
     )
       .then((res) => res.json())

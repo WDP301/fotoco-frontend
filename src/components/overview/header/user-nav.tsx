@@ -35,7 +35,7 @@ export function UserNav({ user }: { user: User }) {
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem asChild className="cursor-pointer">
-              <Link href={'/group'}>Group</Link>
+              <Link href={'/groups'}>Group</Link>
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />

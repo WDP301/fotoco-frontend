@@ -45,7 +45,7 @@ const PhotoItem = ({ photo }: { photo: Photo }) => {
                 </span>
               </div>
             </div>
-            <h4 className="line-clamp-1 mb-2">{photo.title}</h4>
+            <h5 className="line-clamp-1 mb-2">{photo.title}</h5>
             <div className="flex space-x-6">
               <span className="flex items-center space-x-1">
                 <Heart className="h-5 w-5" />

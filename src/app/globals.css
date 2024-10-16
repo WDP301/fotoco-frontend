@@ -97,4 +97,8 @@ body {
   h4 {
     @apply scroll-m-20 text-xl font-semibold tracking-tight;
   }
+
+  h5 {
+    @apply scroll-m-20 text-lg font-semibold tracking-tight;
+  }
 }

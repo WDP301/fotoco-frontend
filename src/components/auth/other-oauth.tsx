@@ -7,7 +7,7 @@ import { Facebook, FacebookIcon } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { openCenteredWindowPopup } from '@/lib/utils';
 import { oauthSuccess } from '@/lib/action';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { toast } from 'sonner';
 
 const INTERVAL_CHECK_CONNECT_TIMER = 500;
@@ -15,6 +15,8 @@ const INTERVAL_CHECK_CONNECT_TIMER = 500;
 const OtherOauth = () => {
   const router = useRouter();
   const [isConnecting, setIsConnecting] = useState('');
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl') || '/';
   let intervalCheckConnect: NodeJS.Timeout | null = null;
 
   const handleAuth = (provider: string) => {
@@ -52,7 +54,8 @@ const OtherOauth = () => {
                 throw new Error('Invalid data response');
               }
 
-              oauthSuccess(signature, accessToken, refreshToken)
+              oauthSuccess(signature, accessToken, refreshToken);
+              setTimeout(() => router.push(callbackUrl));
             } catch (error: any) {
               toast.error(error.message);
             } finally {

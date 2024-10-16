@@ -105,7 +105,6 @@ export const oauthSuccess = (
   refreshToken: string
 ): void => {
   handleStoreUserCredentials(signature, accessToken, refreshToken);
-  redirect('/');
 };
 
 export const login = async (

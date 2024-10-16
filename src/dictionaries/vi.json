@@ -202,7 +202,8 @@
     "filter": "Lọc",
     "tryAgain": "Thử lại",
     "createGroup": "Tạo nhóm",
-    "createAlbum": "Tạo album"
+    "createAlbum": "Tạo album",
+    "clear": "Xóa"
   },
   "joinGroup": {
     "title": "Tham gia nhóm",

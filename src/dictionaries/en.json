@@ -205,7 +205,8 @@
     "filter": "Filter",
     "tryAgain": "Try again",
     "createGroup": "Create Group",
-    "createAlbum": "Create Album"
+    "createAlbum": "Create Album",
+    "clear": "Clear"
   },
   "joinGroup": {
     "title": "Join Group",

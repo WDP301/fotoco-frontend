@@ -73,15 +73,7 @@ export default async function AlbumSection({
 
       <Suspense
         fallback={<AlbumListLoading />}
-        key={
-          searchParams.page ||
-          '1' + searchParams.sort ||
-          'desc' +
-            searchParams.pageSize +
-            searchParams.filter +
-            'all' +
-            searchParams.search
-        }
+        key={`${searchParams.page || '1'}-${searchParams.sort || 'desc'}-${searchParams.pageSize}-${searchParams.filter || 'all'}-${searchParams.search || ''}`}
       >
         <AlbumList groupId={groupId} searchParams={searchParams} />
       </Suspense>

@@ -24,6 +24,7 @@ import { SearchParams, SortOption } from '@/lib/define';
 import { VariantProps } from 'class-variance-authority';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { useLanguage } from '../provider/language-provider';
+import { useParams } from '@/hooks/use-params';
 
 interface SortSelectProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -40,6 +41,7 @@ export default function SortSelect({
   ...props
 }: Readonly<SortSelectProps>) {
   const { push } = useRouter();
+  const { setParams, deleteParam } = useParams();
   const searchParams = useSearchParams();
   const [selected, setSelected] = React.useState<string[]>([]);
   const { dict } = useLanguage();
@@ -49,10 +51,10 @@ export default function SortSelect({
   }, [sort]);
 
   const handleSortChange = useDebouncedCallback(() => {
-    const newParams = new URLSearchParams(searchParams.toString());
-    newParams.delete(SearchParams.SORT);
-    if (selected) newParams.set(SearchParams.SORT, selected.join(','));
-    push(createUrl(url, newParams));
+    if (selected) {
+      deleteParam(SearchParams.SORT);
+      setParams(SearchParams.SORT, selected.join(','));
+    }
   }, 600);
 
   return (
@@ -152,7 +154,7 @@ export default function SortSelect({
                       }}
                       className="justify-center text-center"
                     >
-                      Clear
+                      {dict.button.clear}
                     </CommandItem>
                   </CommandGroup>
                 </>

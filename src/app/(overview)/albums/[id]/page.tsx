@@ -102,16 +102,7 @@ export default async function AlbumPage({
       <div className="mt-5">
         <Suspense
           fallback={<PhotoListLoading />}
-          key={
-            searchParams.page ||
-            '1' + searchParams.sort ||
-            'desc' +
-              searchParams.pageSize +
-              searchParams.filter +
-              'all' +
-              searchParams.search +
-              searchParams.mode
-          }
+          key={`${searchParams.page || '1'}-${searchParams.sort || 'desc'}-${searchParams.pageSize}-${searchParams.filter || 'all'}-${searchParams.search || ''}-${searchParams.mode}`}
         >
           <PhotoList albumId={params.id} searchParams={searchParams} />
         </Suspense>

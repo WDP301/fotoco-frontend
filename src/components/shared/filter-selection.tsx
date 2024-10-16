@@ -21,17 +21,18 @@ import { CheckIcon } from '@radix-ui/react-icons';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { FilterOption, SearchParams } from '@/lib/define';
 import { VariantProps } from 'class-variance-authority';
-import { Button, buttonVariants } from '@/components/ui/button'; 
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Filter } from 'lucide-react';
 import { useLanguage } from '../provider/language-provider';
-    
+import { useParams } from '@/hooks/use-params';
+
 interface FilterSelectProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
-        filter?: string;
-        options: FilterOption[];
-        url: string;
-        field: string;
+  filter?: string;
+  options: FilterOption[];
+  url: string;
+  field: string;
 }
 export default function FilterSelect({
   filter,
@@ -39,8 +40,9 @@ export default function FilterSelect({
   url,
   field,
   ...props
-}:Readonly<FilterSelectProps>) {
+}: Readonly<FilterSelectProps>) {
   const { push } = useRouter();
+  const { setParams, deleteParam } = useParams();
   const searchParams = useSearchParams();
   const [selected, setSelected] = React.useState<string[]>([]);
   const { dict } = useLanguage();
@@ -50,11 +52,10 @@ export default function FilterSelect({
   }, [filter]);
 
   const handleSortChange = useDebouncedCallback(() => {
-    const newParams = new URLSearchParams(searchParams.toString());
-    newParams.delete(SearchParams.SORT);
-    newParams.delete(SearchParams.PAGE);
-    if (selected) newParams.set(field, selected.join(','));
-    push(createUrl(url, newParams));
+    if (selected) {
+      deleteParam(field);
+      setParams(field, selected.join(','));
+    }
   }, 600);
 
   return (
@@ -75,11 +76,11 @@ export default function FilterSelect({
                 </Badge>
                 <div className="hidden space-x-1 lg:flex">
                   {selected
-                    .map(selectedValue =>
-                      options.find(option => option.value === selectedValue)
+                    .map((selectedValue) =>
+                      options.find((option) => option.value === selectedValue)
                     )
                     .filter(Boolean)
-                    .map(option => (
+                    .map((option) => (
                       <Badge
                         variant="secondary"
                         key={option?.value}
@@ -97,16 +98,16 @@ export default function FilterSelect({
           <Command>
             <CommandList>
               <CommandGroup>
-                {options.map(option => {
+                {options.map((option) => {
                   const isSelected = selected.includes(option.value);
                   return (
                     <CommandItem
                       key={option.value}
                       onSelect={() => {
                         if (!isSelected) {
-                          const newSelected = selected.filter(item => {
+                          const newSelected = selected.filter((item) => {
                             const currentItemField = options.find(
-                              option => option.value === item
+                              (option) => option.value === item
                             )?.field;
                             const selectedOptionField = option.field;
                             return currentItemField !== selectedOptionField;
@@ -115,7 +116,7 @@ export default function FilterSelect({
                           setSelected(newSelected);
                         } else {
                           setSelected(
-                            selected.filter(item => item !== option.value)
+                            selected.filter((item) => item !== option.value)
                           );
                         }
                         handleSortChange();
@@ -146,15 +147,11 @@ export default function FilterSelect({
                     <CommandItem
                       onSelect={() => {
                         setSelected([]);
-                        const newParams = new URLSearchParams(
-                          searchParams.toString()
-                        );
-                        newParams.delete(field);
-                        push(createUrl(url, newParams));
+                        deleteParam(field);
                       }}
                       className="justify-center text-center"
                     >
-                      Clear
+                      {dict.button.clear}
                     </CommandItem>
                   </CommandGroup>
                 </>

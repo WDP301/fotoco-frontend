@@ -108,16 +108,7 @@ export default async function GroupPage({
       <div className="mt-5">
         <Suspense
           fallback={<GroupListLoading />}
-          key={
-            searchParams.page ||
-            '1' + searchParams.sort ||
-            'desc' +
-              searchParams.pageSize +
-              searchParams.filter +
-              searchParams.status +
-              searchParams.type ||
-            'all' + searchParams.search
-          }
+          key={`${searchParams.page || '1'}-${searchParams.sort || 'desc'}-${searchParams.pageSize}-${searchParams.filter}-${searchParams.status}-${searchParams.type || 'all'}-${searchParams.search}`}
         >
           <GroupList searchParams={searchParams} />
         </Suspense>

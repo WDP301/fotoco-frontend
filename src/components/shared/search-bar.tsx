@@ -1,13 +1,12 @@
 'use client';
 
 import { PlaceholdersAndVanishInput } from '@/components/ui/placeholders-and-vanish-input';
-import { createUrl } from '@/lib/utils';
-import { useRouter } from 'next/navigation';
+import { useParams } from '@/hooks/use-params';
 import { useState } from 'react';
 
 export default function SearchBar({ placeholder }: { placeholder: string[] }) {
   const [value, setValue] = useState('');
-  const { replace } = useRouter();
+  const { setParams, deleteParam } = useParams();
   const [placeholderView, setPlaceholderView] = useState(placeholder);
 
   const handleSearchChange = (value: string) => {
@@ -16,11 +15,11 @@ export default function SearchBar({ placeholder }: { placeholder: string[] }) {
   };
 
   const handleSearchSubmit = () => {
+    console.log('searching for:', value);
     setPlaceholderView(placeholder);
-    const searchParams = new URLSearchParams(location.search);
-    const pathName = location.pathname;
-    searchParams.set('search', value);
-    replace(createUrl(pathName, searchParams));
+    deleteParam('page');
+    deleteParam('search');
+    setParams('search', value);
   };
   return (
     <PlaceholdersAndVanishInput

@@ -19,8 +19,8 @@ export default async function SharedWithMeGroupList() {
     );
   }
   return (
-    <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+    <div className="container mx-auto">
+      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 max-sm:p-4 max-sm:flex max-sm:flex-col max-sm:items-center">
         {groups.map((group) => (
           <GroupCard key={group._id} group={group} />
         ))}

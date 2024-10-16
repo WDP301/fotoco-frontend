@@ -256,6 +256,18 @@
       "private": "Nhóm riêng tư",
       "public": "Nhóm công khai",
       "hidden": "Nhóm ẩn"
+    },
+    "setting": {
+      "title": "Cài đặt nhóm",
+      "description": "Bạn có thể quản lý cài đặt nhóm của mình tại đây",
+      "general": {
+        "title": "Cài đặt chung",
+        "description": "Cài đặt chung cho nhóm của bạn"
+      },
+      "member": {
+        "title": "Thành viên",
+        "description": "Quản lý thành viên của nhóm"
+      }
     }
   },
   "photo": {

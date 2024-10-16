@@ -37,7 +37,7 @@ export default async function GroupInfo({ groupId }: { groupId: string }) {
           <h1>{group.title}</h1>
         </BasicTooltip>
 
-        <Link href={`/groups/${groupId}/setting`}>
+        <Link href={`/groups/${groupId}/settings`}>
           <Button variant="ghost">
             <Settings />
           </Button>

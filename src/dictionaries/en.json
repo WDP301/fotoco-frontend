@@ -259,6 +259,18 @@
       "private": "Private Group",
       "public": "Public Group",
       "hidden": "Hidden Group"
+    },
+    "setting": {
+      "title": "Group Settings",
+      "description": "You can manage your group settings here",
+      "general": {
+        "title": "General",
+        "description": "General settings for your group"
+      },
+      "member": {
+        "title": "Members",
+        "description": "Manage your group members"
+      }
     }
   },
   "photo": {

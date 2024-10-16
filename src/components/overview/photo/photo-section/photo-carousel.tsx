@@ -4,11 +4,11 @@ import Image from "next/image";
 import { XIcon } from "lucide-react"
 import { useRouter } from "next/navigation";
 
-export default function Left() {
+export default function PhotoCarousel() {
   const route = useRouter();
 
   const handleCloseClick = () => {
-    route.back();
+    route.push('/photo-details');
   }
 
   return (

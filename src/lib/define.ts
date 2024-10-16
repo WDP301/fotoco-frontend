@@ -146,3 +146,13 @@ export type GroupUser = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type Comment = {
+  _id: string;
+  user: User;
+  email: string;
+  comment: string;
+  createdAt: string;
+  updatedAt: string;
+  body: string;
+}

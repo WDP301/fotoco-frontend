@@ -1,7 +1,6 @@
 'use client';
-import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
+import React, { useState, forwardRef, useImperativeHandle } from "react";
 
 import {
     Avatar,
@@ -10,11 +9,19 @@ import {
   } from "@/components/ui/avatar"
 import { SendHorizontal } from "lucide-react";
 
-export default function CommentForm() {
+// eslint-disable-next-line react/display-name
+const CommentForm = forwardRef((_, ref) => {
   const [comment, setComment] = useState("");
+  const textareaRef = React.useRef<HTMLTextAreaElement>(null);
+
+  useImperativeHandle(ref, () => ({
+    focusTextArea: () => {
+      textareaRef.current?.focus();
+    },
+  }));
 
   return (
-    <div className="mb-3">
+    <>
       <form className="relative">
         <div className="grid gap-4">
           <div className="flex gap-4 items-start">
@@ -24,9 +31,9 @@ export default function CommentForm() {
             </Avatar>
             
             <Textarea
-              className="p-2 pr-10 resize-none w-full scrollbar-hide"  // Thêm padding-right (pr-10) để dành chỗ cho icon Send
+              ref={textareaRef}
+              className="p-2 pr-10 resize-none w-full scrollbar-hide"
               placeholder="Type your comment here..."
-              rows={3}
               value={comment}
               onChange={(e) => setComment(e.target.value)}
             />
@@ -42,7 +49,9 @@ export default function CommentForm() {
           </div>
         </div>
       </form>
-    </div>
+    </>
   );
-};
+});
 
+
+export default CommentForm;

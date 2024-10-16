@@ -1,5 +1,6 @@
 import AlbumHeader from '@/components/overview/album/album-header/album-header';
 import AlbumNotFound from '@/components/overview/album/album-not-found';
+import { PhotoListLoading } from '@/components/overview/album/loading/photo-list-loading';
 import PhotoList from '@/components/overview/album/photo-list';
 import FilterSelect from '@/components/shared/filter-selection';
 import SearchBadge from '@/components/shared/search-badge';
@@ -9,6 +10,7 @@ import { getAlbumInfo } from '@/lib/data';
 import { FilterOption, SearchPhotoParams, SortOption } from '@/lib/define';
 import { getDictionary } from '@/lib/dictionaries';
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 
 type Props = {
   params: { id: string };
@@ -98,7 +100,21 @@ export default async function AlbumPage({
         </div>
       </div>
       <div className="mt-5">
-        <PhotoList albumId={params.id} searchParams={searchParams} />
+        <Suspense
+          fallback={<PhotoListLoading />}
+          key={
+            searchParams.page ||
+            '1' + searchParams.sort ||
+            'desc' +
+              searchParams.pageSize +
+              searchParams.filter +
+              'all' +
+              searchParams.search +
+              searchParams.mode
+          }
+        >
+          <PhotoList albumId={params.id} searchParams={searchParams} />
+        </Suspense>
       </div>
     </div>
   );

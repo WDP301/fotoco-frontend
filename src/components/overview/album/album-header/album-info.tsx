@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Settings } from 'lucide-react';
 import AlbumNotFound from '../album-not-found';
+import { BasicTooltip } from '@/components/shared/basic-tooltip';
 
 export default async function AlbumInfo({ albumId }: { albumId: string }) {
   const album = await getAlbumInfo(albumId);
@@ -35,7 +36,10 @@ export default async function AlbumInfo({ albumId }: { albumId: string }) {
         <BreadcrumbComponent breadcrumbs={breadItems} />
       </div>
       <div className="flex justify-between items-center">
-        <h1>{album.title}</h1>
+        <BasicTooltip title={album.title}>
+          <h1>{album.title}</h1>
+        </BasicTooltip>
+
         <Link href={`/albums/${albumId}/setting`}>
           <Button variant="ghost">
             <Settings />

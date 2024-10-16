@@ -7,6 +7,7 @@ import GroupTypeIcon from '@/components/shared/group-type-icon';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Settings } from 'lucide-react';
+import { BasicTooltip } from '@/components/shared/basic-tooltip';
 
 export default async function GroupInfo({ groupId }: { groupId: string }) {
   const group = await getGroupInfo(groupId);
@@ -31,8 +32,11 @@ export default async function GroupInfo({ groupId }: { groupId: string }) {
       <div className="my-2">
         <BreadcrumbComponent breadcrumbs={breadItems} />
       </div>
-      <div className="flex justify-between items-center">
-        <h1>{group.title}</h1>
+      <div className="flex justify-between items-center gap-2">
+        <BasicTooltip title={group.title}>
+          <h1>{group.title}</h1>
+        </BasicTooltip>
+
         <Link href={`/groups/${groupId}/setting`}>
           <Button variant="ghost">
             <Settings />

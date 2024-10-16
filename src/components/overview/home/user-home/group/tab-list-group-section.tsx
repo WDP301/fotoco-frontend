@@ -2,17 +2,13 @@
 
 import { useLanguage } from '@/components/provider/language-provider';
 import { TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { createUrl } from '@/lib/utils';
-import { useRouter } from 'next/navigation';
+import { useParams } from '@/hooks/use-params';
 
 export default function TabListGroupSection() {
   const { dict } = useLanguage();
-  const { replace } = useRouter();
+  const { setParams } = useParams();
   const handleTabChange = (filter: string) => {
-    const searchParams = new URLSearchParams(location.search);
-    const pathName = location.pathname;
-    searchParams.set('filter', filter);
-    replace(createUrl(pathName, searchParams), { scroll: false });
+    setParams('filter', filter);
   };
   return (
     <TabsList className="grid grid-cols-2 w-[400px]">

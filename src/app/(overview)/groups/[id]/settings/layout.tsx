@@ -7,6 +7,7 @@ import { SidebarNav } from '@/components/overview/group/setting/side-bar-nav';
 import BreadcrumbComponent from '@/components/shared/breadcrumb-component';
 import { BreadItem } from '@/lib/define';
 import GroupNotFound from '@/components/overview/group/group-not-found';
+import { siteConfig } from '@/config/site';
 
 type Props = {
   params: { id: string };
@@ -24,7 +25,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${group.title} - ${dict.group.setting.title}`,
+    title: {
+      default: `${group.title} - ${dict.group.setting.general.title} | ${siteConfig.name}`,
+      template: `%s | ${siteConfig.name}`,
+    },
     description: `${group.title} - ${group.description}`,
   };
 }

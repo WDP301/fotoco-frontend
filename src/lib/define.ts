@@ -166,6 +166,7 @@ export type GroupUser = {
   fullName: string;
   img: string;
   email: string;
+  role: string;
   createdAt: string;
   updatedAt: string;
 };

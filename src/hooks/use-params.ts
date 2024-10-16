@@ -12,14 +12,18 @@ export const useParams = () => {
     const updatedParams = new URLSearchParams(params);
     updatedParams.set(key, value);
     setParamsState(updatedParams);
-    router.replace(`${pathname}?${updatedParams.toString()}`);
+    router.replace(`${pathname}?${updatedParams.toString()}`, {
+      scroll: false,
+    });
   };
 
   const deleteParam = (key: string) => {
     const updatedParams = new URLSearchParams(params);
     updatedParams.delete(key);
     setParamsState(updatedParams);
-    router.replace(`${pathname}?${updatedParams.toString()}`);
+    router.replace(`${pathname}?${updatedParams.toString()}`, {
+      scroll: false,
+    });
   };
 
   return { setParams, deleteParam };

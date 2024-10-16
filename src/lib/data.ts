@@ -251,7 +251,6 @@ export const getPhotosByAlbumId = async (
   searchParams: SearchPhotoParams
 ) => {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
     const queryString = objectToQueryString(searchParams);
     const response = await customFetch(
       `/albums/${albumId}/photos?${queryString}`,

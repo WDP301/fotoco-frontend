@@ -213,3 +213,22 @@ export type Photo = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type UserNotification = {
+  _id: string;
+  user: {
+    _id: string;
+    username: string;
+    email: string;
+    fullName: string;
+    img: string;
+  };
+  type: string;
+  receivers: string;
+  content: string;
+  seen: string[];
+  redirectUrl: string;
+  createdAt: string;
+  groupId?: string;
+  albumId?: string;
+};

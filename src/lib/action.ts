@@ -10,10 +10,9 @@ import {
 } from './form-schema';
 import http from '@/config/axios';
 import { cookies } from 'next/headers';
-import { AuthResponse, UserJWT } from './define';
+import { AuthResponse, UserJWT, UserNotification } from './define';
 import { v4 as uuidv4 } from 'uuid';
 import { base64Decode } from './utils';
-import { redirect } from 'next/navigation';
 
 const MAX_AGE_REFRESH_TOKEN = 60 * 60 * 24 * 90;
 
@@ -258,6 +257,34 @@ export const createAlbum = async (
       return {
         isSuccess: false,
         error: error?.response?.data?.message || 'Unknown error',
+      };
+    });
+
+  return response;
+};
+
+export const getUserNotifications = async () => {
+  try {
+    const response = await http.get('/notifications/my-notifications');
+    return response.data as UserNotification[];
+  } catch (error) {
+    return [] as UserNotification[];
+  }
+};
+
+export const markNotificationAsSeen = async (notificationId: string) => {
+  const response = await http
+    .put(`/notifications/${notificationId}/mark-as-seen`, undefined)
+    .then((res) => {
+      return {
+        isSuccess: true,
+        error: '',
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.error.message || 'Unknown error',
       };
     });
 

@@ -383,5 +383,15 @@
         "Tìm ảnh theo thẻ"
       ]
     }
+  },
+  "noti": {
+    "myNotifications": "Thông báo của tôi",
+    "noNotification": "Không có thông báo nào",
+    "title": "Thông báo",
+    "description": "Mô tả trang thông báo",
+    "toast": {
+      "title": "Bạn có thông báo mới từ {{fullName}} (@{{username}})",
+      "seeMore": "Xem tất cả thông báo"
+    }
   }
 }

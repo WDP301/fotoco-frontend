@@ -20,7 +20,7 @@ export default async function GroupList({
   }
   return (
     <div className="container mx-auto">
-      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 max-sm:flex max-sm:flex-col max-sm:items-center">
+      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 max-sm:p-4 max-sm:flex max-sm:flex-col max-sm:items-center">
         {groups.map((group) => (
           <GroupCard key={group._id} group={group} />
         ))}

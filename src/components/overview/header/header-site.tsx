@@ -7,6 +7,7 @@ import { UserNav } from './user-nav';
 import { SideBarMobile } from './side-bar-mobile/side-bar-mobile';
 import HeaderActionPopover from './action/header-action-popover';
 import { getUser } from '@/lib/data';
+import Notification from './notification';
 
 export default async function HeaderSite() {
   const user = (await getUser()) as User;
@@ -23,7 +24,7 @@ export default async function HeaderSite() {
             {user ? (
               <>
                 <HeaderActionPopover />
-                {/* <Notification user={user} /> */}
+                <Notification user={user} />
               </>
             ) : (
               <MainNav className="mx-6 hidden lg:flex" />

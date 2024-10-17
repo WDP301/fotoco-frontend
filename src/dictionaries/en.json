@@ -386,5 +386,15 @@
         "Find photos by tags"
       ]
     }
+  },
+  "noti": {
+    "myNotifications": "My Notifications",
+    "noNotification": "No notification",
+    "title": "Notifications",
+    "description": "Notification page description",
+    "toast": {
+      "title": "You have new notification from {{fullName}} (@{{username}})",
+      "seeMore": "See more"
+    }
   }
 }

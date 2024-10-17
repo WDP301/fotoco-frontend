@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { format, isThisYear } from 'date-fns';
+import { format, isThisYear, formatDistanceToNow } from 'date-fns';
 import { vi as dateFnsVi, enUS } from 'date-fns/locale';
 
 import { Locale } from './define';
@@ -20,6 +20,19 @@ export const getDateFormatted = (
   const dateFormat = isThisYear(date) ? 'd MMM, HH:mm' : 'd MMM, yyyy, HH:mm';
   const dateFnsLocale = locale === 'vi' ? dateFnsVi : enUS;
   return format(date, dateFormat, { locale: dateFnsLocale });
+};
+
+export const getFormatDistanceToNow = (
+  params: string,
+  locale: 'en' | 'vi' = 'en'
+) => {
+  if (!params) return '';
+  const date = new Date(params);
+  const dateFnsLocale = locale === 'vi' ? dateFnsVi : enUS;
+  return formatDistanceToNow(date, {
+    addSuffix: true,
+    locale: dateFnsLocale,
+  });
 };
 
 export const createUrl = (
@@ -60,23 +73,38 @@ export const base64Decode = (str: string) => {
   return decodeURIComponent(percentEncodedStr);
 };
 
-export const openCenteredWindowPopup = (url: string, options: {
-  title?: string;
-  w?: number;
-  h?: number;
-} = {}) => {
+export const openCenteredWindowPopup = (
+  url: string,
+  options: {
+    title?: string;
+    w?: number;
+    h?: number;
+  } = {}
+) => {
   const { title = 'Fotoco', w = 1200, h = 600 } = options;
 
-  const dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : window.screenX;
-  const dualScreenTop = window.screenTop !== undefined ? window.screenTop : window.screenY;
+  const dualScreenLeft =
+    window.screenLeft !== undefined ? window.screenLeft : window.screenX;
+  const dualScreenTop =
+    window.screenTop !== undefined ? window.screenTop : window.screenY;
 
-  const width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
-  const height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+  const width = window.innerWidth
+    ? window.innerWidth
+    : document.documentElement.clientWidth
+      ? document.documentElement.clientWidth
+      : screen.width;
+  const height = window.innerHeight
+    ? window.innerHeight
+    : document.documentElement.clientHeight
+      ? document.documentElement.clientHeight
+      : screen.height;
 
   const systemZoom = width / window.screen.availWidth;
-  const left = (width - w) / 2 / systemZoom + dualScreenLeft
-  const top = (height - h) / 2 / systemZoom + dualScreenTop
-  return window.open(url, title,
+  const left = (width - w) / 2 / systemZoom + dualScreenLeft;
+  const top = (height - h) / 2 / systemZoom + dualScreenTop;
+  return window.open(
+    url,
+    title,
     `
     scrollbars=yes,
     width=${w},
@@ -84,5 +112,15 @@ export const openCenteredWindowPopup = (url: string, options: {
     top=${top},
     left=${left}
     `
-  )
-}
+  );
+};
+
+export const interpolateString = (
+  template: string,
+  variables: Record<string, string>
+) => {
+  return template.replace(
+    /{{(.*?)}}/g,
+    (_, key) => variables[key.trim()] || ''
+  );
+};

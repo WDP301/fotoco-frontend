@@ -19,6 +19,10 @@ import {
 } from './define';
 import http from '@/config/axios';
 
+function delay(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 function objectToQueryString(params: Record<string, any>): string {
   return new URLSearchParams(params).toString();
 }

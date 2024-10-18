@@ -17,8 +17,7 @@ import { base64Decode } from './utils';
 const MAX_AGE_REFRESH_TOKEN = 60 * 60 * 24 * 90;
 
 export async function getAuthHeader() {
-  let oldAccessToken = cookies().get('access-token')?.value;
-  let accessToken = oldAccessToken;
+  const accessToken = cookies().get('access-token')?.value;
   if (accessToken) {
     return { Authorization: `Bearer ${accessToken}` };
   }

@@ -22,7 +22,7 @@ export default function CreateAlbumDiaLog({ groupId }: { groupId: string }) {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="ghost">
-          <Images className="mr-2 h-4 w-4" />
+          <Images className="mr-2 h-4 w-4 text-primary" />
           {dict.button.createAlbum}
         </Button>
       </DialogTrigger>

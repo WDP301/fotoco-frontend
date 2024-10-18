@@ -16,6 +16,15 @@ import { base64Decode } from './utils';
 
 const MAX_AGE_REFRESH_TOKEN = 60 * 60 * 24 * 90;
 
+export async function getAuthHeader() {
+  let oldAccessToken = cookies().get('access-token')?.value;
+  let accessToken = oldAccessToken;
+  if (accessToken) {
+    return { Authorization: `Bearer ${accessToken}` };
+  }
+  return {};
+}
+
 export const register = async (
   formData: z.infer<ReturnType<typeof getRegisterFormSchema>>
 ) => {

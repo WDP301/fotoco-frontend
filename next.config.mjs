@@ -23,6 +23,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'lh3.googleusercontent.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'fotoco-image-storage.s3.ap-southeast-1.amazonaws.com',
+      },
     ],
   },
   env: {

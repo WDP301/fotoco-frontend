@@ -1,8 +1,9 @@
 import AlbumHeader from '@/components/overview/album/album-header/album-header';
-import AlbumNotFound from '@/components/overview/album/album-not-found';
 import { PhotoListLoading } from '@/components/overview/album/loading/photo-list-loading';
+import PhotoGalleryView from '@/components/overview/album/photo-gallery-view';
 import PhotoList from '@/components/overview/album/photo-list';
 import PhotoUploadDialog from '@/components/overview/album/photo-upload-dialog';
+import ToggleView from '@/components/overview/album/toggle-view';
 import FilterSelect from '@/components/shared/filter-selection';
 import SearchBadge from '@/components/shared/search-badge';
 import SearchBar from '@/components/shared/search-bar';
@@ -94,6 +95,7 @@ export default async function AlbumPage({
                 field="filter"
               />
             </div>
+            <ToggleView />
           </div>
         </div>
         <div className="flex justify-center md:justify-start">
@@ -101,12 +103,16 @@ export default async function AlbumPage({
         </div>
       </div>
       <div className="mt-5">
-        <Suspense
-          fallback={<PhotoListLoading />}
-          key={`${searchParams.page || '1'}-${searchParams.sort || 'desc'}-${searchParams.pageSize}-${searchParams.filter || 'all'}-${searchParams.search || ''}-${searchParams.mode}`}
-        >
-          <PhotoList albumId={params.id} searchParams={searchParams} />
-        </Suspense>
+        {searchParams.mode === 'gallery' ? (
+          <PhotoGalleryView albumId={params.id} searchParams={searchParams} />
+        ) : (
+          <Suspense
+            fallback={<PhotoListLoading />}
+            key={`${searchParams.page || '1'}-${searchParams.sort || 'desc'}-${searchParams.pageSize}-${searchParams.filter || 'all'}-${searchParams.search || ''}-${searchParams.mode}`}
+          >
+            <PhotoList albumId={params.id} searchParams={searchParams} />
+          </Suspense>
+        )}
       </div>
     </div>
   );

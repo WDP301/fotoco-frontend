@@ -2,6 +2,7 @@ import AlbumHeader from '@/components/overview/album/album-header/album-header';
 import AlbumNotFound from '@/components/overview/album/album-not-found';
 import { PhotoListLoading } from '@/components/overview/album/loading/photo-list-loading';
 import PhotoList from '@/components/overview/album/photo-list';
+import PhotoUploadDialog from '@/components/overview/album/photo-upload-dialog';
 import FilterSelect from '@/components/shared/filter-selection';
 import SearchBadge from '@/components/shared/search-badge';
 import SearchBar from '@/components/shared/search-bar';
@@ -78,7 +79,7 @@ export default async function AlbumPage({
           <h3>{dict.photo.title}</h3>
           <div className="flex flex-col md:flex-row items-center space-y-2 md:space-x-2 md:space-y-0">
             <div className="flex gap-2">
-              {/* <CreateAlbumDiaLog groupId={groupId} /> */}
+              <PhotoUploadDialog albumId={params.id} />
               <SortSelect
                 variant="ghost"
                 sort={searchParams.sort}

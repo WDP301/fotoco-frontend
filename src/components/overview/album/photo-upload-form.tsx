@@ -19,7 +19,9 @@ import { toast } from 'sonner';
 import imageCompression from 'browser-image-compression';
 import { useRouter } from 'next/navigation';
 import { useSocket } from '@/components/provider/socket-io-provider';
-import { cn } from '@/lib/utils';
+import { cn, interpolateString } from '@/lib/utils';
+import { useLanguage } from '@/components/provider/language-provider';
+import { siteConfig } from '@/config/site';
 
 interface ProgressBarProps extends React.ComponentPropsWithoutRef<'div'> {
   progress: number;
@@ -89,6 +91,7 @@ export default function PhotoUploadForm({
   albumId: string;
   setOpen: (open: boolean) => void;
 }) {
+  const { dict } = useLanguage();
   const router = useRouter();
   const { socket } = useSocket();
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
@@ -185,14 +188,14 @@ export default function PhotoUploadForm({
         const compressedFile = await imageCompression(imageFile, options);
 
         if (imageFile.size > 10 * 1024 * 1024) {
-          throw new Error('File size is too large');
+          throw new Error(dict.photo.upload.error.fileSize);
         }
 
         formData.set('image', compressedFile);
 
         const result = await axios
           .post(
-            `${process.env.NEXT_PUBLIC_API_URL}/albums/${albumId}/upload-photo`,
+            `${siteConfig.baseApiURL}/albums/${albumId}/upload-photo`,
             formData,
             {
               onUploadProgress,
@@ -254,16 +257,18 @@ export default function PhotoUploadForm({
 
       try {
         await Promise.all(fileUploadBatch);
-        toast.success('All files uploaded successfully');
+        toast.success(dict.photo.upload.success);
         setOpen(false);
         router.refresh();
       } catch (error: any) {
         if (axios.isCancel(error)) {
-          toast.error('Upload cancelled');
+          toast.error(dict.photo.upload.cancel);
         } else {
           removeFile(acceptedFiles[0]);
           toast.error(
-            'Error uploading files: ' + error.message ||
+            interpolateString(dict.photo.upload.error.template, {
+              error: error.message,
+            }) ||
               error?.response?.data?.error?.message ||
               'Unknown error'
           );
@@ -288,10 +293,12 @@ export default function PhotoUploadForm({
             </div>
 
             <p className="mt-2 text-sm text-gray-600">
-              <span className="font-semibold">Drag files</span>
+              <span className="font-semibold">
+                {dict.photo.upload.dragFile}
+              </span>
             </p>
             <p className="text-xs text-gray-500">
-              Click to upload files &#40;files should be under 10 MB &#41;
+              {dict.photo.upload.chooseFile}
             </p>
           </div>
         </label>
@@ -309,7 +316,7 @@ export default function PhotoUploadForm({
         <div>
           <ScrollArea className="h-40">
             <p className="font-medium my-2 mt-6 text-muted-foreground text-sm">
-              Files to upload
+              {dict.photo.upload.filesToUpload}
             </p>
             <div className="space-y-2 pr-3">
               {filesToUpload.map((fileUploadProgress) => {
@@ -361,7 +368,7 @@ export default function PhotoUploadForm({
       {uploadedFiles.length > 0 && (
         <div>
           <p className="font-medium my-2 mt-6 text-muted-foreground text-sm">
-            Uploaded Files
+            {dict.photo.upload.uploadedFiles}
           </p>
           <div className="space-y-2 pr-3">
             {uploadedFiles.map((file) => {

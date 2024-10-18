@@ -274,7 +274,21 @@
   "photo": {
     "title": "Ảnh",
     "description": "Mô tả trang danh sách ảnh",
-    "upload": "Tải ảnh lên"
+    "upload": {
+      "title": "Tải ảnh lên",
+      "heading": "Tải ảnh của bạn lên",
+      "description": "Tải ảnh lên để chia sẻ với nhóm của bạn.",
+      "dragFile": "Kéo và thả tệp",
+      "chooseFile": "Nhấn để tải lên tệp (tệp phải dưới 10 MB)",
+      "filesToUpload": "Tệp cần tải lên",
+      "uploadedFiles": "Tệp đã tải lên",
+      "success": "Tất cả tệp đã được tải lên thành công",
+      "cancel": "Hủy tải lên",
+      "error": {
+        "template": "Lỗi tải lên tệp: {{error}}",
+        "fileSize": "Kích thước tệp phải dưới 10 MB"
+      }
+    }
   },
   "sortOptions": {
     "newest": "Mới nhất",

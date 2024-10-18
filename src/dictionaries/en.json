@@ -277,7 +277,21 @@
   "photo": {
     "title": "Photos",
     "description": "Photo List page description",
-    "upload": "Upload"
+    "upload": {
+      "title": "Upload Photo",
+      "heading": "Upload your photo",
+      "description": "Share your photo with members of this album",
+      "dragFile": "Drag files",
+      "chooseFile": "Click to upload files (files should be under 10 MB)",
+      "filesToUpload": "Files to upload",
+      "uploadedFiles": "Uploaded files",
+      "success": "All files uploaded successfully",
+      "cancel": "Upload cancelled",
+      "error": {
+        "template": "Error uploading files: {{error}}",
+        "fileSize": "File size should be under 10 MB"
+      }
+    }
   },
   "sortOptions": {
     "newest": "Newest",

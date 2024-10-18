@@ -82,7 +82,7 @@ export default async function GroupPage({
           <div className="flex gap-2">
             <CreateGroupDiaLog>
               <Button variant="ghost">
-                <SquarePlus className="mr-2 h-4 w-4" />
+                <SquarePlus className="mr-2 h-4 w-4 text-primary" />
                 {dict.button.createGroup}
               </Button>
             </CreateGroupDiaLog>

@@ -204,7 +204,12 @@
     "createGroup": "Tạo nhóm",
     "createAlbum": "Tạo album",
     "clear": "Xóa",
-    "profile": "Hồ sơ"
+    "profile": "Hồ sơ",
+    "openGallery": "Mở thư viện ảnh",
+    "viewMode": {
+      "list": "Danh sách",
+      "gallery": "Thư viện"
+    }
   },
   "joinGroup": {
     "title": "Tham gia nhóm",

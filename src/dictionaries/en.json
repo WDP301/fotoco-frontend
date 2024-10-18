@@ -207,7 +207,12 @@
     "createGroup": "Create Group",
     "createAlbum": "Create Album",
     "clear": "Clear",
-    "profile": "Profile"
+    "profile": "Profile",
+    "openGallery": "Open Gallery",
+    "viewMode": {
+      "list": "List",
+      "gallery": "Gallery"
+    }
   },
   "joinGroup": {
     "title": "Join Group",

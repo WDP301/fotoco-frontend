@@ -18,13 +18,12 @@ import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { cn, createUrl } from '@/lib/utils';
 import { CheckIcon } from '@radix-ui/react-icons';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { FilterOption, SearchParams } from '@/lib/define';
 import { VariantProps } from 'class-variance-authority';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Filter } from 'lucide-react';
 import { useLanguage } from '../provider/language-provider';
-import { useParams } from '@/hooks/use-params';
 
 interface FilterSelectProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -42,8 +41,6 @@ export default function FilterSelect({
   ...props
 }: Readonly<FilterSelectProps>) {
   const { push } = useRouter();
-  const { setParams, deleteParam } = useParams();
-  const searchParams = useSearchParams();
   const [selected, setSelected] = React.useState<string[]>([]);
   const { dict } = useLanguage();
 
@@ -51,12 +48,29 @@ export default function FilterSelect({
     if (filter) setSelected(filter.split(','));
   }, [filter]);
 
-  const handleSortChange = useDebouncedCallback(() => {
+  const handleFilterChange = useDebouncedCallback(() => {
     if (selected) {
-      deleteParam(field);
-      setParams(field, selected.join(','));
+      if (selected.length === 0) {
+        handleClearFilter();
+        return;
+      }
+      const searchParams = new URLSearchParams(location.search);
+      const pathName = location.pathname;
+
+      searchParams.delete(SearchParams.PAGE);
+      searchParams.delete(field);
+      searchParams.set(field, selected.join(','));
+      push(createUrl(pathName, searchParams), { scroll: false });
     }
   }, 600);
+
+  const handleClearFilter = () => {
+    setSelected([]);
+    const searchParams = new URLSearchParams(location.search);
+    const pathName = location.pathname;
+    searchParams.delete(field);
+    push(createUrl(pathName, searchParams), { scroll: false });
+  };
 
   return (
     <div>
@@ -119,7 +133,7 @@ export default function FilterSelect({
                             selected.filter((item) => item !== option.value)
                           );
                         }
-                        handleSortChange();
+                        handleFilterChange();
                       }}
                     >
                       <div
@@ -146,8 +160,7 @@ export default function FilterSelect({
                   <CommandGroup>
                     <CommandItem
                       onSelect={() => {
-                        setSelected([]);
-                        deleteParam(field);
+                        handleClearFilter();
                       }}
                       className="justify-center text-center"
                     >

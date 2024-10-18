@@ -5,6 +5,7 @@ import { createUrl } from '@/lib/utils';
 import { X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useLanguage } from '../provider/language-provider';
+import { SearchParams } from '@/lib/define';
 
 export default function SearchBadge({
   query,
@@ -19,7 +20,8 @@ export default function SearchBadge({
   const handleClearSearch = () => {
     const searchParams = new URLSearchParams(location.search);
     const pathName = location.pathname;
-    searchParams.delete('search');
+    searchParams.delete(SearchParams.SEARCH);
+    searchParams.delete(SearchParams.PAGE);
     replace(createUrl(pathName, searchParams));
   };
   return (

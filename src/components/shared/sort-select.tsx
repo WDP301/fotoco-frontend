@@ -19,12 +19,11 @@ import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { cn, createUrl } from '@/lib/utils';
 import { CheckIcon } from '@radix-ui/react-icons';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { SearchParams, SortOption } from '@/lib/define';
 import { VariantProps } from 'class-variance-authority';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { useLanguage } from '../provider/language-provider';
-import { useParams } from '@/hooks/use-params';
 
 interface SortSelectProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -41,8 +40,6 @@ export default function SortSelect({
   ...props
 }: Readonly<SortSelectProps>) {
   const { push } = useRouter();
-  const { setParams, deleteParam } = useParams();
-  const searchParams = useSearchParams();
   const [selected, setSelected] = React.useState<string[]>([]);
   const { dict } = useLanguage();
 
@@ -52,10 +49,28 @@ export default function SortSelect({
 
   const handleSortChange = useDebouncedCallback(() => {
     if (selected) {
-      deleteParam(SearchParams.SORT);
-      setParams(SearchParams.SORT, selected.join(','));
+      if (selected.length === 0) {
+        handleClearSort();
+        return;
+      }
+      const searchParams = new URLSearchParams(location.search);
+      const pathName = location.pathname;
+
+      searchParams.delete(SearchParams.PAGE);
+      searchParams.delete(SearchParams.SORT);
+      searchParams.set(SearchParams.SORT, selected.join(','));
+      push(createUrl(pathName, searchParams), { scroll: false });
     }
   }, 600);
+
+  const handleClearSort = () => {
+    setSelected([]);
+    const searchParams = new URLSearchParams(location.search);
+    const pathName = location.pathname;
+    searchParams.delete(SearchParams.PAGE);
+    searchParams.delete(SearchParams.SORT);
+    push(createUrl(pathName, searchParams), { scroll: false });
+  };
 
   return (
     <div>
@@ -145,12 +160,7 @@ export default function SortSelect({
                   <CommandGroup>
                     <CommandItem
                       onSelect={() => {
-                        setSelected([]);
-                        const newParams = new URLSearchParams(
-                          searchParams.toString()
-                        );
-                        newParams.delete(SearchParams.SORT);
-                        push(createUrl(url, newParams));
+                        handleClearSort();
                       }}
                       className="justify-center text-center"
                     >

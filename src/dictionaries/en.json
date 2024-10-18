@@ -410,5 +410,18 @@
       "title": "You have new notification from {{fullName}} (@{{username}})",
       "seeMore": "See more"
     }
+  },
+  "role": {
+    "admin": "Admin",
+    "user": "User",
+    "group": {
+      "owner": "Owner",
+      "member": "Member"
+    },
+    "album": {
+      "owner": "Owner",
+      "member": "Member",
+      "contributor": "Contributor"
+    }
   }
 }

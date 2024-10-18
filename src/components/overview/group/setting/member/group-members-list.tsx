@@ -30,7 +30,11 @@ export default async function GroupMembersList({
             <AvatarPicture src={user.img} />
             <div className="flex flex-col justify-around">
               <p className="leading-none">
-                {user.fullName} ({user.role || 'member'})
+                {user.fullName} (
+                {user.role === 'owner'
+                  ? dict.role.group.owner
+                  : dict.role.group.member || dict.role.group.member}
+                )
               </p>
               <p className="text-xs leading-none text-muted-foreground">
                 @{user.username}

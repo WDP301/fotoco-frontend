@@ -407,5 +407,18 @@
       "title": "Bạn có thông báo mới từ {{fullName}} (@{{username}})",
       "seeMore": "Xem tất cả thông báo"
     }
+  },
+  "role": {
+    "admin": "Quản trị viên",
+    "user": "Người dùng",
+    "group": {
+      "owner": "Chủ sở hữu",
+      "member": "Thành viên"
+    },
+    "album": {
+      "owner": "Chủ sở hữu",
+      "member": "Thành viên",
+      "contributor": "Người đóng góp"
+    }
   }
 }

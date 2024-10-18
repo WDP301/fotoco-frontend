@@ -67,7 +67,7 @@ export default async function AlbumSection({
           </div>
         </div>
       </div>
-      <div className="flex justify-center md:justify-start">
+      <div className="flex justify-center md:justify-start mb-3">
         {searchParams.search && <SearchBadge query={searchParams.search} />}
       </div>
 

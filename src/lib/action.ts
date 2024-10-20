@@ -103,6 +103,7 @@ const handleStoreUserCredentials = (
   const expiryDate = new Date(user.exp * 1000);
   cookie.set('access-token', accessToken, {
     expires: expiryDate,
+    httpOnly: false,
   });
 };
 

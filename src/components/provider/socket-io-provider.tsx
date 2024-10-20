@@ -1,55 +1,58 @@
 'use client';
 
-import { getUser } from '@/lib/data';
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  ReactNode,
-} from 'react';
-import { io, Socket } from 'socket.io-client';
+import SocketIOClient from "@/lib/socket-io";
+import React, { createContext, useRef, useState } from "react";
 
-interface ISocketContext {
-  socket: Socket | null;
+interface SocketContextValue {
+  socket: SocketIOClient | null;
+  connected: boolean;
+}
+export const SocketContext = createContext<SocketContextValue>({
+  socket: null,
+  connected: false,
+});
+
+interface Props {
+  children: React.ReactNode;
 }
 
-const SocketContext = createContext<ISocketContext>({ socket: null });
-
-interface SocketProviderProps {
-  children: ReactNode;
-}
-
-export function SocketIoProvider({ children }: SocketProviderProps) {
-  const [socket, setSocket] = useState<Socket | null>(null);
-
-  useEffect(() => {
-    const socketIo = io(process.env.NEXT_PUBLIC_SOCKET_IO_URL!);
-    setSocket(socketIo);
-
-    getUser().then((user) => {
-      if (!user) {
-        return;
-      }
-      socketIo.emit('join', { userId: user._id });
-    });
-
-    return () => {
-      socketIo.close();
-    };
-  }, []);
-
+export function SocketIoProvider({ children }: Props) {
+  const socket = useSocketClient();
   return (
-    <SocketContext.Provider value={{ socket }}>
+    <SocketContext.Provider
+      value={{
+        socket: socket?.client || null, // instance of socket but has not been connected
+        connected: socket?.connected || false,
+      }}
+    >
       {children}
     </SocketContext.Provider>
   );
 }
 
-export function useSocket() {
-  const context = useContext(SocketContext);
-  if (context === undefined) {
-    throw new Error('useSocket must be used within a SocketProvider');
+// singleton hook
+function useSocketClient() {
+  const ref = useRef<SocketIOClient | null>(null);
+  const [connected, setConnected] = useState<boolean>(false);
+  if (typeof window === "undefined") return;
+
+  const config = {
+    url: process.env.SOCKET_URL || "http://localhost:4000",
+    path: "/socket",
+    onConnected: () => {
+      setConnected(true);
+    },
+    onDisconnect: () => {
+      setConnected(false);
+    }
+  };
+
+  if (!ref.current) {
+    ref.current = new SocketIOClient(config);
   }
-  return context;
+
+  return {
+    client: ref.current,
+    connected,
+  };
 }

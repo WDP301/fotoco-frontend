@@ -12,10 +12,22 @@ import Image from 'next/image';
 import { Photo } from '@/lib/define';
 import Link from 'next/link';
 
-const Gallery = ({ photos }: { photos: Photo[] }) => {
+interface GalleryProps {
+  photos: Photo[];
+  currentPhoto?: Photo; // Optional currentPhoto prop
+}
+
+const Gallery = ({ photos, currentPhoto }: GalleryProps) => {
   const [mainApi, setMainApi] = useState<CarouselApi>();
   const [thumbnailApi, setThumbnailApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
+
+  // Find index of the current photo
+  const initialIndex = useMemo(() => {
+    if (!currentPhoto) return 0;
+    const index = photos.findIndex((photo) => photo._id === currentPhoto._id);
+    return index !== -1 ? index : 0;
+  }, [currentPhoto, photos]);
 
   const handleClick = useCallback(
     (index: number) => {
@@ -93,11 +105,16 @@ const Gallery = ({ photos }: { photos: Photo[] }) => {
     mainApi.on('select', handleTopSelect);
     thumbnailApi.on('select', handleBottomSelect);
 
+    // Scroll to the initial index when the component mounts
+    mainApi.scrollTo(initialIndex);
+    thumbnailApi.scrollTo(initialIndex);
+    setCurrent(initialIndex);
+
     return () => {
       mainApi.off('select', handleTopSelect);
       thumbnailApi.off('select', handleBottomSelect);
     };
-  }, [mainApi, thumbnailApi]);
+  }, [mainApi, thumbnailApi, initialIndex]);
 
   return (
     <div className="w-full">

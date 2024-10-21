@@ -15,8 +15,9 @@ export default function PhotoCarousel({
   searchParams
 }: PhotoCarouselProps) {
   const route = useRouter();
+  const queryString = new URLSearchParams(searchParams as any).toString();
   const handleCloseClick = () => {
-    route.push(`/albums/${photo?.photo.belonging}?${searchParams}`);
+    route.push(`/albums/${photo?.photo.belonging}?${queryString}`);
   }
   
   return (
@@ -31,14 +32,14 @@ export default function PhotoCarousel({
           />
         </div>
         {photo?.prevPhoto && (
-          <Link href={`/photos/${photo?.prevPhoto}?${searchParams}`}>
+          <Link href={`/photos/${photo?.prevPhoto}?${queryString}`}>
             <button className="absolute left-2 opacity-0 hover: group-hover:opacity-100 transition-opacity rounded-full hover:bg-gray-800">
               <ChevronLeft className="h-10 w-10" />
             </button>
           </Link>
         )}
         {photo?.nextPhoto && (
-          <Link href={`/photos/${photo?.nextPhoto}?${searchParams}`}>
+          <Link href={`/photos/${photo?.nextPhoto}?${queryString}`}>
             <button className="absolute right-2 opacity-0 group-hover:opacity-100 transition-opacity rounded-full hover:bg-gray-800">
               < ChevronRight className="h-10 w-10" />
             </button>

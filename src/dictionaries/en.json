@@ -212,7 +212,8 @@
     "viewMode": {
       "list": "List",
       "gallery": "Gallery"
-    }
+    },
+    "joinGroup": "Join Group"
   },
   "joinGroup": {
     "title": "Join Group",
@@ -265,6 +266,10 @@
       "private": "Private Group",
       "public": "Public Group",
       "hidden": "Hidden Group"
+    },
+    "invite": {
+      "title": "Accept Invite to Group",
+      "description": "Accept Invite to Group"
     },
     "setting": {
       "title": "Group Settings",

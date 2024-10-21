@@ -63,7 +63,7 @@ export default function UserAuthLoginForm() {
       {loginResult?.error && (
         <Alert variant="destructive">
           <ExclamationTriangleIcon className="h-4 w-4" />
-          <AlertTitle>Error</AlertTitle>
+          <AlertTitle>{dict.error.title}</AlertTitle>
           <AlertDescription>{loginResult?.error}</AlertDescription>
         </Alert>
       )}

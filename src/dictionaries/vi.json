@@ -209,7 +209,8 @@
     "viewMode": {
       "list": "Danh sách",
       "gallery": "Thư viện"
-    }
+    },
+    "joinGroup": "Tham gia nhóm"
   },
   "joinGroup": {
     "title": "Tham gia nhóm",
@@ -262,6 +263,10 @@
       "private": "Nhóm riêng tư",
       "public": "Nhóm công khai",
       "hidden": "Nhóm ẩn"
+    },
+    "invite": {
+      "title": "Mời tham gia nhóm",
+      "description": "Mời tham gia nhóm"
     },
     "setting": {
       "title": "Cài đặt nhóm",

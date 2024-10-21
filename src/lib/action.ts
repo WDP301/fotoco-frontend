@@ -293,9 +293,32 @@ export const markNotificationAsSeen = async (notificationId: string) => {
     .catch((error) => {
       return {
         isSuccess: false,
-        error: error?.response?.data?.error.message || 'Unknown error',
+        error: error?.response?.data?.message || 'Unknown error',
       };
     });
 
+  return response;
+};
+
+export const acceptInviteToGroup = async (
+  groupId: string,
+  inviteToken: string
+) => {
+  const response = await http
+    .post(`/groups/${groupId}/accept-invite`, undefined, {
+      params: { inviteToken },
+    })
+    .then((res) => {
+      return {
+        isSuccess: true,
+        error: '',
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.message || 'Unknown error',
+      };
+    });
   return response;
 };

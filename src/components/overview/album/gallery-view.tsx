@@ -9,9 +9,11 @@ import { useEffect, useState } from 'react';
 export default function GalleryView({
   albumId,
   searchParams,
+  currentPhotoId,
 }: {
   albumId: string;
   searchParams: SearchPhotoParams;
+  currentPhotoId?: string;
 }) {
   const [photos, setPhotos] = useState([] as Photo[]);
   const [pageMeta, setPageMeta] = useState({
@@ -21,6 +23,7 @@ export default function GalleryView({
     hasNext: false,
     hasPrev: false,
   } as PageMeta);
+  const [currentPhoto, setCurrentPhoto] = useState({} as Photo);
 
   useEffect(() => {
     const fetchPhotos = async () => {
@@ -28,6 +31,16 @@ export default function GalleryView({
         albumId,
         searchParams
       );
+
+      if (currentPhotoId) {
+        const currentPhoto = photos.find(
+          (photo) => photo._id === currentPhotoId
+        );
+        currentPhoto
+          ? setCurrentPhoto(currentPhoto)
+          : setCurrentPhoto(photos[0]);
+      }
+
       setPhotos(photos);
       setPageMeta(pageMeta);
     };
@@ -36,7 +49,7 @@ export default function GalleryView({
   return (
     <>
       <div>
-        <Gallery photos={photos} />
+        <Gallery photos={photos} currentPhoto={currentPhoto} />
       </div>
       <div>
         <ListPagination meta={pageMeta} bookmark="album-name" />

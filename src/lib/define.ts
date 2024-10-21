@@ -232,3 +232,11 @@ export type UserNotification = {
   redirectUrl: string;
   createdAt: string;
 };
+
+export type SearchUser = {
+  _id: string;
+  username: string;
+  fullName: string;
+  email: string;
+  img: string;
+};

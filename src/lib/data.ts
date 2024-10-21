@@ -15,6 +15,7 @@ import {
   SearchGroupParams,
   SearchPhotoParams,
   SearchRecentViewParams,
+  SearchUser,
   User,
 } from './define';
 import http from '@/config/axios';
@@ -305,3 +306,18 @@ export default async function getBase64(imageUrl: string) {
     if (e instanceof Error) console.log(e.stack);
   }
 }
+
+export const getUsers = async (search: string) => {
+  try {
+    const queryString = objectToQueryString({ search });
+    const response = await customFetch(`/users?${queryString}`, {
+      method: 'GET',
+    })
+      .then((res) => res.json())
+      .catch(() => null);
+
+    return (response?.users as SearchUser[]) || [];
+  } catch (error) {
+    return [] as SearchUser[];
+  }
+};

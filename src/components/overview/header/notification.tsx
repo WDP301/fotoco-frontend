@@ -21,11 +21,12 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { toast } from 'sonner';
 import { useLanguage } from '@/components/provider/language-provider';
-import { useSocket } from '@/components/provider/socket-io-provider';
+import { useIsSocketConnected, useSocket } from '@/hooks/use-socket';
 
 export default function Notification({ user }: { user: User }) {
   const router = useRouter();
-  const { socket } = useSocket();
+  const socket = useSocket();
+  const isSocketConnected = useIsSocketConnected();
   const { dict } = useLanguage();
   const [notification, setNotification] = useState<UserNotification[]>([]);
 
@@ -42,49 +43,47 @@ export default function Notification({ user }: { user: User }) {
           return notificationItem;
         })
       );
-      await markNotificationAsSeen(noti._id);
+      // await markNotificationAsSeen(noti._id);
     },
     [setNotification, user._id]
   );
 
   useEffect(() => {
-    if (socket) {
-      socket.on('getNotification', (data: UserNotification) => {
-        console.log('getNotification', data);
-        setNotification((prevNotifications) => [data, ...prevNotifications]);
+    socket?.connect();
+
+    if (!isSocketConnected || !socket) return;
+
+    socket.subscribe('notification', (data) => {
+      const { except, notification } = data;
+      console.log('>>> notification: ', data);
+      if (except !== user._id) {
+        const { content } = notification;
+        setNotification((prevNotifications) => [notification, ...prevNotifications]);
         toast(
           interpolateString(dict.noti.toast.title, {
-            fullName: data.user.fullName,
-            username: data.user.username,
+            fullName: content.from.fullName,
+            username: content.from.username,
           }),
           {
-            description: data.content,
+            description: content.text,
             action: {
               label: 'See more',
               onClick: () => {
-                handleSeenNoti(data);
-                router.push(data.redirectUrl);
+                handleSeenNoti(notification);
+                router.push(notification.redirectUrl);
               },
             },
           }
         );
-      });
-    }
-
-    // Clean up the event listeners when the component is unmounted
-    return () => {
-      if (socket) {
-        socket.off('connect');
-        socket.off('getNotification');
       }
-    };
-  }, [socket, handleSeenNoti, router]);
+    });
+  }, [socket, isSocketConnected]);
 
   useEffect(() => {
     // Fetch notifications when the component mounts
-    getUserNotifications().then((data) => {
-      setNotification(data);
-    });
+    // getUserNotifications().then((data) => {
+    //   setNotification(data);
+    // });
   }, []);
 
   return (
@@ -100,7 +99,7 @@ export default function Notification({ user }: { user: User }) {
                 .length > 9
                 ? '9+'
                 : notification.filter((noti) => !noti.seen.includes(user._id))
-                    .length}
+                  .length}
             </span>
           </div>
         </div>

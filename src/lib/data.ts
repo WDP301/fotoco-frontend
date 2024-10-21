@@ -18,6 +18,7 @@ import {
   User,
 } from './define';
 import http from '@/config/axios';
+import { getPlaiceholder } from 'plaiceholder';
 
 function delay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -284,3 +285,23 @@ export const getPhotosByAlbumId = async (
     };
   }
 };
+
+export default async function getBase64(imageUrl: string) {
+  try {
+    const res = await fetch(imageUrl);
+
+    if (!res.ok) {
+      throw new Error(`Failed to fetch image: ${res.status} ${res.statusText}`);
+    }
+
+    const buffer = await res.arrayBuffer();
+
+    const { base64 } = await getPlaiceholder(Buffer.from(buffer));
+
+    //console.log(`base64: ${base64}`)
+
+    return base64;
+  } catch (e) {
+    if (e instanceof Error) console.log(e.stack);
+  }
+}

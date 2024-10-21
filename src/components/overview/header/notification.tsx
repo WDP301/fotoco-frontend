@@ -21,12 +21,11 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { toast } from 'sonner';
 import { useLanguage } from '@/components/provider/language-provider';
-import { useIsSocketConnected, useSocket } from '@/hooks/use-socket';
+import { useSocket } from '@/hooks/use-socket';
 
 export default function Notification({ user }: { user: User }) {
   const router = useRouter();
   const socket = useSocket();
-  const isSocketConnected = useIsSocketConnected();
   const { dict } = useLanguage();
   const [notification, setNotification] = useState<UserNotification[]>([]);
 
@@ -49,13 +48,8 @@ export default function Notification({ user }: { user: User }) {
   );
 
   useEffect(() => {
-    socket?.connect();
-
-    if (!isSocketConnected || !socket) return;
-
-    socket.subscribe('notification', (data) => {
+    socket?.subscribe('notification', (data) => {
       const { except, notification } = data;
-      console.log('>>> notification: ', data);
       if (except !== user._id) {
         const { content } = notification;
         setNotification((prevNotifications) => [notification, ...prevNotifications]);
@@ -77,7 +71,7 @@ export default function Notification({ user }: { user: User }) {
         );
       }
     });
-  }, [socket, isSocketConnected]);
+  }, [socket?.connected]);
 
   useEffect(() => {
     // Fetch notifications when the component mounts

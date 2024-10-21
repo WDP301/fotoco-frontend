@@ -6,6 +6,8 @@ import './globals.css';
 import { ThemeProvider } from '@/components/provider/theme-provider';
 import { LanguageProvider } from '@/components/provider/language-provider';
 import { Toaster } from 'sonner';
+import { SocketIoProvider } from '@/components/provider/socket-io-provider';
+import { AuthProvider } from '@/components/provider/auth-provider';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -29,16 +31,20 @@ export default function RootLayout({
       <body
         className={`${fontSans.variable} min-h-screen bg-background font-sans antialiased transition-colors duration-1000`}
       >
-        <LanguageProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
-        </LanguageProvider>
+        <AuthProvider>
+          <SocketIoProvider>
+            <LanguageProvider>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+                disableTransitionOnChange
+              >
+                {children}
+              </ThemeProvider>
+            </LanguageProvider>
+          </SocketIoProvider>
+        </AuthProvider>
         <Toaster />
       </body>
     </html>

@@ -55,7 +55,7 @@ export type Group = {
   groupImg: string;
   membersCount: number;
   ownersCount: number;
-  albumCount: number;
+  albumsCount: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -146,14 +146,91 @@ export type GroupInfo = {
   type: string;
 };
 
+export type AlbumInfo = {
+  _id: string;
+  title: string;
+  description: string;
+  type: string;
+  group: {
+    _id: string;
+    title: string;
+  };
+  photosCount: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type GroupUser = {
   _id: string;
   username: string;
   fullName: string;
   img: string;
   email: string;
+  role: string;
   createdAt: string;
   updatedAt: string;
+};
+
+export type Album = {
+  _id: string;
+  title: string;
+  description: string;
+  albumImg: string[];
+  lastPhotos: string[];
+  membersCount: number;
+  ownersCount: number;
+  contributorsCount: number;
+  photosCount: number;
+  type: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type SearchAlbumParams = {
+  sort?: string;
+  page?: number;
+  pageSize?: number;
+  search?: string;
+  filter?: string;
+};
+
+export type Photo = {
+  _id: string;
+  title: string;
+  url: string;
+  owner: {
+    _id: string;
+    username: string;
+    fullName: string;
+    email: string;
+    img: string;
+  };
+  fileSize: number;
+  mimeType: string;
+  tags: string[];
+  commentsCount: number;
+  reactsCount: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UserNotification = {
+  _id: string;
+  user: {
+    _id: string;
+    username: string;
+    email: string;
+    fullName: string;
+    img: string;
+  };
+  type: string;
+  receivers: string;
+  content: string;
+  seen: string[];
+  redirectUrl: string;
+  createdAt: string;
+  groupId?: string;
+  albumId?: string;
 };
 
 // demo comment
@@ -169,12 +246,12 @@ export type Comment = {
 
 export interface PhotoResponse {
   success: boolean
-  photo: Photo
+  photo: PhotoDetails
   prevPhoto?: string
   nextPhoto?: string
 }
 
-export interface Photo {
+export interface PhotoDetails {
   _id: string
   type: string
   belonging: string

@@ -10,11 +10,19 @@ import {
 } from './form-schema';
 import http from '@/config/axios';
 import { cookies } from 'next/headers';
-import { AuthResponse, UserJWT } from './define';
+import { AuthResponse, UserJWT, UserNotification } from './define';
 import { v4 as uuidv4 } from 'uuid';
 import { base64Decode } from './utils';
 
 const MAX_AGE_REFRESH_TOKEN = 60 * 60 * 24 * 90;
+
+export async function getAuthHeader() {
+  const accessToken = cookies().get('access-token')?.value;
+  if (accessToken) {
+    return { Authorization: `Bearer ${accessToken}` };
+  }
+  return {};
+}
 
 export const register = async (
   formData: z.infer<ReturnType<typeof getRegisterFormSchema>>
@@ -80,6 +88,32 @@ export const active = async (token: string, active: string) => {
     });
 };
 
+const handleStoreUserCredentials = (
+  signature: string,
+  accessToken: string,
+  refreshToken: string
+): void => {
+  const payload = base64Decode(accessToken.split('.')[1]);
+  const cookie = cookies();
+  const user = JSON.parse(payload) as UserJWT;
+  cookie.set('refresh-token', refreshToken, {
+    maxAge: MAX_AGE_REFRESH_TOKEN,
+  });
+  cookie.set('signature', signature, { maxAge: MAX_AGE_REFRESH_TOKEN });
+  const expiryDate = new Date(user.exp * 1000);
+  cookie.set('access-token', accessToken, {
+    expires: expiryDate,
+  });
+};
+
+export const oauthSuccess = (
+  signature: string,
+  accessToken: string,
+  refreshToken: string
+): void => {
+  handleStoreUserCredentials(signature, accessToken, refreshToken);
+};
+
 export const login = async (
   formData: z.infer<ReturnType<typeof getLoginFormSchema>>
 ) => {
@@ -96,17 +130,7 @@ export const login = async (
       .then((res) => {
         const { accessToken, refreshToken } = res.data;
 
-        let payload = base64Decode(accessToken.split('.')[1]);
-        const cookie = cookies();
-        const user = JSON.parse(payload) as UserJWT;
-        cookie.set('refresh-token', refreshToken, {
-          maxAge: MAX_AGE_REFRESH_TOKEN,
-        });
-        cookie.set('signature', signature, { maxAge: MAX_AGE_REFRESH_TOKEN });
-        let expiryDate = new Date(user.exp * 1000);
-        cookie.set('access-token', accessToken, {
-          expires: expiryDate,
-        });
+        handleStoreUserCredentials(signature, accessToken, refreshToken);
 
         return {
           isSuccess: true,
@@ -171,7 +195,7 @@ export const joinGroup = async (
     .post('/groups/join', {
       groupCode: code,
     })
-    .then((res) => {
+    .then(() => {
       return {
         isSuccess: true,
         error: '',
@@ -190,7 +214,10 @@ export const joinGroup = async (
 export const createGroup = async (
   formData: z.infer<ReturnType<typeof getCreateGroupSchema>>
 ) => {
-  const { title, description } : z.infer<ReturnType<typeof getCreateGroupSchema>> = formData;
+  const {
+    title,
+    description,
+  }: z.infer<ReturnType<typeof getCreateGroupSchema>> = formData;
 
   const response = await http
     .post('/groups/create', {
@@ -198,7 +225,7 @@ export const createGroup = async (
       description,
       type: formData.type,
     })
-    .then((res) => {
+    .then(() => {
       return {
         isSuccess: true,
         error: '',
@@ -212,20 +239,23 @@ export const createGroup = async (
     });
 
   return response;
-}
+};
 
 export const createAlbum = async (
   groupId: string,
   formData: z.infer<ReturnType<typeof getCreateAlbumSchema>>
 ) => {
-  const { title, description } : z.infer<ReturnType<typeof getCreateAlbumSchema>> = formData;
+  const {
+    title,
+    description,
+  }: z.infer<ReturnType<typeof getCreateAlbumSchema>> = formData;
 
-  const response = await http 
+  const response = await http
     .post(`/groups/${groupId}/create-album`, {
       title,
-      description
+      description,
     })
-    .then((res) => {
+    .then(() => {
       return {
         isSuccess: true,
         error: '',
@@ -239,4 +269,32 @@ export const createAlbum = async (
     });
 
   return response;
-}
+};
+
+export const getUserNotifications = async () => {
+  try {
+    const response = await http.get('/notifications/my-notifications');
+    return response.data as UserNotification[];
+  } catch (error) {
+    return [] as UserNotification[];
+  }
+};
+
+export const markNotificationAsSeen = async (notificationId: string) => {
+  const response = await http
+    .put(`/notifications/${notificationId}/mark-as-seen`, undefined)
+    .then((res) => {
+      return {
+        isSuccess: true,
+        error: '',
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.error.message || 'Unknown error',
+      };
+    });
+
+  return response;
+};

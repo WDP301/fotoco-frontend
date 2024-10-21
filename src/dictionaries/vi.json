@@ -1,4 +1,6 @@
 {
+  "A-01": "Thông tin đăng nhập không chính xác!",
+  "A-02": "Tài khoản hiện không đang khả dụng!",
   "demo": {
     "title": "Bài thử",
     "description": "Đây là bài thử"
@@ -164,7 +166,7 @@
         "max": "Mô tả nhóm phải tối đa 300 ký tự"
       }
     },
-    "createAlbumSchema":{
+    "createAlbumSchema": {
       "title": {
         "required": "Tên album không được để trống",
         "min": "Tên album phải có ít nhất 2 kí tự",
@@ -206,7 +208,14 @@
     "filter": "Lọc",
     "tryAgain": "Thử lại",
     "createGroup": "Tạo nhóm",
-    "createAlbum": "Tạo album"
+    "createAlbum": "Tạo album",
+    "clear": "Xóa",
+    "profile": "Hồ sơ",
+    "openGallery": "Mở thư viện ảnh",
+    "viewMode": {
+      "list": "Danh sách",
+      "gallery": "Thư viện"
+    }
   },
   "joinGroup": {
     "title": "Tham gia nhóm",
@@ -245,7 +254,8 @@
   },
   "errorMessage": {
     "noGroupFound": "Không tìm thấy nhóm",
-    "noPhotoFound": "Không tìm thấy ảnh"
+    "noPhotoFound": "Không tìm thấy ảnh",
+    "noAlbumFound": "Không tìm thấy album"
   },
   "breadcrumb": {
     "home": "Trang chủ",
@@ -258,6 +268,37 @@
       "private": "Nhóm riêng tư",
       "public": "Nhóm công khai",
       "hidden": "Nhóm ẩn"
+    },
+    "setting": {
+      "title": "Cài đặt nhóm",
+      "description": "Bạn có thể quản lý cài đặt nhóm của mình tại đây",
+      "general": {
+        "title": "Cài đặt chung",
+        "description": "Cài đặt chung cho nhóm của bạn"
+      },
+      "member": {
+        "title": "Thành viên",
+        "description": "Quản lý thành viên của nhóm"
+      }
+    }
+  },
+  "photo": {
+    "title": "Ảnh",
+    "description": "Mô tả trang danh sách ảnh",
+    "upload": {
+      "title": "Tải ảnh lên",
+      "heading": "Tải ảnh của bạn lên",
+      "description": "Tải ảnh lên để chia sẻ với nhóm của bạn.",
+      "dragFile": "Kéo và thả tệp",
+      "chooseFile": "Nhấn để tải lên tệp (tệp phải dưới 10 MB)",
+      "filesToUpload": "Tệp cần tải lên",
+      "uploadedFiles": "Tệp đã tải lên",
+      "success": "Tất cả tệp đã được tải lên thành công",
+      "cancel": "Hủy tải lên",
+      "error": {
+        "template": "Lỗi tải lên tệp: {{error}}",
+        "fileSize": "Kích thước tệp phải dưới 10 MB"
+      }
     }
   },
   "sortOptions": {
@@ -265,6 +306,19 @@
     "oldest": "Cũ nhất"
   },
   "filterOptions": {
+    "album": {
+      "all": "Tất cả",
+      "mine": "Album của tôi",
+      "sharedWithMe": "Chia sẻ với tôi"
+    },
+    "photo": {
+      "all": "Tất cả",
+      "mine": "Ảnh của tôi"
+    },
+    "user": {
+      "owner": "Chủ sở hữu",
+      "member": "Thành viên"
+    },
     "mine": "Nhóm của tôi",
     "sharedWithMe": "Chia sẻ với tôi"
   },
@@ -273,6 +327,18 @@
     "description": "Mô tả trang không tìm thấy nhóm",
     "heading": "Opp! Không tìm thấy nhóm",
     "info": "Nhóm bạn đang tìm kiếm có thể đã bị xóa, đã thay đổi tên hoặc tạm thời không khả dụng."
+  },
+  "albumNotFound": {
+    "title": "Không tìm thấy album",
+    "description": "Mô tả trang không tìm thấy album",
+    "heading": "Opp! Không tìm thấy album",
+    "info": "Album bạn đang tìm kiếm có thể đã bị xóa, đã thay đổi tên hoặc tạm thời không khả dụng."
+  },
+  "photoNotFound": {
+    "title": "Không tìm thấy ảnh",
+    "description": "Mô tả trang không tìm thấy ảnh",
+    "heading": "Opp! Không tìm thấy ảnh",
+    "info": "Ảnh bạn đang tìm kiếm có thể đã bị xóa, đã thay đổi tên hoặc tạm thời không khả dụng."
   },
   "createGroup": {
     "dialogTitle": "Tạo nhóm mới",
@@ -317,10 +383,27 @@
     "light": "Sáng",
     "system": "Hệ thống"
   },
-  "photoNotFound": {
-    "title": "Không tìm thấy ảnh",
-    "description": "Mô tả trang không tìm thấy ảnh",
-    "heading": "Opp! Không tìm thấy ảnh",
-    "info": "Ảnh bạn đang tìm kiếm có thể đã bị xóa, đã thay đổi tên hoặc tạm thời không khả dụng."
+  "noti": {
+    "myNotifications": "Thông báo của tôi",
+    "noNotification": "Không có thông báo nào",
+    "title": "Thông báo",
+    "description": "Mô tả trang thông báo",
+    "toast": {
+      "title": "Bạn có thông báo mới từ {{fullName}} (@{{username}})",
+      "seeMore": "Xem tất cả thông báo"
+    }
+  },
+  "role": {
+    "admin": "Quản trị viên",
+    "user": "Người dùng",
+    "group": {
+      "owner": "Chủ sở hữu",
+      "member": "Thành viên"
+    },
+    "album": {
+      "owner": "Chủ sở hữu",
+      "member": "Thành viên",
+      "contributor": "Người đóng góp"
+    }
   }
 }

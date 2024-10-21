@@ -7,14 +7,14 @@ import { Metadata } from "next";
 
 type Pros = {
   params: {id: string};
-  searchPhotoParams: SearchPhotoParams
+  searchParams: SearchPhotoParams
 }
 
 export async function generateMetadata({
   params,
-  searchPhotoParams,
+  searchParams,
 }: Pros): Promise<Metadata> {
-  const photo = await getPhotoDetails(params.id);
+  const photo = await getPhotoDetails(params.id, searchParams);
   if (!photo || !photo.photo._id) {
     return {
       title: "Photo Not Found",
@@ -29,22 +29,22 @@ export async function generateMetadata({
 }
 export default async function PhotoDetailsPage({
   params,
-  searchPhotoParams,
+  searchParams,
 }: {
   params: { id: string };
-  searchPhotoParams: SearchPhotoParams
+  searchParams: SearchPhotoParams
 }) {
 
-  const photo = await getPhotoDetails(params.id, searchPhotoParams);
+  const photo = await getPhotoDetails(params.id, searchParams);
   if (!photo || !photo.photo._id) {
     return <PhotoNotFound />
-  }
+  }  
 
   return (
       <div className="max-w-screen h-screen overflow-hidden flex">
         <div className="flex flex-col justify-between w-3/4">
           <div className="w-full grid gap-1.5">
-            <PhotoCarousel photo={photo}/>
+            <PhotoCarousel photo={photo} searchParams={searchParams}/>
           </div>
         </div>
         <div className="flex flex-col justify-between w-1/4 p-4">

@@ -1,4 +1,6 @@
 {
+  "A-01": "Incorrect login information!",
+  "A-02": "Account is currently unavailable!",
   "demo": {
     "title": "Demo",
     "description": "This is a demo"
@@ -167,7 +169,7 @@
         "max": "Group description must be maximum 300 characters."
       }
     },
-    "createAlbumSchema":{
+    "createAlbumSchema": {
       "title": {
         "required": "Album title can not be empty",
         "min": "Album title must be at least 2 characters.",
@@ -209,7 +211,14 @@
     "filter": "Filter",
     "tryAgain": "Try again",
     "createGroup": "Create Group",
-    "createAlbum": "Create Album"
+    "createAlbum": "Create Album",
+    "clear": "Clear",
+    "profile": "Profile",
+    "openGallery": "Open Gallery",
+    "viewMode": {
+      "list": "List",
+      "gallery": "Gallery"
+    }
   },
   "joinGroup": {
     "title": "Join Group",
@@ -248,7 +257,8 @@
   },
   "errorMessage": {
     "noGroupFound": "No group found",
-    "noPhotoFound": "No photo found"
+    "noPhotoFound": "No photo found",
+    "noAlbumFound": "No album found"
   },
   "breadcrumb": {
     "home": "Home",
@@ -261,6 +271,37 @@
       "private": "Private Group",
       "public": "Public Group",
       "hidden": "Hidden Group"
+    },
+    "setting": {
+      "title": "Group Settings",
+      "description": "You can manage your group settings here",
+      "general": {
+        "title": "General",
+        "description": "General settings for your group"
+      },
+      "member": {
+        "title": "Members",
+        "description": "Manage your group members"
+      }
+    }
+  },
+  "photo": {
+    "title": "Photos",
+    "description": "Photo List page description",
+    "upload": {
+      "title": "Upload Photo",
+      "heading": "Upload your photo",
+      "description": "Share your photo with members of this album",
+      "dragFile": "Drag files",
+      "chooseFile": "Click to upload files (files should be under 10 MB)",
+      "filesToUpload": "Files to upload",
+      "uploadedFiles": "Uploaded files",
+      "success": "All files uploaded successfully",
+      "cancel": "Upload cancelled",
+      "error": {
+        "template": "Error uploading files: {{error}}",
+        "fileSize": "File size should be under 10 MB"
+      }
     }
   },
   "sortOptions": {
@@ -268,6 +309,19 @@
     "oldest": "Oldest"
   },
   "filterOptions": {
+    "album": {
+      "all": "All",
+      "mine": "My Albums",
+      "sharedWithMe": "Shared with me"
+    },
+    "photo": {
+      "all": "All",
+      "mine": "My Photos"
+    },
+    "user": {
+      "owner": "Owner",
+      "member": "Member"
+    },
     "mine": "My Groups",
     "sharedWithMe": "Shared with me"
   },
@@ -276,6 +330,18 @@
     "description": "Group not found page description",
     "heading": "Oops! The group you are looking for does not exist",
     "info": "The group you are looking for may have been removed or does not exist."
+  },
+  "albumNotFound": {
+    "title": "Album not found",
+    "description": "Album not found page description",
+    "heading": "Oops! The album you are looking for does not exist",
+    "info": "The album you are looking for may have been removed or does not exist."
+  },
+  "photoNotFound": {
+    "title": "Photo not found",
+    "description": "Photo not found page description",
+    "heading": "Oops! The photo you are looking for does not exist",
+    "info": "The photo you are looking for may have been removed or does not exist."
   },
   "createGroup": {
     "dialogTitle": "Create Group",
@@ -320,10 +386,53 @@
     "light": "Light",
     "system": "System"
   },
-  "photoNotFound": {
-    "title": "Photo not found",
-    "description": "Photo not found page description",
-    "heading": "Oops! The photo you are looking for does not exist",
-    "info": "The photo you are looking for may have been removed or does not exist."
+  "common": {
+    "orContinueWith": "Or continue with",
+    "searchResultsFor": "Search results for"
+  },
+  "searchBar": {
+    "group": {
+      "placeholders": ["Search groups here", "Find groups by title"]
+    },
+    "album": {
+      "placeholders": ["Search albums here", "Find albums by title"]
+    },
+    "user": {
+      "placeholders": [
+        "Search users here",
+        "Find users by name",
+        "Find users by username"
+      ]
+    },
+    "photo": {
+      "placeholders": [
+        "Search photos here",
+        "Find photos by title",
+        "Find photos by tags"
+      ]
+    }
+  },
+  "noti": {
+    "myNotifications": "My Notifications",
+    "noNotification": "No notification",
+    "title": "Notifications",
+    "description": "Notification page description",
+    "toast": {
+      "title": "You have new notification from {{fullName}} (@{{username}})",
+      "seeMore": "See more"
+    }
+  },
+  "role": {
+    "admin": "Admin",
+    "user": "User",
+    "group": {
+      "owner": "Owner",
+      "member": "Member"
+    },
+    "album": {
+      "owner": "Owner",
+      "member": "Member",
+      "contributor": "Contributor"
+    }
   }
 }

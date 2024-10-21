@@ -1,6 +1,7 @@
 import UserAuthLoginForm from '@/components/auth/login/user-auth-login-form';
+import OtherOauth from '@/components/auth/other-oauth';
+import { Separator } from '@/components/ui/separator';
 import { getDictionary } from '@/lib/dictionaries';
-// import OtherLoginMethod from '@/components/auth/login/other-login-method';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 
@@ -13,11 +14,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
   };
 };
 
-export default async function LoginPage({
-  searchParams,
-}: {
-  searchParams: { message?: string };
-}) {
+export default async function LoginPage() {
   const dict = await getDictionary();
   return (
     <>
@@ -28,7 +25,13 @@ export default async function LoginPage({
         <Suspense
           fallback={<div className="text-center">{dict.login.loading}</div>}
         >
-          <UserAuthLoginForm message={searchParams.message} />
+          <OtherOauth />
+          <div className="flex items-center gap-4">
+            <Separator className="flex-1" />
+            <span className="text-muted-foreground">{dict.common.orContinueWith}</span>
+            <Separator className="flex-1" />
+          </div>
+          <UserAuthLoginForm />
         </Suspense>
       </div>
     </>

@@ -19,7 +19,7 @@ import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { cn, createUrl } from '@/lib/utils';
 import { CheckIcon } from '@radix-ui/react-icons';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { SearchParams, SortOption } from '@/lib/define';
 import { VariantProps } from 'class-variance-authority';
 import { Button, buttonVariants } from '@/components/ui/button';
@@ -40,7 +40,6 @@ export default function SortSelect({
   ...props
 }: Readonly<SortSelectProps>) {
   const { push } = useRouter();
-  const searchParams = useSearchParams();
   const [selected, setSelected] = React.useState<string[]>([]);
   const { dict } = useLanguage();
 
@@ -49,18 +48,36 @@ export default function SortSelect({
   }, [sort]);
 
   const handleSortChange = useDebouncedCallback(() => {
-    const newParams = new URLSearchParams(searchParams.toString());
-    newParams.delete(SearchParams.SORT);
-    if (selected) newParams.set(SearchParams.SORT, selected.join(','));
-    push(createUrl(url, newParams));
+    if (selected) {
+      if (selected.length === 0) {
+        handleClearSort();
+        return;
+      }
+      const searchParams = new URLSearchParams(location.search);
+      const pathName = location.pathname;
+
+      searchParams.delete(SearchParams.PAGE);
+      searchParams.delete(SearchParams.SORT);
+      searchParams.set(SearchParams.SORT, selected.join(','));
+      push(createUrl(pathName, searchParams), { scroll: false });
+    }
   }, 600);
+
+  const handleClearSort = () => {
+    setSelected([]);
+    const searchParams = new URLSearchParams(location.search);
+    const pathName = location.pathname;
+    searchParams.delete(SearchParams.PAGE);
+    searchParams.delete(SearchParams.SORT);
+    push(createUrl(pathName, searchParams), { scroll: false });
+  };
 
   return (
     <div>
       <Popover>
         <PopoverTrigger asChild>
           <Button {...props}>
-            <ArrowDownUp className="mr-2 size-4 text-sky-500" />
+            <ArrowDownUp className="mr-2 size-4 text-primary" />
             {dict.button.sort}
             {selected.length > 0 && (
               <>
@@ -143,16 +160,11 @@ export default function SortSelect({
                   <CommandGroup>
                     <CommandItem
                       onSelect={() => {
-                        setSelected([]);
-                        const newParams = new URLSearchParams(
-                          searchParams.toString()
-                        );
-                        newParams.delete(SearchParams.SORT);
-                        push(createUrl(url, newParams));
+                        handleClearSort();
                       }}
                       className="justify-center text-center"
                     >
-                      Clear
+                      {dict.button.clear}
                     </CommandItem>
                   </CommandGroup>
                 </>

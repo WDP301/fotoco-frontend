@@ -2,13 +2,21 @@
 import { ChevronLeft, ChevronRight, Expand } from "lucide-react";
 import { XIcon } from "lucide-react"
 import { useRouter } from "next/navigation";
-import { PhotoResponse } from "@/lib/define";
+import { PhotoResponse, SearchPhotoParams } from "@/lib/define";
 import Image from "next/image";
 import Link from "next/link";
-export default function PhotoCarousel({photo}: {photo: PhotoResponse}) {
+
+type PhotoCarouselProps = {
+  photo: PhotoResponse,
+  searchParams: SearchPhotoParams
+}
+export default function PhotoCarousel({
+  photo,
+  searchParams
+}: PhotoCarouselProps) {
   const route = useRouter();
   const handleCloseClick = () => {
-    route.push('/photos'); // back to album
+    route.push(`/albums/${photo?.photo.belonging}?${searchParams}`);
   }
   
   return (
@@ -23,14 +31,14 @@ export default function PhotoCarousel({photo}: {photo: PhotoResponse}) {
           />
         </div>
         {photo?.prevPhoto && (
-          <Link href={`/photos/${photo?.prevPhoto}`}>
+          <Link href={`/photos/${photo?.prevPhoto}?${searchParams}`}>
             <button className="absolute left-2 opacity-0 hover: group-hover:opacity-100 transition-opacity rounded-full hover:bg-gray-800">
               <ChevronLeft className="h-10 w-10" />
             </button>
           </Link>
         )}
         {photo?.nextPhoto && (
-          <Link href={`/photos/${photo?.nextPhoto}`}>
+          <Link href={`/photos/${photo?.nextPhoto}?${searchParams}`}>
             <button className="absolute right-2 opacity-0 group-hover:opacity-100 transition-opacity rounded-full hover:bg-gray-800">
               < ChevronRight className="h-10 w-10" />
             </button>

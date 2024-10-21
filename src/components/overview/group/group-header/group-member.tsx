@@ -1,4 +1,3 @@
-import { AnimatedTooltip } from '@/components/ui/animated-tooltip';
 import AvatarCircles from '@/components/ui/avatar-circles';
 import { getGroupMembers } from '@/lib/data';
 

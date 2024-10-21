@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import {
   Dialog,
   DialogContent,
@@ -6,32 +6,31 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import CreateGroupForm from "./create-group-form"
-import { useLanguage } from "@/components/provider/language-provider"
+} from '@/components/ui/dialog';
+import CreateGroupForm from './create-group-form';
+import { useLanguage } from '@/components/provider/language-provider';
+import { useState } from 'react';
 
 export default function CreateGroupDiaLog({
-    children,
-  }: {
-    children: React.ReactNode;
-  }) {
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const [open, setOpen] = useState(false);
+  const { dict } = useLanguage();
 
-    const { dict } = useLanguage();
-
-    return (
-        <Dialog>
-        <DialogTrigger asChild>
-            {children}
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-            <DialogHeader>
-            <DialogTitle>{dict.createGroup.dialogTitle}</DialogTitle>
-            <DialogDescription>
-                {dict.createGroup.dialogDescription}
-            </DialogDescription>
-            </DialogHeader>
-            <CreateGroupForm setOpen={() => {}} />
-        </DialogContent>
-        </Dialog>
-  )
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>{dict.createGroup.dialogTitle}</DialogTitle>
+          <DialogDescription>
+            {dict.createGroup.dialogDescription}
+          </DialogDescription>
+        </DialogHeader>
+        <CreateGroupForm setOpen={setOpen} />
+      </DialogContent>
+    </Dialog>
+  );
 }

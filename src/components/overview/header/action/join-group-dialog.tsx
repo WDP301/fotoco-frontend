@@ -34,9 +34,6 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Icons } from '@/components/icons/icons';
 import { joinGroup } from '@/lib/action';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
-import { useToast } from '@/hooks/use-toast';
 import { getJoinGroupSchema } from '@/lib/form-schema';
 import { useLanguage } from '@/components/provider/language-provider';
 import { toast } from 'sonner';
@@ -46,9 +43,6 @@ export default function JoinGroupDialog() {
   const { dict } = useLanguage();
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
-  const [result, setResult] = useState<
-    { error?: string; errorType?: string; isSuccess?: boolean } | undefined
-  >(undefined);
   const form = useForm<z.infer<ReturnType<typeof getJoinGroupSchema>>>({
     resolver: zodResolver(getJoinGroupSchema(dict.lang)),
     defaultValues: {
@@ -63,13 +57,11 @@ export default function JoinGroupDialog() {
 
     const result = await joinGroup(data);
     if (!result?.isSuccess) {
-      setResult(result);
       toast.error(dict.joinGroup.message.error, {
         description: result.error,
       });
     } else {
       toast.success(dict.joinGroup.message.successInfo);
-      setResult({ isSuccess: true });
       setOpen(false);
       router.push('/groups');
       router.refresh();

@@ -14,11 +14,11 @@ export const config = {
 const apiRequireAuth = ['/api/auth/update-token'];
 
 const urlRequireAuthenticated = [
-  '/group',
-  '/group/*',
-  '/album',
-  '/album/*',
-  '/photo/*',
+  '/groups',
+  '/groups/*',
+  '/albums',
+  '/albums/*',
+  '/photos/*',
 ];
 
 const urlRequireUnauthenticated = ['/login', '/register', '/active/*'];
@@ -49,14 +49,14 @@ export async function middleware(req: NextRequest) {
       );
       const response = NextResponse.next();
 
-      let payload = base64Decode(newAccessToken.split('.')[1]);
+      const payload = base64Decode(newAccessToken.split('.')[1]);
       const user = JSON.parse(payload) as UserJWT;
 
       response.cookies.set('signature', signature, {
         httpOnly: true,
         maxAge: MAX_AGE_REFRESH_TOKEN,
       });
-      let expiryDate = new Date(user.exp * 1000);
+      const expiryDate = new Date(user.exp * 1000);
       response.cookies.set('access-token', newAccessToken, {
         httpOnly: true,
         expires: expiryDate,

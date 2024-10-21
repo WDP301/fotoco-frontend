@@ -21,9 +21,17 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'via.placeholder.com',
+        hostname: 'lh3.googleusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'fotoco-image-storage.s3.ap-southeast-1.amazonaws.com',
       },
     ],
+  },
+  env: {
+    API_URL: process.env.API_URL || 'http://localhost:9999',
+    FRONTEND_SITE_NAME: process.env.FRONTEND_SITE_NAME || 'Fotoco',
   },
 };
 

@@ -1,5 +1,9 @@
+import AlbumSection from '@/components/overview/group/album-section/album-section';
 import GroupHeader from '@/components/overview/group/group-header/group-header';
+import SearchBar from '@/components/shared/search-bar';
 import { getGroupInfo } from '@/lib/data';
+import { SearchAlbumParams } from '@/lib/define';
+import { getDictionary } from '@/lib/dictionaries';
 import { Metadata } from 'next';
 
 type Props = {
@@ -25,12 +29,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function GroupDetailPage({
   params,
+  searchParams,
 }: {
   params: { id: string };
+  searchParams: SearchAlbumParams;
 }) {
+  const dict = await getDictionary();
   return (
     <div>
       <GroupHeader groupId={params.id} />
+      <div className="my-5">
+        <SearchBar placeholder={dict.searchBar.album.placeholders} />
+      </div>
+      <AlbumSection groupId={params.id} searchParams={searchParams} />
     </div>
   );
 }

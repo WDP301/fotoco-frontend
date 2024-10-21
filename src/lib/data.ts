@@ -2,32 +2,67 @@
 
 import customFetch from '@/config/fetch';
 import {
+  Album,
+  AlbumInfo,
   Group,
   GroupInfo,
   GroupUser,
   PageMeta,
   PhotoResponse,
+  Photo,
   RecentPhoto,
+  SearchAlbumParams,
   SearchGroupMembersParams,
   SearchGroupParams,
   SearchPhotoParams,
   SearchRecentViewParams,
   User,
 } from './define';
+import http from '@/config/axios';
+import { getPlaiceholder } from 'plaiceholder';
+
+function delay(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 function objectToQueryString(params: Record<string, any>): string {
   return new URLSearchParams(params).toString();
 }
 
-export const getUser = async () => {
-  const response = await customFetch('/users/me', {
-    method: 'GET',
-    next: { revalidate: 3600 },
-  })
-    .then((res) => res.json())
-    .catch(() => null);
+// export const getUser = async () => {
+//   try {
+//     const response = await customFetch('/users/me', {
+//       method: 'GET',
+//       next: { revalidate: 3600 },
+//     });
 
-  return response?.user as User;
+//     if (!response.ok) {
+//       if (response.status === 401) {
+//         return {} as User;
+//       }
+//       throw new Error('Failed to fetch user data');
+//     }
+
+//     const data = await response.json();
+//     return data.user as User;
+//   } catch (error) {
+//     console.error('Error fetching user data:', error);
+//     return {} as User;
+//   }
+// };
+
+// TODO: Can't use customFetch
+export const getUser = async () => {
+  const response = await http
+    .get('/users/me')
+    .then((res) => {
+      return res.data.user as User;
+    })
+    .catch(() => {
+      return null;
+    });
+
+  return response;
 };
 
 const pageMetaDefault = {
@@ -45,7 +80,7 @@ export const getAllGroup = async (searchParams: SearchGroupParams) => {
     // next: { revalidate: 60 },
   })
     .then((res) => res.json())
-    .catch((error) => null);
+    .catch(() => null);
 
   if (response?.success) {
     return {
@@ -69,7 +104,7 @@ export const getRecentViewPhotos = async (
     next: { revalidate: 120 },
   })
     .then((res) => res.json())
-    .catch((error) => null);
+    .catch(() => null);
 
   if (response?.success) {
     return {
@@ -88,13 +123,27 @@ export const getGroupInfo = async (groupId: string) => {
   try {
     const response = await customFetch(`/groups/${groupId}`, {
       method: 'GET',
-      next: { revalidate: 120 },
+      // next: { revalidate: 120 },
     })
       .then((res) => res.json())
-      .catch((error) => null);
+      .catch(() => null);
     return response as GroupInfo;
-  } catch (error) {
+  } catch {
     return {} as GroupInfo;
+  }
+};
+
+export const getAlbumInfo = async (albumId: string) => {
+  try {
+    const response = await customFetch(`/albums/${albumId}`, {
+      method: 'GET',
+      // next: { revalidate: 120 },
+    })
+      .then((res) => res.json())
+      .catch(() => null);
+    return response as AlbumInfo;
+  } catch {
+    return {} as AlbumInfo;
   }
 };
 
@@ -108,11 +157,11 @@ export const getGroupMembers = async (
       `/groups/${groupId}/members?${queryString}`,
       {
         method: 'GET',
-        next: { revalidate: 3600 },
+        // next: { revalidate: 3600 },
       }
     )
       .then((res) => res.json())
-      .catch((error) => null);
+      .catch(() => null);
 
     if (response?.success) {
       return {
@@ -125,13 +174,138 @@ export const getGroupMembers = async (
       pageMeta: pageMetaDefault as PageMeta,
       users: response.users as GroupUser[],
     };
-  } catch (error) {
+  } catch {
     return {
       pageMeta: pageMetaDefault as PageMeta,
       users: [] as GroupUser[],
     };
   }
 };
+
+export const getAlbumMembers = async (
+  albumId: string,
+  searchParams: SearchGroupMembersParams
+) => {
+  try {
+    const queryString = objectToQueryString(searchParams);
+    const response = await customFetch(
+      `/albums/${albumId}/members?${queryString}`,
+      {
+        method: 'GET',
+        // next: { revalidate: 3600 },
+      }
+    )
+      .then((res) => res.json())
+      .catch(() => null);
+
+    if (response?.success) {
+      return {
+        pageMeta: response.pageMeta as PageMeta,
+        users: response.users as GroupUser[],
+      };
+    }
+
+    return {
+      pageMeta: pageMetaDefault as PageMeta,
+      users: response.users as GroupUser[],
+    };
+  } catch {
+    return {
+      pageMeta: pageMetaDefault as PageMeta,
+      users: [] as GroupUser[],
+    };
+  }
+};
+
+export const getAlbumsByGroupId = async (
+  groupId: string,
+  searchParams: SearchAlbumParams
+) => {
+  try {
+    const queryString = objectToQueryString(searchParams);
+    const response = await customFetch(
+      `/groups/${groupId}/albums?${queryString}`,
+      {
+        method: 'GET',
+        // next: { revalidate: 3600 },
+      }
+    )
+      .then((res) => res.json())
+      .catch(() => null);
+
+    if (response?.success) {
+      return {
+        pageMeta: response.pageMeta as PageMeta,
+        albums: response.albums as Album[],
+      };
+    }
+
+    return {
+      pageMeta: pageMetaDefault as PageMeta,
+      albums: response.albums as Album[],
+    };
+  } catch {
+    return {
+      pageMeta: pageMetaDefault as PageMeta,
+      albums: [] as Album[],
+    };
+  }
+};
+
+export const getPhotosByAlbumId = async (
+  albumId: string,
+  searchParams: SearchPhotoParams
+) => {
+  try {
+    const queryString = objectToQueryString(searchParams);
+    const response = await customFetch(
+      `/albums/${albumId}/photos?${queryString}`,
+      {
+        method: 'GET',
+        // next: { revalidate: 3600 },
+      }
+    )
+      .then((res) => res.json())
+      .catch(() => null);
+
+    if (response?.success) {
+      return {
+        photos: response.photos as Photo[],
+        pageMeta: response.pageMeta as PageMeta,
+      };
+    }
+
+    return {
+      photos: [] as Photo[],
+      pageMeta: pageMetaDefault as PageMeta,
+    };
+  } catch (error) {
+    return {
+      photos: [] as Photo[],
+      pageMeta: pageMetaDefault as PageMeta,
+    };
+  }
+};
+
+export default async function getBase64(imageUrl: string) {
+  try {
+    const res = await fetch(imageUrl);
+
+    if (!res.ok) {
+      throw new Error(`Failed to fetch image: ${res.status} ${res.statusText}`);
+    }
+
+    const buffer = await res.arrayBuffer();
+
+    const { base64 } = await getPlaiceholder(Buffer.from(buffer));
+
+    //console.log(`base64: ${base64}`)
+
+    return base64;
+  } catch (e) {
+    if (e instanceof Error) console.log(e.stack);
+  }
+}
 
 export const getPhotoDetails = async (
   photoId: string,

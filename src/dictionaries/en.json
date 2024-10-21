@@ -213,6 +213,7 @@
       "list": "List",
       "gallery": "Gallery"
     },
+    "joinGroup": "Join Group",
     "invite": "Invite"
   },
   "joinGroup": {
@@ -266,6 +267,10 @@
       "private": "Private Group",
       "public": "Public Group",
       "hidden": "Hidden Group"
+    },
+    "invite": {
+      "title": "Accept Invite to Group",
+      "description": "Accept Invite to Group"
     },
     "setting": {
       "title": "Group Settings",

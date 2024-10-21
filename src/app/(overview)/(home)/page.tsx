@@ -34,7 +34,7 @@ export default async function Home({
 
   return (
     <>
-      {user ? (
+      {user._id ? (
         <div>
           <div className="w-full text-center mb-5">
             <h2>

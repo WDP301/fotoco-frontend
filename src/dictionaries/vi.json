@@ -210,7 +210,8 @@
       "list": "Danh sách",
       "gallery": "Thư viện"
     },
-    "joinGroup": "Tham gia nhóm"
+    "joinGroup": "Tham gia nhóm",
+    "invite": "Mời"
   },
   "joinGroup": {
     "title": "Tham gia nhóm",
@@ -277,7 +278,18 @@
       },
       "member": {
         "title": "Thành viên",
-        "description": "Quản lý thành viên của nhóm"
+        "description": "Quản lý thành viên của nhóm",
+        "invite": {
+          "title": "Mời thành viên",
+          "description": "Mời người khác tham gia nhóm của bạn",
+          "success": "Mời thành viên thành công",
+          "error": "Mời thành viên thất bại",
+          "search": {
+            "heading": "Mời thành viên...",
+            "placeholder": "Tìm kiếm thành viên...",
+            "noResult": "Không tìm thấy thành viên nào"
+          }
+        }
       }
     }
   },

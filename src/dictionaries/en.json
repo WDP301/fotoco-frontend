@@ -213,7 +213,8 @@
       "list": "List",
       "gallery": "Gallery"
     },
-    "joinGroup": "Join Group"
+    "joinGroup": "Join Group",
+    "invite": "Invite"
   },
   "joinGroup": {
     "title": "Join Group",
@@ -280,7 +281,18 @@
       },
       "member": {
         "title": "Members",
-        "description": "Manage your group members"
+        "description": "Manage your group members",
+        "invite": {
+          "title": "Invite members",
+          "description": "Invite your friends to join this group",
+          "success": "Invitation sent successfully",
+          "error": "Invitation failed",
+          "search": {
+            "heading": "Invite group members...",
+            "placeholder": "Search users...",
+            "noResult": "No user found"
+          }
+        }
       }
     }
   },

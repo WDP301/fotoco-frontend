@@ -300,6 +300,7 @@ export const markNotificationAsSeen = async (notificationId: string) => {
   return response;
 };
 
+
 export const acceptInviteToGroup = async (
   groupId: string,
   inviteToken: string
@@ -307,6 +308,26 @@ export const acceptInviteToGroup = async (
   const response = await http
     .post(`/groups/${groupId}/accept-invite`, undefined, {
       params: { inviteToken },
+    })
+    .then((res) => {
+      return {
+        isSuccess: true,
+        error: '',
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.message || 'Unknown error',
+      };
+    });
+  return response;
+};
+
+export const inviteUserToGroup = async (groupId: string, email: string) => {
+  const response = await http
+    .post(`/groups/${groupId}/invite`, {
+      email,
     })
     .then((res) => {
       return {

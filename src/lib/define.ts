@@ -91,6 +91,15 @@ export enum SearchParams {
   MODE = 'mode',
 }
 
+export type SearchPhotoParams = {
+  sort?: string;
+  page?: number;
+  pageSize?: number;
+  search?: string;
+  filter?: string;
+  mode?: string;
+};
+
 export type SearchGroupParams = {
   sort?: string;
   page?: number;
@@ -147,6 +156,7 @@ export type GroupUser = {
   updatedAt: string;
 };
 
+// demo comment
 export type Comment = {
   _id: string;
   user: User;
@@ -155,4 +165,33 @@ export type Comment = {
   createdAt: string;
   updatedAt: string;
   body: string;
+}
+
+export interface PhotoResponse {
+  success: boolean
+  photo: Photo
+  prevPhoto?: string
+  nextPhoto?: string
+}
+
+export interface Photo {
+  _id: string
+  type: string
+  belonging: string
+  owner: Owner
+  title: string
+  url: string
+  mimeType: string
+  fileSize: number
+  tags: string[]
+  createdAt: string
+  updatedAt: string
+  commentsCount: number
+}
+
+export interface Owner {
+  _id: string
+  username: string
+  fullName: string
+  img: string
 }

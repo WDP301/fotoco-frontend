@@ -6,9 +6,11 @@ import {
   GroupInfo,
   GroupUser,
   PageMeta,
+  PhotoResponse,
   RecentPhoto,
   SearchGroupMembersParams,
   SearchGroupParams,
+  SearchPhotoParams,
   SearchRecentViewParams,
   User,
 } from './define';
@@ -128,5 +130,22 @@ export const getGroupMembers = async (
       pageMeta: pageMetaDefault as PageMeta,
       users: [] as GroupUser[],
     };
+  }
+};
+
+export const getPhotoDetails = async (
+  photoId: string,
+  SearchPhotoParams: SearchPhotoParams
+) => {
+  try {
+    const queryString = objectToQueryString(SearchPhotoParams);
+    const response = await customFetch(`/photos/${photoId}?${queryString}`, {
+      method: 'GET',
+    })
+      .then((res) => res.json())
+      .catch((error) => null);
+    return response as PhotoResponse;
+  } catch (error) {
+    return {} as PhotoResponse;
   }
 };

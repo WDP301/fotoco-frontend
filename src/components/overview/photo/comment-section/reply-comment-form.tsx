@@ -1,22 +1,18 @@
-import { CornerDownRight, SendHorizontal } from "lucide-react"
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import CommentForm from "./comment-form";
 
-interface ReplyCommentFormProps {
-    replyUsername: string;
-  }
-
-export default function ReplyCommentForm(
-    { replyUsername }: ReplyCommentFormProps
-) {
+export default function ReplyCommentForm({replyTo}:{replyTo: string}) {
 
     const router = useRouter();
-
-    const [reply, setReply] = useState("");
     const [isReplyOpen, setIsReplyOpen] = useState(false);
+    const commentFormRef = useRef<any>(null);
 
     const handleReplyClick = () => {
         setIsReplyOpen(true);
+        setTimeout(() => {
+            commentFormRef.current?.focusTextArea();
+        }, 0);
     }
     
     const handleReplySubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -26,8 +22,6 @@ export default function ReplyCommentForm(
         router.refresh();
     }
 
-    
-
     return (
         <>
             {!isReplyOpen ? (
@@ -35,26 +29,11 @@ export default function ReplyCommentForm(
                 Reply
                 </div>
             ) : (
-                <div className="flex items-center w-full pr-4">
-                <CornerDownRight className="h-5 w-5 text-muted-foreground mr-2" />
-                <form onSubmit={handleReplySubmit} className="py-2 relative w-full">
-                    <input
-                        type="text"
-                        className="text-sm border p-2 pr-8 rounded w-full bg-transparent"
-                        placeholder={`Write a reply for ${replyUsername}...`}
-                        value={reply}
-                        onChange={(e) => setReply(e.target.value)}
-                    />
-                    {reply.trim() && (
-                        <button 
-                        type="submit" 
-                        className="absolute right-2 top-1/2 transform -translate-y-1/2 text-primary"
-                        >
-                        <SendHorizontal className="h-5 w-5" />
-                        </button>
-                    )}
-                </form>
-            </div>
+                <div className="flex items-center w-full pr-4 my-4">
+                    <div className="w-full">
+                        <CommentForm ref={commentFormRef} showIcon={true} replyTo={replyTo}/>
+                    </div>
+                </div>
             )}
         </>
     )

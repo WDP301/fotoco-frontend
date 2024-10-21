@@ -1,34 +1,53 @@
-
-import { ScrollArea } from "@/components/ui/scroll-area";
 import ReplyCommentForm from "./reply-comment-form";
 import { Separator } from "@/components/ui/separator"
 import { CommentCard } from "./comment-card";
-import ReplyCard from "./reply-list";
+import ReplyList from "./reply-list";
+import SortSelect from "@/components/shared/sort-select";
 
 
-export default async function CommentList() {
+export default function CommentList() {
 
-  const response = await fetch('https://jsonplaceholder.typicode.com/posts/1/comments');
-  const comments:[] = await response.json();
-
-  const replyResponse = await fetch('https://jsonplaceholder.typicode.com/posts/1/comments');
-  const replies:[] = await replyResponse.json();
+  const comments:[] = [];
+  const sortOptions = [
+    {
+      label: "Newest",
+      value: "newest",
+      field: "sort",
+    },
+    {
+      label: "Oldest",
+      value: "oldest",
+      field: "sort",
+    }
+  ]
 
   return (
     <>
-    <Separator className="mb-3" />
-    <ScrollArea className=" md:h-[400px] lg:h-[300px] 2xl:h-[530px] overflow-auto">
-      {comments.map((comment) => (
-        <>
-        <div key={comment.id} className="mb-4">
-          <CommentCard comment={comment} />
-          <ReplyCommentForm replyUsername={comment.email}/>
+      <Separator/>
+      {comments.length === 0 ? (
+        <div className="p-8 text-center text-muted-foreground">
+          No comments yet.
         </div>
-          <ReplyCard replies={replies} />
-        </>
-      ))}
-  </ScrollArea>
-  <Separator className="mb-3"/>
+      ) : (
+      <>
+      <SortSelect
+        className="my-2 p-0"
+        variant="ghost"
+        sort="newest"
+        options={sortOptions}
+        url={"/comments"}
+      />
+      comments.map((comment) => (
+        <div key={comment.id}>
+          <div className="mb-4">
+            <CommentCard comment={comment} showIcon={false}/>
+            <ReplyCommentForm replyTo={comment.email}/>
+          </div>
+          <ReplyList />
+        </div>
+      ))
+      </>
+    )}
   </>
   );
 };

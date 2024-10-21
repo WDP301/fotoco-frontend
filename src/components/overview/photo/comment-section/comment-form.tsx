@@ -1,18 +1,29 @@
 'use client';
 import { Textarea } from "@/components/ui/textarea";
-import React, { useState, forwardRef, useImperativeHandle } from "react";
+import React, { useState, forwardRef, useImperativeHandle, useRef, useEffect } from "react";
+import { User } from "@/lib/define";
+import { getUser } from "@/lib/data";
 
 import {
     Avatar,
     AvatarFallback,
     AvatarImage,
   } from "@/components/ui/avatar"
-import { SendHorizontal } from "lucide-react";
+import { CornerDownRight, SendHorizontal } from "lucide-react";
+import AvatarPicture from "@/components/shared/avatar-picture";
 
-// eslint-disable-next-line react/display-name
-const CommentForm = forwardRef((_, ref) => {
+interface CommentFormProps {
+  showIcon?: boolean;
+  replyTo?: string;
+}
+
+interface CommentFormRef {
+  focusTextArea: () => void;
+}
+
+const CommentForm = forwardRef<CommentFormRef, CommentFormProps>(({ showIcon, replyTo }, ref) => {
   const [comment, setComment] = useState("");
-  const textareaRef = React.useRef<HTMLTextAreaElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useImperativeHandle(ref, () => ({
     focusTextArea: () => {
@@ -20,20 +31,27 @@ const CommentForm = forwardRef((_, ref) => {
     },
   }));
 
+  const [user, setUser] = useState<User | null>(null);
+  useEffect(() => {
+    (async () => {
+      const user = (await getUser()) as User;
+      setUser(user);
+    })();
+  }, []);
+
   return (
     <>
       <form className="relative">
         <div className="grid gap-4">
           <div className="flex gap-4 items-start">
-            <Avatar className="w-10 h-10">
-              <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-            
+            {showIcon && (
+              <CornerDownRight className="h-6 w-6 text-muted-foreground" />
+            )}
+            <AvatarPicture src={user?.img || ''} />
             <Textarea
               ref={textareaRef}
               className="p-2 pr-10 resize-none w-full scrollbar-hide"
-              placeholder="Type your comment here..."
+              placeholder={replyTo ? `Reply to ${replyTo}...` : "Write a comment..."}
               value={comment}
               onChange={(e) => setComment(e.target.value)}
             />
@@ -53,5 +71,5 @@ const CommentForm = forwardRef((_, ref) => {
   );
 });
 
-
+CommentForm.displayName = "CommentForm";
 export default CommentForm;

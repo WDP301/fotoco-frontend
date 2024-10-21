@@ -9,7 +9,7 @@ import {
   CarouselNext,
 } from '@/components/ui/carousel';
 import Image from 'next/image';
-import { Photo, SearchPhotoParams } from '@/lib/define';
+import { Photo } from '@/lib/define';
 import Link from 'next/link';
 
 interface GalleryProps {

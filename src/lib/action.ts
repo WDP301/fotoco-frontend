@@ -298,3 +298,23 @@ export const markNotificationAsSeen = async (notificationId: string) => {
 
   return response;
 };
+
+export const inviteUserToGroup = async (groupId: string, email: string) => {
+  const response = await http
+    .post(`/groups/${groupId}/invite`, {
+      email,
+    })
+    .then((res) => {
+      return {
+        isSuccess: true,
+        error: '',
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.error.message || 'Unknown error',
+      };
+    });
+  return response;
+};

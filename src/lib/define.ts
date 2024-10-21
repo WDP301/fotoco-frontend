@@ -232,3 +232,11 @@ export type UserNotification = {
   groupId?: string;
   albumId?: string;
 };
+
+export type SearchUser = {
+  _id: string;
+  username: string;
+  fullName: string;
+  email: string;
+  img: string;
+};

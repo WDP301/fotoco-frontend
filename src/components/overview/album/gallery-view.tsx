@@ -49,7 +49,7 @@ export default function GalleryView({
   return (
     <>
       <div>
-        <Gallery photos={photos} currentPhoto={currentPhoto} searchParams={searchParams} />
+        <Gallery photos={photos} currentPhoto={currentPhoto}/>
       </div>
       <div>
         <ListPagination meta={pageMeta} bookmark="album-name" />

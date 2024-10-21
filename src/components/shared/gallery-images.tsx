@@ -15,10 +15,9 @@ import Link from 'next/link';
 interface GalleryProps {
   photos: Photo[];
   currentPhoto?: Photo; // Optional currentPhoto prop
-  searchParams: SearchPhotoParams;
 }
 
-const Gallery = ({ photos, currentPhoto, searchParams }: GalleryProps) => {
+const Gallery = ({ photos, currentPhoto }: GalleryProps) => {
   const [mainApi, setMainApi] = useState<CarouselApi>();
   const [thumbnailApi, setThumbnailApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
@@ -47,7 +46,7 @@ const Gallery = ({ photos, currentPhoto, searchParams }: GalleryProps) => {
       photos.map((photo, index) => (
         <CarouselItem key={index}>
           <Link
-            href={`/photos/${photo._id}?${searchParams}`}
+            href={`/photos/${photo._id}`}
             className="w-full h-[75vh] flex justify-center"
           >
             <Image

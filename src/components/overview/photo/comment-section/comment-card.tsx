@@ -1,10 +1,4 @@
-import { Comment } from "@/lib/define";
-import {
-    Avatar,
-    AvatarFallback,
-    AvatarImage,
-    } from "@/components/ui/avatar";
-
+import { Comment, Reply } from "@/lib/define";
 import {
     DropdownMenuContent,
     DropdownMenuItem,
@@ -15,12 +9,17 @@ import {
     } from "@/components/ui/dropdown-menu";
 import { CornerDownRight, Ellipsis, Flag } from "lucide-react";
 import AvatarPicture from "@/components/shared/avatar-picture";
+import { getDateFormatted } from "@/lib/utils";
+import { useLanguage } from "@/components/provider/language-provider";
 
 interface CommentCardProps {
-    comment: Comment
+    comment: Comment | Reply
     showIcon?: boolean;
 }
 export function CommentCard({ comment, showIcon }: CommentCardProps) {
+
+    const { dict } = useLanguage();
+
     return (
         <>
             <div className="flex flex-col gap-2 w-full">
@@ -29,10 +28,10 @@ export function CommentCard({ comment, showIcon }: CommentCardProps) {
             {showIcon && (
                 <CornerDownRight className="h-5 w-5 text-muted-foreground" />
             )}
-            <AvatarPicture src='' />
+            <AvatarPicture src={comment.userInfo.img}/>
             <div className="grid gap-1">
-                <div className="font-semibold">{comment.email}</div>
-                <div className="line-clamp-1 text-xs">10/10/2024</div>
+                <div className="font-semibold">{comment.userInfo.fullName}</div>
+                <div className="line-clamp-1 text-xs">{getDateFormatted(comment.createdAt, dict.lang)}</div>
             </div>
         </div>
         <div className="ml-auto text-xs text-muted-foreground">
@@ -55,11 +54,11 @@ export function CommentCard({ comment, showIcon }: CommentCardProps) {
     </div>
     {showIcon ? (
         <div className="whitespace-pre-wrap text-sm pl-10">
-            {comment.body}
+            {comment.content}
         </div>
     ):(
         <div className="whitespace-pre-wrap text-sm">
-            {comment.body}
+            {comment.content}
         </div>
     )}
 </div>

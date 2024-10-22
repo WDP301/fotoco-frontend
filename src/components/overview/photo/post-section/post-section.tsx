@@ -26,7 +26,7 @@ export default function PostSection({photo}:{photo: PhotoResponse}) {
           <Post onCommentIconClick={handleCommentIconClick} photo={photo} />
         </div>
         <div className="overflow-auto mb-4">
-          <CommentList />
+          <CommentList photoId={photo.photo._id}/>
         </div>
       </ScrollArea>
       <div className="sticky bottom-2 w-full bg-[var(--comment-form)]">

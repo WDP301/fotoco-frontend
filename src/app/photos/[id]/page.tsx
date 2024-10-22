@@ -1,8 +1,10 @@
 import PhotoNotFound from "@/components/overview/photo/photo-not-found";
 import PhotoCarousel from "@/components/overview/photo/photo-section/photo-carousel"
 import PostSection from "@/components/overview/photo/post-section/post-section"
+import { siteConfig } from "@/config/site";
 import { getPhotoDetails } from "@/lib/data";
 import { SearchPhotoParams } from "@/lib/define";
+import { getDictionary } from "@/lib/dictionaries";
 import { Metadata } from "next";
 
 type Pros = {
@@ -14,6 +16,7 @@ export async function generateMetadata({
   params,
   searchParams,
 }: Pros): Promise<Metadata> {
+  const dict = await getDictionary();
   const photo = await getPhotoDetails(params.id, searchParams);
   if (!photo || !photo.photo._id) {
     return {
@@ -23,8 +26,11 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${photo.photo.title} - ${photo.photo.owner.fullName}`,
-    description: `${photo.photo.title}`,
+    title: {
+      default: `${photo.photo.title ? photo.photo.title : "Photo"} | ${photo.photo.owner.fullName} | ${siteConfig.name}`,
+      template: `%s | ${siteConfig.name}`,
+    },
+    description: dict.auth.description,
   }
 }
 export default async function PhotoDetailsPage({

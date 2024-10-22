@@ -233,17 +233,6 @@ export type UserNotification = {
   albumId?: string;
 };
 
-// demo comment
-export type Comment = {
-  _id: string;
-  user: User;
-  email: string;
-  comment: string;
-  createdAt: string;
-  updatedAt: string;
-  body: string;
-}
-
 export interface PhotoResponse {
   success: boolean
   photo: PhotoDetails
@@ -271,4 +260,29 @@ export interface Owner {
   username: string
   fullName: string
   img: string
+}
+
+export type Comment = {
+  _id: string;
+  userInfo: {
+    _id: string;
+    username: string;
+    fullName: string;
+    img: string;
+  };
+  content: string;
+  createdAt: string;
+  replies: Reply[]
+}
+
+export type Reply = {
+  _id: string;
+  userInfo: {
+    _id: string;
+    userName: string;
+    fullName: string;
+    img: string;
+  };
+  content: string;
+  createdAt: string;
 }

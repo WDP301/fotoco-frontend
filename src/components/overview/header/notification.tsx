@@ -21,12 +21,11 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { toast } from 'sonner';
 import { useLanguage } from '@/components/provider/language-provider';
-import { useIsSocketConnected, useSocket } from '@/hooks/use-socket';
+import { useSocket } from '@/hooks/use-socket';
 
 export default function Notification({ user }: { user: User }) {
   const router = useRouter();
   const socket = useSocket();
-  const isSocketConnected = useIsSocketConnected();
   const { dict } = useLanguage();
   const [notification, setNotification] = useState<UserNotification[]>([]);
 
@@ -49,13 +48,8 @@ export default function Notification({ user }: { user: User }) {
   );
 
   useEffect(() => {
-    socket?.connect();
-
-    if (!isSocketConnected || !socket) return;
-
-    socket.subscribe('notification', (data) => {
+    socket?.subscribe('notification', (data) => {
       const { except, notification } = data;
-      console.log('>>> notification: ', data);
       if (except !== user._id) {
         const { content } = notification;
         setNotification((prevNotifications) => [notification, ...prevNotifications]);
@@ -77,7 +71,7 @@ export default function Notification({ user }: { user: User }) {
         );
       }
     });
-  }, [socket, isSocketConnected]);
+  }, [socket?.connected]);
 
   useEffect(() => {
     // Fetch notifications when the component mounts
@@ -139,22 +133,22 @@ export default function Notification({ user }: { user: User }) {
                       <div className="flex gap-2">
                         <Avatar className="border-solid border-sky-500 border-2 w-[40px] h-[40px]">
                           <AvatarImage
-                            src={noti?.user?.img || '/avatar/noavatar.png'}
+                            src={noti?.content?.from?.img || '/avatar/noavatar.png'}
                             alt="picture"
                           />
                           <AvatarFallback>{'A'}</AvatarFallback>
                         </Avatar>
                         <div className="flex flex-col justify-around">
                           <p className="text-sm font-medium leading-none">
-                            {noti?.user?.fullName} ({noti?.user?.username})
+                            {noti?.content?.from?.fullName} ({noti?.content?.from?.username})
                           </p>
                           <p className="text-xs leading-none ">
-                            {noti?.user?.email}
+                            {noti?.content?.from?.email}
                           </p>
                         </div>
                       </div>
                       <span className="mt-2">
-                        {noti.content || 'No content'}
+                        {noti?.content?.text || 'No content'}
                       </span>
                       {/*getFormatDistanceToNow*/}
                       <div className="text-xs text-slate-400 mt-2">

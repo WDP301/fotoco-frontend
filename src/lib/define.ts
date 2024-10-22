@@ -247,3 +247,44 @@ export type GroupMember = {
   fullName: string;
   img: string;
 };
+
+// demo comment
+export type Comment = {
+  _id: string;
+  user: User;
+  email: string;
+  comment: string;
+  createdAt: string;
+  updatedAt: string;
+  body: string;
+}
+
+export interface PhotoResponse {
+  success: boolean
+  photo: PhotoDetails
+  prevPhoto?: string
+  nextPhoto?: string
+}
+
+export interface PhotoDetails {
+  _id: string
+  type: string
+  belonging: string
+  owner: Owner
+  title: string
+  url: string
+  mimeType: string
+  fileSize: number
+  tags: string[]
+  createdAt: string
+  updatedAt: string
+  commentsCount: number
+}
+
+export interface Owner {
+  _id: string
+  username: string
+  fullName: string
+  img: string
+}
+

@@ -1,7 +1,8 @@
 'use client';
 
 import SocketIOClient from "@/lib/socket-io";
-import React, { createContext, useRef, useState } from "react";
+import React, { createContext, useEffect, useRef, useState } from "react";
+import { useAuth } from "./auth-provider";
 
 interface SocketContextValue {
   socket: SocketIOClient | null;
@@ -17,7 +18,15 @@ interface Props {
 }
 
 export function SocketIoProvider({ children }: Props) {
+  const { user } = useAuth();
   const socket = useSocketClient();
+
+  useEffect(() => {
+    if (user) {
+      socket?.client?.connect();
+    }
+  }, [user, socket]);
+
   return (
     <SocketContext.Provider
       value={{

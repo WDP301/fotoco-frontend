@@ -176,6 +176,18 @@
         "min": "Mô tả album phải có ít nhất 10 ký tự",
         "max": "Mô tả nhóm phải tối đa 300 ký tự"
       }
+    },
+    "commentSchema": {
+      "content": {
+        "required": "Vui lòng nhập bình luận",
+        "max": "Bình luận phải tối đa 200 ký tự"
+      }
+    },
+    "inviteGroupMemberSchema": {
+      "email": {
+        "required": "Email không được để trống",
+        "invalid": "Email phải là một email hợp lệ"
+      }
     }
   },
   "form": {
@@ -188,7 +200,8 @@
     "register": "Đăng ký",
     "login": "Đăng nhập",
     "forgotPassword": "Quên mật khẩu?",
-    "code": "Mã nhóm"
+    "code": "Mã nhóm",
+    "groupMemberRole": "Vai trò thành viên"
   },
   "button": {
     "login": "Đăng nhập",
@@ -210,6 +223,7 @@
       "list": "Danh sách",
       "gallery": "Thư viện"
     },
+    "joinGroup": "Tham gia nhóm",
     "invite": "Mời"
   },
   "joinGroup": {
@@ -263,6 +277,10 @@
       "private": "Nhóm riêng tư",
       "public": "Nhóm công khai",
       "hidden": "Nhóm ẩn"
+    },
+    "invite": {
+      "title": "Mời tham gia nhóm",
+      "description": "Mời tham gia nhóm"
     },
     "setting": {
       "title": "Cài đặt nhóm",
@@ -379,6 +397,12 @@
     "message": {
       "success": "Album được tạo thành công",
       "error": "Tạo Album thất bại"
+    }
+  },
+  "inviteGroupMember": {
+    "message": {
+      "success": "Mời thành viên thành công",
+      "error": "Mời thành viên thất bại"
     }
   },
   "groupCard": {

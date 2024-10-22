@@ -44,12 +44,12 @@ export function SearchUsers({ groupId }: { groupId: string }) {
   const handleInvite = async () => {
     setIsLoading(true);
     // send invite
-    const result = await inviteUserToGroup(groupId, value);
-    if (!result?.isSuccess) {
-      toast.error(result?.error);
-    } else {
-      toast.success(dict.group.setting.member.invite.success);
-    }
+    // const result = await inviteUserToGroup(groupId, value);
+    // if (!result?.isSuccess) {
+    //   toast.error(result?.error);
+    // } else {
+    //   toast.success(dict.group.setting.member.invite.success);
+    // }
     setIsLoading(false);
   };
 

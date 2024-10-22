@@ -64,6 +64,12 @@ export default class SocketIOClient extends EventEmitter {
     this.socket?.connect();
   }
 
+  reconnect(): void {
+    if (!this.socket?.connected) return;
+    this.socket?.disconnect();
+    setTimeout(() => this.connect())
+  }
+
   disconnect(): void {
     this.socket?.disconnect();
   }

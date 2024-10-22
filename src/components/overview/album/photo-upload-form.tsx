@@ -199,10 +199,15 @@ export default function PhotoUploadForm({
               onUploadProgress,
               cancelToken: cancelSource.token,
               headers: await getAuthHeader(),
+              validateStatus: () => true
             }
           )
           .then((res) => {
-            
+            if (res.data.success) {
+              return res.data;
+            } else {
+              throw new Error(res.data.message);
+            }
           });
 
         return result;

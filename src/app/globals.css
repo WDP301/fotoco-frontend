@@ -35,6 +35,7 @@ body {
     --destructive-foreground: 210 40% 98%;
     --ring: 220.18 58.95% 62.75%;
     --radius: 0.5rem;
+    --comment-form: hsl(0, 0%, 100%);
 
     /* New chart */
     --chart-1: 12 76% 61%;
@@ -64,6 +65,8 @@ body {
     --destructive: 0 86.89% 48.16%;
     --destructive-foreground: 0 0% 0%;
     --ring: 220.18 58.95% 62.75%;
+    --comment-form: hsl(217.5, 9.09%, 17.25%);
+
 
     /* New chart */
     --chart-1: 220 70% 50%;
@@ -101,4 +104,13 @@ body {
   h5 {
     @apply scroll-m-20 text-lg font-semibold tracking-tight;
   }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

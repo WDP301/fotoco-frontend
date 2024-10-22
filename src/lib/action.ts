@@ -4,6 +4,7 @@ import { z } from 'zod';
 import {
   getCreateAlbumSchema,
   getCreateGroupSchema,
+  getInviteGroupMemberSchema,
   getJoinGroupSchema,
   getLoginFormSchema,
   getRegisterFormSchema,
@@ -293,17 +294,20 @@ export const markNotificationAsSeen = async (notificationId: string) => {
     .catch((error) => {
       return {
         isSuccess: false,
-        error: error?.response?.data?.error.message || 'Unknown error',
+        error: error?.response?.data?.message || 'Unknown error',
       };
     });
 
   return response;
 };
 
-export const inviteUserToGroup = async (groupId: string, email: string) => {
+export const acceptInviteToGroup = async (
+  groupId: string,
+  inviteToken: string
+) => {
   const response = await http
-    .post(`/groups/${groupId}/invite`, {
-      email,
+    .post(`/groups/${groupId}/accept-invite`, undefined, {
+      params: { inviteToken },
     })
     .then((res) => {
       return {
@@ -314,7 +318,36 @@ export const inviteUserToGroup = async (groupId: string, email: string) => {
     .catch((error) => {
       return {
         isSuccess: false,
-        error: error?.response?.data?.error.message || 'Unknown error',
+        error: error?.response?.data?.message || 'Unknown error',
+      };
+    });
+  return response;
+};
+
+export const inviteUserToGroup = async (
+  groupId: string,
+  formData: z.infer<ReturnType<typeof getInviteGroupMemberSchema>>
+) => {
+  const {
+    email,
+    role,
+  }: z.infer<ReturnType<typeof getInviteGroupMemberSchema>> = formData;
+
+  const response = await http
+    .post(`/groups/${groupId}/invite`, {
+      email,
+      role,
+    })
+    .then((res) => {
+      return {
+        isSuccess: true,
+        error: '',
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.message || 'Unknown error',
       };
     });
   return response;

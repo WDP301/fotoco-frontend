@@ -16,6 +16,7 @@ import {
   SearchGroupParams,
   SearchPhotoParams,
   SearchRecentViewParams,
+  SearchUser,
   User,
 } from './define';
 import http from '@/config/axios';
@@ -29,41 +30,41 @@ function objectToQueryString(params: Record<string, any>): string {
   return new URLSearchParams(params).toString();
 }
 
-// export const getUser = async () => {
-//   try {
-//     const response = await customFetch('/users/me', {
-//       method: 'GET',
-//       next: { revalidate: 3600 },
-//     });
-
-//     if (!response.ok) {
-//       if (response.status === 401) {
-//         return {} as User;
-//       }
-//       throw new Error('Failed to fetch user data');
-//     }
-
-//     const data = await response.json();
-//     return data.user as User;
-//   } catch (error) {
-//     console.error('Error fetching user data:', error);
-//     return {} as User;
-//   }
-// };
-
-// TODO: Can't use customFetch
 export const getUser = async () => {
-  const response = await http
-    .get('/users/me')
-    .then((res) => {
-      return res.data.user as User;
-    })
-    .catch(() => {
-      return null;
+  try {
+    const response = await customFetch('/users/me', {
+      method: 'GET',
+      next: { revalidate: 3600 },
     });
 
-  return response;
+    if (!response.ok) {
+      if (response.status === 401) {
+        return {} as User;
+      }
+      throw new Error('Failed to fetch user data');
+    }
+
+    const data = await response.json();
+    return data.user as User;
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+    return {} as User;
+  }
 };
+
+// TODO: Can't use customFetch
+// export const getUser = async () => {
+//   const response = await http
+//     .get('/users/me')
+//     .then((res) => {
+//       return res.data.user as User;
+//     })
+//     .catch(() => {
+//       return null;
+//     });
+
+//   return response;
+// };
 
 const pageMetaDefault = {
   totalPages: 0,
@@ -307,6 +308,7 @@ export default async function getBase64(imageUrl: string) {
   }
 }
 
+
 export const getPhotoDetails = async (
   photoId: string,
   SearchPhotoParams: SearchPhotoParams
@@ -323,3 +325,19 @@ export const getPhotoDetails = async (
     return {} as PhotoResponse;
   }
 };
+
+export const getUsers = async (search: string) => {
+  try {
+    const queryString = objectToQueryString({ search });
+    const response = await customFetch(`/users?${queryString}`, {
+      method: 'GET',
+    })
+      .then((res) => res.json())
+      .catch(() => null);
+
+    return (response?.users as SearchUser[]) || [];
+  } catch (error) {
+    return [] as SearchUser[];
+  }
+};
+

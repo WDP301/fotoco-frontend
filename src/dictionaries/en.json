@@ -218,7 +218,9 @@
     "viewMode": {
       "list": "List",
       "gallery": "Gallery"
-    }
+    },
+    "joinGroup": "Join Group",
+    "invite": "Invite"
   },
   "joinGroup": {
     "title": "Join Group",
@@ -272,6 +274,10 @@
       "public": "Public Group",
       "hidden": "Hidden Group"
     },
+    "invite": {
+      "title": "Accept Invite to Group",
+      "description": "Accept Invite to Group"
+    },
     "setting": {
       "title": "Group Settings",
       "description": "You can manage your group settings here",
@@ -281,7 +287,18 @@
       },
       "member": {
         "title": "Members",
-        "description": "Manage your group members"
+        "description": "Manage your group members",
+        "invite": {
+          "title": "Invite members",
+          "description": "Invite your friends to join this group",
+          "success": "Invitation sent successfully",
+          "error": "Invitation failed",
+          "search": {
+            "heading": "Invite group members...",
+            "placeholder": "Search users...",
+            "noResult": "No user found"
+          }
+        }
       }
     }
   },

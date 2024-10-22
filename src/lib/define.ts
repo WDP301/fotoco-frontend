@@ -216,21 +216,29 @@ export type Photo = {
 
 export type UserNotification = {
   _id: string;
-  user: {
-    _id: string;
-    username: string;
-    email: string;
-    fullName: string;
-    img: string;
-  };
   type: string;
-  receivers: string;
-  content: string;
+  receiver: string;
+  content: {
+    from: {
+      _id: string;
+      username: string;
+      email: string;
+      fullName: string;
+      img: string;
+    };
+    text: string;
+  };
   seen: string[];
   redirectUrl: string;
   createdAt: string;
-  groupId?: string;
-  albumId?: string;
+};
+
+export type SearchUser = {
+  _id: string;
+  username: string;
+  fullName: string;
+  email: string;
+  img: string;
 };
 
 // demo comment

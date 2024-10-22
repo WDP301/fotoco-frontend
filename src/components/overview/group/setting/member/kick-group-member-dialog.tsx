@@ -22,6 +22,7 @@ import { GroupInfo, GroupMember, User } from '@/lib/define';
 // import { useSocketClient } from '@/components/provider/socket-io-provider';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import { useLanguage } from '@/components/provider/language-provider';
 export function KickGroupMemberDialog({
     groupId,
     userId,
@@ -36,6 +37,7 @@ export function KickGroupMemberDialog({
     const [result, setResult] = useState<
         { error?: string; errorType?: string; isSuccess?: boolean } | undefined
     >(undefined);
+    const { dict } = useLanguage();
 
     const handleCheckboxChange = (event: any) => {
         setCheckbox(!checkbox);
@@ -50,7 +52,7 @@ export function KickGroupMemberDialog({
             // if (socket && result?.data?.receivers) {
             //     socket.emit('sendNotification', result?.data);
             // }
-            toast.success('There is an imposter among us');
+            toast.success(dict.kickMemberGroup.message.success);
             setResult({ isSuccess: true });
             router.refresh();
         }
@@ -58,25 +60,24 @@ export function KickGroupMemberDialog({
     };
     return (
         <>
-            {result?.error && (
+            {/* {result?.error && (
                 <Alert variant="destructive">
                     <AlertTitle>Error</AlertTitle>
                     <AlertDescription>{result.error}</AlertDescription>
                 </Alert>
-            )}
+            )} */}
             <Dialog>
                 <DialogTrigger asChild>
                     <div className=" w-full flex justify-between relative select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 cursor-pointer hover:bg-accent hover:text-accent-foreground">
-                        <div>Kick</div>
+                        <div>{dict.kickMemberGroup.dialogTrigger}</div>
                         <UserMinus className="w-5 h-5" />
                     </div>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-md">
                     <DialogHeader>
-                        <DialogTitle>Kick this people</DialogTitle>
+                        <DialogTitle>{dict.kickMemberGroup.dialogTitle}</DialogTitle>
                         <DialogDescription>
-                            This person may have relationship with the group,
-                            are you sure to kick this person?
+                            {dict.kickMemberGroup.dialogDescription}
                         </DialogDescription>
                     </DialogHeader>
                     <div className="items-top flex space-x-2">
@@ -90,10 +91,10 @@ export function KickGroupMemberDialog({
                                 htmlFor="terms1"
                                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                             >
-                                Are you sure ?
+                                {dict.kickMemberGroup.labelCheckbox}
                             </label>
                             <p className="text-sm text-muted-foreground">
-                                You may miss him/her
+                                {dict.kickMemberGroup.contentCheckbox}
                             </p>
                         </div>
                     </div>
@@ -107,7 +108,7 @@ export function KickGroupMemberDialog({
                             {isLoading && (
                                 <Icons.spinner className=" mr-2 h-4 w-4 animate-spin" />
                             )}
-                            Kick
+                            {dict.kickMemberGroup.buttonConfirm}
                         </Button>
                     </DialogFooter>
                 </DialogContent>

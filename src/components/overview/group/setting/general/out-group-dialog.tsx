@@ -1,5 +1,6 @@
 'use client';
 
+import { useLanguage } from '@/components/provider/language-provider';
 // import { useSocket } from '@/components/socket-io-provider';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -28,6 +29,7 @@ export default function OutGroupDialog({
     const router = useRouter();
     const [checkbox, setCheckbox] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const { dict } = useLanguage();
 
     const handleCheckboxChange = (event: any) => {
         setCheckbox(!checkbox);
@@ -42,7 +44,7 @@ export default function OutGroupDialog({
             // if (socket && result?.data?.receivers) {
             //     socket.emit('sendNotification', result?.data);
             // }
-            toast.success(`You have left the group successfully`);
+            toast.success(dict.outGroup.message.success);
             router.refresh();
         }
         setIsLoading(false);
@@ -50,13 +52,13 @@ export default function OutGroupDialog({
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button variant="destructive">Out group</Button>
+                <Button variant="destructive">{dict.outGroup.button}</Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>Out group</DialogTitle>
+                    <DialogTitle>{dict.outGroup.dialogTitle}</DialogTitle>
                     <DialogDescription>
-                        Want to get out of the group?
+                        {dict.outGroup.dialogDescription}
                     </DialogDescription>
                 </DialogHeader>
                 <div className="items-top flex space-x-2">
@@ -70,10 +72,10 @@ export default function OutGroupDialog({
                             htmlFor="terms1"
                             className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                         >
-                            Are you sure ?
+                            {dict.outGroup.labelCheckbox}
                         </label>
                         <p className="text-sm text-muted-foreground">
-                            You may lose all of these memories
+                            {dict.outGroup.contentCheckbox}
                         </p>
                     </div>
                 </div>
@@ -84,7 +86,7 @@ export default function OutGroupDialog({
                         variant="destructive"
                         onClick={handleOutGroup}
                     >
-                        Get out
+                        {dict.outGroup.buttonConfirm}
                     </Button>
                 </DialogFooter>
             </DialogContent>

@@ -59,10 +59,18 @@
   "joinNow": {
     "intro": "Join Us and Keep Your Group's Story Alive",
     "typewriter": [
-      { "text": "Preserve" },
-      { "text": "Your" },
-      { "text": "Group's" },
-      { "text": "Memories" },
+      {
+        "text": "Preserve"
+      },
+      {
+        "text": "Your"
+      },
+      {
+        "text": "Group's"
+      },
+      {
+        "text": "Memories"
+      },
       {
         "text": "in One Place",
         "className": "text-blue-500 dark:text-blue-500"
@@ -261,8 +269,16 @@
       "Login page",
       "Forgot password page"
     ],
-    "legalLinks": ["Policy", "Terms of Use", "Privacy"],
-    "supportLinks": ["Facebook", "Google", "Youtube"]
+    "legalLinks": [
+      "Policy",
+      "Terms of Use",
+      "Privacy"
+    ],
+    "supportLinks": [
+      "Facebook",
+      "Google",
+      "Youtube"
+    ]
   },
   "errorMessage": {
     "noGroupFound": "No group found",
@@ -422,10 +438,16 @@
   },
   "searchBar": {
     "group": {
-      "placeholders": ["Search groups here", "Find groups by title"]
+      "placeholders": [
+        "Search groups here",
+        "Find groups by title"
+      ]
     },
     "album": {
-      "placeholders": ["Search albums here", "Find albums by title"]
+      "placeholders": [
+        "Search albums here",
+        "Find albums by title"
+      ]
     },
     "user": {
       "placeholders": [
@@ -463,6 +485,30 @@
       "owner": "Owner",
       "member": "Member",
       "contributor": "Contributor"
+    }
+  },
+  "outGroup": {
+    "button": "Out group",
+    "dialogTitle": "Out group",
+    "dialogDescription": "Want to get out of the group?",
+    "labelCheckbox": "Are you sure",
+    "contentCheckbox": "You may lose all of these memories",
+    "buttonConfirm": "Get out",
+    "message": {
+      "success": "You have left the group successfully",
+      "error": "Failed to leave the group"
+    }
+  },
+  "kickMemberGroup": {
+    "dialogTrigger": "Kick",
+    "dialogTitle": "Kick this people",
+    "dialogDescription": "This person may have relationship with the group, are you sure to kick this person?",
+    "labelCheckbox": "Are you sure ?",
+    "contentCheckbox": "You may miss him/her",
+    "buttonConfirm": "Kick",
+    "message": {
+      "success": "There is an imposter among us",
+      "error": "Failed to kick member"
     }
   }
 }

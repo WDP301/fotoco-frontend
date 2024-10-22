@@ -59,11 +59,22 @@
   "joinNow": {
     "intro": "Tham gia và lưu giữ câu chuyện của nhóm bạn",
     "typewriter": [
-      { "text": "Lưu giữ" },
-      { "text": "Câu chuyện" },
-      { "text": "của" },
-      { "text": "Nhóm bạn" },
-      { "text": "ở một nơi", "className": "text-blue-500 dark:text-blue-500" }
+      {
+        "text": "Lưu giữ"
+      },
+      {
+        "text": "Câu chuyện"
+      },
+      {
+        "text": "của"
+      },
+      {
+        "text": "Nhóm bạn"
+      },
+      {
+        "text": "ở một nơi",
+        "className": "text-blue-500 dark:text-blue-500"
+      }
     ],
     "button": {
       "login": "Đăng nhập",
@@ -258,8 +269,16 @@
       "Trang đăng nhập",
       "Trang quên mật khẩu"
     ],
-    "legalLinks": ["Chính sách", "Điều khoản sử dụng", "Riêng tư"],
-    "supportLinks": ["Facebook", "Google", "Youtube"]
+    "legalLinks": [
+      "Chính sách",
+      "Điều khoản sử dụng",
+      "Riêng tư"
+    ],
+    "supportLinks": [
+      "Facebook",
+      "Google",
+      "Youtube"
+    ]
   },
   "errorMessage": {
     "noGroupFound": "Không tìm thấy nhóm",
@@ -419,10 +438,16 @@
   },
   "searchBar": {
     "group": {
-      "placeholders": ["Tìm nhóm của bạn ở đây", "Tìm nhóm theo tiêu đề"]
+      "placeholders": [
+        "Tìm nhóm của bạn ở đây",
+        "Tìm nhóm theo tiêu đề"
+      ]
     },
     "album": {
-      "placeholders": ["Tìm album của bạn ở đây", "Tìm album theo tiêu đề"]
+      "placeholders": [
+        "Tìm album của bạn ở đây",
+        "Tìm album theo tiêu đề"
+      ]
     },
     "user": {
       "placeholders": [
@@ -460,6 +485,30 @@
       "owner": "Chủ sở hữu",
       "member": "Thành viên",
       "contributor": "Người đóng góp"
+    }
+  },
+  "outGroup": {
+    "button": "Rời nhóm",
+    "dialogTitle": "Rời nhóm",
+    "dialogDescription": "Muốn rời nhóm phải không?",
+    "labelCheckbox": "Bạn chắc chứ ?",
+    "contentCheckbox": "Bạn sẽ mất tất cả ký ức về nhóm",
+    "buttonConfirm": "Ra khỏi đây",
+    "message": {
+      "success": "Bạn đã rời nhóm thành công",
+      "error": "Rời nhóm thất bại"
+    }
+  },
+  "kickMemberGroup": {
+    "dialogTrigger": "Đá",
+    "dialogTitle": "Đá người này",
+    "dialogDescription": "Người này có thể có mối quan hệ với nhóm, bạn có chắc chắn sẽ đuổi người này không?",
+    "labelCheckbox": "Chắc chưa ?",
+    "contentCheckbox": "Bạn có thể sẽ nhớ người này",
+    "buttonConfirm": "Đá",
+    "message": {
+      "success": "Có kẻ mạo danh trong số chúng ta",
+      "error": "Thất bại trong việc đá người này"
     }
   }
 }

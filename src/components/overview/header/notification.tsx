@@ -133,22 +133,22 @@ export default function Notification({ user }: { user: User }) {
                       <div className="flex gap-2">
                         <Avatar className="border-solid border-sky-500 border-2 w-[40px] h-[40px]">
                           <AvatarImage
-                            src={noti?.user?.img || '/avatar/noavatar.png'}
+                            src={noti?.content?.from?.img || '/avatar/noavatar.png'}
                             alt="picture"
                           />
                           <AvatarFallback>{'A'}</AvatarFallback>
                         </Avatar>
                         <div className="flex flex-col justify-around">
                           <p className="text-sm font-medium leading-none">
-                            {noti?.user?.fullName} ({noti?.user?.username})
+                            {noti?.content?.from?.fullName} ({noti?.content?.from?.username})
                           </p>
                           <p className="text-xs leading-none ">
-                            {noti?.user?.email}
+                            {noti?.content?.from?.email}
                           </p>
                         </div>
                       </div>
                       <span className="mt-2">
-                        {noti.content || 'No content'}
+                        {noti?.content?.text || 'No content'}
                       </span>
                       {/*getFormatDistanceToNow*/}
                       <div className="text-xs text-slate-400 mt-2">

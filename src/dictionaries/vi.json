@@ -181,6 +181,7 @@
       "content": {
         "required": "Vui lòng nhập bình luận",
         "max": "Bình luận phải tối đa 200 ký tự"
+      }
     },
     "inviteGroupMemberSchema": {
       "email": {

@@ -240,3 +240,10 @@ export type SearchUser = {
   email: string;
   img: string;
 };
+
+export type GroupMember = {
+  _id: string;
+  username: string;
+  fullName: string;
+  img: string;
+};

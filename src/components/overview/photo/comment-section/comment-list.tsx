@@ -61,7 +61,7 @@ export default function CommentList({ photoId }: { photoId: string }) {
           {comments.map((comment) => (
             <div key={comment._id} className="mb-4">
               <CommentCard comment={comment} showIcon={false} />
-              <ReplyCommentForm replyTo={comment.userInfo.username} />
+              <ReplyCommentForm replyTo={comment.userInfo.fullName} />
               <ReplyList replies={comment.replies}/>
             </div>
           ))}

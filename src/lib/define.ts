@@ -257,6 +257,7 @@ export interface PhotoResponse {
   photo: PhotoDetails
   prevPhoto?: string
   nextPhoto?: string
+  isReacted: boolean
 }
 
 export interface PhotoDetails {
@@ -272,6 +273,7 @@ export interface PhotoDetails {
   createdAt: string
   updatedAt: string
   commentsCount: number
+  reactsCount: number
 }
 
 export interface Owner {

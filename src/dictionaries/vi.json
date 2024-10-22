@@ -176,6 +176,12 @@
         "min": "Mô tả album phải có ít nhất 10 ký tự",
         "max": "Mô tả nhóm phải tối đa 300 ký tự"
       }
+    },
+    "inviteGroupMemberSchema": {
+      "email": {
+        "required": "Email không được để trống",
+        "invalid": "Email phải là một email hợp lệ"
+      }
     }
   },
   "form": {
@@ -188,7 +194,8 @@
     "register": "Đăng ký",
     "login": "Đăng nhập",
     "forgotPassword": "Quên mật khẩu?",
-    "code": "Mã nhóm"
+    "code": "Mã nhóm",
+    "groupMemberRole": "Vai trò thành viên"
   },
   "button": {
     "login": "Đăng nhập",
@@ -384,6 +391,12 @@
     "message": {
       "success": "Album được tạo thành công",
       "error": "Tạo Album thất bại"
+    }
+  },
+  "inviteGroupMember": {
+    "message": {
+      "success": "Mời thành viên thành công",
+      "error": "Mời thành viên thất bại"
     }
   },
   "groupCard": {

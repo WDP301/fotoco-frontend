@@ -179,6 +179,12 @@
         "min": "Album description must be at least 10 characters.",
         "max": "Album description must be maximum 300 characters."
       }
+    },
+    "inviteGroupMemberSchema": {
+      "email": {
+        "required": "Email can not be empty",
+        "invalid": "Email must be a valid email"
+      }
     }
   },
   "form": {
@@ -191,7 +197,8 @@
     "register": "Register",
     "login": "Login",
     "forgotPassword": "Forgot password?",
-    "code": "Group code"
+    "code": "Group code",
+    "groupMemberRole": "Group member role"
   },
   "button": {
     "login": "Login",
@@ -374,6 +381,12 @@
       "public": "A public group is open to everyone. Anyone can view, join, and participate in discussions and activities within the group. This setting is ideal for community-oriented groups where information is shared openly and collaboration is encouraged. Members can freely invite others to join, and all group content is visible to the public.",
       "private": "A private group restricts access to invited members only. Only those who have been explicitly invited can view the group, its members, and its content. This setting is suitable for discussions or activities that require confidentiality or a limited audience. Members can manage invitations and control who can join, ensuring that sensitive information remains within the group.",
       "hidden": "A hidden group is not visible to the public and does not appear in search results. Only invited members can access the group, and they cannot see any information about the group unless they are part of it. This setting is ideal for discussions that require maximum confidentiality and discretion. Even the existence of the group remains unknown to non-members, making it suitable for sensitive topics or private collaborations."
+    }
+  },
+  "inviteGroupMember": {
+    "message": {
+      "success": "Invitation sent successfully!",
+      "error": "Invitation failed!"
     }
   },
   "createAlbum": {

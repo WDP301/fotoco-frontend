@@ -69,18 +69,18 @@ export const getCreateGroupSchema = (lang: Locale) => {
       .string({ required_error: messages.title.required })
       .min(3, { message: messages.title.min })
       .max(50, { message: messages.title.max }),
-    
+
     description: z
       .string()
       .optional()
       .refine((val) => val === undefined || val === '' || val.length >= 10, {
-        message: messages.description.min
+        message: messages.description.min,
       })
       .refine((val) => val === undefined || val === '' || val.length <= 300, {
-        message: messages.description.max
+        message: messages.description.max,
       }),
 
-    type: z.enum(['PUBLIC', 'PRIVATE', 'HIDDEN'])
+    type: z.enum(['PUBLIC', 'PRIVATE', 'HIDDEN']),
   });
 };
 
@@ -92,15 +92,15 @@ export const getCreateAlbumSchema = (lang: Locale) => {
       .string({ required_error: messages.title.required })
       .min(2, { message: messages.title.min })
       .max(50, { message: messages.title.max }),
-    
+
     description: z
       .string()
       .optional()
       .refine((val) => val === undefined || val === '' || val.length >= 10, {
-        message: messages.description.min
+        message: messages.description.min,
       })
       .refine((val) => val === undefined || val === '' || val.length <= 300, {
-        message: messages.description.max
+        message: messages.description.max,
       }),
   });
 };
@@ -112,5 +112,16 @@ export const getCommentFormSchema = (lang: Locale) => {
     content: z
       .string({ required_error: messages.content.required })
       .max(300, { message: messages.content.max }),
+  });
+};
+
+export const getInviteGroupMemberSchema = (lang: Locale) => {
+  const { inviteGroupMemberSchema: messages } = getValidationMessages(lang);
+
+  return z.object({
+    email: z
+      .string({ required_error: messages.email.required })
+      .email({ message: messages.email.invalid }),
+    role: z.enum(['MEMBER', 'OWNER']),
   });
 };

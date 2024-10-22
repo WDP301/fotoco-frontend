@@ -181,6 +181,11 @@
       "content": {
         "required": "Vui lòng nhập bình luận",
         "max": "Bình luận phải tối đa 200 ký tự"
+    },
+    "inviteGroupMemberSchema": {
+      "email": {
+        "required": "Email không được để trống",
+        "invalid": "Email phải là một email hợp lệ"
       }
     }
   },
@@ -194,7 +199,8 @@
     "register": "Đăng ký",
     "login": "Đăng nhập",
     "forgotPassword": "Quên mật khẩu?",
-    "code": "Mã nhóm"
+    "code": "Mã nhóm",
+    "groupMemberRole": "Vai trò thành viên"
   },
   "button": {
     "login": "Đăng nhập",
@@ -392,6 +398,12 @@
       "error": "Tạo Album thất bại"
     }
   },
+  "inviteGroupMember": {
+    "message": {
+      "success": "Mời thành viên thành công",
+      "error": "Mời thành viên thất bại"
+    }
+  },
   "groupCard": {
     "members": "thành viên"
   },
@@ -399,6 +411,32 @@
     "dark": "Tối",
     "light": "Sáng",
     "system": "Hệ thống"
+  },
+  "common": {
+    "orContinueWith": "Hoặc tiếp tục với",
+    "searchResultsFor": "Kết quả tìm kiếm cho"
+  },
+  "searchBar": {
+    "group": {
+      "placeholders": ["Tìm nhóm của bạn ở đây", "Tìm nhóm theo tiêu đề"]
+    },
+    "album": {
+      "placeholders": ["Tìm album của bạn ở đây", "Tìm album theo tiêu đề"]
+    },
+    "user": {
+      "placeholders": [
+        "Tìm người dùng ở đây",
+        "Tìm người dùng theo tên",
+        "Tìm người dùng theo biệt danh"
+      ]
+    },
+    "photo": {
+      "placeholders": [
+        "Tìm ảnh của bạn ở đây",
+        "Tìm ảnh theo tiêu đề",
+        "Tìm ảnh theo thẻ"
+      ]
+    }
   },
   "noti": {
     "myNotifications": "Thông báo của tôi",

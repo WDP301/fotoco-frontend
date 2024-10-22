@@ -4,6 +4,7 @@ import { z } from 'zod';
 import {
   getCreateAlbumSchema,
   getCreateGroupSchema,
+  getInviteGroupMemberSchema,
   getJoinGroupSchema,
   getLoginFormSchema,
   getRegisterFormSchema,
@@ -300,7 +301,6 @@ export const markNotificationAsSeen = async (notificationId: string) => {
   return response;
 };
 
-
 export const acceptInviteToGroup = async (
   groupId: string,
   inviteToken: string
@@ -324,10 +324,19 @@ export const acceptInviteToGroup = async (
   return response;
 };
 
-export const inviteUserToGroup = async (groupId: string, email: string) => {
+export const inviteUserToGroup = async (
+  groupId: string,
+  formData: z.infer<ReturnType<typeof getInviteGroupMemberSchema>>
+) => {
+  const {
+    email,
+    role,
+  }: z.infer<ReturnType<typeof getInviteGroupMemberSchema>> = formData;
+
   const response = await http
     .post(`/groups/${groupId}/invite`, {
       email,
+      role,
     })
     .then((res) => {
       return {

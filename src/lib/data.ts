@@ -8,6 +8,7 @@ import {
   GroupInfo,
   GroupUser,
   PageMeta,
+  PhotoResponse,
   Photo,
   RecentPhoto,
   SearchAlbumParams,
@@ -307,6 +308,24 @@ export default async function getBase64(imageUrl: string) {
   }
 }
 
+
+export const getPhotoDetails = async (
+  photoId: string,
+  SearchPhotoParams: SearchPhotoParams
+) => {
+  try {
+    const queryString = objectToQueryString(SearchPhotoParams);
+    const response = await customFetch(`/photos/${photoId}?${queryString}`, {
+      method: 'GET',
+    })
+      .then((res) => res.json())
+      .catch((error) => null);
+    return response as PhotoResponse;
+  } catch (error) {
+    return {} as PhotoResponse;
+  }
+};
+
 export const getUsers = async (search: string) => {
   try {
     const queryString = objectToQueryString({ search });
@@ -321,3 +340,4 @@ export const getUsers = async (search: string) => {
     return [] as SearchUser[];
   }
 };
+

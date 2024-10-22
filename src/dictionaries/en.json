@@ -180,6 +180,11 @@
         "max": "Album description must be maximum 300 characters."
       }
     },
+    "commentSchema": {
+      "content": {
+        "required": "Content can not be empty",
+        "max": "Content must be maximum 200 characters."
+    },
     "inviteGroupMemberSchema": {
       "email": {
         "required": "Email can not be empty",

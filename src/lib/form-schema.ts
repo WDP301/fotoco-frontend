@@ -105,6 +105,16 @@ export const getCreateAlbumSchema = (lang: Locale) => {
   });
 };
 
+export const getCommentFormSchema = (lang: Locale) => {
+  const { commentSchema: messages } = getValidationMessages(lang);
+
+  return z.object({
+    content: z
+      .string({ required_error: messages.content.required })
+      .max(300, { message: messages.content.max }),
+  });
+};
+
 export const getInviteGroupMemberSchema = (lang: Locale) => {
   const { inviteGroupMemberSchema: messages } = getValidationMessages(lang);
 

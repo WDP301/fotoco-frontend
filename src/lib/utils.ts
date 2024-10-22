@@ -7,6 +7,7 @@ import { Locale } from './define';
 import en from '../dictionaries/en.json';
 import vi from '../dictionaries/vi.json';
 import { ReadonlyURLSearchParams } from 'next/navigation';
+import { getImageSize } from 'react-image-size';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -124,3 +125,21 @@ export const interpolateString = (
     (_, key) => variables[key.trim()] || ''
   );
 };
+
+export const fetchPhotoSize = async (url: string) => {
+  const dimensions = await getImageSize(url)
+        .then((size) => {
+            return {
+                width: size.width,
+                height: size.height,
+            };
+        })
+        .catch((error) => {
+            console.log(error);
+            return {
+                width: 0,
+                height: 0,
+            };
+        });
+    return dimensions;
+}

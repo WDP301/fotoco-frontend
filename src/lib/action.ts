@@ -352,3 +352,21 @@ export const inviteUserToGroup = async (
     });
   return response;
 };
+
+export const outGroup = async (groupId: string, userId: string) => {
+  const response = await http
+    .put(`groups/${groupId}/out/${userId}`, undefined)
+    .then((res) => {
+      return {
+        isSuccess: true,
+        error: '',
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.message || 'Unknown error',
+      };
+    });
+  return response;
+};

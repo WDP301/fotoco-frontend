@@ -241,6 +241,13 @@ export type SearchUser = {
   img: string;
 };
 
+export type GroupMember = {
+  _id: string;
+  username: string;
+  fullName: string;
+  img: string;
+};
+
 // demo comment
 export type Comment = {
   _id: string;
@@ -280,3 +287,4 @@ export interface Owner {
   fullName: string
   img: string
 }
+

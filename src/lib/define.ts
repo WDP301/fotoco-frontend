@@ -252,7 +252,7 @@ export type Comment = {
   body: string;
 }
 
-export interface PhotoResponse {
+export type PhotoResponse = {
   success: boolean
   photo: PhotoDetails
   prevPhoto?: string
@@ -260,7 +260,7 @@ export interface PhotoResponse {
   isReacted: boolean
 }
 
-export interface PhotoDetails {
+export type PhotoDetails = {
   _id: string
   type: string
   belonging: string
@@ -276,9 +276,25 @@ export interface PhotoDetails {
   reactsCount: number
 }
 
-export interface Owner {
+export type Owner = {
   _id: string
   username: string
   fullName: string
   img: string
+}
+
+export type ReactList = {
+  success: boolean
+  reacts: React[]
+}
+
+export type React = {
+  _id: string
+  createdAt: string
+  userInfo: {
+    _id: string
+    username: string
+    fullName: string
+    img?: string
+  }
 }

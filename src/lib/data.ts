@@ -18,6 +18,7 @@ import {
   SearchRecentViewParams,
   SearchUser,
   User,
+  React,
 } from './define';
 import http from '@/config/axios';
 import { getPlaiceholder } from 'plaiceholder';
@@ -341,22 +342,15 @@ export const getUsers = async (search: string) => {
   }
 };
 
-export const reactPhoto = async (photoId: string) => {
-  const response = await http
-      .post(`/photos/${photoId}/react`)
-      .then((res) => {
-          return {
-              isSuccess: true,
-              error: '',
-              data: res.data,
-          };
-      })
-      .catch((error) => {
-          return {
-              isSuccess: false,
-              error: error?.response?.data?.error.message || 'Unknown error',
-              data: null,
-          };
-      });
-  return response;
-};
+export const getReactListByPhotoId = async (photoId: string) => {
+  try {
+    const response = await customFetch(`/photos/${photoId}/reacts`, {
+      method: 'GET',
+    })
+      .then((res) => res.json())
+      .catch(() => null);
+      return (response?.reacts as React[]) || [];
+  } catch (error) {
+    return [] as React[];
+  }
+}

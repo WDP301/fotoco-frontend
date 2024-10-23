@@ -1,10 +1,12 @@
-import { reactPhoto } from "@/lib/data";
+import { reactPhoto } from "@/lib/action";
 import { PhotoResponse } from "@/lib/define";
 import { formatNumber } from "@/lib/utils";
 import { HeartFilledIcon } from "@radix-ui/react-icons";
 import { Heart, MessageCircleIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import ReactList from "./react-list";
+import { getReactListByPhotoId } from "@/lib/data";
 
 export default function ReactSection({
     photo,
@@ -43,6 +45,11 @@ export default function ReactSection({
         }
     }
 
+    const handleReactUpdate = async () => {
+        const reacts = await getReactListByPhotoId(photo?.photo._id);
+        setReactsCount(reacts.length);
+    };
+
     return (
         <>
             <div className="flex items-center mr-5">
@@ -51,7 +58,11 @@ export default function ReactSection({
                 ): (
                     <HeartFilledIcon onClick={handleReact} className="h-5 w-5 mr-2 hover:text-primary cursor-pointer transition-colors duration-200" />
                 )}
-                <div className="font-semibold">{formatNumber(reactsCount)}</div>
+                <ReactList 
+                    reactsCount={reactsCount}
+                    photoId={photo?.photo._id}
+                    onReactUpdate={handleReactUpdate}
+                />
             </div>
             <div className="flex items-center mr-5">
                 <MessageCircleIcon 

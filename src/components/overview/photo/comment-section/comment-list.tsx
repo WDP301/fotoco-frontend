@@ -4,26 +4,17 @@ import { Separator } from "@/components/ui/separator";
 import { CommentCard } from "./comment-card";
 import ReplyList from "./reply-list";
 import SortSelect from "@/components/shared/sort-select";
-import { getCommentsByPhotoId } from "@/lib/data";
-import { useEffect, useState } from "react";
-import SpinLoading from "@/components/shared/spin-loading";
 import { Comment } from "@/lib/define";
 
-export default function CommentList({ photoId, onReplySuccess }: { photoId: string, onReplySuccess?: () => void }) {
-
-  const [comments, setComments] = useState<Comment[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchComments = async () => {
-      const { comments } = await getCommentsByPhotoId(photoId);
-      setComments(comments);
-      setLoading(false);
-    };
-
-    fetchComments();
-  }, [photoId]);
-
+export default function CommentList({
+  photoId,
+  comments,
+  onSuccess
+} : {
+  photoId: string
+  comments: Comment[]
+  onSuccess?: () => void
+}) {
   // const sortOptions = [
   //   {
   //     label: "Newest",
@@ -36,10 +27,6 @@ export default function CommentList({ photoId, onReplySuccess }: { photoId: stri
   //     field: "sort",
   //   },
   // ];
-
-  if (loading) {
-    return <SpinLoading />
-  }
 
   return (
     <>
@@ -60,7 +47,12 @@ export default function CommentList({ photoId, onReplySuccess }: { photoId: stri
           {comments.map((comment) => (
             <div key={comment._id} className="mb-4">
               <CommentCard comment={comment} showIcon={false} />
-              <ReplyCommentForm replyTo={comment.userInfo.fullName} replyToId={comment._id} photoId={photoId} onSuccess={onReplySuccess} />
+              <ReplyCommentForm 
+                replyTo={comment.userInfo.fullName}
+                replyToId={comment._id}
+                photoId={photoId}
+                onSuccess={onSuccess}
+              />
               <ReplyList replies={comment.replies}/>
             </div>
           ))}

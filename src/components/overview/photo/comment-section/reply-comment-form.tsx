@@ -12,10 +12,6 @@ export default function ReplyCommentForm({replyTo, replyToId, photoId, onSuccess
             commentFormRef.current?.focusTextArea();
         }, 0);
     }
-    
-    const handleReplySubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        
-    }
 
     return (
         <>

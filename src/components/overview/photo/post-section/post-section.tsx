@@ -3,10 +3,10 @@ import CommentList from "../comment-section/comment-list";
 import CommentForm from "../comment-section/comment-form";
 import Post from "./post";
 import React, { useEffect, useRef, useState } from "react";
-import { PhotoResponse, SearchPhotoParams } from "@/lib/define";
+import { Comment, PhotoResponse, SearchPhotoParams } from "@/lib/define";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
-import { getPhotoDetails } from "@/lib/data";
+import { getCommentsByPhotoId, getPhotoDetails } from "@/lib/data";
 import SpinLoading from "@/components/shared/spin-loading";
 
 export default function PostSection({
@@ -22,6 +22,7 @@ export default function PostSection({
 
   const commentFormRef = useRef<CommentFormRef>(null);
   const [photo, setPhoto] = useState<PhotoResponse | null>(initialPhoto);
+  const [comments, setComments] = useState<Comment[]>([]);
   const [refreshKey, setRefreshKey] = useState(0);
 
   const handleCommentIconClick = () => {
@@ -31,17 +32,26 @@ export default function PostSection({
   useEffect(() => {
     if (photo && photo.photo._id) {
       getPhotoDetails(photo.photo._id, searchParams).then(setPhoto);
+      const fetchComments = async () => {
+        const { comments } = await getCommentsByPhotoId(photo.photo._id);
+        setComments(comments as Comment[]);
+      };
+      fetchComments();
     }
   }, [photo?.photo._id, searchParams]);
 
   const handleCommentSuccess = () => {
-    setRefreshKey(prev => prev + 1);
-    
     if (photo && photo.photo._id) {
+      setRefreshKey(refreshKey + 1);
       getPhotoDetails(photo.photo._id, searchParams)
         .then(setPhoto)
         .catch(error => {
           console.error("Error fetching photo details after comment success:", error);
+        });
+      getCommentsByPhotoId(photo.photo._id)
+        .then(({ comments }) => setComments(comments as Comment[]))
+        .catch(error => {
+          console.error("Error fetching comments after comment success:", error);
         });
     }
   };
@@ -58,10 +68,10 @@ export default function PostSection({
     <div className="flex flex-col h-screen">
       <ScrollArea className="flex-grow overflow-auto">
         <div>
-          <Post key={refreshKey} onCommentIconClick={handleCommentIconClick} photo={photo} />
+          <Post onCommentIconClick={handleCommentIconClick} photo={photo} />
         </div>
         <div className="overflow-auto mb-4">
-          <CommentList key={refreshKey} photoId={photo.photo._id} onReplySuccess={handleCommentSuccess} />
+          <CommentList key={refreshKey} comments={comments} photoId = {photo.photo._id} onSuccess={handleCommentSuccess} />
         </div>
       </ScrollArea>
       <div className="sticky bottom-2 w-full bg-[var(--comment-form)]">

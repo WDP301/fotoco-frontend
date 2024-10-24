@@ -24,8 +24,8 @@ export default function PhotoCarousel({
     setLoading(true);
     fetchPhotoSize(photo?.photo.url).then((size) => {
         setDimensions(size);
-        setLoading(false);
     });
+    setLoading(false);
 }, [photo?.photo.url]);
 
   if (loading) {

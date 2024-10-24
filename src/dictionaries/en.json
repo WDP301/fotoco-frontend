@@ -235,7 +235,8 @@
       "gallery": "Gallery"
     },
     "joinGroup": "Join Group",
-    "invite": "Invite"
+    "invite": "Invite",
+    "updateGroup": "Update Group"
   },
   "joinGroup": {
     "title": "Join Group",
@@ -269,16 +270,8 @@
       "Login page",
       "Forgot password page"
     ],
-    "legalLinks": [
-      "Policy",
-      "Terms of Use",
-      "Privacy"
-    ],
-    "supportLinks": [
-      "Facebook",
-      "Google",
-      "Youtube"
-    ]
+    "legalLinks": ["Policy", "Terms of Use", "Privacy"],
+    "supportLinks": ["Facebook", "Google", "Youtube"]
   },
   "errorMessage": {
     "noGroupFound": "No group found",
@@ -306,7 +299,27 @@
       "description": "You can manage your group settings here",
       "general": {
         "title": "General",
-        "description": "General settings for your group"
+        "description": "General settings for your group",
+        "allowInvite": {
+          "title": "Allow members to invite others to the group",
+          "description": "Members can invite others to join the group."
+        },
+        "allowCreateAlbum": {
+          "title": "Allow members to create albums",
+          "description": "Members can create albums and upload photos."
+        },
+        "allowShareAlbum": {
+          "title": "Allow members to share albums",
+          "description": "Member can share temporary albums."
+        },
+        "allowSharePhoto": {
+          "title": "Allow members to share photos",
+          "description": "Member can share temporary photos."
+        },
+        "message": {
+          "error": "Error to update group setting",
+          "success": "Update group setting successfully"
+        }
       },
       "member": {
         "title": "Members",
@@ -438,16 +451,10 @@
   },
   "searchBar": {
     "group": {
-      "placeholders": [
-        "Search groups here",
-        "Find groups by title"
-      ]
+      "placeholders": ["Search groups here", "Find groups by title"]
     },
     "album": {
-      "placeholders": [
-        "Search albums here",
-        "Find albums by title"
-      ]
+      "placeholders": ["Search albums here", "Find albums by title"]
     },
     "user": {
       "placeholders": [

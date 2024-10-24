@@ -18,6 +18,7 @@ import {
   SearchRecentViewParams,
   SearchUser,
   User,
+  GroupSetting,
 } from './define';
 import http from '@/config/axios';
 import { getPlaiceholder } from 'plaiceholder';
@@ -131,6 +132,20 @@ export const getGroupInfo = async (groupId: string) => {
     return response as GroupInfo;
   } catch {
     return {} as GroupInfo;
+  }
+};
+
+export const getGroupSetting = async (groupId: string) => {
+  try {
+    const response = await customFetch(`/groups/${groupId}/setting`, {
+      method: 'GET',
+      // next: { revalidate: 120 },
+    })
+      .then((res) => res.json())
+      .catch(() => null);
+    return response as GroupSetting;
+  } catch {
+    return {} as GroupSetting;
   }
 };
 
@@ -308,7 +323,6 @@ export default async function getBase64(imageUrl: string) {
   }
 }
 
-
 export const getPhotoDetails = async (
   photoId: string,
   SearchPhotoParams: SearchPhotoParams
@@ -340,4 +354,3 @@ export const getUsers = async (search: string) => {
     return [] as SearchUser[];
   }
 };
-

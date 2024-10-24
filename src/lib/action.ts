@@ -8,6 +8,7 @@ import {
   getJoinGroupSchema,
   getLoginFormSchema,
   getRegisterFormSchema,
+  getUpdateGroupSettingSchema,
 } from './form-schema';
 import http from '@/config/axios';
 import { cookies } from 'next/headers';
@@ -368,5 +369,40 @@ export const outGroup = async (groupId: string, userId: string) => {
         error: error?.response?.data?.message || 'Unknown error',
       };
     });
+  return response;
+};
+
+export const updateGroup = async (
+  formData: z.infer<ReturnType<typeof getUpdateGroupSettingSchema>>
+) => {
+  const {
+    title,
+    description,
+    type,
+    groupImg,
+    setting,
+  }: z.infer<ReturnType<typeof getUpdateGroupSettingSchema>> = formData;
+
+  const response = await http
+    .put('/groups/update', {
+      title,
+      description,
+      type,
+      groupImg,
+      setting,
+    })
+    .then(() => {
+      return {
+        isSuccess: true,
+        error: '',
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.message || 'Unknown error',
+      };
+    });
+
   return response;
 };

@@ -235,7 +235,8 @@
       "gallery": "Thư viện"
     },
     "joinGroup": "Tham gia nhóm",
-    "invite": "Mời"
+    "invite": "Mời",
+    "updateGroup": "Cập nhật nhóm"
   },
   "joinGroup": {
     "title": "Tham gia nhóm",
@@ -269,16 +270,8 @@
       "Trang đăng nhập",
       "Trang quên mật khẩu"
     ],
-    "legalLinks": [
-      "Chính sách",
-      "Điều khoản sử dụng",
-      "Riêng tư"
-    ],
-    "supportLinks": [
-      "Facebook",
-      "Google",
-      "Youtube"
-    ]
+    "legalLinks": ["Chính sách", "Điều khoản sử dụng", "Riêng tư"],
+    "supportLinks": ["Facebook", "Google", "Youtube"]
   },
   "errorMessage": {
     "noGroupFound": "Không tìm thấy nhóm",
@@ -306,7 +299,27 @@
       "description": "Bạn có thể quản lý cài đặt nhóm của mình tại đây",
       "general": {
         "title": "Cài đặt chung",
-        "description": "Cài đặt chung cho nhóm của bạn"
+        "description": "Cài đặt chung cho nhóm của bạn",
+        "allowInvite": {
+          "title": "Cho phép thành viên mời người khác vào nhóm",
+          "description": "Thành viên có thể mời người khác tham gia nhóm."
+        },
+        "allowCreateAlbum": {
+          "title": "Cho phép thành viên tạo album",
+          "description": "Thành viên có thể tạo album và tải ảnh lên."
+        },
+        "allowShareAlbum": {
+          "title": "Cho phép thành viên chia sẻ album",
+          "description": "Thành viên có thể chia sẻ album tạm thời."
+        },
+        "allowSharePhoto": {
+          "title": "Cho phép thành viên chia sẻ ảnh",
+          "description": "Thành viên có thể chia sẻ ảnh tạm thời."
+        },
+        "message": {
+          "error": "Lỗi khi cập nhật cài đặt nhóm",
+          "success": "Cập nhật cài đặt nhóm thành công"
+        }
       },
       "member": {
         "title": "Thành viên",
@@ -438,16 +451,10 @@
   },
   "searchBar": {
     "group": {
-      "placeholders": [
-        "Tìm nhóm của bạn ở đây",
-        "Tìm nhóm theo tiêu đề"
-      ]
+      "placeholders": ["Tìm nhóm của bạn ở đây", "Tìm nhóm theo tiêu đề"]
     },
     "album": {
-      "placeholders": [
-        "Tìm album của bạn ở đây",
-        "Tìm album theo tiêu đề"
-      ]
+      "placeholders": ["Tìm album của bạn ở đây", "Tìm album theo tiêu đề"]
     },
     "user": {
       "placeholders": [

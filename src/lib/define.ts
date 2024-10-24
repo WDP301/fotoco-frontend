@@ -146,6 +146,21 @@ export type GroupInfo = {
   type: string;
 };
 
+export type GroupSetting = {
+  setting: {
+    role: string;
+    allow_invite?: boolean;
+    allow_create_album?: boolean;
+    allow_share_album?: boolean;
+    allow_share_photo?: boolean;
+  };
+  subscription: {
+    type: string;
+    startDate: string;
+    endDate: string;
+  };
+};
+
 export type AlbumInfo = {
   _id: string;
   title: string;
@@ -257,34 +272,33 @@ export type Comment = {
   createdAt: string;
   updatedAt: string;
   body: string;
-}
+};
 
 export interface PhotoResponse {
-  success: boolean
-  photo: PhotoDetails
-  prevPhoto?: string
-  nextPhoto?: string
+  success: boolean;
+  photo: PhotoDetails;
+  prevPhoto?: string;
+  nextPhoto?: string;
 }
 
 export interface PhotoDetails {
-  _id: string
-  type: string
-  belonging: string
-  owner: Owner
-  title: string
-  url: string
-  mimeType: string
-  fileSize: number
-  tags: string[]
-  createdAt: string
-  updatedAt: string
-  commentsCount: number
+  _id: string;
+  type: string;
+  belonging: string;
+  owner: Owner;
+  title: string;
+  url: string;
+  mimeType: string;
+  fileSize: number;
+  tags: string[];
+  createdAt: string;
+  updatedAt: string;
+  commentsCount: number;
 }
 
 export interface Owner {
-  _id: string
-  username: string
-  fullName: string
-  img: string
+  _id: string;
+  username: string;
+  fullName: string;
+  img: string;
 }
-

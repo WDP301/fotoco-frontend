@@ -342,9 +342,10 @@ export const getUsers = async (search: string) => {
   }
 };
 
-export const getReactListByPhotoId = async (photoId: string) => {
+export const getReactListByPhotoId = async (photoId: string, lastReactLoadId?: string) => {
   try {
-    const response = await customFetch(`/photos/${photoId}/reacts`, {
+    const queryString = lastReactLoadId ? `?lastReactLoadId=${lastReactLoadId}` : "";
+    const response = await customFetch(`/photos/${photoId}/reacts${queryString}`, {
       method: 'GET',
     })
       .then((res) => res.json())

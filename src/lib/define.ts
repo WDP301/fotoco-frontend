@@ -295,6 +295,7 @@ export type React = {
     _id: string
     username: string
     fullName: string
+    email: string
     img?: string
   }
 }

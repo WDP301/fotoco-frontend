@@ -1,5 +1,5 @@
 'use client';
-import { ChevronLeft, ChevronRight, Expand } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Expand, Loader2 } from 'lucide-react';
 import { XIcon } from 'lucide-react';
 import { PhotoResponse, SearchPhotoParams } from '@/lib/define';
 import Image from 'next/image';
@@ -29,7 +29,11 @@ export default function PhotoCarousel({
   }, [photo?.photo.url]);
 
   if (loading) {
-    return <SpinLoading />;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <SpinLoading />
+      </div>
+    )
   }
 
   return (

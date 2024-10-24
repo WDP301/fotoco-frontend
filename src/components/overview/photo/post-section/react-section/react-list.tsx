@@ -10,12 +10,10 @@ import {
 import { formatNumber, getDateFormatted } from "@/lib/utils"
 import AvatarPicture from "@/components/shared/avatar-picture"
 import { getReactListByPhotoId } from "@/lib/data"
-import { useCallback, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { React } from "@/lib/define"
 import { useLanguage } from "@/components/provider/language-provider"
-import { on } from "events"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { get } from "http"
 
 export default function ReactList({
     photoId,
@@ -29,12 +27,11 @@ export default function ReactList({
 
     const {dict} = useLanguage();
     const [reacts, setReacts] = useState<React[]>([]);
-    // const [lastReactLoadId, setLastReactLoadId] = useState<string>("");
 
     useEffect(() => {
         const getReacts = async () => {
             const reacts = await getReactListByPhotoId(photoId);
-            setReacts(reacts);
+            setReacts(reacts);``
             onReactUpdate();
         }
         getReacts();

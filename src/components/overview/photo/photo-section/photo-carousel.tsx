@@ -29,7 +29,11 @@ export default function PhotoCarousel({
 }, [photo?.photo.url]);
 
   if (loading) {
-    return <SpinLoading />
+    return (
+      <div className="min-h-screen justify-center content-center">
+        <SpinLoading />
+      </div>
+    )
   }
 
   return (

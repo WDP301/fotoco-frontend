@@ -55,7 +55,7 @@ export default async function PhotoDetailsPage({
         </div>
         <div className="flex flex-col justify-between w-1/4 p-4">
           <div className="w-full grid gap-1.5">
-            <PostSection photo = {photo} />
+            <PostSection photo={photo} searchParams={searchParams} />
           </div>
         </div>
       </div>

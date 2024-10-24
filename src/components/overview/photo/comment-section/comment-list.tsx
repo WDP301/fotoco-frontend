@@ -8,9 +8,8 @@ import { getCommentsByPhotoId } from "@/lib/data";
 import { useEffect, useState } from "react";
 import SpinLoading from "@/components/shared/spin-loading";
 import { Comment } from "@/lib/define";
-import { comment } from "postcss";
 
-export default function CommentList({ photoId }: { photoId: string }) {
+export default function CommentList({ photoId, onReplySuccess }: { photoId: string, onReplySuccess?: () => void }) {
 
   const [comments, setComments] = useState<Comment[]>([]);
   const [loading, setLoading] = useState(true);
@@ -61,7 +60,7 @@ export default function CommentList({ photoId }: { photoId: string }) {
           {comments.map((comment) => (
             <div key={comment._id} className="mb-4">
               <CommentCard comment={comment} showIcon={false} />
-              <ReplyCommentForm replyTo={comment.userInfo.fullName} />
+              <ReplyCommentForm replyTo={comment.userInfo.fullName} replyToId={comment._id} photoId={photoId} onSuccess={onReplySuccess} />
               <ReplyList replies={comment.replies}/>
             </div>
           ))}

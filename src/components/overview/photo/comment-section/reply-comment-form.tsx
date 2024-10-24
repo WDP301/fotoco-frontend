@@ -1,10 +1,8 @@
-import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import CommentForm from "./comment-form";
 
-export default function ReplyCommentForm({replyTo}:{replyTo: string}) {
+export default function ReplyCommentForm({replyTo, replyToId, photoId, onSuccess}:{replyTo: string, replyToId: string, photoId: string, onSuccess?: () => void}) {
 
-    const router = useRouter();
     const [isReplyOpen, setIsReplyOpen] = useState(false);
     const commentFormRef = useRef<any>(null);
 
@@ -16,10 +14,7 @@ export default function ReplyCommentForm({replyTo}:{replyTo: string}) {
     }
     
     const handleReplySubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        console.log("Reply submitted");
-        setIsReplyOpen(false);    
-        router.refresh();
+        
     }
 
     return (
@@ -31,7 +26,14 @@ export default function ReplyCommentForm({replyTo}:{replyTo: string}) {
             ) : (
                 <div className="flex items-center w-full pr-4 my-4">
                     <div className="w-full">
-                        <CommentForm ref={commentFormRef} showIcon={true} replyTo={replyTo}/>
+                        <CommentForm
+                            photoId={photoId}
+                            ref={commentFormRef}
+                            showIcon={true}
+                            replyTo={replyTo}
+                            replyToId={replyToId}
+                            onSuccess={onSuccess}
+                        />
                     </div>
                 </div>
             )}

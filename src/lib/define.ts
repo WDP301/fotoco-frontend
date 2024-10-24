@@ -252,7 +252,8 @@ export interface PhotoDetails {
   tags: string[]
   createdAt: string
   updatedAt: string
-  commentsCount: number
+  commentsCount: number,
+  reactsCount: number
 }
 
 export interface Owner {

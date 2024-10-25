@@ -6,7 +6,7 @@ export default function ReplyList({replies}: {replies: Comment['replies']}) {
     return (
          <>
             {replies.map((reply) => (
-                <div key={reply._id} className="flex items-center w-full mb-5">
+                <div key={reply._id} className="flex items-center w-full">
                     <CommentCard comment={reply} showIcon={true}/>
                 </div> 
             ))}

@@ -75,7 +75,10 @@ export default class SocketIOClient extends EventEmitter {
   }
 
   subscribe(event: string, callback: (arg: any) => void) {
-    this.socket?.on(event, (arg) => callback(arg));
+    const isSubscribed = (this.socket?.listeners(event)?.length ?? 0) > 0;
+    if (!isSubscribed) {
+      this.socket?.on(event, (arg) => callback(arg));
+    }
   }
 
   get connected(): boolean {

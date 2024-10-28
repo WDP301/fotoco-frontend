@@ -27,6 +27,7 @@ import { updateGroup } from '@/lib/action';
 import { GroupInfo, GroupSetting } from '@/lib/define';
 import { getUpdateGroupSettingSchema } from '@/lib/form-schema';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -41,6 +42,7 @@ export default function GroupSettingForm({
   group: GroupInfo;
   groupId: string;
 }) {
+  const router = useRouter();
   const { dict } = useLanguage();
   const [isLoading, setIsLoading] = useState(false);
   const form = useForm<z.infer<ReturnType<typeof getUpdateGroupSettingSchema>>>(
@@ -70,6 +72,7 @@ export default function GroupSettingForm({
       toast.error(dict.group.setting.general.message.error);
     } else {
       toast.success(dict.group.setting.general.message.success);
+      router.refresh();
     }
     setIsLoading(false);
   };

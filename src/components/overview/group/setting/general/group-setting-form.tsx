@@ -71,8 +71,9 @@ export default function GroupSettingForm({
     if (!result?.isSuccess) {
       toast.error(dict.group.setting.general.message.error);
     } else {
-      toast.success(dict.group.setting.general.message.success);
+      router.push(`/groups/${groupId}/settings`);
       router.refresh();
+      toast.success(dict.group.setting.general.message.success);
     }
     setIsLoading(false);
   };
@@ -242,7 +243,9 @@ export default function GroupSettingForm({
                       checked={field.value}
                       onCheckedChange={field.onChange}
                       disabled={
-                        groupSetting.setting.role !== 'OWNER' || isLoading
+                        groupSetting.setting.role !== 'OWNER' ||
+                        isLoading ||
+                        group.type === 'HIDDEN'
                       }
                     />
                   </FormControl>
@@ -267,7 +270,9 @@ export default function GroupSettingForm({
                       checked={field.value}
                       onCheckedChange={field.onChange}
                       disabled={
-                        groupSetting.setting.role !== 'OWNER' || isLoading
+                        groupSetting.setting.role !== 'OWNER' ||
+                        isLoading ||
+                        group.type === 'HIDDEN'
                       }
                     />
                   </FormControl>
@@ -293,7 +298,10 @@ export default function GroupSettingForm({
                       checked={field.value}
                       onCheckedChange={field.onChange}
                       disabled={
-                        groupSetting.setting.role !== 'OWNER' || isLoading
+                        groupSetting.setting.role !== 'OWNER' ||
+                        isLoading ||
+                        group.type === 'HIDDEN' ||
+                        group.type === 'PRIVATE'
                       }
                     />
                   </FormControl>
@@ -318,7 +326,10 @@ export default function GroupSettingForm({
                       checked={field.value}
                       onCheckedChange={field.onChange}
                       disabled={
-                        groupSetting.setting.role !== 'OWNER' || isLoading
+                        groupSetting.setting.role !== 'OWNER' ||
+                        isLoading ||
+                        group.type === 'HIDDEN' ||
+                        group.type === 'PRIVATE'
                       }
                     />
                   </FormControl>

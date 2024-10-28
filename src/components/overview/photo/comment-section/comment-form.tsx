@@ -6,6 +6,7 @@ import { getUser } from "@/lib/data";
 import { CornerDownRight, SendHorizontal } from "lucide-react";
 import AvatarPicture from "@/components/shared/avatar-picture";
 import { commentPhoto, replyComment } from "@/lib/action";
+import { useLanguage } from "@/components/provider/language-provider";
 
 interface CommentFormProps {
   showIcon?: boolean;
@@ -22,6 +23,7 @@ interface CommentFormRef {
 const CommentForm = forwardRef<CommentFormRef, CommentFormProps>(({ showIcon, replyTo, replyToId, photoId, onSuccess }, ref) => {
   const [comment, setComment] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const { dict } = useLanguage();
 
   useImperativeHandle(ref, () => ({
     focusTextArea: () => {
@@ -69,7 +71,7 @@ const CommentForm = forwardRef<CommentFormRef, CommentFormProps>(({ showIcon, re
             <Textarea
               ref={textareaRef}
               className="p-2 pr-10 resize-none w-full scrollbar-hide"
-              placeholder={replyTo ? `Reply to ${replyTo}...` : "Write a comment..."}
+              placeholder={replyTo ? `${dict.commentPhotoSection.replyForm} ${replyTo}...` : dict.commentPhotoSection.commentForm}
               value={comment}
               onChange={(e) => setComment(e.target.value)}
             />

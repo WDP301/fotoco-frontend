@@ -6,6 +6,7 @@ import ReplyList from "./reply-list";
 import SortSelect from "@/components/shared/sort-select";
 import { Comment } from "@/lib/define";
 import { useState } from "react";
+import { useLanguage } from "@/components/provider/language-provider";
 
 export default function CommentList({
   photoId,
@@ -17,16 +18,17 @@ export default function CommentList({
   onSuccess?: () => void
 }) {
 
+  const {dict} = useLanguage();
   const [activeReplyId, setActiveReplyId] = useState<string | null>(null);
 
   const sortOptions = [
     {
-      label: "Newest",
+      label: dict.sortOptions.newest,
       value: "newest",
       field: "sort",
     },
     {
-      label: "Oldest",
+      label: dict.sortOptions.oldest,
       value: "oldest",
       field: "sort",
     },

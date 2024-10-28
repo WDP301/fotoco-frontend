@@ -37,8 +37,10 @@ export function CommentCard({
                         )}
                         <AvatarPicture src={comment.userInfo.img}/>
                         <div className="grid gap-1">
-                            <div className="font-semibold">{comment.userInfo.fullName}</div>
-                            <div className="whitespace-pre-wrap text-md">{comment.content}</div>
+                            <div className="comment-card rounded-lg p-2">
+                                <div className="font-semibold">{comment.userInfo.fullName}</div>
+                                <div className="whitespace-pre-wrap text-md">{comment.content}</div>
+                            </div>
                             <div className="flex items-center gap-2">
                                 <div className="text-xs text-gray-400">
                                     {getDateFormatted(comment.createdAt, dict.lang)}
@@ -46,7 +48,7 @@ export function CommentCard({
                                 {!showIcon && photoId && (
                                     <div className="text-xs text-gray-400">
                                         <span className="cursor-pointer hover:text-primary" onClick={onReplyClick}>
-                                            Reply
+                                            {dict.commentPhotoSection.replyButton}
                                         </span>
                                     </div>
                                 )}

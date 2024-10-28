@@ -373,6 +373,7 @@ export const outGroup = async (groupId: string, userId: string) => {
 };
 
 export const updateGroup = async (
+  groupId: string,
   formData: z.infer<ReturnType<typeof getUpdateGroupSettingSchema>>
 ) => {
   const {
@@ -384,7 +385,7 @@ export const updateGroup = async (
   }: z.infer<ReturnType<typeof getUpdateGroupSettingSchema>> = formData;
 
   const response = await http
-    .put('/groups/update', {
+    .put(`/groups/${groupId}/update`, {
       title,
       description,
       type,

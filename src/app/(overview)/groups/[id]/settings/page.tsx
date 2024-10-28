@@ -33,7 +33,11 @@ export default async function SettingsGroupPage({
         </p>
       </div>
       <Separator />
-      <GroupSettingForm groupSetting={groupSetting} group={group} />
+      <GroupSettingForm
+        groupSetting={groupSetting}
+        group={group}
+        groupId={params.id}
+      />
       <Separator />
       <OutGroupDialog groupId={params.id} userId={me._id} />
     </div>

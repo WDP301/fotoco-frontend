@@ -35,9 +35,11 @@ import { z } from 'zod';
 export default function GroupSettingForm({
   groupSetting,
   group,
+  groupId,
 }: {
   groupSetting: GroupSetting;
   group: GroupInfo;
+  groupId: string;
 }) {
   const { dict } = useLanguage();
   const [isLoading, setIsLoading] = useState(false);
@@ -63,7 +65,7 @@ export default function GroupSettingForm({
     values: z.infer<ReturnType<typeof getUpdateGroupSettingSchema>>
   ) => {
     setIsLoading(true);
-    const result = await updateGroup(values);
+    const result = await updateGroup(groupId, values);
     if (!result?.isSuccess) {
       toast.error(dict.group.setting.general.message.error);
     } else {

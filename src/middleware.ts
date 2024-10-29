@@ -53,12 +53,12 @@ export async function middleware(req: NextRequest) {
       const user = JSON.parse(payload) as UserJWT;
 
       response.cookies.set('signature', signature, {
-        httpOnly: true,
+        httpOnly: false,
         maxAge: MAX_AGE_REFRESH_TOKEN,
       });
       const expiryDate = new Date(user.exp * 1000);
       response.cookies.set('access-token', newAccessToken, {
-        httpOnly: true,
+        httpOnly: false,
         expires: expiryDate,
       });
       return response;

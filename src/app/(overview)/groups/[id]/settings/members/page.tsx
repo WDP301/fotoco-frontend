@@ -1,4 +1,5 @@
 import GroupUserSection from '@/components/overview/group/setting/member/group-user-section';
+import InviteSection from '@/components/overview/group/setting/member/invite/invite-section';
 import { Separator } from '@/components/ui/separator';
 import { getGroupInfo } from '@/lib/data';
 import { SearchGroupMembersParams } from '@/lib/define';
@@ -43,6 +44,8 @@ export default async function SettingsMembersPage({
           {dict.group.setting.member.description}
         </p>
       </div>
+      <Separator />
+      <InviteSection groupId={params.id} />
       <Separator />
       <GroupUserSection groupId={params.id} searchParams={searchParams} />
     </div>

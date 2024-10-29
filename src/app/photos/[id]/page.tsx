@@ -8,9 +8,9 @@ import { getDictionary } from "@/lib/dictionaries";
 import { Metadata } from "next";
 
 type Pros = {
-  params: {id: string};
-  searchParams: SearchPhotoParams
-}
+  params: { id: string };
+  searchParams: SearchPhotoParams;
+};
 
 export async function generateMetadata({
   params,
@@ -20,31 +20,30 @@ export async function generateMetadata({
   const photo = await getPhotoDetails(params.id, searchParams);
   if (!photo || !photo.photo._id) {
     return {
-      title: "Photo Not Found",
-      description: "Photo Not Found",
+      title: 'Photo Not Found',
+      description: 'Photo Not Found',
     };
   }
 
   return {
     title: {
-      default: `${photo.photo.title ? photo.photo.title : "Photo"} | ${photo.photo.owner.fullName} | ${siteConfig.name}`,
+      default: `${photo.photo.title ? photo.photo.title : 'Photo'} - ${photo.photo.owner.fullName} | ${siteConfig.name}`,
       template: `%s | ${siteConfig.name}`,
     },
-    description: dict.auth.description,
-  }
+    description: `${photo.photo.title}`,
+  };
 }
 export default async function PhotoDetailsPage({
   params,
   searchParams,
 }: {
   params: { id: string };
-  searchParams: SearchPhotoParams
+  searchParams: SearchPhotoParams;
 }) {
-
   const photo = await getPhotoDetails(params.id, searchParams);
   if (!photo || !photo.photo._id) {
-    return <PhotoNotFound />
-  }  
+    return <PhotoNotFound />;
+  }
 
   return (
     <div className="max-w-screen lg:h-screen overflow-hidden flex flex-col lg:flex-row">

@@ -59,11 +59,22 @@
   "joinNow": {
     "intro": "Tham gia và lưu giữ câu chuyện của nhóm bạn",
     "typewriter": [
-      { "text": "Lưu giữ" },
-      { "text": "Câu chuyện" },
-      { "text": "của" },
-      { "text": "Nhóm bạn" },
-      { "text": "ở một nơi", "className": "text-blue-500 dark:text-blue-500" }
+      {
+        "text": "Lưu giữ"
+      },
+      {
+        "text": "Câu chuyện"
+      },
+      {
+        "text": "của"
+      },
+      {
+        "text": "Nhóm bạn"
+      },
+      {
+        "text": "ở một nơi",
+        "className": "text-blue-500 dark:text-blue-500"
+      }
     ],
     "button": {
       "login": "Đăng nhập",
@@ -182,6 +193,12 @@
         "required": "Vui lòng nhập bình luận",
         "max": "Bình luận phải tối đa 200 ký tự"
       }
+    },
+    "inviteGroupMemberSchema": {
+      "email": {
+        "required": "Email không được để trống",
+        "invalid": "Email phải là một email hợp lệ"
+      }
     }
   },
   "form": {
@@ -194,7 +211,8 @@
     "register": "Đăng ký",
     "login": "Đăng nhập",
     "forgotPassword": "Quên mật khẩu?",
-    "code": "Mã nhóm"
+    "code": "Mã nhóm",
+    "groupMemberRole": "Vai trò thành viên"
   },
   "button": {
     "login": "Đăng nhập",
@@ -215,7 +233,9 @@
     "viewMode": {
       "list": "Danh sách",
       "gallery": "Thư viện"
-    }
+    },
+    "joinGroup": "Tham gia nhóm",
+    "invite": "Mời"
   },
   "joinGroup": {
     "title": "Tham gia nhóm",
@@ -249,8 +269,16 @@
       "Trang đăng nhập",
       "Trang quên mật khẩu"
     ],
-    "legalLinks": ["Chính sách", "Điều khoản sử dụng", "Riêng tư"],
-    "supportLinks": ["Facebook", "Google", "Youtube"]
+    "legalLinks": [
+      "Chính sách",
+      "Điều khoản sử dụng",
+      "Riêng tư"
+    ],
+    "supportLinks": [
+      "Facebook",
+      "Google",
+      "Youtube"
+    ]
   },
   "errorMessage": {
     "noGroupFound": "Không tìm thấy nhóm",
@@ -269,6 +297,10 @@
       "public": "Nhóm công khai",
       "hidden": "Nhóm ẩn"
     },
+    "invite": {
+      "title": "Mời tham gia nhóm",
+      "description": "Mời tham gia nhóm"
+    },
     "setting": {
       "title": "Cài đặt nhóm",
       "description": "Bạn có thể quản lý cài đặt nhóm của mình tại đây",
@@ -278,7 +310,18 @@
       },
       "member": {
         "title": "Thành viên",
-        "description": "Quản lý thành viên của nhóm"
+        "description": "Quản lý thành viên của nhóm",
+        "invite": {
+          "title": "Mời thành viên",
+          "description": "Mời người khác tham gia nhóm của bạn",
+          "success": "Mời thành viên thành công",
+          "error": "Mời thành viên thất bại",
+          "search": {
+            "heading": "Mời thành viên...",
+            "placeholder": "Tìm kiếm thành viên...",
+            "noResult": "Không tìm thấy thành viên nào"
+          }
+        }
       }
     }
   },
@@ -375,6 +418,12 @@
       "error": "Tạo Album thất bại"
     }
   },
+  "inviteGroupMember": {
+    "message": {
+      "success": "Mời thành viên thành công",
+      "error": "Mời thành viên thất bại"
+    }
+  },
   "groupCard": {
     "members": "thành viên"
   },
@@ -382,6 +431,38 @@
     "dark": "Tối",
     "light": "Sáng",
     "system": "Hệ thống"
+  },
+  "common": {
+    "orContinueWith": "Hoặc tiếp tục với",
+    "searchResultsFor": "Kết quả tìm kiếm cho"
+  },
+  "searchBar": {
+    "group": {
+      "placeholders": [
+        "Tìm nhóm của bạn ở đây",
+        "Tìm nhóm theo tiêu đề"
+      ]
+    },
+    "album": {
+      "placeholders": [
+        "Tìm album của bạn ở đây",
+        "Tìm album theo tiêu đề"
+      ]
+    },
+    "user": {
+      "placeholders": [
+        "Tìm người dùng ở đây",
+        "Tìm người dùng theo tên",
+        "Tìm người dùng theo biệt danh"
+      ]
+    },
+    "photo": {
+      "placeholders": [
+        "Tìm ảnh của bạn ở đây",
+        "Tìm ảnh theo tiêu đề",
+        "Tìm ảnh theo thẻ"
+      ]
+    }
   },
   "noti": {
     "myNotifications": "Thông báo của tôi",
@@ -410,5 +491,29 @@
     "replyButton":"Phản hồi",
     "commentForm": "Viết bình luận",
     "replyForm": "Phản hồi"
+  },
+  "outGroup": {
+    "button": "Rời nhóm",
+    "dialogTitle": "Rời nhóm",
+    "dialogDescription": "Muốn rời nhóm phải không?",
+    "labelCheckbox": "Bạn chắc chứ ?",
+    "contentCheckbox": "Bạn sẽ mất tất cả ký ức về nhóm",
+    "buttonConfirm": "Ra khỏi đây",
+    "message": {
+      "success": "Bạn đã rời nhóm thành công",
+      "error": "Rời nhóm thất bại"
+    }
+  },
+  "kickMemberGroup": {
+    "dialogTrigger": "Đá",
+    "dialogTitle": "Đá người này",
+    "dialogDescription": "Người này có thể có mối quan hệ với nhóm, bạn có chắc chắn sẽ đuổi người này không?",
+    "labelCheckbox": "Chắc chưa ?",
+    "contentCheckbox": "Bạn có thể sẽ nhớ người này",
+    "buttonConfirm": "Đá",
+    "message": {
+      "success": "Có kẻ mạo danh trong số chúng ta",
+      "error": "Thất bại trong việc đá người này"
+    }
   }
 }

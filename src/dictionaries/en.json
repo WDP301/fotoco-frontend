@@ -59,10 +59,18 @@
   "joinNow": {
     "intro": "Join Us and Keep Your Group's Story Alive",
     "typewriter": [
-      { "text": "Preserve" },
-      { "text": "Your" },
-      { "text": "Group's" },
-      { "text": "Memories" },
+      {
+        "text": "Preserve"
+      },
+      {
+        "text": "Your"
+      },
+      {
+        "text": "Group's"
+      },
+      {
+        "text": "Memories"
+      },
       {
         "text": "in One Place",
         "className": "text-blue-500 dark:text-blue-500"
@@ -185,6 +193,12 @@
         "required": "Content can not be empty",
         "max": "Content must be maximum 200 characters."
       }
+    },
+    "inviteGroupMemberSchema": {
+      "email": {
+        "required": "Email can not be empty",
+        "invalid": "Email must be a valid email"
+      }
     }
   },
   "form": {
@@ -197,7 +211,8 @@
     "register": "Register",
     "login": "Login",
     "forgotPassword": "Forgot password?",
-    "code": "Group code"
+    "code": "Group code",
+    "groupMemberRole": "Group member role"
   },
   "button": {
     "login": "Login",
@@ -218,7 +233,9 @@
     "viewMode": {
       "list": "List",
       "gallery": "Gallery"
-    }
+    },
+    "joinGroup": "Join Group",
+    "invite": "Invite"
   },
   "joinGroup": {
     "title": "Join Group",
@@ -252,8 +269,16 @@
       "Login page",
       "Forgot password page"
     ],
-    "legalLinks": ["Policy", "Terms of Use", "Privacy"],
-    "supportLinks": ["Facebook", "Google", "Youtube"]
+    "legalLinks": [
+      "Policy",
+      "Terms of Use",
+      "Privacy"
+    ],
+    "supportLinks": [
+      "Facebook",
+      "Google",
+      "Youtube"
+    ]
   },
   "errorMessage": {
     "noGroupFound": "No group found",
@@ -272,6 +297,10 @@
       "public": "Public Group",
       "hidden": "Hidden Group"
     },
+    "invite": {
+      "title": "Accept Invite to Group",
+      "description": "Accept Invite to Group"
+    },
     "setting": {
       "title": "Group Settings",
       "description": "You can manage your group settings here",
@@ -281,7 +310,18 @@
       },
       "member": {
         "title": "Members",
-        "description": "Manage your group members"
+        "description": "Manage your group members",
+        "invite": {
+          "title": "Invite members",
+          "description": "Invite your friends to join this group",
+          "success": "Invitation sent successfully",
+          "error": "Invitation failed",
+          "search": {
+            "heading": "Invite group members...",
+            "placeholder": "Search users...",
+            "noResult": "No user found"
+          }
+        }
       }
     }
   },
@@ -365,6 +405,12 @@
       "hidden": "A hidden group is not visible to the public and does not appear in search results. Only invited members can access the group, and they cannot see any information about the group unless they are part of it. This setting is ideal for discussions that require maximum confidentiality and discretion. Even the existence of the group remains unknown to non-members, making it suitable for sensitive topics or private collaborations."
     }
   },
+  "inviteGroupMember": {
+    "message": {
+      "success": "Invitation sent successfully!",
+      "error": "Invitation failed!"
+    }
+  },
   "createAlbum": {
     "dialogTitle": "Create Album",
     "dialogDescription": "Create an album and share your moments",
@@ -392,10 +438,16 @@
   },
   "searchBar": {
     "group": {
-      "placeholders": ["Search groups here", "Find groups by title"]
+      "placeholders": [
+        "Search groups here",
+        "Find groups by title"
+      ]
     },
     "album": {
-      "placeholders": ["Search albums here", "Find albums by title"]
+      "placeholders": [
+        "Search albums here",
+        "Find albums by title"
+      ]
     },
     "user": {
       "placeholders": [
@@ -439,5 +491,29 @@
     "replyButton": "Reply",
     "commentForm": "Write a comment",
     "replyForm": "Write a reply..."
+  },
+  "outGroup": {
+    "button": "Out group",
+    "dialogTitle": "Out group",
+    "dialogDescription": "Want to get out of the group?",
+    "labelCheckbox": "Are you sure",
+    "contentCheckbox": "You may lose all of these memories",
+    "buttonConfirm": "Get out",
+    "message": {
+      "success": "You have left the group successfully",
+      "error": "Failed to leave the group"
+    }
+  },
+  "kickMemberGroup": {
+    "dialogTrigger": "Kick",
+    "dialogTitle": "Kick this people",
+    "dialogDescription": "This person may have relationship with the group, are you sure to kick this person?",
+    "labelCheckbox": "Are you sure ?",
+    "contentCheckbox": "You may miss him/her",
+    "buttonConfirm": "Kick",
+    "message": {
+      "success": "There is an imposter among us",
+      "error": "Failed to kick member"
+    }
   }
 }

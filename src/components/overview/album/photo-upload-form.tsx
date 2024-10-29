@@ -18,7 +18,6 @@ import { useDropzone } from 'react-dropzone';
 import { toast } from 'sonner';
 import imageCompression from 'browser-image-compression';
 import { useRouter } from 'next/navigation';
-import { useSocket } from '@/components/provider/socket-io-provider';
 import { cn, interpolateString } from '@/lib/utils';
 import { useLanguage } from '@/components/provider/language-provider';
 import { siteConfig } from '@/config/site';
@@ -93,7 +92,6 @@ export default function PhotoUploadForm({
 }) {
   const { dict } = useLanguage();
   const router = useRouter();
-  const { socket } = useSocket();
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [filesToUpload, setFilesToUpload] = useState<FileUploadProgress[]>([]);
 
@@ -201,11 +199,14 @@ export default function PhotoUploadForm({
               onUploadProgress,
               cancelToken: cancelSource.token,
               headers: await getAuthHeader(),
+              validateStatus: () => true
             }
           )
           .then((res) => {
-            if (socket && res?.data?.receivers) {
-              socket.emit(`sendNotification`, res.data);
+            if (res.data.success) {
+              return res.data;
+            } else {
+              throw new Error(res.data.message);
             }
           });
 
@@ -214,7 +215,7 @@ export default function PhotoUploadForm({
         throw error;
       }
     },
-    [albumId, socket]
+    [albumId]
   );
 
   const removeFile = (file: File) => {

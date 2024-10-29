@@ -4,6 +4,7 @@ import { z } from 'zod';
 import {
   getCreateAlbumSchema,
   getCreateGroupSchema,
+  getInviteGroupMemberSchema,
   getJoinGroupSchema,
   getLoginFormSchema,
   getRegisterFormSchema,
@@ -103,6 +104,7 @@ const handleStoreUserCredentials = (
   const expiryDate = new Date(user.exp * 1000);
   cookie.set('access-token', accessToken, {
     expires: expiryDate,
+    httpOnly: false,
   });
 };
 
@@ -292,7 +294,7 @@ export const markNotificationAsSeen = async (notificationId: string) => {
     .catch((error) => {
       return {
         isSuccess: false,
-        error: error?.response?.data?.error.message || 'Unknown error',
+        error: error?.response?.data?.message || 'Unknown error',
       };
     });
 
@@ -340,3 +342,73 @@ export const replyComment = async (photoId: string, commentId: string, content: 
 
   return response;
 }
+
+export const acceptInviteToGroup = async (
+  groupId: string,
+  inviteToken: string
+) => {
+  const response = await http
+    .post(`/groups/${groupId}/accept-invite`, undefined, {
+      params: { inviteToken },
+    })
+    .then((res) => {
+      return {
+        isSuccess: true,
+        error: '',
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.message || 'Unknown error',
+      };
+    });
+  return response;
+};
+
+export const inviteUserToGroup = async (
+  groupId: string,
+  formData: z.infer<ReturnType<typeof getInviteGroupMemberSchema>>
+) => {
+  const {
+    email,
+    role,
+  }: z.infer<ReturnType<typeof getInviteGroupMemberSchema>> = formData;
+
+  const response = await http
+    .post(`/groups/${groupId}/invite`, {
+      email,
+      role,
+    })
+    .then((res) => {
+      return {
+        isSuccess: true,
+        error: '',
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.message || 'Unknown error',
+      };
+    });
+  return response;
+};
+
+export const outGroup = async (groupId: string, userId: string) => {
+  const response = await http
+    .put(`groups/${groupId}/out/${userId}`, undefined)
+    .then((res) => {
+      return {
+        isSuccess: true,
+        error: '',
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.message || 'Unknown error',
+      };
+    });
+  return response;
+};

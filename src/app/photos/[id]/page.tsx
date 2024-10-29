@@ -47,17 +47,18 @@ export default async function PhotoDetailsPage({
   }  
 
   return (
-      <div className="max-w-screen h-screen overflow-hidden flex">
-        <div className="flex flex-col justify-between w-3/4">
-          <div className="w-full grid gap-1.5">
-            <PhotoCarousel photo={photo} searchParams={searchParams}/>
-          </div>
-        </div>
-        <div className="flex flex-col justify-between w-1/4 p-4">
-          <div className="w-full grid gap-1.5">
-            <PostSection photo={photo} searchParams={searchParams} />
-          </div>
+    <div className="max-w-screen lg:h-screen overflow-hidden flex flex-col lg:flex-row">
+      <div className="w-full lg:w-3/4 flex flex-col">
+        <div className="grid gap-1.5">
+          <PhotoCarousel photo={photo} searchParams={searchParams} />
         </div>
       </div>
+    
+      <div className="w-full lg:w-1/4 flex flex-col p-4">
+        <div className="grid gap-1.5">
+          <PostSection photo={photo} searchParams={searchParams} />
+        </div>
+      </div>
+    </div>
   )
 }

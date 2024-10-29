@@ -37,7 +37,7 @@ export default function PhotoCarousel({
   }
 
   return (
-      <div className="relative flex items-center justify-center bg-black w-full h-screen group">
+      <div className="relative flex items-center justify-center bg-black group">
         <div className="inline-block items-center justify-center overflow-hidden">
           <div
               className={cn(

@@ -30,7 +30,7 @@ export default function PostSection({
   };
 
   useEffect(() => {
-    if (photo && photo.photo._id) {
+    if (photo?.photo._id) {
       getPhotoDetails(photo.photo._id, searchParams).then(setPhoto);
       const fetchComments = async () => {
         const { comments } = await getCommentsByPhotoId(photo.photo._id);
@@ -74,7 +74,7 @@ export default function PostSection({
           <CommentList key={refreshKey} comments={comments} photoId = {photo.photo._id} onSuccess={handleCommentSuccess} />
         </div>
       </ScrollArea>
-      <div className="sticky bottom-2 w-full bg-[var(--comment-form)]">
+      <div className="sticky bottom-3 w-full bg-[var(--comment-form)]">
         <Separator className="mb-3" />
         <CommentForm
           ref={commentFormRef}

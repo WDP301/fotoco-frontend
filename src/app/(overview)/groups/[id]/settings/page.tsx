@@ -22,6 +22,7 @@ export default async function SettingsGroupPage({
   }
 
   const groupSetting = await getGroupSetting(params.id);
+
   return (
     <div className="space-y-6">
       <div>

@@ -392,16 +392,28 @@ export const updateGroup = async (
       groupImg,
       setting,
     })
-    .then(() => {
+    .then((res) => {
       return {
         isSuccess: true,
         error: '',
+        data: res.data.setting as {
+          allow_invite?: boolean;
+          allow_create_album?: boolean;
+          allow_share_album?: boolean;
+          allow_share_photo?: boolean;
+        },
       };
     })
     .catch((error) => {
       return {
         isSuccess: false,
         error: error?.response?.data?.message || 'Unknown error',
+        data: {} as {
+          allow_invite?: boolean;
+          allow_create_album?: boolean;
+          allow_share_album?: boolean;
+          allow_share_photo?: boolean;
+        },
       };
     });
 

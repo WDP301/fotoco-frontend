@@ -27,7 +27,6 @@ import { updateGroup } from '@/lib/action';
 import { GroupInfo, GroupSetting } from '@/lib/define';
 import { getUpdateGroupSettingSchema } from '@/lib/form-schema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -42,7 +41,6 @@ export default function GroupSettingForm({
   group: GroupInfo;
   groupId: string;
 }) {
-  const router = useRouter();
   const { dict } = useLanguage();
   const [isLoading, setIsLoading] = useState(false);
   const form = useForm<z.infer<ReturnType<typeof getUpdateGroupSettingSchema>>>(
@@ -71,8 +69,15 @@ export default function GroupSettingForm({
     if (!result?.isSuccess) {
       toast.error(dict.group.setting.general.message.error);
     } else {
-      router.push(`/groups/${groupId}/settings`);
-      router.refresh();
+      form.setValue('setting', {
+        allow_invite: result.data.allow_invite || false,
+        allow_create_album: result.data.allow_create_album || false,
+        allow_share_album: result.data.allow_share_album || false,
+        allow_share_photo: result.data.allow_share_photo || false,
+      });
+
+      group.type = values.type;
+
       toast.success(dict.group.setting.general.message.success);
     }
     setIsLoading(false);
@@ -84,8 +89,8 @@ export default function GroupSettingForm({
         className="space-y-8"
       >
         <FormField
-          control={form.control}
           name="title"
+          control={form.control}
           render={({ field }) => (
             <div className="grid w-full gap-1.5">
               <FormItem>
@@ -118,40 +123,42 @@ export default function GroupSettingForm({
         />
 
         <FormField
-          control={form.control}
           name="description"
-          render={({ field }) => (
-            <div className="grid w-full gap-1.5">
-              <FormItem>
-                <FormLabel className="text-primary">
-                  <Label htmlFor="description">
-                    {dict.createGroup.description}
-                  </Label>
-                </FormLabel>
-                <FormControl>
-                  <Textarea
-                    id="description"
-                    className="col-span-3 resize-none"
-                    placeholder={dict.createGroup.descriptionPlaceholder}
-                    autoCapitalize="none"
-                    autoCorrect="off"
-                    disabled={
-                      groupSetting.setting.role !== 'OWNER' || isLoading
-                    }
-                    rows={4}
-                    {...field}
-                  />
-                </FormControl>
-                <FormDescription></FormDescription>
-                <FormMessage></FormMessage>
-              </FormItem>
-            </div>
-          )}
+          control={form.control}
+          render={({ field }) => {
+            return (
+              <div className="grid w-full gap-1.5">
+                <FormItem>
+                  <FormLabel className="text-primary">
+                    <Label htmlFor="description">
+                      {dict.createGroup.description}
+                    </Label>
+                  </FormLabel>
+                  <FormControl>
+                    <Textarea
+                      id="description"
+                      className="col-span-3 resize-none"
+                      placeholder={dict.createGroup.descriptionPlaceholder}
+                      autoCapitalize="none"
+                      autoCorrect="off"
+                      disabled={
+                        groupSetting.setting.role !== 'OWNER' || isLoading
+                      }
+                      rows={4}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormDescription></FormDescription>
+                  <FormMessage></FormMessage>
+                </FormItem>
+              </div>
+            );
+          }}
         />
 
         <FormField
-          control={form.control}
           name="type"
+          control={form.control}
           render={({ field }) => {
             const displayValue = {
               PUBLIC: dict.createGroup.public,
@@ -167,6 +174,7 @@ export default function GroupSettingForm({
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
+                  value={field.value}
                   disabled={groupSetting.setting.role !== 'OWNER' || isLoading}
                 >
                   <FormControl>
@@ -226,8 +234,8 @@ export default function GroupSettingForm({
           </h3>
           <div className="space-y-4">
             <FormField
-              control={form.control}
               name="setting.allow_invite"
+              control={form.control}
               render={({ field }) => (
                 <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
                   <div className="space-y-0.5">
@@ -253,8 +261,8 @@ export default function GroupSettingForm({
               )}
             />
             <FormField
-              control={form.control}
               name="setting.allow_create_album"
+              control={form.control}
               render={({ field }) => (
                 <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
                   <div className="space-y-0.5">
@@ -281,8 +289,8 @@ export default function GroupSettingForm({
             />
 
             <FormField
-              control={form.control}
               name="setting.allow_share_album"
+              control={form.control}
               render={({ field }) => (
                 <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
                   <div className="space-y-0.5">
@@ -309,8 +317,8 @@ export default function GroupSettingForm({
               )}
             />
             <FormField
-              control={form.control}
               name="setting.allow_share_photo"
+              control={form.control}
               render={({ field }) => (
                 <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
                   <div className="space-y-0.5">

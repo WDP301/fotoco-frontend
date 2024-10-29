@@ -18,9 +18,11 @@ import {
   SearchRecentViewParams,
   SearchUser,
   User,
+  Comment,
 } from './define';
 import http from '@/config/axios';
 import { getPlaiceholder } from 'plaiceholder';
+import { comment } from 'postcss';
 
 function delay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -323,6 +325,23 @@ export const getPhotoDetails = async (
     return response as PhotoResponse;
   } catch (error) {
     return {} as PhotoResponse;
+  }
+};
+
+export const getCommentsByPhotoId = async (photoId: string) => {
+  try {
+    const response = await customFetch(`/photos/${photoId}/comments`, {
+      method: 'GET',
+    })
+      .then((res) => res.json())
+      .catch((error) => null);
+    return {
+      comments: response.comments as Comment[],
+    };
+  } catch (error) {
+    return {
+      comments: [] as Comment[],
+    };
   }
 };
 

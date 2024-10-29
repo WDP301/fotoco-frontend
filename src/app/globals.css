@@ -36,6 +36,7 @@ body {
     --ring: 220.18 58.95% 62.75%;
     --radius: 0.5rem;
     --comment-form: hsl(0, 0%, 100%);
+    --comment-card: hsl(210, 15%, 95%);
 
     /* New chart */
     --chart-1: 12 76% 61%;
@@ -66,7 +67,7 @@ body {
     --destructive-foreground: 0 0% 0%;
     --ring: 220.18 58.95% 62.75%;
     --comment-form: hsl(217.5, 9.09%, 17.25%);
-
+    --comment-card: hsl(210, 10%, 37%);
 
     /* New chart */
     --chart-1: 220 70% 50%;
@@ -113,4 +114,8 @@ body {
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.comment-card {
+  background-color: var(--comment-card);
 }

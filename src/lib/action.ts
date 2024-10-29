@@ -276,7 +276,7 @@ export const createAlbum = async (
 export const getUserNotifications = async () => {
   try {
     const response = await http.get('/notifications/my-notifications');
-    return response.data as UserNotification[];
+    return response.data.notifications as UserNotification[];
   } catch (error) {
     return [] as UserNotification[];
   }

@@ -120,7 +120,7 @@ export const interpolateString = (
   template: string,
   variables: Record<string, string>
 ) => {
-  return template.replace(
+  return template?.replace(
     /{{(.*?)}}/g,
     (_, key) => variables[key.trim()] || ''
   );
@@ -128,18 +128,22 @@ export const interpolateString = (
 
 export const fetchPhotoSize = async (url: string) => {
   const dimensions = await getImageSize(url)
-        .then((size) => {
-            return {
-                width: size.width,
-                height: size.height,
-            };
-        })
-        .catch((error) => {
-            console.log(error);
-            return {
-                width: 0,
-                height: 0,
-            };
-        });
-    return dimensions;
+    .then((size) => {
+      return {
+        width: size.width,
+        height: size.height,
+      };
+    })
+    .catch((error) => {
+      console.log(error);
+      return {
+        width: 0,
+        height: 0,
+      };
+    });
+  return dimensions;
+};
+
+export function getPath(obj: any, path: any) {
+  return path.split('.').reduce((acc: any, key: any) => acc && acc[key], obj);
 }

@@ -269,16 +269,8 @@
       "Trang đăng nhập",
       "Trang quên mật khẩu"
     ],
-    "legalLinks": [
-      "Chính sách",
-      "Điều khoản sử dụng",
-      "Riêng tư"
-    ],
-    "supportLinks": [
-      "Facebook",
-      "Google",
-      "Youtube"
-    ]
+    "legalLinks": ["Chính sách", "Điều khoản sử dụng", "Riêng tư"],
+    "supportLinks": ["Facebook", "Google", "Youtube"]
   },
   "errorMessage": {
     "noGroupFound": "Không tìm thấy nhóm",
@@ -297,6 +289,7 @@
       "public": "Nhóm công khai",
       "hidden": "Nhóm ẩn"
     },
+    "invited": "Chấp nhận lời mời vào nhóm từ {{fullName}}",
     "invite": {
       "title": "Mời tham gia nhóm",
       "description": "Mời tham gia nhóm"
@@ -323,7 +316,13 @@
           }
         }
       }
-    }
+    },
+    "removedUser": "Bạn đã bị loại khỏi nhóm bởi {{fullName}}",
+    "outedGroup": "{{fullName}} đã rời nhóm"
+  },
+  "album": {
+    "removedUser": "Bạn đã bị loại khỏi album bởi {{fullName}}",
+    "outedAlbum": "{{fullName}} đã rời album"
   },
   "photo": {
     "title": "Ảnh",
@@ -438,16 +437,10 @@
   },
   "searchBar": {
     "group": {
-      "placeholders": [
-        "Tìm nhóm của bạn ở đây",
-        "Tìm nhóm theo tiêu đề"
-      ]
+      "placeholders": ["Tìm nhóm của bạn ở đây", "Tìm nhóm theo tiêu đề"]
     },
     "album": {
-      "placeholders": [
-        "Tìm album của bạn ở đây",
-        "Tìm album theo tiêu đề"
-      ]
+      "placeholders": ["Tìm album của bạn ở đây", "Tìm album theo tiêu đề"]
     },
     "user": {
       "placeholders": [

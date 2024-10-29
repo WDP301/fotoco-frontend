@@ -269,16 +269,8 @@
       "Login page",
       "Forgot password page"
     ],
-    "legalLinks": [
-      "Policy",
-      "Terms of Use",
-      "Privacy"
-    ],
-    "supportLinks": [
-      "Facebook",
-      "Google",
-      "Youtube"
-    ]
+    "legalLinks": ["Policy", "Terms of Use", "Privacy"],
+    "supportLinks": ["Facebook", "Google", "Youtube"]
   },
   "errorMessage": {
     "noGroupFound": "No group found",
@@ -297,6 +289,7 @@
       "public": "Public Group",
       "hidden": "Hidden Group"
     },
+    "invited": "Accept Invite to Group from {{fullName}}",
     "invite": {
       "title": "Accept Invite to Group",
       "description": "Accept Invite to Group"
@@ -323,7 +316,13 @@
           }
         }
       }
-    }
+    },
+    "removedUser": "You have been removed from the group by {{fullName}}",
+    "outedGroup": "{{fullName}} has left the group"
+  },
+  "album": {
+    "removedUser": "You have been removed from the album by {{fullName}}",
+    "outedAlbum": "{{fullName}} has left the album"
   },
   "photo": {
     "title": "Photos",
@@ -438,16 +437,10 @@
   },
   "searchBar": {
     "group": {
-      "placeholders": [
-        "Search groups here",
-        "Find groups by title"
-      ]
+      "placeholders": ["Search groups here", "Find groups by title"]
     },
     "album": {
-      "placeholders": [
-        "Search albums here",
-        "Find albums by title"
-      ]
+      "placeholders": ["Search albums here", "Find albums by title"]
     },
     "user": {
       "placeholders": [

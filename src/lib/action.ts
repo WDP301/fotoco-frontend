@@ -277,7 +277,7 @@ export const createAlbum = async (
 export const getUserNotifications = async () => {
   try {
     const response = await http.get('/notifications/my-notifications');
-    return response.data as UserNotification[];
+    return response.data.notifications as UserNotification[];
   } catch (error) {
     return [] as UserNotification[];
   }
@@ -301,6 +301,48 @@ export const markNotificationAsSeen = async (notificationId: string) => {
 
   return response;
 };
+
+export const commentPhoto = async (photoId: string, content: string) => {
+  const response = await http
+    .post(`/photos/${photoId}/comment`, {
+      content,
+    })
+    .then((res) => {
+      return {
+        isSuccess: true,
+        error: '',
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.message || 'Unknown error',
+      };
+    });
+
+  return response;
+}
+
+export const replyComment = async (photoId: string, commentId: string, content: string) => {
+  const response = await http
+    .post(`/photos/${photoId}/reply/${commentId}`, {
+      content,
+    })
+    .then((res) => {
+      return {
+        isSuccess: true,
+        error: '',
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.message || 'Unknown error',
+      };
+    });
+
+  return response;
+}
 
 export const acceptInviteToGroup = async (
   groupId: string,

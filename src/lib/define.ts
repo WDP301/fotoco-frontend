@@ -263,42 +263,74 @@ export type GroupMember = {
   img: string;
 };
 
-// demo comment
+export type PhotoResponse = {
+  success: boolean
+  photo: PhotoDetails
+  prevPhoto?: string
+  nextPhoto?: string
+  isReacted: boolean
+}
+
+export type PhotoDetails = {
+  _id: string
+  type: string
+  belonging: string
+  owner: Owner
+  title: string
+  url: string
+  mimeType: string
+  fileSize: number
+  tags: string[]
+  createdAt: string
+  updatedAt: string
+  commentsCount: number
+  reactsCount: number
+}
+
+export type Owner = {
+  _id: string
+  username: string
+  fullName: string
+  img: string
+}
+
+export type ReactList = {
+  success: boolean
+  reacts: React[]
+}
+
+export type React = {
+  _id: string
+  createdAt: string
+  userInfo: {
+    _id: string
+    username: string
+    fullName: string
+    email: string
+    img?: string
+  }
+}
 export type Comment = {
   _id: string;
-  user: User;
-  email: string;
-  comment: string;
+  userInfo: {
+    _id: string;
+    username: string;
+    fullName: string;
+    img: string;
+  };
+  content: string;
   createdAt: string;
-  updatedAt: string;
-  body: string;
-};
-
-export interface PhotoResponse {
-  success: boolean;
-  photo: PhotoDetails;
-  prevPhoto?: string;
-  nextPhoto?: string;
+  replies: Reply[]
 }
 
-export interface PhotoDetails {
+export type Reply = {
   _id: string;
-  type: string;
-  belonging: string;
-  owner: Owner;
-  title: string;
-  url: string;
-  mimeType: string;
-  fileSize: number;
-  tags: string[];
+  userInfo: {
+    _id: string;
+    userName: string;
+    fullName: string;
+    img: string;
+  };
+  content: string;
   createdAt: string;
-  updatedAt: string;
-  commentsCount: number;
-}
-
-export interface Owner {
-  _id: string;
-  username: string;
-  fullName: string;
-  img: string;
 }

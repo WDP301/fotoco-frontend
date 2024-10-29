@@ -34,7 +34,7 @@ export default function SharePhotoDialog() {
                             <div className="flex items-center space-x-2">
                                 <div>Share in</div>
                                 <div className="flex items-center space-x-1 text-primary">
-                                    <Icons.cloud className="h-2 w-2" />
+                                    <Icons.cloud className="h-6 w-6" />
                                     <span className="font-bold">{siteConfig.name}</span>
                                 </div>
                             </div>                                    

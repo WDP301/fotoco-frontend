@@ -290,6 +290,7 @@
       "public": "Public Group",
       "hidden": "Hidden Group"
     },
+    "invited": "Accept Invite to Group from {{fullName}}",
     "invite": {
       "title": "Accept Invite to Group",
       "description": "Accept Invite to Group"
@@ -336,7 +337,13 @@
           }
         }
       }
-    }
+    },
+    "removedUser": "You have been removed from the group by {{fullName}}",
+    "outedGroup": "{{fullName}} has left the group"
+  },
+  "album": {
+    "removedUser": "You have been removed from the album by {{fullName}}",
+    "outedAlbum": "{{fullName}} has left the album"
   },
   "photo": {
     "title": "Photos",
@@ -493,6 +500,11 @@
       "member": "Member",
       "contributor": "Contributor"
     }
+  },
+  "commentPhotoSection": {
+    "replyButton": "Reply",
+    "commentForm": "Write a comment",
+    "replyForm": "Write a reply..."
   },
   "outGroup": {
     "button": "Out group",

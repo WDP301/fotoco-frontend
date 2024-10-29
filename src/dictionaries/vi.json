@@ -290,6 +290,7 @@
       "public": "Nhóm công khai",
       "hidden": "Nhóm ẩn"
     },
+    "invited": "Chấp nhận lời mời vào nhóm từ {{fullName}}",
     "invite": {
       "title": "Mời tham gia nhóm",
       "description": "Mời tham gia nhóm"
@@ -336,7 +337,13 @@
           }
         }
       }
-    }
+    },
+    "removedUser": "Bạn đã bị loại khỏi nhóm bởi {{fullName}}",
+    "outedGroup": "{{fullName}} đã rời nhóm"
+  },
+  "album": {
+    "removedUser": "Bạn đã bị loại khỏi album bởi {{fullName}}",
+    "outedAlbum": "{{fullName}} đã rời album"
   },
   "photo": {
     "title": "Ảnh",
@@ -493,6 +500,11 @@
       "member": "Thành viên",
       "contributor": "Người đóng góp"
     }
+  },
+  "commentPhotoSection": {
+    "replyButton":"Phản hồi",
+    "commentForm": "Viết bình luận",
+    "replyForm": "Phản hồi"
   },
   "outGroup": {
     "button": "Rời nhóm",

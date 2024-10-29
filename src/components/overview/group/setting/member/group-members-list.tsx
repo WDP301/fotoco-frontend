@@ -11,6 +11,7 @@ import { getGroupMembers, getUser } from '@/lib/data';
 import { SearchGroupMembersParams } from '@/lib/define';
 import { getDictionary } from '@/lib/dictionaries';
 import { Ellipsis, SquareUserRound } from 'lucide-react';
+import { KickGroupMemberDialog } from './kick-group-member-dialog';
 
 export default async function GroupMembersList({
   groupId,
@@ -55,16 +56,16 @@ export default async function GroupMembersList({
                         <div>{dict.button.profile}</div>
                         <SquareUserRound className="w-4 h-4" />
                       </div>
-                      {user._id === me?._id && user.role !== 'owner' && (
-                        // <KickGroupMemberDialog
-                        //     group={
-                        //         group
-                        //     }
-                        //     member={
-                        //         member
-                        //     }
-                        // />
-                        <div>Kick Button</div>
+                      {user._id !== me?._id && user.role !== 'owner' && (
+                        <><KickGroupMemberDialog
+                          groupId={
+                            groupId
+                          }
+                          userId={
+                            user._id
+                          }
+                        />
+                        </>
                       )}
                     </div>
                   </div>

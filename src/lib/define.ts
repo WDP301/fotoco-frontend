@@ -241,16 +241,12 @@ export type SearchUser = {
   img: string;
 };
 
-// demo comment
-export type Comment = {
+export type GroupMember = {
   _id: string;
-  user: User;
-  email: string;
-  comment: string;
-  createdAt: string;
-  updatedAt: string;
-  body: string;
-}
+  username: string;
+  fullName: string;
+  img: string;
+};
 
 export type PhotoResponse = {
   success: boolean
@@ -298,4 +294,28 @@ export type React = {
     email: string
     img?: string
   }
+}
+export type Comment = {
+  _id: string;
+  userInfo: {
+    _id: string;
+    username: string;
+    fullName: string;
+    img: string;
+  };
+  content: string;
+  createdAt: string;
+  replies: Reply[]
+}
+
+export type Reply = {
+  _id: string;
+  userInfo: {
+    _id: string;
+    userName: string;
+    fullName: string;
+    img: string;
+  };
+  content: string;
+  createdAt: string;
 }

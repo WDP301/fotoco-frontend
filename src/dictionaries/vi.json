@@ -59,11 +59,22 @@
   "joinNow": {
     "intro": "Tham gia và lưu giữ câu chuyện của nhóm bạn",
     "typewriter": [
-      { "text": "Lưu giữ" },
-      { "text": "Câu chuyện" },
-      { "text": "của" },
-      { "text": "Nhóm bạn" },
-      { "text": "ở một nơi", "className": "text-blue-500 dark:text-blue-500" }
+      {
+        "text": "Lưu giữ"
+      },
+      {
+        "text": "Câu chuyện"
+      },
+      {
+        "text": "của"
+      },
+      {
+        "text": "Nhóm bạn"
+      },
+      {
+        "text": "ở một nơi",
+        "className": "text-blue-500 dark:text-blue-500"
+      }
     ],
     "button": {
       "login": "Đăng nhập",
@@ -278,6 +289,7 @@
       "public": "Nhóm công khai",
       "hidden": "Nhóm ẩn"
     },
+    "invited": "Chấp nhận lời mời vào nhóm từ {{fullName}}",
     "invite": {
       "title": "Mời tham gia nhóm",
       "description": "Mời tham gia nhóm"
@@ -304,7 +316,13 @@
           }
         }
       }
-    }
+    },
+    "removedUser": "Bạn đã bị loại khỏi nhóm bởi {{fullName}}",
+    "outedGroup": "{{fullName}} đã rời nhóm"
+  },
+  "album": {
+    "removedUser": "Bạn đã bị loại khỏi album bởi {{fullName}}",
+    "outedAlbum": "{{fullName}} đã rời album"
   },
   "photo": {
     "title": "Ảnh",
@@ -461,5 +479,38 @@
       "member": "Thành viên",
       "contributor": "Người đóng góp"
     }
+  },
+  "commentPhotoSection": {
+    "replyButton":"Phản hồi",
+    "commentForm": "Viết bình luận",
+    "replyForm": "Phản hồi"
+  },
+  "outGroup": {
+    "button": "Rời nhóm",
+    "dialogTitle": "Rời nhóm",
+    "dialogDescription": "Muốn rời nhóm phải không?",
+    "labelCheckbox": "Bạn chắc chứ ?",
+    "contentCheckbox": "Bạn sẽ mất tất cả ký ức về nhóm",
+    "buttonConfirm": "Ra khỏi đây",
+    "message": {
+      "success": "Bạn đã rời nhóm thành công",
+      "error": "Rời nhóm thất bại"
+    }
+  },
+  "kickMemberGroup": {
+    "dialogTrigger": "Đá",
+    "dialogTitle": "Đá người này",
+    "dialogDescription": "Người này có thể có mối quan hệ với nhóm, bạn có chắc chắn sẽ đuổi người này không?",
+    "labelCheckbox": "Chắc chưa ?",
+    "contentCheckbox": "Bạn có thể sẽ nhớ người này",
+    "buttonConfirm": "Đá",
+    "message": {
+      "success": "Có kẻ mạo danh trong số chúng ta",
+      "error": "Thất bại trong việc đá người này"
+    }
+  },
+  "reactList": {
+    "title": "Danh sách react",
+    "description": "Danh sách người dùng đã tương tác với ảnh này thông qua react."
   }
 }

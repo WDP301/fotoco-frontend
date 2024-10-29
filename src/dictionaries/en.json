@@ -59,10 +59,18 @@
   "joinNow": {
     "intro": "Join Us and Keep Your Group's Story Alive",
     "typewriter": [
-      { "text": "Preserve" },
-      { "text": "Your" },
-      { "text": "Group's" },
-      { "text": "Memories" },
+      {
+        "text": "Preserve"
+      },
+      {
+        "text": "Your"
+      },
+      {
+        "text": "Group's"
+      },
+      {
+        "text": "Memories"
+      },
       {
         "text": "in One Place",
         "className": "text-blue-500 dark:text-blue-500"
@@ -281,6 +289,7 @@
       "public": "Public Group",
       "hidden": "Hidden Group"
     },
+    "invited": "Accept Invite to Group from {{fullName}}",
     "invite": {
       "title": "Accept Invite to Group",
       "description": "Accept Invite to Group"
@@ -307,7 +316,13 @@
           }
         }
       }
-    }
+    },
+    "removedUser": "You have been removed from the group by {{fullName}}",
+    "outedGroup": "{{fullName}} has left the group"
+  },
+  "album": {
+    "removedUser": "You have been removed from the album by {{fullName}}",
+    "outedAlbum": "{{fullName}} has left the album"
   },
   "photo": {
     "title": "Photos",
@@ -464,5 +479,38 @@
       "member": "Member",
       "contributor": "Contributor"
     }
+  },
+  "commentPhotoSection": {
+    "replyButton": "Reply",
+    "commentForm": "Write a comment",
+    "replyForm": "Write a reply..."
+  },
+  "outGroup": {
+    "button": "Out group",
+    "dialogTitle": "Out group",
+    "dialogDescription": "Want to get out of the group?",
+    "labelCheckbox": "Are you sure",
+    "contentCheckbox": "You may lose all of these memories",
+    "buttonConfirm": "Get out",
+    "message": {
+      "success": "You have left the group successfully",
+      "error": "Failed to leave the group"
+    }
+  },
+  "kickMemberGroup": {
+    "dialogTrigger": "Kick",
+    "dialogTitle": "Kick this people",
+    "dialogDescription": "This person may have relationship with the group, are you sure to kick this person?",
+    "labelCheckbox": "Are you sure ?",
+    "contentCheckbox": "You may miss him/her",
+    "buttonConfirm": "Kick",
+    "message": {
+      "success": "There is an imposter among us",
+      "error": "Failed to kick member"
+    }
+  },
+  "reactList": {
+    "title": "React List",
+    "description": "A list of users who have interacted with this photo through reactions."
   }
 }

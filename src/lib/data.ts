@@ -18,6 +18,7 @@ import {
   SearchRecentViewParams,
   SearchUser,
   User,
+  Comment,
   React,
 } from './define';
 import http from '@/config/axios';
@@ -324,6 +325,23 @@ export const getPhotoDetails = async (
     return response as PhotoResponse;
   } catch (error) {
     return {} as PhotoResponse;
+  }
+};
+
+export const getCommentsByPhotoId = async (photoId: string) => {
+  try {
+    const response = await customFetch(`/photos/${photoId}/comments`, {
+      method: 'GET',
+    })
+      .then((res) => res.json())
+      .catch((error) => null);
+    return {
+      comments: response.comments as Comment[],
+    };
+  } catch (error) {
+    return {
+      comments: [] as Comment[],
+    };
   }
 };
 

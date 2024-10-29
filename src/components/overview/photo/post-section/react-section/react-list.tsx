@@ -46,8 +46,8 @@ export default function ReactList({
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
-                <DialogTitle>React List</DialogTitle>
-                <DialogDescription>A list of users who have interacted with this photo through reactions.</DialogDescription>
+                <DialogTitle>{dict.reactList.title}</DialogTitle>
+                <DialogDescription>{dict.reactList.description}</DialogDescription>
                 </DialogHeader>
                 {reacts &&reacts.length === 0 ? (
                     <div className="text-center text-muted-foreground">No reacts yet</div>

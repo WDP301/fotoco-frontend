@@ -3,27 +3,27 @@ import { Textarea } from "@/components/ui/textarea";
 import React, { useState, forwardRef, useImperativeHandle, useRef, useEffect } from "react";
 import { User } from "@/lib/define";
 import { getUser } from "@/lib/data";
-
-import {
-    Avatar,
-    AvatarFallback,
-    AvatarImage,
-  } from "@/components/ui/avatar"
 import { CornerDownRight, SendHorizontal } from "lucide-react";
 import AvatarPicture from "@/components/shared/avatar-picture";
+import { commentPhoto, replyComment } from "@/lib/action";
+import { useLanguage } from "@/components/provider/language-provider";
 
 interface CommentFormProps {
   showIcon?: boolean;
   replyTo?: string;
+  replyToId?: string;
+  photoId: string;
+  onSuccess?: () => void;
 }
 
 interface CommentFormRef {
   focusTextArea: () => void;
 }
 
-const CommentForm = forwardRef<CommentFormRef, CommentFormProps>(({ showIcon, replyTo }, ref) => {
+const CommentForm = forwardRef<CommentFormRef, CommentFormProps>(({ showIcon, replyTo, replyToId, photoId, onSuccess }, ref) => {
   const [comment, setComment] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const { dict } = useLanguage();
 
   useImperativeHandle(ref, () => ({
     focusTextArea: () => {
@@ -39,9 +39,29 @@ const CommentForm = forwardRef<CommentFormRef, CommentFormProps>(({ showIcon, re
     })();
   }, []);
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    let response;
+    if (replyTo && replyToId) {
+      response = await replyComment(photoId, replyToId, comment);
+    } else {
+      response = await commentPhoto(photoId, comment);
+    }
+
+    if (response.isSuccess) {
+      setComment("");
+      if (onSuccess) {
+        onSuccess();
+      }
+    } else {
+      console.log(response.error);
+    }
+  };
+
   return (
     <>
-      <form className="relative">
+      <form className="relative" onSubmit={handleSubmit}>
         <div className="grid gap-4">
           <div className="flex gap-4 items-start">
             {showIcon && (
@@ -51,7 +71,7 @@ const CommentForm = forwardRef<CommentFormRef, CommentFormProps>(({ showIcon, re
             <Textarea
               ref={textareaRef}
               className="p-2 pr-10 resize-none w-full scrollbar-hide"
-              placeholder={replyTo ? `Reply to ${replyTo}...` : "Write a comment..."}
+              placeholder={replyTo ? `${dict.commentPhotoSection.replyForm} ${replyTo}...` : dict.commentPhotoSection.commentForm}
               value={comment}
               onChange={(e) => setComment(e.target.value)}
             />

@@ -487,6 +487,11 @@
       "contributor": "Người đóng góp"
     }
   },
+  "commentPhotoSection": {
+    "replyButton":"Phản hồi",
+    "commentForm": "Viết bình luận",
+    "replyForm": "Phản hồi"
+  },
   "outGroup": {
     "button": "Rời nhóm",
     "dialogTitle": "Rời nhóm",

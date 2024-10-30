@@ -481,3 +481,7 @@ export const updateGroup = async (
 
   return response;
 };
+
+export const sharePhoto = async (photoId: string) => {
+  console.log("Share photo");  
+};

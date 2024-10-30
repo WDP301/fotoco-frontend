@@ -538,7 +538,7 @@
     "title": "Share photo in",
     "description": "You can share photos with any of your friends, even if they don't have a Fotoco account.",
     "sharePhotoForm":{
-      "label": "Share this photo in..."
+      "label": "Share this photo for"
     }
   }
 }

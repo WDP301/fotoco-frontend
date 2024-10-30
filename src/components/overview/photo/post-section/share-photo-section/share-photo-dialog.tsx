@@ -64,13 +64,13 @@ export default function SharePhotoDialog() {
                         </Button> */}
                         <SharePhotoForm />
                     </div>
-                    <Separator />
+                    {/* <Separator />
                     <DialogFooter className="sm:justify-start">
                         <Button className="ml-auto">
                             <Download className="h-4 w-4 mr-2" />
                             <span className="">Download</span>
                         </Button>
-                    </DialogFooter>
+                    </DialogFooter> */}
                 </DialogContent>
             </Dialog>
         </>

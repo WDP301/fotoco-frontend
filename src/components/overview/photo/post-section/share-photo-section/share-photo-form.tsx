@@ -1,83 +1,49 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-
 import { Button } from "@/components/ui/button"
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { useLanguage } from "@/components/provider/language-provider"
-
-const FormSchema = z.object({
-  type: z.enum(["all", "mentions", "none"], {
-    required_error: "You need to select a notification type.",
-  }),
-})
+import { Input } from "@/components/ui/input"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 
 export function SharePhotoForm() {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-  })
+    const { dict } = useLanguage();
 
-  const { dict } = useLanguage();
+    const handleCreateSharePhotoLink = (event: React.FormEvent<HTMLFormElement>) => {
+        
+    }
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log(JSON.stringify(data, null, 2));
-  }
-
-  return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
-        <FormField
-          control={form.control}
-          name="type"
-          render={({ field }) => (
-            <FormItem className="space-y-3">
-              <FormLabel>{dict.sharePhotoDialog.sharePhotoForm.label}</FormLabel>
-              <FormControl>
-                <RadioGroup
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                  className="flex flex-col space-y-1"
-                >
-                  <FormItem className="flex items-center space-x-3 space-y-0">
-                    <FormControl>
-                      <RadioGroupItem value="all" />
-                    </FormControl>
-                    <FormLabel className="font-normal">
-                      2 days
-                    </FormLabel>
-                  </FormItem>
-                  <FormItem className="flex items-center space-x-3 space-y-0">
-                    <FormControl>
-                      <RadioGroupItem value="mentions" />
-                    </FormControl>
-                    <FormLabel className="font-normal">
-                      3 days
-                    </FormLabel>
-                  </FormItem>
-                  <FormItem className="flex items-center space-x-3 space-y-0">
-                    <FormControl>
-                      <RadioGroupItem value="none" />
-                    </FormControl>
-                    <FormLabel className="font-normal">Nothing</FormLabel>
-                  </FormItem>
-                </RadioGroup>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit">Submit</Button>
-      </form>
-    </Form>
-  )
+    return (
+        <form onSubmit={handleCreateSharePhotoLink} className="w-2/3 space-y-4">
+            <div className="flex items-center space-x-2">
+                <label className="whitespace-nowrap">{dict.sharePhotoDialog.sharePhotoForm.label}</label>
+                <div className="flex items-center space-x-2">
+                    <Input 
+                        name="time-value" 
+                        type="number" 
+                        defaultValue={1}
+                        max={100}
+                        min={1} 
+                        className="w-16" 
+                    />
+                    <Select name="time-unit" defaultValue="days">
+                        <SelectTrigger className="w-30">
+                            <SelectValue placeholder="Select unit" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="days">Day(s)</SelectItem>
+                            <SelectItem value="weeks">Week(s)</SelectItem>
+                            <SelectItem value="months">Month(s)</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </div>
+            </div>
+            <Button type="submit">Create Link</Button>
+        </form>
+    );
 }

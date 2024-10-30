@@ -336,7 +336,8 @@
             "heading": "Mời thành viên...",
             "placeholder": "Tìm kiếm thành viên...",
             "noResult": "Không tìm thấy thành viên nào"
-          }
+          },
+          "disabled": "Bạn không có quyền mời thành viên vào nhóm"
         }
       }
     },

@@ -336,7 +336,8 @@
             "heading": "Invite group members...",
             "placeholder": "Search users...",
             "noResult": "No user found"
-          }
+          },
+          "disabled": "You do not have permission to invite members to this group"
         }
       }
     },

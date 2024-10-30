@@ -8,6 +8,7 @@ import {
   getJoinGroupSchema,
   getLoginFormSchema,
   getRegisterFormSchema,
+  getUpdateGroupSettingSchema,
 } from './form-schema';
 import http from '@/config/axios';
 import { cookies } from 'next/headers';
@@ -430,5 +431,53 @@ export const reactPhoto = async (photoId: string) => {
               data: null,
           };
       });
+  return response;
+};
+
+export const updateGroup = async (
+  groupId: string,
+  formData: z.infer<ReturnType<typeof getUpdateGroupSettingSchema>>
+) => {
+  const {
+    title,
+    description,
+    type,
+    groupImg,
+    setting,
+  }: z.infer<ReturnType<typeof getUpdateGroupSettingSchema>> = formData;
+
+  const response = await http
+    .put(`/groups/${groupId}/update`, {
+      title,
+      description,
+      type,
+      groupImg,
+      setting,
+    })
+    .then((res) => {
+      return {
+        isSuccess: true,
+        error: '',
+        data: res.data.setting as {
+          allow_invite?: boolean;
+          allow_create_album?: boolean;
+          allow_share_album?: boolean;
+          allow_share_photo?: boolean;
+        },
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.message || 'Unknown error',
+        data: {} as {
+          allow_invite?: boolean;
+          allow_create_album?: boolean;
+          allow_share_album?: boolean;
+          allow_share_photo?: boolean;
+        },
+      };
+    });
+
   return response;
 };

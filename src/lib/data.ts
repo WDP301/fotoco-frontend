@@ -18,6 +18,7 @@ import {
   SearchRecentViewParams,
   SearchUser,
   User,
+  GroupSetting,
   Comment,
   React,
 } from './define';
@@ -133,6 +134,20 @@ export const getGroupInfo = async (groupId: string) => {
     return response as GroupInfo;
   } catch {
     return {} as GroupInfo;
+  }
+};
+
+export const getGroupSetting = async (groupId: string) => {
+  try {
+    const response = await customFetch(`/groups/${groupId}/setting`, {
+      method: 'GET',
+      // next: { revalidate: 120 },
+    })
+      .then((res) => res.json())
+      .catch(() => null);
+    return response as GroupSetting;
+  } catch {
+    return {} as GroupSetting;
   }
 };
 
@@ -309,7 +324,6 @@ export default async function getBase64(imageUrl: string) {
     if (e instanceof Error) console.log(e.stack);
   }
 }
-
 
 export const getPhotoDetails = async (
   photoId: string,

@@ -146,6 +146,21 @@ export type GroupInfo = {
   type: string;
 };
 
+export type GroupSetting = {
+  setting: {
+    role: string;
+    allow_invite?: boolean;
+    allow_create_album?: boolean;
+    allow_share_album?: boolean;
+    allow_share_photo?: boolean;
+  };
+  subscription: {
+    type: string;
+    startDate: string;
+    endDate: string;
+  };
+};
+
 export type AlbumInfo = {
   _id: string;
   title: string;

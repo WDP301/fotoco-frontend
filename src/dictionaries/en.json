@@ -199,6 +199,14 @@
         "required": "Email can not be empty",
         "invalid": "Email must be a valid email"
       }
+    },
+    "updatePhotoFormSchema": {
+      "title": {
+        "max": "Title must be maximum 50 characters."
+      },
+      "tags": {
+        "max": "Maximum 10 tags are allowed"
+      }
     }
   },
   "form": {
@@ -238,7 +246,9 @@
     "invite": "Invite",
     "updateGroup": "Update Group",
     "changeLanguage": "Change Language",
-    "changeTheme": "Change Theme"
+    "changeTheme": "Change Theme",
+    "saveChanges": "Save Changes",
+    "delete": "Delete"
   },
   "joinGroup": {
     "title": "Join Group",
@@ -568,5 +578,38 @@
   "reactList": {
     "title": "React List",
     "description": "A list of users who have interacted with this photo through reactions."
+  },
+  "photoDetail": {
+    "action": {
+      "edit": "Edit",
+      "delete": "Delete",
+      "report": "Report"
+    },
+    "edit": {
+      "title": "Edit Photo",
+      "description": "Update your photo information here. (Member can find your photo by searching photo title and tags)",
+      "message": {
+        "success": "Update photo successfully",
+        "error": "Failed to update photo"
+      },
+      "form": {
+        "title": {
+          "label": "Title",
+          "desciption": "Give your photo a title that describes the moment."
+        },
+        "tags": {
+          "label": "Tags",
+          "desciption": "Tags help others find your photo. Press Enter to add a tag."
+        }
+      }
+    },
+    "delete": {
+      "title": "Delete Photo",
+      "description": "Are you sure you want to delete this photo?",
+      "message": {
+        "success": "Delete photo successfully",
+        "error": "Failed to delete photo"
+      }
+    }
   }
 }

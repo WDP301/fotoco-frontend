@@ -199,6 +199,14 @@
         "required": "Email không được để trống",
         "invalid": "Email phải là một email hợp lệ"
       }
+    },
+    "updatePhotoFormSchema": {
+      "title": {
+        "max": "Tiêu đề tối đa 50 ký tự"
+      },
+      "tags": {
+        "max": "Tối đa 10 thẻ được phép"
+      }
     }
   },
   "form": {
@@ -238,7 +246,9 @@
     "invite": "Mời",
     "updateGroup": "Cập nhật nhóm",
     "changeLanguage": "Thay đổi ngôn ngữ",
-    "changeTheme": "Thay đổi chủ đề"
+    "changeTheme": "Thay đổi chủ đề",
+    "saveChanges": "Lưu thay đổi",
+    "delete": "Xóa"
   },
   "joinGroup": {
     "title": "Tham gia nhóm",
@@ -568,5 +578,38 @@
   "reactList": {
     "title": "Danh sách react",
     "description": "Danh sách người dùng đã tương tác với ảnh này thông qua react."
+  },
+  "photoDetail": {
+    "action": {
+      "edit": "Chỉnh sửa",
+      "delete": "Xóa",
+      "report": "Báo cáo"
+    },
+    "edit": {
+      "title": "Chỉnh sửa ảnh",
+      "description": "Cập nhật thông tin ảnh của bạn tại đây. (Thành viên có thể tìm ảnh của bạn bằng cách tìm kiếm tiêu đề ảnh và thẻ)",
+      "message": {
+        "success": "Cập nhật ảnh thành công",
+        "error": "Không cập nhật được ảnh"
+      },
+      "form": {
+        "title": {
+          "label": "Tiêu đề",
+          "desciption": "Tiêu đề giúp mọi người hiểu rõ hơn về ảnh của bạn."
+        },
+        "tags": {
+          "label": "Thẻ",
+          "desciption": "Thẻ giúp mọi người tìm kiếm ảnh của bạn dễ dàng hơn."
+        }
+      }
+    },
+    "delete": {
+      "title": "Xóa ảnh",
+      "description": "Bạn có chắc chắn muốn xóa ảnh này không?",
+      "message": {
+        "success": "Xóa ảnh thành công",
+        "error": "Không xóa được ảnh"
+      }
+    }
   }
 }

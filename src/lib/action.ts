@@ -9,6 +9,7 @@ import {
   getLoginFormSchema,
   getRegisterFormSchema,
   getUpdateGroupSettingSchema,
+  getUpdatePhotoFormSchema,
 } from './form-schema';
 import http from '@/config/axios';
 import { cookies } from 'next/headers';
@@ -511,4 +512,46 @@ export const changeLanguage = async (language: string) => {
       };
     });
   return response;
+};
+
+export const editPhoto = async (
+  photoId: string,
+  formData: z.infer<ReturnType<typeof getUpdatePhotoFormSchema>>
+) => {
+  const { title, tags } = formData;
+  const response = await http
+    .put(`/photos/${photoId}/update`, {
+      title,
+      tags: tags.map((tag) => tag.text),
+    })
+    .then(() => {
+      return {
+        isSuccess: true,
+        error: '',
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.message || 'Unknown error',
+      };
+    });
+  return response;
+};
+
+export const deletePhoto = async (photoId: string) => {
+  return await http
+    .delete(`/photos/${photoId}`)
+    .then((res) => {
+      return {
+        isSuccess: true,
+        error: '',
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.message || 'Unknown error',
+      };
+    });
 };

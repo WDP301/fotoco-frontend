@@ -30,9 +30,7 @@ export default function HeaderActionPopover() {
             <JoinGroupDialog />
             <CreateGroupDiaLog>
               <div className=" w-full flex justify-between relative select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 cursor-pointer hover:bg-accent hover:text-accent-foreground">
-                <div>
-                    {dict.button.createGroup}
-                </div>
+                <div>{dict.button.createGroup}</div>
                 <SquarePlus className="w-5 h-5" />
               </div>
             </CreateGroupDiaLog>

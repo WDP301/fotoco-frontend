@@ -19,6 +19,8 @@ export default async function Home({
   searchParams: { filter?: string };
 }) {
   const user = await getUser();
+
+  console.log('>>>>user', user);
   const dict = await getDictionary();
 
   const getGreeting = () => {

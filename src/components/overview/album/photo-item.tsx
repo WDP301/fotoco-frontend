@@ -6,9 +6,10 @@ import { useState } from 'react';
 import { Photo } from '@/lib/define';
 import AvatarPicture from '@/components/shared/avatar-picture';
 import { Heart, MessageCircle } from 'lucide-react';
-import { formatNumber } from '@/lib/utils';
+import { createUrl, formatNumber } from '@/lib/utils';
 
 const PhotoItem = ({ photo }: { photo: Photo }) => {
+  const searchParams = new URLSearchParams(location.search);
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -17,7 +18,7 @@ const PhotoItem = ({ photo }: { photo: Photo }) => {
       onMouseLeave={() => setIsHovered(false)}
       className="relative overflow-hidden rounded-lg"
     >
-      <Link href={`/photos/${photo._id}`}>
+      <Link href={`/photos/${photo._id}?${searchParams.toString()}`}>
         <div className="group relative cursor-pointer">
           <Image
             className="object-cover rounded-lg h-full transition-transform duration-300 ease-in-out group-hover:scale-110"

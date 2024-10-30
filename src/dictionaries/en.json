@@ -549,7 +549,11 @@
       "description": "Adjust the appearance of the website. Automatically switch between light and dark mode and change language.",
       "theme": {
         "title": "Theme",
-        "description": "Choose a theme that works best for you."
+        "description": "Choose a theme that works best for you.",
+        "message": {
+          "success": "Update theme successfully",
+          "error": "Failed to update theme"
+        }
       },
       "language": {
         "title": "Language",

@@ -559,5 +559,9 @@
         }
       }
     }
+  },
+  "reactList": {
+    "title": "React List",
+    "description": "A list of users who have interacted with this photo through reactions."
   }
 }

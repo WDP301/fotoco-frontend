@@ -21,7 +21,7 @@ import { useLanguage } from "@/components/provider/language-provider";
 import { SharePhotoForm } from "./share-photo-form";
 
 
-export default function SharePhotoDialog() {
+export default function SharePhotoDialog({photoId}: {photoId: string}) {
 
     const { dict } = useLanguage();
 
@@ -44,7 +44,7 @@ export default function SharePhotoDialog() {
                         </DialogTitle>
                     <DialogDescription>{dict.sharePhotoDialog.description}</DialogDescription>
                     </DialogHeader>
-                    <SharePhotoForm />
+                    <SharePhotoForm photoId={photoId}/>
                     {/* <Separator />
                     <DialogFooter className="sm:justify-start">
                         <Button className="ml-auto">

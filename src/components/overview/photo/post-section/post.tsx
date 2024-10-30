@@ -87,7 +87,7 @@ export default function Post({
                   onCommentIconClick={onCommentIconClick}
                 />
                 <div className="mr-4">
-                    <SharePhotoDialog />
+                    <SharePhotoDialog photoId = {photo?.photo._id}/>
                 </div>
             </div>
           </div>

@@ -506,7 +506,3 @@ export const changeLanguage = async (language: string) => {
     });
   return response;
 };
-
-export const sharePhoto = async (photoId: string) => {
-  console.log("Share photo");  
-};

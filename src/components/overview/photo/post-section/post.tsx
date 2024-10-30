@@ -14,7 +14,7 @@ import {
 import { Button } from "@/components/ui/button"
 
 import { Badge } from "@/components/ui/badge"
-import SharePhotoDialog from "./share-photo-dialog"
+import SharePhotoDialog from "./share-photo-section/share-photo-dialog"
 import ReactSection from "./react-section/react-section"
 import { PhotoResponse } from "@/lib/define"
 import AvatarPicture from "@/components/shared/avatar-picture"

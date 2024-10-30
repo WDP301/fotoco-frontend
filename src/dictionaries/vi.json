@@ -529,5 +529,12 @@
       "success": "Có kẻ mạo danh trong số chúng ta",
       "error": "Thất bại trong việc đá người này"
     }
+  },
+  "sharePhotoDialog": {
+    "title": "Chia sẻ ảnh trong",
+    "description": "Bạn có thể chia sẻ ảnh với bất kỳ người bạn nào của mình, ngay cả khi họ không có tài khoản Fotoco.",
+    "sharePhotoForm":{
+      "label": "Chia sẻ ảnh này trong..."
+    }
   }
 }

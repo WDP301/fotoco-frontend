@@ -549,7 +549,11 @@
       "description": "Điều chỉnh giao diện của trang web. Tự động chuyển đổi giữa chế độ sáng và tối và thay đổi ngôn ngữ.",
       "theme": {
         "title": "Chủ đề",
-        "description": "Chọn chủ đề mà bạn thích nhất."
+        "description": "Chọn chủ đề mà bạn thích nhất.",
+        "message": {
+          "success": "Cập nhật chủ đề thành công",
+          "error": "Lỗi khi cập nhật chủ đề"
+        }
       },
       "language": {
         "title": "Ngôn ngữ",

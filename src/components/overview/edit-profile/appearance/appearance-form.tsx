@@ -21,7 +21,6 @@ import { useState } from 'react';
 import { useLanguage } from '@/components/provider/language-provider';
 
 const appearanceFormSchema = z.object({
-  language: z.enum(['English', 'Vietnamese']),
   theme: z.enum(['light', 'dark', 'system'], {
     required_error: 'Please select a theme.',
   }),
@@ -44,7 +43,7 @@ export function AppearanceForm() {
   function onSubmit(data: AppearanceFormValues) {
     data.theme === 'light' ? setTheme('light') : setTheme('dark');
     setCurrentTheme(data.theme);
-    toast.success('Theme updated successfully.');
+    toast.success(dict.editProfile.appearance.theme.message.success);
   }
 
   return (
@@ -65,7 +64,7 @@ export function AppearanceForm() {
               <RadioGroup
                 onValueChange={field.onChange}
                 defaultValue={field.value}
-                className="grid max-w-md grid-cols-2 gap-8 pt-2"
+                className="grid max-w-sm md:max-w-md grid-cols-1 md:grid-cols-2 gap-8 pt-2"
               >
                 <FormItem>
                   <FormLabel className="[&:has([data-state=checked])>div]:border-primary text-primary">

@@ -20,10 +20,10 @@ import {
   User,
   GroupSetting,
   Comment,
+  React,
 } from './define';
 import http from '@/config/axios';
 import { getPlaiceholder } from 'plaiceholder';
-import { comment } from 'postcss';
 
 function delay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -373,3 +373,17 @@ export const getUsers = async (search: string) => {
     return [] as SearchUser[];
   }
 };
+
+export const getReactListByPhotoId = async (photoId: string, lastReactLoadId?: string) => {
+  try {
+    const queryString = lastReactLoadId ? `?lastReactLoadId=${lastReactLoadId}` : "";
+    const response = await customFetch(`/photos/${photoId}/reacts${queryString}`, {
+      method: 'GET',
+    })
+      .then((res) => res.json())
+      .catch(() => null);
+      return (response?.reacts as React[]) || [];
+  } catch (error) {
+    return [] as React[];
+  }
+}

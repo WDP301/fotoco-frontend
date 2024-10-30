@@ -414,6 +414,26 @@ export const outGroup = async (groupId: string, userId: string) => {
   return response;
 };
 
+export const reactPhoto = async (photoId: string) => {
+  const response = await http
+      .post(`/photos/${photoId}/react`)
+      .then((res) => {
+          return {
+              isSuccess: true,
+              error: '',
+              data: res.data,
+          };
+      })
+      .catch((error) => {
+          return {
+              isSuccess: false,
+              error: error?.response?.data?.error.message || 'Unknown error',
+              data: null,
+          };
+      });
+  return response;
+};
+
 export const updateGroup = async (
   groupId: string,
   formData: z.infer<ReturnType<typeof getUpdateGroupSettingSchema>>

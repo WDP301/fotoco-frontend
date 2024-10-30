@@ -530,6 +530,10 @@
       "error": "Failed to kick member"
     }
   },
+  "reactList": {
+    "title": "React List",
+    "description": "A list of users who have interacted with this photo through reactions."
+  },
   "sharePhotoDialog": {
     "title": "Share photo in",
     "description": "You can share photos with any of your friends, even if they don't have a Fotoco account.",

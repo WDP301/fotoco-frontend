@@ -80,9 +80,9 @@ export default function Post({
           <div className="flex flex-col justify-between py-3 w-1/2">
             <div className="flex items-center w-full">
                 <ReactSection 
+                  photo={photo}
+                  isLiked={photo?.isReacted}
                   onCommentIconClick={onCommentIconClick}
-                  reactCount={photo?.photo.reactsCount || 0}
-                  commentCount={photo?.photo.commentsCount || 0}
                 />
                 <div className="mr-4">
                     <SharePhotoDialog />

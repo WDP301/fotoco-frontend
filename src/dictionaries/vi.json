@@ -530,6 +530,10 @@
       "error": "Thất bại trong việc đá người này"
     }
   },
+  "reactList": {
+    "title": "Danh sách react",
+    "description": "Danh sách người dùng đã tương tác với ảnh này thông qua react."
+  },
   "sharePhotoDialog": {
     "title": "Chia sẻ ảnh trong",
     "description": "Bạn có thể chia sẻ ảnh với bất kỳ người bạn nào của mình, ngay cả khi họ không có tài khoản Fotoco.",

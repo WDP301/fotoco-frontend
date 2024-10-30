@@ -236,7 +236,9 @@
     },
     "joinGroup": "Tham gia nhóm",
     "invite": "Mời",
-    "updateGroup": "Cập nhật nhóm"
+    "updateGroup": "Cập nhật nhóm",
+    "changeLanguage": "Thay đổi ngôn ngữ",
+    "changeTheme": "Thay đổi chủ đề"
   },
   "joinGroup": {
     "title": "Tham gia nhóm",
@@ -502,7 +504,7 @@
     }
   },
   "commentPhotoSection": {
-    "replyButton":"Phản hồi",
+    "replyButton": "Phản hồi",
     "commentForm": "Viết bình luận",
     "replyForm": "Phản hồi"
   },
@@ -528,6 +530,34 @@
     "message": {
       "success": "Có kẻ mạo danh trong số chúng ta",
       "error": "Thất bại trong việc đá người này"
+    }
+  },
+  "editProfile": {
+    "title": "Chỉnh sửa hồ sơ của bạn",
+    "description": "Quản lý thông tin cá nhân và cài đặt tài khoản của bạn",
+    "profile": {
+      "title": "Hồ sơ",
+      "description": "Đây là cách người khác sẽ nhìn thấy bạn trên trang web."
+    },
+    "security": {
+      "title": "Bảo mật",
+      "description": "Quản lý mật khẩu và cài đặt bảo mật khác của tài khoản của bạn."
+    },
+    "appearance": {
+      "title": "Giao diện",
+      "description": "Điều chỉnh giao diện của trang web. Tự động chuyển đổi giữa chế độ sáng và tối và thay đổi ngôn ngữ.",
+      "theme": {
+        "title": "Chủ đề",
+        "description": "Chọn chủ đề mà bạn thích nhất."
+      },
+      "language": {
+        "title": "Ngôn ngữ",
+        "description": "Chọn ngôn ngữ mà bạn muốn sử dụng.",
+        "message": {
+          "success": "Cập nhật ngôn ngữ thành công",
+          "error": "Lỗi khi cập nhật ngôn ngữ"
+        }
+      }
     }
   },
   "reactList": {

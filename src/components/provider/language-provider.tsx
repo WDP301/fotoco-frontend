@@ -9,11 +9,12 @@ import React, {
 } from 'react';
 import { Locale } from '@/lib/define';
 import { getDictionary } from '@/lib/utils';
-import { getCookie } from 'cookies-next';
+import { getCookie, setCookie } from 'cookies-next';
 
 interface LanguageContextType {
   lang: Locale;
   dict: Record<string, any>;
+  updateLanguage: (newLang: Locale) => void;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(
@@ -31,8 +32,14 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     setDict(getDictionary(selectedLang));
   }, []); // Only run once on mount
 
+  const updateLanguage = (newLang: Locale) => {
+    setLang(newLang);
+    setDict(getDictionary(newLang));
+    setCookie('lang', newLang); // Update the cookie with the new language
+  };
+
   return (
-    <LanguageContext.Provider value={{ lang, dict }}>
+    <LanguageContext.Provider value={{ lang, dict, updateLanguage }}>
       {children}
     </LanguageContext.Provider>
   );

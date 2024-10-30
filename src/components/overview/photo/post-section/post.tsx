@@ -18,7 +18,7 @@ import SharePhotoDialog from "./share-photo-dialog"
 import ReactSection from "./react-section/react-section"
 import { PhotoResponse } from "@/lib/define"
 import AvatarPicture from "@/components/shared/avatar-picture"
-import { getDateFormatted } from "@/lib/utils"
+import { getDateFormatted, getFormatDistanceToNow } from "@/lib/utils"
 import { useLanguage } from "@/components/provider/language-provider"
 
 
@@ -42,7 +42,9 @@ export default function Post({
               <AvatarPicture src={photo?.photo.owner.img || ""} />
               <div className="grid gap-1">
                 <div className="font-semibold">{photo?.photo.owner.fullName}</div>
-                <div className="line-clamp-1 text-xs">{getDateFormatted(photo?.photo.createdAt, dict.lang)}</div>
+                <div className="line-clamp-1 text-xs" title={getDateFormatted(photo?.photo.createdAt, dict.lang)}>
+                  {getFormatDistanceToNow(photo?.photo.createdAt, dict.lang)}
+                </div>
               </div>
             </div>
             <div className="ml-auto text-xs text-muted-foreground">

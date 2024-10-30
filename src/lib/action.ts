@@ -113,8 +113,14 @@ export const oauthSuccess = (
   signature: string,
   accessToken: string,
   refreshToken: string
-): void => {
-  handleStoreUserCredentials(signature, accessToken, refreshToken);
+): Promise<void> => {
+  // Fix change to promise to handle the case router push before the cookie is set
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      handleStoreUserCredentials(signature, accessToken, refreshToken);
+      resolve();
+    }, 0);
+  });
 };
 
 export const login = async (
@@ -420,21 +426,21 @@ export const outGroup = async (groupId: string, userId: string) => {
 
 export const reactPhoto = async (photoId: string) => {
   const response = await http
-      .post(`/photos/${photoId}/react`)
-      .then((res) => {
-          return {
-              isSuccess: true,
-              error: '',
-              data: res.data,
-          };
-      })
-      .catch((error) => {
-          return {
-              isSuccess: false,
-              error: error?.response?.data?.error.message || 'Unknown error',
-              data: null,
-          };
-      });
+    .post(`/photos/${photoId}/react`)
+    .then((res) => {
+      return {
+        isSuccess: true,
+        error: '',
+        data: res.data,
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.error.message || 'Unknown error',
+        data: null,
+      };
+    });
   return response;
 };
 

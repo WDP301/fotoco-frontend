@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useState } from 'react';
 import { Button } from '../ui/button';
@@ -39,8 +39,10 @@ const OtherOauth = () => {
       if (popup?.closed) resetConnect();
       if (popup) {
         try {
-          const urlObject = new URL(popup.window.location.href)
-          const searchParams = Object.fromEntries(urlObject.searchParams.entries())
+          const urlObject = new URL(popup.window.location.href);
+          const searchParams = Object.fromEntries(
+            urlObject.searchParams.entries()
+          );
           if (urlObject.host == window.location.host) {
             try {
               if (searchParams.provider !== provider) {
@@ -54,8 +56,9 @@ const OtherOauth = () => {
                 throw new Error('Invalid data response');
               }
 
-              oauthSuccess(signature, accessToken, refreshToken);
-              setTimeout(() => router.push(callbackUrl));
+              oauthSuccess(signature, accessToken, refreshToken).then(() => {
+                router.push(callbackUrl);
+              });
             } catch (error: any) {
               toast.error(error.message);
             } finally {
@@ -63,10 +66,10 @@ const OtherOauth = () => {
               resetConnect();
             }
           }
-        } catch (error) { }  // catch error of not same host
+        } catch (error) {} // catch error of not same host
       }
     }, INTERVAL_CHECK_CONNECT_TIMER);
-  }
+  };
 
   const resetConnect = () => {
     setIsConnecting('');
@@ -74,28 +77,34 @@ const OtherOauth = () => {
       clearInterval(intervalCheckConnect);
       intervalCheckConnect = null;
     }
-  }
+  };
 
   return (
     <div className="flex space-x-4">
-      <Button variant="outline" className="flex-1" onClick={() => handleAuth('google')}>
-        {
-          isConnecting === 'google' &&
+      <Button
+        variant="outline"
+        className="flex-1"
+        onClick={() => handleAuth('google')}
+      >
+        {isConnecting === 'google' && (
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-        }
+        )}
         <Icons.google className="mr-2 h-4 w-4" />
         Google
       </Button>
-      <Button variant="outline" className="flex-1" onClick={() => handleAuth('facebook')}>
-        {
-          isConnecting === 'facebook' &&
+      <Button
+        variant="outline"
+        className="flex-1"
+        onClick={() => handleAuth('facebook')}
+      >
+        {isConnecting === 'facebook' && (
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-        }
+        )}
         <FacebookIcon className="mr-2 h-4 w-4" />
         Facebook
       </Button>
     </div>
   );
-}
+};
 
 export default OtherOauth;

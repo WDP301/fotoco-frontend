@@ -57,7 +57,6 @@ const OtherOauth = () => {
               }
 
               oauthSuccess(signature, accessToken, refreshToken).then(() => {
-                toast.success('Login success');
                 router.push(callbackUrl);
               });
             } catch (error: any) {

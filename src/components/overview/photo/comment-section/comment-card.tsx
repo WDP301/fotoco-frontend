@@ -9,7 +9,7 @@ import {
     } from "@/components/ui/dropdown-menu";
 import { CornerDownRight, Ellipsis, Flag } from "lucide-react";
 import AvatarPicture from "@/components/shared/avatar-picture";
-import { getDateFormatted } from "@/lib/utils";
+import { getFormatDistanceToNow } from "@/lib/utils";
 import { useLanguage } from "@/components/provider/language-provider";
 
 interface CommentCardProps {
@@ -43,7 +43,7 @@ export function CommentCard({
                             </div>
                             <div className="flex items-center gap-2">
                                 <div className="text-xs text-gray-400">
-                                    {getDateFormatted(comment.createdAt, dict.lang)}
+                                    {getFormatDistanceToNow(comment.createdAt, dict.lang)}
                                 </div>
                                 {!showIcon && photoId && (
                                     <div className="text-xs text-gray-400">

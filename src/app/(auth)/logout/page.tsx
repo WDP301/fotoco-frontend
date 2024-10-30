@@ -14,7 +14,7 @@ export default function LogoutPage() {
       socket?.disconnect();
       router.push('/login'); // redirect to login after logout
     });
-  }, [router]);
+  }, [router, socket]);
 
   return (
     <div>

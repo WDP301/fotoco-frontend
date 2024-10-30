@@ -10,6 +10,8 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import { Label } from "@/components/ui/label"
+import { Copy } from "lucide-react"
 
 export function SharePhotoForm() {
     const { dict } = useLanguage();
@@ -19,7 +21,8 @@ export function SharePhotoForm() {
     }
 
     return (
-        <form onSubmit={handleCreateSharePhotoLink} className="w-2/3 space-y-4">
+        <>
+        <form onSubmit={handleCreateSharePhotoLink} className="w-2/3 space-y-6">
             <div className="flex items-center space-x-2">
                 <label className="whitespace-nowrap">{dict.sharePhotoDialog.sharePhotoForm.label}</label>
                 <div className="flex items-center space-x-2">
@@ -45,5 +48,24 @@ export function SharePhotoForm() {
             </div>
             <Button type="submit">Create Link</Button>
         </form>
+        {/* <form>
+             <div>
+                <div className="grid flex-1 gap-2">
+                            <Label htmlFor="link" className="sr-only">
+                            Link
+                            </Label>
+                            <Input
+                            id="link"
+                            defaultValue="https://ui.shadcn.com/docs/installation"
+                            readOnly
+                            />
+                        </div>
+                        <Button type="submit" size="sm" className="px-3" title="Copy link">
+                            <span className="sr-only">Copy</span>
+                            <Copy className="h-4 w-4" />
+                        </Button>
+            </div>
+        </form> */}
+        </>
     );
 }

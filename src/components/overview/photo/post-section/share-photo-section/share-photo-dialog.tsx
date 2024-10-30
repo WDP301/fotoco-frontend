@@ -7,14 +7,11 @@ import {
     DialogTitle,
     DialogTrigger,
   } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
 import { Icons } from "@/components/icons/icons"
 import { siteConfig } from '@/config/site';
-import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 
 import {
-    Copy,
     Download,
     Share2,
 } from "lucide-react"
@@ -47,23 +44,7 @@ export default function SharePhotoDialog() {
                         </DialogTitle>
                     <DialogDescription>{dict.sharePhotoDialog.description}</DialogDescription>
                     </DialogHeader>
-                    <div className="flex items-center space-x-2">
-                        {/* <div className="grid flex-1 gap-2">
-                            <Label htmlFor="link" className="sr-only">
-                            Link
-                            </Label>
-                            <Input
-                            id="link"
-                            defaultValue="https://ui.shadcn.com/docs/installation"
-                            readOnly
-                            />
-                        </div>
-                        <Button type="submit" size="sm" className="px-3" title="Copy link">
-                            <span className="sr-only">Copy</span>
-                            <Copy className="h-4 w-4" />
-                        </Button> */}
-                        <SharePhotoForm />
-                    </div>
+                    <SharePhotoForm />
                     {/* <Separator />
                     <DialogFooter className="sm:justify-start">
                         <Button className="ml-auto">

@@ -45,11 +45,11 @@ export default function GalleryView({
       setPageMeta(pageMeta);
     };
     fetchPhotos();
-  }, [albumId, searchParams]);
+  }, [albumId, searchParams, currentPhotoId]);
   return (
     <>
       <div>
-        <Gallery photos={photos} currentPhoto={currentPhoto}/>
+        <Gallery photos={photos} currentPhoto={currentPhoto} />
       </div>
       <div>
         <ListPagination meta={pageMeta} bookmark="album-name" />

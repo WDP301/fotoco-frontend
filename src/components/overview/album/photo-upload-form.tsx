@@ -199,7 +199,7 @@ export default function PhotoUploadForm({
               onUploadProgress,
               cancelToken: cancelSource.token,
               headers: await getAuthHeader(),
-              validateStatus: () => true
+              validateStatus: () => true,
             }
           )
           .then((res) => {
@@ -215,7 +215,7 @@ export default function PhotoUploadForm({
         throw error;
       }
     },
-    [albumId]
+    [albumId, dict]
   );
 
   const removeFile = (file: File) => {
@@ -276,7 +276,7 @@ export default function PhotoUploadForm({
         }
       }
     },
-    [uploadPhotoToAws, router, setOpen]
+    [uploadPhotoToAws, router, setOpen, dict]
   );
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });

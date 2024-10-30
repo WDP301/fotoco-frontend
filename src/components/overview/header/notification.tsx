@@ -82,7 +82,7 @@ export default function Notification({ user }: { user: User }) {
         );
       }
     });
-  }, [socket?.connected]);
+  }, [socket, dict, handleSeenNoti, router, user._id]);
 
   useEffect(() => {
     // Fetch notifications when the component mounts

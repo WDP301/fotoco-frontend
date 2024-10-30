@@ -18,7 +18,7 @@ export default function ReactSection({
     onCommentIconClick: () => void,
 }) {
     const router = useRouter();
-    const [isLike, setIsLiked] = useState(isLiked);
+    const [isLike, setIsLiked] = useState(photo?.isReacted);
     const [reactsCount, setReactsCount] = useState(photo?.photo.reactsCount);
     const handleReact = async () => {
         const prevLiked = isLike;
@@ -35,14 +35,14 @@ export default function ReactSection({
                 setReactsCount((prevCount) =>
                     prevLiked ? prevCount + 1 : prevCount - 1
                 );
-                router.refresh();
             }
+            router.refresh();
         } catch (error) {
             setIsLiked(prevLiked);
             setReactsCount((prevCount) =>
                 prevLiked ? prevCount + 1 : prevCount - 1
-            );
-        }
+        );
+    }
     }
 
     const handleReactUpdate = async () => {

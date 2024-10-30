@@ -30,8 +30,8 @@ const nextConfig = {
     ],
   },
   env: {
-    API_URL: process.env.API_URL || 'http://localhost:9999',
-    SOCKET_URL: process.env.SOCKET_URL || 'http://localhost:9999',
+    API_URL: process.env.API_URL || 'http://localhost:4000/api/v1',
+    SOCKET_URL: process.env.SOCKET_URL || 'http://localhost:4000',
     FRONTEND_SITE_NAME: process.env.FRONTEND_SITE_NAME || 'Fotoco',
   },
 };

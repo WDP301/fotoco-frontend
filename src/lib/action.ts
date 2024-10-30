@@ -321,9 +321,13 @@ export const commentPhoto = async (photoId: string, content: string) => {
     });
 
   return response;
-}
+};
 
-export const replyComment = async (photoId: string, commentId: string, content: string) => {
+export const replyComment = async (
+  photoId: string,
+  commentId: string,
+  content: string
+) => {
   const response = await http
     .post(`/photos/${photoId}/reply/${commentId}`, {
       content,
@@ -342,7 +346,7 @@ export const replyComment = async (photoId: string, commentId: string, content: 
     });
 
   return response;
-}
+};
 
 export const acceptInviteToGroup = async (
   groupId: string,
@@ -479,6 +483,27 @@ export const updateGroup = async (
       };
     });
 
+  return response;
+};
+
+export const changeLanguage = async (language: string) => {
+  const response = await http
+    .put(`/users/me/setting`, {
+      lang: language,
+    })
+    .then(() => {
+      cookies().set('lang', language);
+      return {
+        isSuccess: true,
+        error: '',
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.message || 'Unknown error',
+      };
+    });
   return response;
 };
 

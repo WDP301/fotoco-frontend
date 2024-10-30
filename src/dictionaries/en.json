@@ -236,7 +236,9 @@
     },
     "joinGroup": "Join Group",
     "invite": "Invite",
-    "updateGroup": "Update Group"
+    "updateGroup": "Update Group",
+    "changeLanguage": "Change Language",
+    "changeTheme": "Change Theme"
   },
   "joinGroup": {
     "title": "Join Group",
@@ -528,6 +530,34 @@
     "message": {
       "success": "There is an imposter among us",
       "error": "Failed to kick member"
+    }
+  },
+  "editProfile": {
+    "title": "Edit your profile",
+    "description": "Manage your personal information and account settings",
+    "profile": {
+      "title": "Profile",
+      "description": "This is how others will see you on the site."
+    },
+    "security": {
+      "title": "Security",
+      "description": "Update your password and secure your account."
+    },
+    "appearance": {
+      "title": "Appearance",
+      "description": "Adjust the appearance of the website. Automatically switch between light and dark mode and change language.",
+      "theme": {
+        "title": "Theme",
+        "description": "Choose a theme that works best for you."
+      },
+      "language": {
+        "title": "Language",
+        "description": "Choose a language that works best for you.",
+        "message": {
+          "success": "Update language successfully",
+          "error": "Failed to update language"
+        }
+      }
     }
   }
 }

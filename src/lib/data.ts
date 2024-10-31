@@ -37,18 +37,21 @@ export const getUser = async () => {
   try {
     const response = await customFetch('/users/me', {
       method: 'GET',
-      // next: { revalidate: 3600 },
-    });
+      next: { revalidate: 3600 },
+    })
+    .then((res) => res.json())
+    .catch(() => null);
 
-    if (!response.ok) {
+    if (response?.status === 401) {
       throw new Error('Failed to fetch user data');
     }
 
-    const data = await response.json();
-    return data.user as User;
+    if (response?.success) {
+      return response.user;
+    }
   } catch (error) {
     console.error('Error fetching user data:', error);
-    return null;
+    return {} as User;
   }
 };
 

@@ -21,7 +21,7 @@ export default async function HeaderSite() {
 
         <div className="ml-auto hidden sm:block">
           <div className="flex items-center space-x-4 ">
-            {user._id ? (
+            {user ? (
               <>
                 <HeaderActionPopover />
                 <Notification user={user} />
@@ -31,7 +31,7 @@ export default async function HeaderSite() {
             )}
             <ModeToggle />
 
-            {user._id ? <UserNav user={user} /> : <ButtonLogin />}
+            {user ? <UserNav user={user} /> : <ButtonLogin />}
           </div>
         </div>
         <div className="ml-auto block sm:hidden">

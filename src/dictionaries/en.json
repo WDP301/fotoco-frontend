@@ -664,12 +664,12 @@
       "form": {
         "title": {
           "label": "Title",
-          "desciption": "Give your photo a title that describes the moment.",
+          "description": "Give your photo a title that describes the moment.",
           "placeholder": "Enter a title"
         },
         "tags": {
           "label": "Tags",
-          "desciption": "Tags help others find your photo. Press Enter to add a tag.",
+          "description": "Tags help others find your photo. Press Enter to add a tag.",
           "placeholder": "Enter a tag"
         }
       }

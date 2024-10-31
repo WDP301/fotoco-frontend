@@ -99,7 +99,7 @@ export function EditPhotoDialog({ photo }: { photo: PhotoDetails }) {
                     />
                   </FormControl>
                   <FormDescription className="text-left">
-                    {dict.photoDetail.edit.form.title.desciption}
+                    {dict.photoDetail.edit.form.title.description}
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -121,7 +121,7 @@ export function EditPhotoDialog({ photo }: { photo: PhotoDetails }) {
                     />
                   </FormControl>
                   <FormDescription className="text-left">
-                    {dict.photoDetail.edit.form.tags.desciption}
+                    {dict.photoDetail.edit.form.tags.description}
                   </FormDescription>
                   <FormMessage />
                 </FormItem>

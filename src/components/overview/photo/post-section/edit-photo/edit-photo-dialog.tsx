@@ -132,14 +132,13 @@ export function EditPhotoDialog({ photo }: { photo: PhotoDetails }) {
                 type="submit"
                 disabled={
                   isLoading ||
-                  (JSON.stringify(
-                    photo?.tags.map((tag) => ({ text: tag })) || []
-                  ) === JSON.stringify(form.getValues('tags')) &&
+                  (JSON.stringify(photo?.tags || []) ===
+                    JSON.stringify(form.getValues('tags')) &&
                     photo?.title === form.getValues('title'))
                 }
               >
                 {isLoading && (
-                  <Icons.spinner className=" mr-2 h-4 w-4 animate-spin" />
+                  <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                 )}
                 {dict.button.saveChanges}
               </Button>

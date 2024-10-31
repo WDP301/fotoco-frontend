@@ -17,22 +17,23 @@ import Link from "next/link";
 export default function SharedPhoto({ photo }: { photo: SharedPhoto }) {
     const { dict } = useLanguage();
     const imageContainerRef = useRef<HTMLDivElement>(null);
-    const [copyButtonTooltipText, setCopyButtonTooltipText] = useState(dict.sharePhotoDialog.sharePhotoForm.copy);
+    const [copyButtonTooltipText, setCopyButtonTooltipText] = useState(dict.sharePhotoDetails.copyButton.copy);
     const [showTooltip, setShowTooltip] = useState(false);
     const [dimensions, setDimensions] = useState({ width: 1000, height: 1000 });
 
     useEffect(() => {
         fetchPhotoSize(photo?.photo.url).then((setDimensions));
-    }, [photo?.photo.url]);
+        setCopyButtonTooltipText(dict.sharePhotoDetails.copyButton.copy);
+    }, [photo?.photo.url, dict]);
 
     const handleCopyLink = () => {
         const shareLink = window.location.href;
         navigator.clipboard.writeText(shareLink).then(() => {
-            setCopyButtonTooltipText(dict.sharePhotoDialog.sharePhotoForm.copied);
+            setCopyButtonTooltipText(dict.sharePhotoDetails.copyButton.copied);
             setShowTooltip(true);
         });
         setTimeout(() => {
-            setCopyButtonTooltipText(dict.sharePhotoDialog.sharePhotoForm.copy);
+            setCopyButtonTooltipText(dict.sharePhotoDetails.copyButton.copy);
             setShowTooltip(false);
         }, 2000);
     };
@@ -68,7 +69,6 @@ export default function SharedPhoto({ photo }: { photo: SharedPhoto }) {
                     </div>
                 </div>
 
-                {/* Button List */}
                 <div className="absolute top-0 right-5 m-4 flex items-center space-x-2 text-white">
                     <Popover>
                         <PopoverTrigger>
@@ -78,7 +78,7 @@ export default function SharedPhoto({ photo }: { photo: SharedPhoto }) {
                         </PopoverTrigger>
                         <PopoverContent>
                             <div className="flex items-center space-x-2">
-                                <h4>Details</h4>
+                                <h4>{dict.sharePhotoDetails.title}</h4>
                                 <Info className="h-5 w-5" />
                             </div>
                             <Separator className="my-3" />
@@ -90,7 +90,7 @@ export default function SharedPhoto({ photo }: { photo: SharedPhoto }) {
                             <div className="flex items-start gap-4">
                                 <AvatarPicture src={photo?.photo.owner.img || ''} />
                                 <div className="grid gap-1">
-                                    <div className="line-clamp-1 text-muted-foreground text-xs">Owner</div>
+                                    <div className="line-clamp-1 text-muted-foreground text-xs">{dict.sharePhotoDetails.owner}</div>
                                     <div className="font-semibold text-sm">{photo?.photo.owner.fullName}</div>
                                 </div>
                             </div>
@@ -98,7 +98,7 @@ export default function SharedPhoto({ photo }: { photo: SharedPhoto }) {
                             <div className="flex items-start gap-4">
                                 <AvatarPicture src={photo?.shareUser.img || ''} />
                                 <div className="grid gap-1">
-                                    <div className="line-clamp-1 text-muted-foreground text-xs">Shared by</div>
+                                    <div className="line-clamp-1 text-muted-foreground text-xs">{dict.sharePhotoDetails.sharedBy}</div>
                                     <div className="font-semibold text-sm">{photo?.shareUser.fullName}</div>
                                 </div>
                             </div>
@@ -106,7 +106,7 @@ export default function SharedPhoto({ photo }: { photo: SharedPhoto }) {
                             <div className="-mx-2 flex items-start space-x-4 rounded-md p-2">
                                 <CalendarDays className="mt-px h-5 w-5" />
                                 <div className="space-y-1">
-                                    <p className="text-sm font-medium leading-none">Expired Time</p>
+                                    <p className="text-sm font-medium leading-none">{dict.sharePhotoDetails.expiredTime}</p>
                                     <p className="text-sm text-muted-foreground">
                                         {photo?.expiredTime && getDateFormatted(photo.expiredTime, dict.lang)}
                                     </p>

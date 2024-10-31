@@ -680,5 +680,15 @@
       "copy": "Sao chép",
       "copied": "Đã sao chép"
     }
+  },
+  "sharePhotoDetails": {
+    "title": "Chi tiết",
+    "owner": "Chủ sở hữu",
+    "sharedBy": "Chia sẻ bởi",
+    "expiredTime": "Thời gian hết hạn",
+    "copyButton":{
+      "copy": "Sao chép",
+      "copied": "Đã sao chép"
+    }
   }
 }

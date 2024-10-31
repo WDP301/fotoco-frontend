@@ -680,5 +680,15 @@
       "copy": "Copy",
       "copied": "Copied"
     }
+  },
+  "sharePhotoDetails": {
+    "title": "Details",
+    "owner": "Owner",
+    "sharedBy": "Shared by",
+    "expiredTime": "Expired time",
+    "copyButton":{
+      "copy": "Copy",
+      "copied": "Copied"
+    }
   }
 }

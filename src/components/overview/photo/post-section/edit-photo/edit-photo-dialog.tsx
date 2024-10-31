@@ -29,10 +29,10 @@ import { FilePenLine } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Tag, TagInput } from 'emblor';
 import { toast } from 'sonner';
 import { z } from 'zod';
 import { editPhoto } from '@/lib/action';
+import { TagsInput } from '@/components/ui/tags-input';
 
 export function EditPhotoDialog({ photo }: { photo: PhotoDetails }) {
   const { dict } = useLanguage();
@@ -44,15 +44,9 @@ export function EditPhotoDialog({ photo }: { photo: PhotoDetails }) {
     resolver: zodResolver(getUpdatePhotoFormSchema(dict.lang)),
     defaultValues: {
       title: photo?.title || '',
-      tags: photo?.tags.map((tag) => ({ text: tag })) || [],
+      tags: photo?.tags || [],
     },
   });
-
-  const [tags, setTags] = useState<Tag[]>(
-    photo.tags.map((tag, index) => ({ id: index.toString(), text: tag }))
-  );
-  const [activeTagIndex, setActiveTagIndex] = useState<number | null>(null);
-  const { setValue } = form;
 
   async function onSubmit(
     data: z.infer<ReturnType<typeof getUpdatePhotoFormSchema>>
@@ -116,18 +110,10 @@ export function EditPhotoDialog({ photo }: { photo: PhotoDetails }) {
                     {dict.photoDetail.edit.form.tags.label}
                   </FormLabel>
                   <FormControl className="w-full">
-                    <TagInput
-                      {...field}
+                    <TagsInput
+                      value={(field.value as string[]) || []}
+                      onValueChange={field.onChange}
                       placeholder="Enter a tag"
-                      tags={tags}
-                      className="sm:min-w-[450px]"
-                      setTags={(newTags) => {
-                        setTags(newTags);
-                        setValue('tags', newTags as [Tag, ...Tag[]]);
-                      }}
-                      activeTagIndex={activeTagIndex}
-                      setActiveTagIndex={setActiveTagIndex}
-                      disabled={isLoading}
                     />
                   </FormControl>
                   <FormDescription className="text-left">

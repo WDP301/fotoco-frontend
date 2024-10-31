@@ -56,12 +56,7 @@ export const getUpdatePhotoFormSchema = (lang: Locale) => {
   return z.object({
     title: z.string().max(50, { message: messages.title.max }).optional(),
     tags: z
-      .array(
-        z.object({
-          id: z.string(),
-          text: z.string(),
-        })
-      )
+      .array(z.string())
       .max(10, { message: messages.tags.max })
       .optional()
       .transform((e) => (e && e.length === 0 ? undefined : e)),

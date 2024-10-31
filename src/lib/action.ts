@@ -523,7 +523,7 @@ export const editPhoto = async (
   const response = await http
     .put(`/photos/${photoId}/update`, {
       title,
-      tags: tags.map((tag) => tag.text),
+      tags,
     })
     .then(() => {
       return {

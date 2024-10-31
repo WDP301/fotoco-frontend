@@ -29,7 +29,11 @@ export default function PhotoCarousel({
   }, [photo?.photo.url]);
 
   if (loading) {
-    return <SpinLoading />;
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <SpinLoading />
+      </div>
+    );
   }
 
   return (

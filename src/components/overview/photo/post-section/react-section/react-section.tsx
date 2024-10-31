@@ -4,7 +4,7 @@ import { formatNumber } from "@/lib/utils";
 import { HeartFilledIcon } from "@radix-ui/react-icons";
 import { Heart, MessageCircleIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import ReactList from "./react-list";
 import { getReactListByPhotoId } from "@/lib/data";
 
@@ -45,10 +45,10 @@ export default function ReactSection({
     }
     }
 
-    const handleReactUpdate = async () => {
+    const handleReactUpdate = useCallback(async () => {
         const reacts = await getReactListByPhotoId(photo?.photo._id);
         setReactsCount(reacts.length);
-    };
+    }, [photo?.photo._id]);
 
     return (
         <>

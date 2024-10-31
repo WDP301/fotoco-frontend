@@ -20,7 +20,6 @@ export default async function Home({
 }) {
   const user = await getUser();
 
-  console.log('>>>>user', user);
   const dict = await getDictionary();
 
   const getGreeting = () => {

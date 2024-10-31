@@ -35,7 +35,7 @@ export default function ReactList({
             onReactUpdate();
         }
         getReacts();
-    }, [photoId, onReactUpdate]);
+    }, [photoId]);
     
 
     return (

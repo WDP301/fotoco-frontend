@@ -41,9 +41,6 @@ export const getUser = async () => {
     });
 
     if (!response.ok) {
-      if (response.status === 401) {
-        return {} as User;
-      }
       throw new Error('Failed to fetch user data');
     }
 
@@ -51,7 +48,7 @@ export const getUser = async () => {
     return data.user as User;
   } catch (error) {
     console.error('Error fetching user data:', error);
-    return {} as User;
+    return null;
   }
 };
 

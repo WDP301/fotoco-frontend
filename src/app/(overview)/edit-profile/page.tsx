@@ -1,3 +1,4 @@
+import { ProfileForm } from '@/components/overview/edit-profile/profile/profile-form';
 import { Separator } from '@/components/ui/separator';
 import { getUser } from '@/lib/data';
 import { getDictionary } from '@/lib/dictionaries';
@@ -21,7 +22,7 @@ export default async function SettingsProfilePage() {
         </p>
       </div>
       <Separator />
-      {/* <ProfileForm user={user} /> */}
+      <ProfileForm user={user} />
     </div>
   );
 }

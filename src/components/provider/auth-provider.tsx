@@ -1,11 +1,18 @@
 import { getUser } from '@/lib/data';
 import { User } from '@/lib/define';
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 interface AuthContextProps {
   user: User | null;
   loading: boolean;
   error: Error | null;
+  updateUser: (user: User) => void;
 }
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
@@ -18,9 +25,7 @@ export const useAuth = () => {
   return context;
 };
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -40,8 +45,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     fetchUser();
   }, []);
 
+  const updateUser = (newUser: User) => {
+    setUser(newUser);
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loading, error }}>
+    <AuthContext.Provider value={{ user, loading, error, updateUser }}>
       {children}
     </AuthContext.Provider>
   );

@@ -128,13 +128,13 @@
     "registerFormSchema": {
       "fullName": {
         "required": "Họ tên không được để trống",
-        "min": "Họ tên phải có ít nhất 3 ký tự",
+        "min": "Họ tên phải có ít nhất 6 ký tự",
         "max": "Họ tên phải tối đa 50 ký tự"
       },
       "username": {
         "required": "Tên người dùng không được để trống",
-        "min": "Tên người dùng phải có ít nhất 3 ký tự",
-        "max": "Tên người dùng phải tối đa 50 ký tự"
+        "min": "Tên người dùng phải có ít nhất 6 ký tự",
+        "max": "Tên người dùng phải tối đa 20 ký tự"
       },
       "email": {
         "required": "Email không được để trống",
@@ -206,6 +206,36 @@
       },
       "tags": {
         "max": "Tối đa 10 thẻ được phép"
+      }
+    },
+    "profileFormSchema": {
+      "fullName": {
+        "required": "Họ tên không được để trống",
+        "min": "Họ tên phải có ít nhất 6 ký tự",
+        "max": "Họ tên phải tối đa 50 ký tự"
+      },
+      "username": {
+        "required": "Tên người dùng không được để trống",
+        "min": "Tên người dùng phải có ít nhất 6 ký tự",
+        "max": "Tên người dùng phải tối đa 20 ký tự"
+      },
+      "email": {
+        "required": "Email không được để trống",
+        "invalid": "Email phải là một email hợp lệ"
+      },
+      "phoneNumber": {
+        "min": "Số điện thoại phải có ít nhất 10 ký tự"
+      },
+      "bio": {
+        "max": "Tiểu sử phải tối đa 10000 ký tự"
+      },
+      "urls": {
+        "url": {
+          "invalid": "URL không hợp lệ",
+          "max": "URL không được vượt quá 255 ký tự",
+          "min": "URL không được để trống"
+        },
+        "max": "URL không được vượt quá 5"
       }
     }
   },
@@ -549,7 +579,33 @@
     "description": "Quản lý thông tin cá nhân và cài đặt tài khoản của bạn",
     "profile": {
       "title": "Hồ sơ",
-      "description": "Đây là cách người khác sẽ nhìn thấy bạn trên trang web."
+      "description": "Đây là cách người khác sẽ nhìn thấy bạn trên trang web.",
+      "form": {
+        "image": {
+          "label": "Ảnh đại diện",
+          "chooseFile": "Chọn ảnh"
+        },
+        "fullName": {
+          "label": "Họ và tên đầy đủ",
+          "description": "Tên này sẽ được hiển thị công khai."
+        },
+        "username": {
+          "label": "Tên người dùng",
+          "description": "Đây là tên hiển thị công khai của bạn. Có thể là tên thật hoặc bút danh của bạn."
+        },
+        "email": {
+          "label": "Email",
+          "description": "Email này sẽ được sử dụng để đăng nhập và nhận thông báo. Bạn không thể thay đổi."
+        },
+        "phoneNumber": {
+          "label": "Số điện thoại",
+          "description": "Đây là tùy chọn và sẽ không được hiển thị công khai. Tên này sẽ được sử dụng để khôi phục tài khoản. (Có thể)"
+        },
+        "bio": {
+          "label": "Tiểu sử",
+          "description": "Bạn có thể viết một chút về bản thân tại đây. Nội dung này sẽ được hiển thị trên trang hồ sơ của bạn."
+        }
+      }
     },
     "security": {
       "title": "Bảo mật",

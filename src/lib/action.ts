@@ -7,13 +7,14 @@ import {
   getInviteGroupMemberSchema,
   getJoinGroupSchema,
   getLoginFormSchema,
+  getProfileFormSchema,
   getRegisterFormSchema,
   getUpdateGroupSettingSchema,
   getUpdatePhotoFormSchema,
 } from './form-schema';
 import http from '@/config/axios';
 import { cookies } from 'next/headers';
-import { AuthResponse, UserJWT, UserNotification } from './define';
+import { AuthResponse, User, UserJWT, UserNotification } from './define';
 import { v4 as uuidv4 } from 'uuid';
 import { base64Decode } from './utils';
 
@@ -554,6 +555,74 @@ export const deletePhoto = async (photoId: string) => {
         error: error?.response?.data?.message || 'Unknown error',
       };
     });
+};
+
+export const updateUserProfile = async (
+  formData: z.infer<ReturnType<typeof getProfileFormSchema>>
+) => {
+  try {
+    const { image, fullName, username, phoneNumber, bio } = formData;
+
+    const response = await http
+      .put('/users/me/profile', {
+        img: image,
+        fullName,
+        username,
+        phoneNumber,
+        bio,
+      })
+      .then((res) => {
+        return {
+          isSuccess: true,
+          error: '',
+          data: res.data.user as User,
+        };
+      })
+      .catch((error) => {
+        return {
+          isSuccess: false,
+          error: error?.response?.data?.message || 'Unknown error',
+          data: {} as User,
+        };
+      });
+
+    return response;
+  } catch (error: any) {
+    return {
+      isSuccess: false,
+      error: error?.response?.data?.message || 'Unknown error',
+      data: {} as User,
+    };
+  }
+};
+
+export const uploadImage = async (formData: FormData) => {
+  try {
+    const response = await http
+      .post('/public/upload', formData)
+      .then((res) => {
+        return {
+          isSuccess: true,
+          error: '',
+          data: res.data.url,
+        };
+      })
+      .catch((error) => {
+        return {
+          isSuccess: false,
+          error: error?.response?.data?.message || 'Unknown error',
+          data: null,
+        };
+      });
+
+    return response;
+  } catch (error: any) {
+    return {
+      isSuccess: false,
+      error: error.message || 'Unknown error',
+      data: null,
+    };
+  }
 };
 
 export const sharePhoto = async (photoId: string, time: number) => {

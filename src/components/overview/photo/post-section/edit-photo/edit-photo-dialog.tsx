@@ -138,7 +138,16 @@ export function EditPhotoDialog({ photo }: { photo: PhotoDetails }) {
               )}
             />
             <div className="flex justify-between md:justify-end gap-2">
-              <Button type="submit" disabled={isLoading}>
+              <Button
+                type="submit"
+                disabled={
+                  isLoading ||
+                  (JSON.stringify(
+                    photo?.tags.map((tag) => ({ text: tag })) || []
+                  ) === JSON.stringify(form.getValues('tags')) &&
+                    photo?.title === form.getValues('title'))
+                }
+              >
                 {isLoading && (
                   <Icons.spinner className=" mr-2 h-4 w-4 animate-spin" />
                 )}

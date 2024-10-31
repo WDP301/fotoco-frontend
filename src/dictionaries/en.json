@@ -605,6 +605,17 @@
           "label": "Bio",
           "description": "You can write a little bit about yourself here. This will be shown on your profile page."
         }
+      },
+      "message": {
+        "image": {
+          "success": "Update profile picture successfully",
+          "error": {
+            "imageCrop": "Image processing failed.",
+            "imageUpload": "Upload image failed."
+          }
+        },
+        "success": "Update profile successfully",
+        "error": "Failed to update profile"
       }
     },
     "security": {
@@ -653,11 +664,13 @@
       "form": {
         "title": {
           "label": "Title",
-          "description": "Give your photo a title that describes the moment."
+          "description": "Give your photo a title that describes the moment.",
+          "placeholder": "Enter a title"
         },
         "tags": {
           "label": "Tags",
-          "description": "Tags help others find your photo. Press Enter to add a tag."
+          "description": "Tags help others find your photo. Press Enter to add a tag.",
+          "placeholder": "Enter a tag"
         }
       }
     },

@@ -29,10 +29,10 @@ import { FilePenLine } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Tag, TagInput } from 'emblor';
 import { toast } from 'sonner';
 import { z } from 'zod';
 import { editPhoto } from '@/lib/action';
+import { TagsInput } from '@/components/ui/tags-input';
 
 export function EditPhotoDialog({ photo }: { photo: PhotoDetails }) {
   const { dict } = useLanguage();
@@ -44,15 +44,9 @@ export function EditPhotoDialog({ photo }: { photo: PhotoDetails }) {
     resolver: zodResolver(getUpdatePhotoFormSchema(dict.lang)),
     defaultValues: {
       title: photo?.title || '',
-      tags: photo?.tags.map((tag) => ({ text: tag })) || [],
+      tags: photo?.tags || [],
     },
   });
-
-  const [tags, setTags] = useState<Tag[]>(
-    photo.tags.map((tag, index) => ({ id: index.toString(), text: tag }))
-  );
-  const [activeTagIndex, setActiveTagIndex] = useState<number | null>(null);
-  const { setValue } = form;
 
   async function onSubmit(
     data: z.infer<ReturnType<typeof getUpdatePhotoFormSchema>>
@@ -98,7 +92,11 @@ export function EditPhotoDialog({ photo }: { photo: PhotoDetails }) {
                   <FormControl
                     className={cn('', !field.value && 'text-muted-foreground')}
                   >
-                    <Input placeholder="Title" {...field} />
+                    <Input
+                      placeholder={dict.photoDetail.edit.form.title.placeholder}
+                      {...field}
+                      autoFocus
+                    />
                   </FormControl>
                   <FormDescription className="text-left">
                     {dict.photoDetail.edit.form.title.description}
@@ -116,18 +114,10 @@ export function EditPhotoDialog({ photo }: { photo: PhotoDetails }) {
                     {dict.photoDetail.edit.form.tags.label}
                   </FormLabel>
                   <FormControl className="w-full">
-                    <TagInput
-                      {...field}
-                      placeholder="Enter a tag"
-                      tags={tags}
-                      className="sm:min-w-[450px]"
-                      setTags={(newTags) => {
-                        setTags(newTags);
-                        setValue('tags', newTags as [Tag, ...Tag[]]);
-                      }}
-                      activeTagIndex={activeTagIndex}
-                      setActiveTagIndex={setActiveTagIndex}
-                      disabled={isLoading}
+                    <TagsInput
+                      value={(field.value as string[]) || []}
+                      onValueChange={field.onChange}
+                      placeholder={dict.photoDetail.edit.form.tags.placeholder}
                     />
                   </FormControl>
                   <FormDescription className="text-left">
@@ -142,14 +132,13 @@ export function EditPhotoDialog({ photo }: { photo: PhotoDetails }) {
                 type="submit"
                 disabled={
                   isLoading ||
-                  (JSON.stringify(
-                    photo?.tags.map((tag) => ({ text: tag })) || []
-                  ) === JSON.stringify(form.getValues('tags')) &&
+                  (JSON.stringify(photo?.tags || []) ===
+                    JSON.stringify(form.getValues('tags')) &&
                     photo?.title === form.getValues('title'))
                 }
               >
                 {isLoading && (
-                  <Icons.spinner className=" mr-2 h-4 w-4 animate-spin" />
+                  <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                 )}
                 {dict.button.saveChanges}
               </Button>

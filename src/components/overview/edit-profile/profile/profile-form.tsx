@@ -60,6 +60,7 @@ function centerAspectCrop(
 }
 
 export function ProfileForm({ user }: { user: User }) {
+  const router = useRouter();
   const { dict } = useLanguage();
   const { updateUser } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
@@ -129,11 +130,6 @@ export function ProfileForm({ user }: { user: User }) {
     mode: 'onChange',
   });
 
-  const { fields, append, remove } = useFieldArray({
-    name: 'urls',
-    control: form.control,
-  });
-
   const onSubmit = async (data: ProfileFormValues) => {
     setIsLoading(true);
     try {
@@ -170,7 +166,7 @@ export function ProfileForm({ user }: { user: User }) {
         );
 
         if (!blob) {
-          toast.error('Image processing failed. Please try again.');
+          toast.error(dict.editProfile.profile.message.image.imageCrop);
           setIsLoading(false);
           return;
         }
@@ -182,7 +178,7 @@ export function ProfileForm({ user }: { user: User }) {
         if (uploadResult.isSuccess) {
           data.image = uploadResult.data;
         } else {
-          toast.error('Upload image failed. Please try again.');
+          toast.error(dict.editProfile.profile.message.image.imageUpload);
           setIsLoading(false);
           return;
         }
@@ -198,13 +194,15 @@ export function ProfileForm({ user }: { user: User }) {
       const result = await updateUserProfile(data);
       if (result.isSuccess) {
         updateUser(result.data);
-        toast.success('Update profile successfully!');
+        toast.success(dict.editProfile.profile.message.success);
+        router.push('/edit-profile');
+        router.refresh();
       } else {
         toast.error(result.error);
       }
     } catch (error) {
       console.error(error);
-      toast.error('An error occurred. Please try again.');
+      toast.error(dict.editProfile.profile.message.error);
     } finally {
       setIsLoading(false);
     }
@@ -371,7 +369,7 @@ export function ProfileForm({ user }: { user: User }) {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-primary">
-                {dict.editProfile.profile.form.bio.title}
+                {dict.editProfile.profile.form.bio.label}
               </FormLabel>
               <FormControl>
                 <Textarea

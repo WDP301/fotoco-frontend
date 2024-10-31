@@ -98,7 +98,7 @@ export default async function AlbumPage({
             <ToggleView />
           </div>
         </div>
-        <div className="flex justify-center md:justify-start">
+        <div className="flex justify-center md:justify-start max-sm:my-2">
           {searchParams.search && <SearchBadge query={searchParams.search} />}
         </div>
       </div>

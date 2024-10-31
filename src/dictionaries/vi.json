@@ -605,6 +605,17 @@
           "label": "Tiểu sử",
           "description": "Bạn có thể viết một chút về bản thân tại đây. Nội dung này sẽ được hiển thị trên trang hồ sơ của bạn."
         }
+      },
+      "message": {
+        "image": {
+          "success": "Cập nhật ảnh đại diện thành công",
+          "error": {
+            "imageCrop": "Có lỗi xảy ra khi cắt ảnh.",
+            "imageUpload": "Có lỗi xảy ra khi tải ảnh lên."
+          }
+        },
+        "success": "Cập nhật hồ sơ thành công",
+        "error": "Lỗi khi cập nhật hồ sơ"
       }
     },
     "security": {
@@ -653,10 +664,14 @@
       "form": {
         "title": {
           "label": "Tiêu đề",
+          "desciption": "Tiêu đề giúp mọi người hiểu rõ hơn về ảnh của bạn.",
+          "placeholder": "Nhập tiêu đề ở đây"
           "description": "Tiêu đề giúp mọi người hiểu rõ hơn về ảnh của bạn."
         },
         "tags": {
           "label": "Thẻ",
+          "desciption": "Thẻ giúp mọi người tìm kiếm ảnh của bạn dễ dàng hơn.",
+          "placeholder": "Nhập thẻ ở đây"
           "description": "Thẻ giúp mọi người tìm kiếm ảnh của bạn dễ dàng hơn."
         }
       }

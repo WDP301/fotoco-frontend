@@ -128,13 +128,13 @@
     "registerFormSchema": {
       "fullName": {
         "required": "Full name can not be empty",
-        "min": "Full name must be at least 3 characters",
+        "min": "Full name must be at least 6 characters",
         "max": "Full name must be maximum 50 characters"
       },
       "username": {
         "required": "Username can not be empty",
-        "min": "Username must be at least 3 characters",
-        "max": "Username must be maximum 50 characters"
+        "min": "Username must be at least 6 characters",
+        "max": "Username must be maximum 20 characters"
       },
       "email": {
         "required": "Email can not be empty",
@@ -206,6 +206,36 @@
       },
       "tags": {
         "max": "Maximum 10 tags are allowed"
+      }
+    },
+    "profileFormSchema": {
+      "fullName": {
+        "required": "Full name can not be empty",
+        "min": "Full name must be at least 6 characters",
+        "max": "Full name must be maximum 50 characters"
+      },
+      "username": {
+        "required": "Username can not be empty",
+        "min": "Username must be at least 6 characters",
+        "max": "Username must be maximum 20 characters"
+      },
+      "email": {
+        "required": "Email can not be empty",
+        "invalid": "Email must be a valid email"
+      },
+      "phoneNumber": {
+        "min": "Phone number must be at least 10 characters"
+      },
+      "bio": {
+        "max": "Bio must be maximum 10000 characters"
+      },
+      "urls": {
+        "url": {
+          "invalid": "URL must be valid",
+          "max": "URL must be maximum 100 characters",
+          "min": "URL can not be empty"
+        },
+        "max": "Number of URLs cannot exceed 5"
       }
     }
   },
@@ -548,7 +578,33 @@
     "description": "Manage your personal information and account settings",
     "profile": {
       "title": "Profile",
-      "description": "This is how others will see you on the site."
+      "description": "This is how others will see you on the site.",
+      "form": {
+        "image": {
+          "label": "Update Profile Picture",
+          "chooseFile": "Choose a file"
+        },
+        "fullName": {
+          "label": "Full name",
+          "description": "This name will be displayed publicly."
+        },
+        "username": {
+          "label": "Username",
+          "description": "This is your public display name. It can be your real name or a pseudonym."
+        },
+        "email": {
+          "label": "Email",
+          "description": "This email will be used for login and notifications. You can't change it."
+        },
+        "phoneNumber": {
+          "label": "Phone number",
+          "description": "This is optional and will not be displayed publicly. It will be used for account recovery. (Maybe)"
+        },
+        "bio": {
+          "label": "Bio",
+          "description": "You can write a little bit about yourself here. This will be shown on your profile page."
+        }
+      }
     },
     "security": {
       "title": "Security",

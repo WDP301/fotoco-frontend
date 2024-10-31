@@ -169,3 +169,32 @@ export const getInviteGroupMemberSchema = (lang: Locale) => {
     role: z.enum(['MEMBER', 'OWNER']),
   });
 };
+
+export const getProfileFormSchema = (lang: Locale) => {
+  const { profileFormSchema: messages } = getValidationMessages(lang);
+
+  return z.object({
+    image: z.any().optional(),
+    fullName: z
+      .string({ required_error: messages.fullName.required })
+      .min(6, { message: messages.fullName.min })
+      .max(50, { message: messages.fullName.max }),
+    username: z
+      .string({ required_error: messages.username.required })
+      .min(6, { message: messages.username.min })
+      .max(20, { message: messages.username.max }),
+    email: z.string().email({ message: messages.email.invalid }).optional(),
+    phoneNumber: z
+      .string()
+      .min(10, { message: messages.phoneNumber.min })
+      .optional()
+      .or(z.literal(''))
+      .transform((e) => (e === '' ? undefined : e)),
+    bio: z
+      .string()
+      .max(10000, { message: messages.bio.max })
+      .optional()
+      .or(z.literal(''))
+      .transform((e) => (e === '' ? undefined : e)),
+  });
+};

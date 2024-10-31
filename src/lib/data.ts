@@ -22,7 +22,6 @@ import {
   Comment,
   React,
 } from './define';
-import http from '@/config/axios';
 import { getPlaiceholder } from 'plaiceholder';
 
 function delay(ms: number): Promise<void> {
@@ -37,7 +36,7 @@ export const getUser = async () => {
   try {
     const response = await customFetch('/users/me', {
       method: 'GET',
-      next: { revalidate: 3600 },
+      // next: { revalidate: 3600 },
     });
 
     if (!response.ok) {
@@ -371,16 +370,24 @@ export const getUsers = async (search: string) => {
   }
 };
 
-export const getReactListByPhotoId = async (photoId: string, lastReactLoadId?: string) => {
+export const getReactListByPhotoId = async (
+  photoId: string,
+  lastReactLoadId?: string
+) => {
   try {
-    const queryString = lastReactLoadId ? `?lastReactLoadId=${lastReactLoadId}` : "";
-    const response = await customFetch(`/photos/${photoId}/reacts${queryString}`, {
-      method: 'GET',
-    })
+    const queryString = lastReactLoadId
+      ? `?lastReactLoadId=${lastReactLoadId}`
+      : '';
+    const response = await customFetch(
+      `/photos/${photoId}/reacts${queryString}`,
+      {
+        method: 'GET',
+      }
+    )
       .then((res) => res.json())
       .catch(() => null);
-      return (response?.reacts as React[]) || [];
+    return (response?.reacts as React[]) || [];
   } catch (error) {
     return [] as React[];
   }
-}
+};

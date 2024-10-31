@@ -199,6 +199,14 @@
         "required": "Email không được để trống",
         "invalid": "Email phải là một email hợp lệ"
       }
+    },
+    "updatePhotoFormSchema": {
+      "title": {
+        "max": "Tiêu đề tối đa 50 ký tự"
+      },
+      "tags": {
+        "max": "Tối đa 10 thẻ được phép"
+      }
     }
   },
   "form": {
@@ -238,7 +246,9 @@
     "invite": "Mời",
     "updateGroup": "Cập nhật nhóm",
     "changeLanguage": "Thay đổi ngôn ngữ",
-    "changeTheme": "Thay đổi chủ đề"
+    "changeTheme": "Thay đổi chủ đề",
+    "saveChanges": "Lưu thay đổi",
+    "delete": "Xóa"
   },
   "joinGroup": {
     "title": "Tham gia nhóm",
@@ -507,7 +517,8 @@
   "commentPhotoSection": {
     "replyButton": "Phản hồi",
     "commentForm": "Viết bình luận",
-    "replyForm": "Phản hồi"
+    "replyForm": "Phản hồi",
+    "noComment": "Chưa có bình luận nào."
   },
   "outGroup": {
     "button": "Rời nhóm",
@@ -567,13 +578,51 @@
   },
   "reactList": {
     "title": "Danh sách react",
-    "description": "Danh sách người dùng đã tương tác với ảnh này thông qua react."
+    "description": "Danh sách người dùng đã tương tác với ảnh này thông qua react.",
+    "noReaction": "Chưa có react nào."
+  },
+  "photoDetail": {
+    "action": {
+      "edit": "Chỉnh sửa",
+      "delete": "Xóa",
+      "report": "Báo cáo"
+    },
+    "edit": {
+      "title": "Chỉnh sửa ảnh",
+      "description": "Cập nhật thông tin ảnh của bạn tại đây. (Thành viên có thể tìm ảnh của bạn bằng cách tìm kiếm tiêu đề ảnh và thẻ)",
+      "message": {
+        "success": "Cập nhật ảnh thành công",
+        "error": "Không cập nhật được ảnh"
+      },
+      "form": {
+        "title": {
+          "label": "Tiêu đề",
+          "description": "Tiêu đề giúp mọi người hiểu rõ hơn về ảnh của bạn."
+        },
+        "tags": {
+          "label": "Thẻ",
+          "description": "Thẻ giúp mọi người tìm kiếm ảnh của bạn dễ dàng hơn."
+        }
+      }
+    },
+    "delete": {
+      "title": "Xóa ảnh",
+      "description": "Bạn có chắc chắn muốn xóa ảnh này không?",
+      "message": {
+        "success": "Xóa ảnh thành công",
+        "error": "Không xóa được ảnh"
+      }
+    }
   },
   "sharePhotoDialog": {
     "title": "Chia sẻ ảnh trong",
     "description": "Bạn có thể chia sẻ ảnh với bất kỳ người bạn nào của mình, ngay cả khi họ không có tài khoản Fotoco.",
     "sharePhotoForm":{
-      "label": "Chia sẻ ảnh này trong"
+      "label": "Chia sẻ ảnh này trong",
+      "button": "Tạo đường dẫn",
+      "loading": "Đang tạo đường dẫn",
+      "copy": "Sao chép",
+      "copied": "Đã sao chép"
     }
   }
 }

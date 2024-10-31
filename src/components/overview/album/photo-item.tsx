@@ -2,14 +2,20 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Photo } from '@/lib/define';
 import AvatarPicture from '@/components/shared/avatar-picture';
 import { Heart, MessageCircle } from 'lucide-react';
 import { createUrl, formatNumber } from '@/lib/utils';
 
 const PhotoItem = ({ photo }: { photo: Photo }) => {
-  const searchParams = new URLSearchParams(location.search);
+  const [searchParams, setSearchParams] = useState<URLSearchParams>(
+    new URLSearchParams()
+  );
+
+  useEffect(() => {
+    setSearchParams(new URLSearchParams(location.search));
+  }, []);
   const [isHovered, setIsHovered] = useState(false);
 
   return (

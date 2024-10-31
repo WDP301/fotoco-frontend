@@ -36,14 +36,14 @@ export default function CommentList({
 
   const handleReplyClick = (commentId: string) => {
     setActiveReplyId(prevId => (prevId === commentId ? null : commentId)); // Toggle reply form
-  };
+  };  
 
   return (
     <>
       <Separator/>
       {comments.length === 0 ? (
         <div className="p-8 text-center text-muted-foreground">
-          No comments yet.
+          {dict.commentPhotoSection.noComment}
         </div>
       ) : (
         <>

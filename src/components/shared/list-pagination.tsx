@@ -38,7 +38,6 @@ export default function ListPagination({
     const pathName = location.pathname;
 
     searchParams.set('page', String(page));
-    console.log(searchParams.toString());
     scroll
       ? push(createUrl(pathName, searchParams))
       : push(createUrl(pathName, searchParams), { scroll: false });

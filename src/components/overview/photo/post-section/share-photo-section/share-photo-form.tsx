@@ -16,13 +16,14 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Copy } from "lucide-react";
 import { useState } from "react";
+import { siteConfig } from '@/config/site';
 
 export function SharePhotoForm({ photoId }: { photoId: string }) {
     
     const { dict } = useLanguage();
     const [loading, setLoading] = useState(false);
     const [shareLink, setShareLink] = useState<string | null>(null);
-    const [copyButtonTooltipText, setCopyButtonTooltipText] = useState("Copy");
+    const [copyButtonTooltipText, setCopyButtonTooltipText] = useState(dict.sharePhotoDialog.sharePhotoForm.copy);
     const [showTooltip, setShowTooltip] = useState(false);
 
     const form = useForm({
@@ -38,17 +39,17 @@ export function SharePhotoForm({ photoId }: { photoId: string }) {
         const response = await sharePhoto(photoId, timeInSeconds);
         setLoading(false);
         if (response.isSuccess) {
-            setShareLink(`https://yourdomain.com/photo/share/${response.data.sharePhotoToken}`);
+            setShareLink(`${siteConfig.url}/photo/share/${response.data.sharePhotoToken}`);
         }
     };
 
     const handleCopy = () => {
         if (shareLink) {
             navigator.clipboard.writeText(shareLink).then(() => {
-                setCopyButtonTooltipText("Copied");
+                setCopyButtonTooltipText(dict.sharePhotoDialog.sharePhotoForm.copied);
                 setShowTooltip(true);
                 setTimeout(() => {
-                    setCopyButtonTooltipText("Copy");
+                    setCopyButtonTooltipText(dict.sharePhotoDialog.sharePhotoForm.copy);
                     setShowTooltip(false);
                 }, 2000);
             });
@@ -82,7 +83,7 @@ export function SharePhotoForm({ photoId }: { photoId: string }) {
                             <Copy className="h-4 w-4" />
                         </Button>
                         {showTooltip && (
-                            <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 px-2 py-1 rounded bg-gray-700 text-white text-sm">
+                            <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 px-2 py-1 rounded bg-gray-700 text-white text-sm whitespace-nowrap">
                                 {copyButtonTooltipText}
                             </div>
                         )}
@@ -137,7 +138,7 @@ export function SharePhotoForm({ photoId }: { photoId: string }) {
                             />
                         </div>
                         <Button type="submit" disabled={loading}>
-                            {loading ? "Creating..." : "Create Link"}
+                            {loading ? dict.sharePhotoDialog.sharePhotoForm.loading : dict.sharePhotoDialog.sharePhotoForm.button}
                         </Button>
                     </form>
                 </Form>

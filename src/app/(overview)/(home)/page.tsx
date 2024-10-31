@@ -20,7 +20,6 @@ export default async function Home({
 }) {
   const user = await getUser();
 
-  console.log('>>>>user', user);
   const dict = await getDictionary();
 
   const getGreeting = () => {
@@ -36,7 +35,7 @@ export default async function Home({
 
   return (
     <>
-      {user._id ? (
+      {user ? (
         <div>
           <div className="w-full text-center mb-5">
             <h2>

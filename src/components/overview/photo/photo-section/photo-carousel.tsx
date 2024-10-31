@@ -1,5 +1,5 @@
 'use client';
-import { ChevronLeft, ChevronRight, Expand } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { XIcon } from 'lucide-react';
 import { PhotoResponse, SearchPhotoParams } from '@/lib/define';
 import Image from 'next/image';
@@ -8,6 +8,7 @@ import { cn, fetchPhotoSize } from '@/lib/utils';
 import { useEffect, useState } from 'react';
 import SpinLoading from '@/components/shared/spin-loading';
 import PhotoExpand from './photo-expand';
+import { useRouter } from 'next/navigation';
 
 type PhotoCarouselProps = {
   photo: PhotoResponse;
@@ -17,6 +18,7 @@ export default function PhotoCarousel({
   photo,
   searchParams,
 }: PhotoCarouselProps) {
+  const router = useRouter();
   const queryString = new URLSearchParams(searchParams as any).toString();
   const [loading, setLoading] = useState(false);
   const [dimensions, setDimensions] = useState({ width: 1000, height: 1000 });
@@ -28,8 +30,25 @@ export default function PhotoCarousel({
     });
   }, [photo?.photo.url]);
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        router.push(`/albums/${photo?.photo.belonging}?${queryString}`);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [router, photo, queryString]);
+
   if (loading) {
-    return <SpinLoading />;
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <SpinLoading />
+      </div>
+    );
   }
 
   return (
@@ -52,14 +71,14 @@ export default function PhotoCarousel({
       </div>
       {photo?.prevPhoto && (
         <Link href={`/photos/${photo?.prevPhoto}?${queryString}`}>
-          <button className="absolute left-2 opacity-0 hover: group-hover:opacity-100 transition-opacity rounded-full hover:bg-gray-800">
+          <button className="text-white absolute left-2 opacity-0  hover: group-hover:opacity-100 transition-opacity rounded-full hover:bg-gray-800 ">
             <ChevronLeft className="h-10 w-10" />
           </button>
         </Link>
       )}
       {photo?.nextPhoto && (
         <Link href={`/photos/${photo?.nextPhoto}?${queryString}`}>
-          <button className="absolute right-2 opacity-0 group-hover:opacity-100 transition-opacity rounded-full hover:bg-gray-800">
+          <button className="text-white absolute right-2 opacity-0 group-hover:opacity-100 transition-opacity rounded-full hover:bg-gray-800">
             <ChevronRight className="h-10 w-10" />
           </button>
         </Link>

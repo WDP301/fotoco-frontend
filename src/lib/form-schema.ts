@@ -50,6 +50,21 @@ export const getLoginFormSchema = (lang: Locale) => {
   });
 };
 
+export const getUpdatePhotoFormSchema = (lang: Locale) => {
+  const { updatePhotoFormSchema: messages } = getValidationMessages(lang);
+  return z.object({
+    title: z.string().max(50, { message: messages.title.max }).optional(),
+    tags: z
+      .array(
+        z.object({
+          id: z.string(),
+          text: z.string(),
+        })
+      )
+      .max(10, messages.tags.max),
+  });
+};
+
 export const getJoinGroupSchema = (lang: Locale) => {
   const { joinGroupSchema: messages } = getValidationMessages(lang);
 

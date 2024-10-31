@@ -5,7 +5,6 @@ import { getGroupSetting } from '@/lib/data';
 export default async function InviteSection({ groupId }: { groupId: string }) {
   const dict = await getDictionary();
   const groupSetting = await getGroupSetting(groupId);
-  console.log('groupSetting', groupSetting);
 
   return (
     <div>

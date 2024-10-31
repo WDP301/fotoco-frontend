@@ -664,15 +664,13 @@
       "form": {
         "title": {
           "label": "Tiêu đề",
-          "desciption": "Tiêu đề giúp mọi người hiểu rõ hơn về ảnh của bạn.",
+          "description": "Tiêu đề giúp mọi người hiểu rõ hơn về ảnh của bạn.",
           "placeholder": "Nhập tiêu đề ở đây"
-          "description": "Tiêu đề giúp mọi người hiểu rõ hơn về ảnh của bạn."
         },
         "tags": {
           "label": "Thẻ",
-          "desciption": "Thẻ giúp mọi người tìm kiếm ảnh của bạn dễ dàng hơn.",
+          "description": "Thẻ giúp mọi người tìm kiếm ảnh của bạn dễ dàng hơn.",
           "placeholder": "Nhập thẻ ở đây"
-          "description": "Thẻ giúp mọi người tìm kiếm ảnh của bạn dễ dàng hơn."
         }
       }
     },

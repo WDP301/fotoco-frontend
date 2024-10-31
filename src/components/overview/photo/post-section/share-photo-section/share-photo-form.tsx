@@ -8,7 +8,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { Form, FormField, FormItem, FormLabel, FormControl } from "@/components/ui/form"
+import { Form, FormField, FormItem, FormLabel, FormControl, FormErrorMessage } from "@/components/ui/form"
 import { useForm } from "react-hook-form"
 import { convertTimeToSecond } from "@/lib/utils"
 import { sharePhoto } from "@/lib/action";
@@ -91,7 +91,7 @@ export function SharePhotoForm({ photoId }: { photoId: string }) {
                 </div>
             ) : (
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(handleCreateSharePhotoLink)} className="w-2/3 space-y-6">
+                    <form onSubmit={form.handleSubmit(handleCreateSharePhotoLink)} className="w-2/3 space-y-4">
                         <div className="flex items-center space-x-2">
                             <FormLabel className="whitespace-nowrap">
                                 {dict.sharePhotoDialog.sharePhotoForm.label}
@@ -99,6 +99,10 @@ export function SharePhotoForm({ photoId }: { photoId: string }) {
                             <FormField
                                 control={form.control}
                                 name="timeValue"
+                                rules={{ 
+                                    required: 'Time value is required.',
+                                    min: { value: 1, message: 'Minimum value is 1.' }
+                                }}
                                 render={({ field }) => (
                                     <FormItem className="flex items-center space-x-2">
                                         <FormControl>
@@ -137,6 +141,13 @@ export function SharePhotoForm({ photoId }: { photoId: string }) {
                                 )}
                             />
                         </div>
+
+                        {form.formState.errors.timeValue && (
+                            <div className="text-red-500 text-sm">
+                                {form.formState.errors.timeValue.message}
+                            </div>
+                        )}
+
                         <Button type="submit" disabled={loading}>
                             {loading ? dict.sharePhotoDialog.sharePhotoForm.loading : dict.sharePhotoDialog.sharePhotoForm.button}
                         </Button>

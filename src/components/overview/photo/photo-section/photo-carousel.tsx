@@ -41,7 +41,7 @@ export default function PhotoCarousel({
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [router, photo?.prevPhoto, queryString]);
+  }, [router, photo, queryString]);
 
   if (loading) {
     return (

@@ -92,7 +92,11 @@ export function EditPhotoDialog({ photo }: { photo: PhotoDetails }) {
                   <FormControl
                     className={cn('', !field.value && 'text-muted-foreground')}
                   >
-                    <Input placeholder="Title" {...field} />
+                    <Input
+                      placeholder={dict.photoDetail.edit.form.title.placeholder}
+                      {...field}
+                      autoFocus
+                    />
                   </FormControl>
                   <FormDescription className="text-left">
                     {dict.photoDetail.edit.form.title.desciption}
@@ -113,7 +117,7 @@ export function EditPhotoDialog({ photo }: { photo: PhotoDetails }) {
                     <TagsInput
                       value={(field.value as string[]) || []}
                       onValueChange={field.onChange}
-                      placeholder="Enter a tag"
+                      placeholder={dict.photoDetail.edit.form.tags.placeholder}
                     />
                   </FormControl>
                   <FormDescription className="text-left">

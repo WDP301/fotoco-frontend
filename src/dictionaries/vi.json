@@ -653,11 +653,13 @@
       "form": {
         "title": {
           "label": "Tiêu đề",
-          "desciption": "Tiêu đề giúp mọi người hiểu rõ hơn về ảnh của bạn."
+          "desciption": "Tiêu đề giúp mọi người hiểu rõ hơn về ảnh của bạn.",
+          "placeholder": "Nhập tiêu đề ở đây"
         },
         "tags": {
           "label": "Thẻ",
-          "desciption": "Thẻ giúp mọi người tìm kiếm ảnh của bạn dễ dàng hơn."
+          "desciption": "Thẻ giúp mọi người tìm kiếm ảnh của bạn dễ dàng hơn.",
+          "placeholder": "Nhập thẻ ở đây"
         }
       }
     },

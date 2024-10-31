@@ -605,6 +605,17 @@
           "label": "Bio",
           "description": "You can write a little bit about yourself here. This will be shown on your profile page."
         }
+      },
+      "message": {
+        "image": {
+          "success": "Update profile picture successfully",
+          "error": {
+            "imageCrop": "Image processing failed.",
+            "imageUpload": "Upload image failed."
+          }
+        },
+        "success": "Update profile successfully",
+        "error": "Failed to update profile"
       }
     },
     "security": {

@@ -5,7 +5,7 @@ import { PhotoResponse, SearchPhotoParams } from '@/lib/define';
 import Image from 'next/image';
 import Link from 'next/link';
 import { cn, fetchPhotoSize } from '@/lib/utils';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import SpinLoading from '@/components/shared/spin-loading';
 import PhotoExpand from './photo-expand';
 import { useRouter } from 'next/navigation';
@@ -22,6 +22,18 @@ export default function PhotoCarousel({
   const queryString = new URLSearchParams(searchParams as any).toString();
   const [loading, setLoading] = useState(false);
   const [dimensions, setDimensions] = useState({ width: 1000, height: 1000 });
+  const imageContainerRef = useRef<HTMLDivElement>(null);
+
+  const handleFullscreen = () => {
+    if (imageContainerRef.current) {
+        if (document.fullscreenElement) {
+            document.exitFullscreen();
+        } else {
+            imageContainerRef.current.requestFullscreen();
+        }
+    }
+};
+
   useEffect(() => {
     setLoading(true);
     fetchPhotoSize(photo?.photo.url).then((size) => {
@@ -53,7 +65,7 @@ export default function PhotoCarousel({
 
   return (
     <div className="relative flex items-center justify-center bg-black w-full h-screen group">
-      <div className="inline-block items-center justify-center overflow-hidden">
+      <div ref={imageContainerRef} className="inline-block items-center justify-center overflow-hidden">
         <div
           className={cn(
             dimensions.width > dimensions.height ? 'md:w-full' : 'md:h-[100vh]',
@@ -66,6 +78,7 @@ export default function PhotoCarousel({
             height={dimensions.height}
             alt={photo?.photo.title || 'Photo'}
             className="max-h-screen max-w-full object-contain"
+            onClick={handleFullscreen}
           />
         </div>
       </div>

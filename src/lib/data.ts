@@ -21,6 +21,7 @@ import {
   GroupSetting,
   Comment,
   React,
+  SharedPhoto,
 } from './define';
 import http from '@/config/axios';
 import { getPlaiceholder } from 'plaiceholder';
@@ -384,3 +385,17 @@ export const getReactListByPhotoId = async (photoId: string, lastReactLoadId?: s
     return [] as React[];
   }
 }
+
+export const getSharedPhoto = async (sharePhotoToken: string) => {
+  try {
+    const queryString = objectToQueryString({ sharePhotoToken });
+    const response = await customFetch(`/photos/share-photo?${queryString}`, {
+      method: 'GET',
+    })
+      .then((res) => res.json())
+      .catch(() => null);
+    return  response as SharedPhoto;
+  } catch (error) {
+    return {} as SharedPhoto;
+  }
+};

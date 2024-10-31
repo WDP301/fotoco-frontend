@@ -334,3 +334,22 @@ export type Reply = {
   content: string;
   createdAt: string;
 }
+
+export type SharedPhoto = {
+  success: boolean
+  shareUser: {
+    fullName: string
+    img: string
+  }
+  photo: {
+    owner: {
+      fullName: string
+      img: string
+    }
+    title: string
+    url: string
+    mimeType: string
+    fileSize: number
+  }
+  expiredTime: string
+}

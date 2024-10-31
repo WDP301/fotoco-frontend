@@ -547,7 +547,8 @@
   "commentPhotoSection": {
     "replyButton": "Phản hồi",
     "commentForm": "Viết bình luận",
-    "replyForm": "Phản hồi"
+    "replyForm": "Phản hồi",
+    "noComment": "Chưa có bình luận nào."
   },
   "outGroup": {
     "button": "Rời nhóm",
@@ -633,7 +634,8 @@
   },
   "reactList": {
     "title": "Danh sách react",
-    "description": "Danh sách người dùng đã tương tác với ảnh này thông qua react."
+    "description": "Danh sách người dùng đã tương tác với ảnh này thông qua react.",
+    "noReaction": "Chưa có react nào."
   },
   "photoDetail": {
     "action": {

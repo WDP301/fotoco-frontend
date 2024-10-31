@@ -624,3 +624,25 @@ export const uploadImage = async (formData: FormData) => {
     };
   }
 };
+
+export const sharePhoto = async (photoId: string, time: number) => {
+  const response = await http
+      .post(`/photos/${photoId}/share`, {
+          time,
+      })
+      .then((res) => {
+          return {
+              isSuccess: true,
+              error: '',
+              data: res.data,
+          };
+      })
+      .catch((error) => {
+          return {
+              isSuccess: false,
+              error: error?.response?.data?.error.message || 'Unknown error',
+              data: null,
+          };
+      });
+  return response;
+};

@@ -682,5 +682,26 @@
         "error": "Failed to delete photo"
       }
     }
+  },
+  "sharePhotoDialog": {
+    "title": "Share photo in",
+    "description": "You can share photos with any of your friends, even if they don't have a Fotoco account.",
+    "sharePhotoForm":{
+      "label": "Share this photo for",
+      "button": "Create Link",
+      "loading": "Creating link...",
+      "copy": "Copy",
+      "copied": "Copied"
+    }
+  },
+  "sharePhotoDetails": {
+    "title": "Details",
+    "owner": "Owner",
+    "sharedBy": "Shared by",
+    "expiredTime": "Expired time",
+    "copyButton":{
+      "copy": "Copy",
+      "copied": "Copied"
+    }
   }
 }

@@ -21,6 +21,7 @@ import {
   GroupSetting,
   Comment,
   React,
+  SharedPhoto,
 } from './define';
 import { getPlaiceholder } from 'plaiceholder';
 
@@ -389,5 +390,19 @@ export const getReactListByPhotoId = async (
     return (response?.reacts as React[]) || [];
   } catch (error) {
     return [] as React[];
+  }
+}
+
+export const getSharedPhoto = async (sharePhotoToken: string) => {
+  try {
+    const queryString = objectToQueryString({ sharePhotoToken });
+    const response = await customFetch(`/photos/share-photo?${queryString}`, {
+      method: 'GET',
+    })
+      .then((res) => res.json())
+      .catch(() => null);
+    return  response as SharedPhoto;
+  } catch (error) {
+    return {} as SharedPhoto;
   }
 };

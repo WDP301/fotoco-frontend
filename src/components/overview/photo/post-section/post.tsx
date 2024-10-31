@@ -1,17 +1,7 @@
 import { Ellipsis, Flag } from 'lucide-react';
-
-import {
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuShortcut,
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuGroup,
-} from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 
 import { Badge } from '@/components/ui/badge';
-import SharePhotoDialog from './share-photo-dialog';
 import ReactSection from './react-section/react-section';
 import { PhotoResponse } from '@/lib/define';
 import AvatarPicture from '@/components/shared/avatar-picture';
@@ -26,6 +16,7 @@ import {
 import { Separator } from '@/components/ui/separator';
 import { useAuth } from '@/components/provider/auth-provider';
 import { DeletePhotoDialog } from './edit-photo/delete-photo-dialog';
+import SharePhotoDialog from './share-photo-section/share-photo-dialog';
 
 interface Post {
   id: number;
@@ -112,7 +103,7 @@ export default function Post({
             onCommentIconClick={onCommentIconClick}
           />
           <div className="mr-4">
-            <SharePhotoDialog />
+            <SharePhotoDialog photoId={photo?.photo._id} />
           </div>
         </div>
       </div>

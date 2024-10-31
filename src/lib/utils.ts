@@ -147,3 +147,16 @@ export const fetchPhotoSize = async (url: string) => {
 export function getPath(obj: any, path: any) {
   return path.split('.').reduce((acc: any, key: any) => acc && acc[key], obj);
 }
+
+export function convertTimeToSecond(value: number, unit: string) {
+  switch (unit) {
+    case 'days':
+      return value * 60 * 60 * 24;
+    case 'weeks':
+      return value * 60 * 60 * 24 * 7;
+    case 'months':
+      return value * 60 * 60 * 24 * 30;
+    default:
+      return value;
+  }
+}

@@ -682,5 +682,26 @@
         "error": "Không xóa được ảnh"
       }
     }
+  },
+  "sharePhotoDialog": {
+    "title": "Chia sẻ ảnh trong",
+    "description": "Bạn có thể chia sẻ ảnh với bất kỳ người bạn nào của mình, ngay cả khi họ không có tài khoản Fotoco.",
+    "sharePhotoForm":{
+      "label": "Chia sẻ ảnh này trong",
+      "button": "Tạo đường dẫn",
+      "loading": "Đang tạo đường dẫn",
+      "copy": "Sao chép",
+      "copied": "Đã sao chép"
+    }
+  },
+  "sharePhotoDetails": {
+    "title": "Chi tiết",
+    "owner": "Chủ sở hữu",
+    "sharedBy": "Chia sẻ bởi",
+    "expiredTime": "Thời gian hết hạn",
+    "copyButton":{
+      "copy": "Sao chép",
+      "copied": "Đã sao chép"
+    }
   }
 }

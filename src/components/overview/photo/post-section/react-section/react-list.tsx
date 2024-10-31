@@ -50,7 +50,7 @@ export default function ReactList({
                 <DialogDescription>{dict.reactList.description}</DialogDescription>
                 </DialogHeader>
                 {reacts &&reacts.length === 0 ? (
-                    <div className="text-center text-muted-foreground">No reacts yet</div>
+                    <div className="text-center text-muted-foreground">{dict.reactList.noReaction}</div>
                 ): (
                     <ScrollArea className="max-h-64">
                             {reacts.map((react) => (

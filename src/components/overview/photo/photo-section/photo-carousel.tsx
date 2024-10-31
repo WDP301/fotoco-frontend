@@ -1,5 +1,5 @@
 'use client';
-import { ChevronLeft, ChevronRight, Expand } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { XIcon } from 'lucide-react';
 import { PhotoResponse, SearchPhotoParams } from '@/lib/define';
 import Image from 'next/image';
@@ -8,6 +8,7 @@ import { cn, fetchPhotoSize } from '@/lib/utils';
 import { useEffect, useState } from 'react';
 import SpinLoading from '@/components/shared/spin-loading';
 import PhotoExpand from './photo-expand';
+import { useRouter } from 'next/navigation';
 
 type PhotoCarouselProps = {
   photo: PhotoResponse;
@@ -17,6 +18,7 @@ export default function PhotoCarousel({
   photo,
   searchParams,
 }: PhotoCarouselProps) {
+  const router = useRouter();
   const queryString = new URLSearchParams(searchParams as any).toString();
   const [loading, setLoading] = useState(false);
   const [dimensions, setDimensions] = useState({ width: 1000, height: 1000 });
@@ -27,6 +29,19 @@ export default function PhotoCarousel({
       setLoading(false);
     });
   }, [photo?.photo.url]);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        router.push(`/albums/${photo?.photo.belonging}?${queryString}`);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [router, photo?.prevPhoto, queryString]);
 
   if (loading) {
     return (

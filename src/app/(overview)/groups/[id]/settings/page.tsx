@@ -13,7 +13,7 @@ export default async function SettingsGroupPage({
   const me = await getUser();
   const dict = await getDictionary();
 
-  if (!group) {
+  if (!group || !me) {
     return (
       <div className="flex justify-center items-center h-96">
         {dict.groupNotFound.title}

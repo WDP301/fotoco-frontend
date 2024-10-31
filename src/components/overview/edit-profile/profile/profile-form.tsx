@@ -390,7 +390,7 @@ export function ProfileForm({ user }: { user: User }) {
             </FormItem>
           )}
         />
-        <Button type="submit">
+        <Button type="submit" disabled={isLoading}>
           {isLoading && (
             <Icons.spinner className=" mr-2 h-4 w-4 animate-spin" />
           )}

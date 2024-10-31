@@ -52,6 +52,7 @@ export const getLoginFormSchema = (lang: Locale) => {
 
 export const getUpdatePhotoFormSchema = (lang: Locale) => {
   const { updatePhotoFormSchema: messages } = getValidationMessages(lang);
+
   return z.object({
     title: z.string().max(50, { message: messages.title.max }).optional(),
     tags: z
@@ -61,7 +62,9 @@ export const getUpdatePhotoFormSchema = (lang: Locale) => {
           text: z.string(),
         })
       )
-      .max(10, messages.tags.max),
+      .max(10, { message: messages.tags.max })
+      .optional()
+      .transform((e) => (e && e.length === 0 ? undefined : e)),
   });
 };
 

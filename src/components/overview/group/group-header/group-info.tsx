@@ -1,5 +1,3 @@
-import { getGroupInfo } from '@/lib/data';
-import GroupNotFound from '../group-not-found';
 import { BreadItem, GroupInfo } from '@/lib/define';
 import { getDictionary } from '@/lib/dictionaries';
 import BreadcrumbComponent from '@/components/shared/breadcrumb-component';

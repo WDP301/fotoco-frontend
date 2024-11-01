@@ -24,6 +24,7 @@ import {
   SharedPhoto,
 } from './define';
 import { getPlaiceholder } from 'plaiceholder';
+import { cache } from 'react';
 
 function delay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -39,8 +40,8 @@ export const getUser = async () => {
       method: 'GET',
       next: { revalidate: 3600 },
     })
-    .then((res) => res.json())
-    .catch(() => null);
+      .then((res) => res.json())
+      .catch(() => null);
 
     if (response?.status === 401) {
       throw new Error('Failed to fetch user data');
@@ -123,7 +124,7 @@ export const getRecentViewPhotos = async (
   };
 };
 
-export const getGroupInfo = async (groupId: string) => {
+export const getGroupInfo = cache(async (groupId: string) => {
   try {
     const response = await customFetch(`/groups/${groupId}`, {
       method: 'GET',
@@ -135,7 +136,7 @@ export const getGroupInfo = async (groupId: string) => {
   } catch {
     return {} as GroupInfo;
   }
-};
+});
 
 export const getGroupSetting = async (groupId: string) => {
   try {
@@ -151,7 +152,7 @@ export const getGroupSetting = async (groupId: string) => {
   }
 };
 
-export const getAlbumInfo = async (albumId: string) => {
+export const getAlbumInfo = cache(async (albumId: string) => {
   try {
     const response = await customFetch(`/albums/${albumId}`, {
       method: 'GET',
@@ -163,7 +164,7 @@ export const getAlbumInfo = async (albumId: string) => {
   } catch {
     return {} as AlbumInfo;
   }
-};
+});
 
 export const getGroupMembers = async (
   groupId: string,
@@ -325,22 +326,21 @@ export default async function getBase64(imageUrl: string) {
   }
 }
 
-export const getPhotoDetails = async (
-  photoId: string,
-  SearchPhotoParams: SearchPhotoParams
-) => {
-  try {
-    const queryString = objectToQueryString(SearchPhotoParams);
-    const response = await customFetch(`/photos/${photoId}?${queryString}`, {
-      method: 'GET',
-    })
-      .then((res) => res.json())
-      .catch((error) => null);
-    return response as PhotoResponse;
-  } catch (error) {
-    return {} as PhotoResponse;
+export const getPhotoDetails = cache(
+  async (photoId: string, SearchPhotoParams: SearchPhotoParams) => {
+    try {
+      const queryString = objectToQueryString(SearchPhotoParams);
+      const response = await customFetch(`/photos/${photoId}?${queryString}`, {
+        method: 'GET',
+      })
+        .then((res) => res.json())
+        .catch((error) => null);
+      return response as PhotoResponse;
+    } catch (error) {
+      return {} as PhotoResponse;
+    }
   }
-};
+);
 
 export const getCommentsByPhotoId = async (photoId: string) => {
   try {
@@ -394,9 +394,9 @@ export const getReactListByPhotoId = async (
   } catch (error) {
     return [] as React[];
   }
-}
+};
 
-export const getSharedPhoto = async (sharePhotoToken: string) => {
+export const getSharedPhoto = cache(async (sharePhotoToken: string) => {
   try {
     const queryString = objectToQueryString({ sharePhotoToken });
     const response = await customFetch(`/photos/share-photo?${queryString}`, {
@@ -404,8 +404,8 @@ export const getSharedPhoto = async (sharePhotoToken: string) => {
     })
       .then((res) => res.json())
       .catch(() => null);
-    return  response as SharedPhoto;
+    return response as SharedPhoto;
   } catch (error) {
     return {} as SharedPhoto;
   }
-};
+});

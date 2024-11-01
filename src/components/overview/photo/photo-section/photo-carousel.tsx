@@ -46,6 +46,10 @@ export default function PhotoCarousel({
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         router.push(`/albums/${photo?.photo.belonging}?${queryString}`);
+      } else if (event.key === 'ArrowLeft' && photo?.prevPhoto) {
+        router.push(`/photos/${photo.prevPhoto}?${queryString}`);
+      } else if (event.key === 'ArrowRight' && photo?.nextPhoto) {
+        router.push(`/photos/${photo.nextPhoto}?${queryString}`);
       }
     };
 

@@ -1,14 +1,21 @@
 import GroupMember from './group-member';
-import GroupInfo from './group-info';
+import GroupInformation from './group-info';
 import { Suspense } from 'react';
 import AvatarCirclesLoading from '../../../shared/loading/avatar-circles-loading';
 import GroupInfoLoading from './loading/group-info-loading';
+import { GroupInfo } from '@/lib/define';
 
-export default function GroupHeader({ groupId }: { groupId: string }) {
+export default function GroupHeader({
+  groupId,
+  groupInfo,
+}: {
+  groupId: string;
+  groupInfo: GroupInfo;
+}) {
   return (
     <div>
       <Suspense fallback={<GroupInfoLoading />} key={`${groupId}-info`}>
-        <GroupInfo groupId={groupId} />
+        <GroupInformation groupId={groupId} groupInfo={groupInfo} />
       </Suspense>
 
       <Suspense

@@ -11,7 +11,7 @@ export function RecentViewCard({ photo }: { photo: RecentPhoto }) {
     <Link href={`/photos/${photo._id}`} className="max-w-xs w-full group/card">
       <div
         className={cn(
-          ' cursor-pointer overflow-hidden relative card h-96 rounded-md shadow-xl max-w-sm mx-auto backgroundImage flex flex-col justify-between p-4'
+          'cursor-pointer overflow-hidden relative card aspect-[3/4] rounded-md shadow-xl max-w-sm mx-auto backgroundImage flex flex-col justify-between p-4'
         )}
         // Need to use inline style to set background image, use className not working
         style={{

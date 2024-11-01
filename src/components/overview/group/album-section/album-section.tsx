@@ -7,6 +7,7 @@ import FilterSelect from '@/components/shared/filter-selection';
 import { getDictionary } from '@/lib/dictionaries';
 import CreateAlbumDiaLog from './create-album-dialog';
 import SearchBadge from '@/components/shared/search-badge';
+import { getGroupSetting } from '@/lib/data';
 
 export default async function AlbumSection({
   groupId,
@@ -16,6 +17,7 @@ export default async function AlbumSection({
   searchParams: SearchAlbumParams;
 }) {
   const dict = await getDictionary();
+  const groupSetting = await getGroupSetting(groupId);
 
   const selectOptions = [
     {
@@ -50,7 +52,10 @@ export default async function AlbumSection({
         <h3 className="mb-5">Album</h3>
         <div className="flex flex-col md:flex-row items-center space-y-2 md:space-x-2 md:space-y-0">
           <div className="flex gap-2">
-            <CreateAlbumDiaLog groupId={groupId} />
+            {(groupSetting.setting.role === 'OWNER' ||
+              groupSetting.setting.allow_create_album) && (
+              <CreateAlbumDiaLog groupId={groupId} />
+            )}
             <SortSelect
               variant="ghost"
               sort={searchParams.sort}

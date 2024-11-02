@@ -200,6 +200,12 @@
         "invalid": "Email must be a valid email"
       }
     },
+    "inviteAlbumMemberSchema": {
+      "email": {
+        "required": "Email can not be empty",
+        "invalid": "Email must be a valid email"
+      }
+    },
     "updatePhotoFormSchema": {
       "title": {
         "max": "Title must be maximum 50 characters."
@@ -250,7 +256,8 @@
     "login": "Login",
     "forgotPassword": "Forgot password?",
     "code": "Group code",
-    "groupMemberRole": "Group member role"
+    "groupMemberRole": "Group member role",
+    "albumMemberRole": "Album member role"
   },
   "button": {
     "login": "Login",
@@ -273,8 +280,10 @@
       "gallery": "Gallery"
     },
     "joinGroup": "Join Group",
+    "joinAlbum": "Join Album",
     "invite": "Invite",
     "updateGroup": "Update Group",
+    "updateAlbum": "Update Album",
     "changeLanguage": "Change Language",
     "changeTheme": "Change Theme",
     "saveChanges": "Save Changes",
@@ -385,12 +394,61 @@
     "outedGroup": "{{fullName}} has left the group"
   },
   "album": {
+    "title": "Albums",
+    "description": "Album List page description",
     "removedUser": "You have been removed from the album by {{fullName}}",
-    "outedAlbum": "{{fullName}} has left the album"
+    "outedAlbum": "{{fullName}} has left the album",
+    "invited": "Accept Invite to Album from {{fullName}}",
+    "uploadedPhoto": "Photo uploaded by {{fullName}}",
+    "invite": {
+      "title": "Accept Invite to Album",
+      "description": "Accept Invite to Album"
+    },
+    "setting": {
+      "title": "Album Settings",
+      "description": "You can manage your album settings here",
+      "general": {
+        "title": "General",
+        "description": "General settings for your album",
+        "allowInvite": {
+          "title": "Allow members to invite others to the album",
+          "description": "Members can invite others to join the album."
+        },
+        "allowShareAlbum": {
+          "title": "Allow members to share albums",
+          "description": "Member can share temporary albums."
+        },
+        "allowSharePhoto": {
+          "title": "Allow members to share photos",
+          "description": "Member can share temporary photos."
+        },
+        "message": {
+          "error": "Error to update album setting",
+          "success": "Update album setting successfully"
+        }
+      },
+      "member": {
+        "title": "Members",
+        "description": "Manage your album members",
+        "invite": {
+          "title": "Invite members",
+          "description": "Invite your friends to join this album",
+          "success": "Invitation sent successfully",
+          "error": "Invitation failed",
+          "search": {
+            "heading": "Invite album members...",
+            "placeholder": "Search users...",
+            "noResult": "No user found"
+          },
+          "disabled": "You do not have permission to invite members to this album"
+        }
+      }
+    }
   },
   "photo": {
     "title": "Photos",
     "description": "Photo List page description",
+    "reactedPhoto": "{{fullName}} reacted to the photo",
     "upload": {
       "title": "Upload Photo",
       "heading": "Upload your photo",
@@ -423,7 +481,8 @@
     },
     "user": {
       "owner": "Owner",
-      "member": "Member"
+      "member": "Member",
+      "contributor": "Contributor"
     },
     "mine": "My Groups",
     "sharedWithMe": "Shared with me"
@@ -562,7 +621,19 @@
       "error": "Failed to leave the group"
     }
   },
-  "kickMemberGroup": {
+  "outAlbum": {
+    "button": "Out album",
+    "dialogTitle": "Out album",
+    "dialogDescription": "Want to get out of the album?",
+    "labelCheckbox": "Are you sure",
+    "contentCheckbox": "You may lose all of these memories",
+    "buttonConfirm": "Get out",
+    "message": {
+      "success": "You have left the album successfully",
+      "error": "Failed to leave the album"
+    }
+  },
+  "kickMember": {
     "dialogTrigger": "Kick",
     "dialogTitle": "Kick this people",
     "dialogDescription": "This person may have relationship with the group, are you sure to kick this person?",
@@ -686,7 +757,7 @@
   "sharePhotoDialog": {
     "title": "Share photo in",
     "description": "You can share photos with any of your friends, even if they don't have a Fotoco account.",
-    "sharePhotoForm":{
+    "sharePhotoForm": {
       "label": "Share this photo for",
       "button": "Create Link",
       "loading": "Creating link...",
@@ -699,7 +770,7 @@
     "owner": "Owner",
     "sharedBy": "Shared by",
     "expiredTime": "Expired time",
-    "copyButton":{
+    "copyButton": {
       "copy": "Copy",
       "copied": "Copied"
     }

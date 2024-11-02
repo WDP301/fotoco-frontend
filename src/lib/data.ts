@@ -22,6 +22,9 @@ import {
   Comment,
   React,
   SharedPhoto,
+  AlbumSetting,
+  SearchAlbumMembersParams,
+  AlbumUser,
 } from './define';
 import { getPlaiceholder } from 'plaiceholder';
 
@@ -39,8 +42,8 @@ export const getUser = async () => {
       method: 'GET',
       next: { revalidate: 3600 },
     })
-    .then((res) => res.json())
-    .catch(() => null);
+      .then((res) => res.json())
+      .catch(() => null);
 
     if (response?.status === 401) {
       throw new Error('Failed to fetch user data');
@@ -151,6 +154,20 @@ export const getGroupSetting = async (groupId: string) => {
   }
 };
 
+export const getAlbumSetting = async (albumId: string) => {
+  try {
+    const response = await customFetch(`/albums/${albumId}/setting`, {
+      method: 'GET',
+      // next: { revalidate: 120 },
+    })
+      .then((res) => res.json())
+      .catch(() => null);
+    return response as AlbumSetting;
+  } catch {
+    return {} as AlbumSetting;
+  }
+};
+
 export const getAlbumInfo = async (albumId: string) => {
   try {
     const response = await customFetch(`/albums/${albumId}`, {
@@ -202,7 +219,7 @@ export const getGroupMembers = async (
 
 export const getAlbumMembers = async (
   albumId: string,
-  searchParams: SearchGroupMembersParams
+  searchParams: SearchAlbumMembersParams
 ) => {
   try {
     const queryString = objectToQueryString(searchParams);
@@ -219,18 +236,18 @@ export const getAlbumMembers = async (
     if (response?.success) {
       return {
         pageMeta: response.pageMeta as PageMeta,
-        users: response.users as GroupUser[],
+        users: response.users as AlbumUser[],
       };
     }
 
     return {
       pageMeta: pageMetaDefault as PageMeta,
-      users: response.users as GroupUser[],
+      users: response.users as AlbumUser[],
     };
   } catch {
     return {
       pageMeta: pageMetaDefault as PageMeta,
-      users: [] as GroupUser[],
+      users: [] as AlbumUser[],
     };
   }
 };
@@ -394,7 +411,7 @@ export const getReactListByPhotoId = async (
   } catch (error) {
     return [] as React[];
   }
-}
+};
 
 export const getSharedPhoto = async (sharePhotoToken: string) => {
   try {
@@ -404,8 +421,29 @@ export const getSharedPhoto = async (sharePhotoToken: string) => {
     })
       .then((res) => res.json())
       .catch(() => null);
-    return  response as SharedPhoto;
+    return response as SharedPhoto;
   } catch (error) {
     return {} as SharedPhoto;
+  }
+};
+
+export const getSearchGroupMembers = async (
+  groupId: string,
+  search: string
+) => {
+  try {
+    const queryString = objectToQueryString({ search });
+    const response = await customFetch(
+      `/groups/${groupId}/members?${queryString}`,
+      {
+        method: 'GET',
+      }
+    )
+      .then((res) => res.json())
+      .catch(() => null);
+
+    return (response?.users as SearchUser[]) || [];
+  } catch (error) {
+    return [] as SearchUser[];
   }
 };

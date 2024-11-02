@@ -127,6 +127,14 @@ export type SearchGroupMembersParams = {
   filter?: string;
 };
 
+export type SearchAlbumMembersParams = {
+  sort?: string;
+  page?: number;
+  pageSize?: number;
+  search?: string;
+  filter?: string;
+};
+
 export type PageMeta = {
   totalPages: number;
   page: number;
@@ -164,6 +172,15 @@ export type GroupSetting = {
   };
 };
 
+export type AlbumSetting = {
+  setting: {
+    role: string;
+    allow_invite?: boolean;
+    allow_share_album?: boolean;
+    allow_share_photo?: boolean;
+  };
+};
+
 export type AlbumInfo = {
   _id: string;
   title: string;
@@ -179,6 +196,17 @@ export type AlbumInfo = {
 };
 
 export type GroupUser = {
+  _id: string;
+  username: string;
+  fullName: string;
+  img: string;
+  email: string;
+  role: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type AlbumUser = {
   _id: string;
   username: string;
   fullName: string;
@@ -336,23 +364,23 @@ export type Reply = {
   };
   content: string;
   createdAt: string;
-}
+};
 
 export type SharedPhoto = {
-  success: boolean
+  success: boolean;
   shareUser: {
-    fullName: string
-    img: string
-  }
+    fullName: string;
+    img: string;
+  };
   photo: {
     owner: {
-      fullName: string
-      img: string
-    }
-    title: string
-    url: string
-    mimeType: string
-    fileSize: number
-  }
-  expiredTime: string
-}
+      fullName: string;
+      img: string;
+    };
+    title: string;
+    url: string;
+    mimeType: string;
+    fileSize: number;
+  };
+  expiredTime: string;
+};

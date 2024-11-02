@@ -200,6 +200,12 @@
         "invalid": "Email phải là một email hợp lệ"
       }
     },
+    "inviteAlbumMemberSchema": {
+      "email": {
+        "required": "Email không được để trống",
+        "invalid": "Email phải là một email hợp lệ"
+      }
+    },
     "updatePhotoFormSchema": {
       "title": {
         "max": "Tiêu đề tối đa 50 ký tự"
@@ -273,8 +279,10 @@
       "gallery": "Thư viện"
     },
     "joinGroup": "Tham gia nhóm",
+    "joinAlbum": "Tham gia album",
     "invite": "Mời",
     "updateGroup": "Cập nhật nhóm",
+    "updateAlbum": "Cập nhật album",
     "changeLanguage": "Thay đổi ngôn ngữ",
     "changeTheme": "Thay đổi chủ đề",
     "saveChanges": "Lưu thay đổi",
@@ -385,12 +393,61 @@
     "outedGroup": "{{fullName}} đã rời nhóm"
   },
   "album": {
+    "title": "Album",
+    "description": "Mô tả trang danh sách album",
     "removedUser": "Bạn đã bị loại khỏi album bởi {{fullName}}",
-    "outedAlbum": "{{fullName}} đã rời album"
+    "outedAlbum": "{{fullName}} đã rời album",
+    "invited": "Chấp nhận lời mời vào nhóm từ {{fullName}}",
+    "uploadedPhoto": "Ảnh đã tải ảnh lên bởi {{fullName}}",
+    "setting": {
+      "title": "Cài đặt album",
+      "description": "Bạn có thể quản lý cài đặt album của mình tại đây",
+      "general": {
+        "title": "Cài đặt chung",
+        "description": "Cài đặt chung cho album của bạn",
+        "allowInvite": {
+          "title": "Cho phép mời thành viên vào album",
+          "description": "Mọi người có thể tham gia album của bạn."
+        },
+        "allowShareAlbum": {
+          "title": "Cho phép chia sẻ album",
+          "description": "Mọi người có thể xem album của bạn."
+        },
+        "allowSharePhoto": {
+          "title": "Cho phép chia sẻ ảnh",
+          "description": "Mọi người có thể xem ảnh trong album của bạn."
+        },
+        "message": {
+          "error": "Lỗi khi cập nhật cài đặt album",
+          "success": "Cập nhật cài đặt album thành công"
+        }
+      },
+      "member": {
+        "title": "Thành viên",
+        "description": "Quản lý thành viên của album",
+        "invite": {
+          "title": "Mời thành viên",
+          "description": "Mời người khác tham gia album của bạn",
+          "success": "Mời thành viên thành công",
+          "error": "Mời thành viên thất bại",
+          "search": {
+            "heading": "Mời thành viên...",
+            "placeholder": "Tìm kiếm thành viên...",
+            "noResult": "Không tìm thấy thành viên nào"
+          },
+          "disabled": "Bạn không có quyền mời thành viên vào album"
+        }
+      }
+    },
+    "invite": {
+      "title": "Mời tham gia album",
+      "description": "Mời tham gia album"
+    }
   },
   "photo": {
     "title": "Ảnh",
     "description": "Mô tả trang danh sách ảnh",
+    "reactedPhoto": "{{fullName}} đã yêu thích ảnh của bạn",
     "upload": {
       "title": "Tải ảnh lên",
       "heading": "Tải ảnh của bạn lên",
@@ -423,7 +480,8 @@
     },
     "user": {
       "owner": "Chủ sở hữu",
-      "member": "Thành viên"
+      "member": "Thành viên",
+      "contributor": "Người đóng góp"
     },
     "mine": "Nhóm của tôi",
     "sharedWithMe": "Chia sẻ với tôi"
@@ -562,7 +620,19 @@
       "error": "Rời nhóm thất bại"
     }
   },
-  "kickMemberGroup": {
+  "outAlbum": {
+    "button": "Rời album",
+    "dialogTitle": "Rời album",
+    "dialogDescription": "Muốn rời album phải không?",
+    "labelCheckbox": "Bạn chắc chứ ?",
+    "contentCheckbox": "Bạn sẽ mất tất cả ký ức về album",
+    "buttonConfirm": "Ra khỏi đây",
+    "message": {
+      "success": "Bạn đã rời album thành công",
+      "error": "Rời album thất bại"
+    }
+  },
+  "kickMember": {
     "dialogTrigger": "Đá",
     "dialogTitle": "Đá người này",
     "dialogDescription": "Người này có thể có mối quan hệ với nhóm, bạn có chắc chắn sẽ đuổi người này không?",
@@ -686,7 +756,7 @@
   "sharePhotoDialog": {
     "title": "Chia sẻ ảnh trong",
     "description": "Bạn có thể chia sẻ ảnh với bất kỳ người bạn nào của mình, ngay cả khi họ không có tài khoản Fotoco.",
-    "sharePhotoForm":{
+    "sharePhotoForm": {
       "label": "Chia sẻ ảnh này trong",
       "button": "Tạo đường dẫn",
       "loading": "Đang tạo đường dẫn",
@@ -699,7 +769,7 @@
     "owner": "Chủ sở hữu",
     "sharedBy": "Chia sẻ bởi",
     "expiredTime": "Thời gian hết hạn",
-    "copyButton":{
+    "copyButton": {
       "copy": "Sao chép",
       "copied": "Đã sao chép"
     }

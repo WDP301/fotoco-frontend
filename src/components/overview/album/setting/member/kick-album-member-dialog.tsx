@@ -17,17 +17,16 @@ import { useState } from 'react';
 import { UserMinus } from 'lucide-react';
 import { Icons } from '@/components/icons/icons';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { outGroup } from '@/lib/action';
-import { GroupInfo, GroupMember, User } from '@/lib/define';
-// import { useSocketClient } from '@/components/provider/socket-io-provider';
+
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { useLanguage } from '@/components/provider/language-provider';
-export function KickGroupMemberDialog({
-  groupId,
+import { outAlbum } from '@/lib/action';
+export function KickAlbumMemberDialog({
+  albumId,
   userId,
 }: {
-  groupId: string;
+  albumId: string;
   userId: string;
 }) {
   // const { socket } = useSocketClient();
@@ -45,13 +44,10 @@ export function KickGroupMemberDialog({
 
   const handleKickMember = async () => {
     setIsLoading(true);
-    const result = await outGroup(groupId, userId);
+    const result = await outAlbum(albumId, userId);
     if (!result?.isSuccess) {
       setResult(result);
     } else {
-      // if (socket && result?.data?.receivers) {
-      //     socket.emit('sendNotification', result?.data);
-      // }
       toast.success(dict.kickMember.message.success);
       setResult({ isSuccess: true });
       router.refresh();
@@ -60,12 +56,6 @@ export function KickGroupMemberDialog({
   };
   return (
     <>
-      {/* {result?.error && (
-                <Alert variant="destructive">
-                    <AlertTitle>Error</AlertTitle>
-                    <AlertDescription>{result.error}</AlertDescription>
-                </Alert>
-            )} */}
       <Dialog>
         <DialogTrigger asChild>
           <div className=" w-full flex justify-between relative select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 cursor-pointer hover:bg-accent hover:text-accent-foreground">

@@ -1,0 +1,25 @@
+name: Next.js Build Check
+
+on:
+  pull_request:
+    branches:
+      - main  # Runs when a PR is opened against the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.6.1'  # Adjust to your Node.js version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Next.js application
+        run: npm run build

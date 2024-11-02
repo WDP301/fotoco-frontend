@@ -12,7 +12,7 @@ import { cookies } from 'next/headers';
 
 const config: AxiosRequestConfig = {
     baseURL: siteConfig.baseApiURL,
-    // timeout: 5000,
+    // timeout: 5000
 };
 
 const http: AxiosInstance = axios.create(config);

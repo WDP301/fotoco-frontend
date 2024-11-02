@@ -356,3 +356,7 @@ export type SharedPhoto = {
   }
   expiredTime: string
 }
+
+export type SharedAlbum = {
+  
+}

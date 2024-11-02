@@ -22,6 +22,7 @@ import {
   Comment,
   React,
   SharedPhoto,
+  SharedAlbum,
 } from './define';
 import { getPlaiceholder } from 'plaiceholder';
 
@@ -409,3 +410,17 @@ export const getSharedPhoto = async (sharePhotoToken: string) => {
     return {} as SharedPhoto;
   }
 };
+
+export const getSharedAlbum = async (shareAlbumToken: string) => {
+  try {
+    const queryString = objectToQueryString({ shareAlbumToken });
+    const response = await customFetch(`/albums/share?${queryString}`, {
+      method: 'GET',
+    })
+      .then((res) => res.json())
+      .catch(() => null);
+    return  response as SharedAlbum;
+  } catch (error) {
+    return {} as SharedAlbum;
+  }
+}

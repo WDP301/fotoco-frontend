@@ -551,7 +551,7 @@
   "commentPhotoSection": {
     "replyButton": "Reply",
     "commentForm": "Write a comment",
-    "replyForm": "Write a reply...",
+    "replyForm": "Write a reply for",
     "noComment": "No comment yet."
   },
   "outGroup": {

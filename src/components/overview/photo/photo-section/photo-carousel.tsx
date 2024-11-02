@@ -55,7 +55,6 @@ export default function PhotoCarousel({
         router.push(`/photos/${photo.nextPhoto}?${queryString}`);
       }
     };
-
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);

@@ -27,6 +27,7 @@ import { updateGroup } from '@/lib/action';
 import { GroupInfo, GroupSetting } from '@/lib/define';
 import { getUpdateGroupSettingSchema } from '@/lib/form-schema';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Copy } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -54,6 +55,7 @@ export default function GroupSettingForm({
           allow_share_photo: groupSetting.setting.allow_share_photo || false,
         },
         type: group.type as 'PUBLIC' | 'PRIVATE' | 'HIDDEN',
+        groupCode: group.groupCode,
         title: group.title,
         description: !group.description ? 'No description' : group.description,
         groupImg: group.groupImg,
@@ -121,6 +123,50 @@ export default function GroupSettingForm({
             </div>
           )}
         />
+
+        {(groupSetting.setting.role === 'OWNER' ||
+          groupSetting.setting.allow_invite) && (
+          <FormField
+            name="groupCode"
+            control={form.control}
+            render={({ field }) => (
+              <div className="grid w-full gap-1.5">
+                <FormItem>
+                  <FormLabel>
+                    <Label htmlFor="groupCode" className="text-primary">
+                      {dict.createGroup.groupCode}&nbsp;
+                      <span className="text-red-500">*</span>
+                    </Label>
+                  </FormLabel>
+                  <FormControl>
+                    <div className="flex gap-2">
+                      <Input
+                        id="groupCode"
+                        className="col-span-3"
+                        placeholder={dict.createGroup.groupCode}
+                        type="text"
+                        disabled
+                        {...field}
+                      />
+                      <Button
+                        type="button"
+                        onClick={() => {
+                          navigator.clipboard.writeText(field.value as string);
+                          toast.success(dict.createGroup.groupCodeCopySuccess);
+                        }}
+                      >
+                        <Copy className="h-6 w-6" />
+                      </Button>
+                    </div>
+                  </FormControl>
+                  <FormDescription>
+                    {dict.createGroup.groupCodeDescription}
+                  </FormDescription>
+                </FormItem>
+              </div>
+            )}
+          />
+        )}
 
         <FormField
           name="description"

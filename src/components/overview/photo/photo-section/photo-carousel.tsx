@@ -44,6 +44,9 @@ export default function PhotoCarousel({
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) {
+        return;
+      }
       if (event.key === 'Escape') {
         router.push(`/albums/${photo?.photo.belonging}?${queryString}`);
       } else if (event.key === 'ArrowLeft' && photo?.prevPhoto) {
@@ -52,7 +55,6 @@ export default function PhotoCarousel({
         router.push(`/photos/${photo.nextPhoto}?${queryString}`);
       }
     };
-
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);

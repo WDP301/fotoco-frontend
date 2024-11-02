@@ -147,6 +147,7 @@ export type GroupInfo = {
   description: string;
   groupImg: string;
   type: string;
+  groupCode: string;
 };
 
 export type GroupSetting = {
@@ -336,26 +337,26 @@ export type Reply = {
   };
   content: string;
   createdAt: string;
-}
+};
 
 export type SharedPhoto = {
-  success: boolean
+  success: boolean;
   shareUser: {
-    fullName: string
-    img: string
-  }
+    fullName: string;
+    img: string;
+  };
   photo: {
     owner: {
-      fullName: string
-      img: string
-    }
-    title: string
-    url: string
-    mimeType: string
-    fileSize: number
-  }
-  expiredTime: string
-}
+      fullName: string;
+      img: string;
+    };
+    title: string;
+    url: string;
+    mimeType: string;
+    fileSize: number;
+  };
+  expiredTime: string;
+};
 
 export type SharedAlbum = {
   

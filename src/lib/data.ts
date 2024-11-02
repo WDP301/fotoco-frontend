@@ -40,8 +40,8 @@ export const getUser = async () => {
       method: 'GET',
       next: { revalidate: 3600 },
     })
-    .then((res) => res.json())
-    .catch(() => null);
+      .then((res) => res.json())
+      .catch(() => null);
 
     if (response?.status === 401) {
       throw new Error('Failed to fetch user data');
@@ -395,7 +395,7 @@ export const getReactListByPhotoId = async (
   } catch (error) {
     return [] as React[];
   }
-}
+};
 
 export const getSharedPhoto = async (sharePhotoToken: string) => {
   try {
@@ -405,7 +405,7 @@ export const getSharedPhoto = async (sharePhotoToken: string) => {
     })
       .then((res) => res.json())
       .catch(() => null);
-    return  response as SharedPhoto;
+    return response as SharedPhoto;
   } catch (error) {
     return {} as SharedPhoto;
   }

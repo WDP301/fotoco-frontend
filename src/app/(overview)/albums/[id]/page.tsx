@@ -16,13 +16,9 @@ import { Suspense } from 'react';
 
 type Props = {
   params: { id: string };
-  searchParams: SearchPhotoParams;
 };
 
-export async function generateMetadata({
-  params,
-  searchParams,
-}: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const album = await getAlbumInfo(params.id);
 
   if (!album) {

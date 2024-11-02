@@ -1,5 +1,6 @@
 import AlbumSection from '@/components/overview/group/album-section/album-section';
 import GroupHeader from '@/components/overview/group/group-header/group-header';
+import GroupNotFound from '@/components/overview/group/group-not-found';
 import SearchBar from '@/components/shared/search-bar';
 import { getGroupInfo } from '@/lib/data';
 import { SearchAlbumParams } from '@/lib/define';
@@ -35,9 +36,14 @@ export default async function GroupDetailPage({
   searchParams: SearchAlbumParams;
 }) {
   const dict = await getDictionary();
+  const group = await getGroupInfo(params.id);
+
+  if (!group) {
+    return <GroupNotFound />;
+  }
   return (
     <div>
-      <GroupHeader groupId={params.id} />
+      <GroupHeader groupId={params.id} groupInfo={group} />
       <div className="my-5">
         <SearchBar placeholder={dict.searchBar.album.placeholders} />
       </div>

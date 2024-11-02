@@ -83,7 +83,10 @@ export function SearchUsers({
           <Button variant="outline" role="combobox" aria-expanded={open}>
             {value
               ? users.find(
-                  (user) => user.email === value || user.username === value
+                  (user) =>
+                    user.email === value ||
+                    user.username === value ||
+                    user.fullName === value
                 )?.email
               : dict.album.setting.member.invite.search.heading}
             <UserRoundSearch className="ml-2 h-4 w-4 shrink-0 opacity-50" />

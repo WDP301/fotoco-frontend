@@ -707,5 +707,12 @@
       "copy": "Sao chép",
       "copied": "Đã sao chép"
     }
+  },
+  "pagination": {
+    "previousLabel": "Đi đến trang trước",
+    "nextLabel": "Đi đến trang tiếp",
+    "previous": "Trước",
+    "next": "Tiếp",
+    "morePages": "Nhiều trang hơn"
   }
 }

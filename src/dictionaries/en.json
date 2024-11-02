@@ -707,5 +707,12 @@
       "copy": "Copy",
       "copied": "Copied"
     }
+  },
+  "pagination": {
+    "previousLabel": "Go to previous page",
+    "nextLabel": "Go to next page",
+    "previous": "Previous",
+    "next": "Next",
+    "morePages": "More pages"
   }
 }

@@ -4,11 +4,13 @@ import { z } from 'zod';
 import {
   getCreateAlbumSchema,
   getCreateGroupSchema,
+  getInviteAlbumMemberSchema,
   getInviteGroupMemberSchema,
   getJoinGroupSchema,
   getLoginFormSchema,
   getProfileFormSchema,
   getRegisterFormSchema,
+  getUpdateAlbumSettingSchema,
   getUpdateGroupSettingSchema,
   getUpdatePhotoFormSchema,
 } from './form-schema';
@@ -378,6 +380,28 @@ export const acceptInviteToGroup = async (
     });
   return response;
 };
+export const acceptInviteToAlbum = async (
+  albumId: string,
+  inviteToken: string
+) => {
+  const response = await http
+    .post(`/albums/${albumId}/accept-invite`, undefined, {
+      params: { inviteToken },
+    })
+    .then((res) => {
+      return {
+        isSuccess: true,
+        error: '',
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.message || 'Unknown error',
+      };
+    });
+  return response;
+};
 
 export const inviteUserToGroup = async (
   groupId: string,
@@ -408,9 +432,56 @@ export const inviteUserToGroup = async (
   return response;
 };
 
+export const inviteUserToAlbum = async (
+  albumId: string,
+  formData: z.infer<ReturnType<typeof getInviteAlbumMemberSchema>>
+) => {
+  const {
+    email,
+    role,
+  }: z.infer<ReturnType<typeof getInviteAlbumMemberSchema>> = formData;
+
+  const response = await http
+    .post(`/albums/${albumId}/invite`, {
+      email,
+      role,
+    })
+    .then((res) => {
+      return {
+        isSuccess: true,
+        error: '',
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.message || 'Unknown error',
+      };
+    });
+  return response;
+};
+
 export const outGroup = async (groupId: string, userId: string) => {
   const response = await http
     .put(`groups/${groupId}/out/${userId}`, undefined)
+    .then((res) => {
+      return {
+        isSuccess: true,
+        error: '',
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.message || 'Unknown error',
+      };
+    });
+  return response;
+};
+
+export const outAlbum = async (albumId: string, userId: string) => {
+  const response = await http
+    .put(`albums/${albumId}/out/${userId}`, undefined)
     .then((res) => {
       return {
         isSuccess: true,
@@ -485,6 +556,47 @@ export const updateGroup = async (
         data: {} as {
           allow_invite?: boolean;
           allow_create_album?: boolean;
+          allow_share_album?: boolean;
+          allow_share_photo?: boolean;
+        },
+      };
+    });
+
+  return response;
+};
+export const updateAlbum = async (
+  albumId: string,
+  formData: z.infer<ReturnType<typeof getUpdateAlbumSettingSchema>>
+) => {
+  const {
+    title,
+    description,
+    setting,
+  }: z.infer<ReturnType<typeof getUpdateAlbumSettingSchema>> = formData;
+
+  const response = await http
+    .put(`/albums/${albumId}/update`, {
+      title,
+      description,
+      setting,
+    })
+    .then((res) => {
+      return {
+        isSuccess: true,
+        error: '',
+        data: res.data.setting as {
+          allow_invite?: boolean;
+          allow_share_album?: boolean;
+          allow_share_photo?: boolean;
+        },
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.message || 'Unknown error',
+        data: {} as {
+          allow_invite?: boolean;
           allow_share_album?: boolean;
           allow_share_photo?: boolean;
         },

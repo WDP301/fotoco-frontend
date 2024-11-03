@@ -28,8 +28,15 @@ import {
 } from '@/components/ui/select';
 import GroupMemberTypeIcon from '@/components/shared/group-member-type-icon';
 import { Icons } from '@/components/icons/icons';
+import { GroupSetting } from '@/lib/define';
 
-export function InviteMember({ groupId }: { groupId: string }) {
+export function InviteMember({
+  groupId,
+  groupSetting,
+}: {
+  groupId: string;
+  groupSetting: GroupSetting;
+}) {
   const { dict } = useLanguage();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -89,6 +96,7 @@ export function InviteMember({ groupId }: { groupId: string }) {
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
+                  disabled={isLoading || groupSetting.setting.role !== 'OWNER'}
                 >
                   <FormControl>
                     <SelectTrigger>

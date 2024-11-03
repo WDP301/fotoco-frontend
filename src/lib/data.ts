@@ -447,3 +447,4 @@ export const getSearchGroupMembers = async (
     return [] as SearchUser[];
   }
 };
+

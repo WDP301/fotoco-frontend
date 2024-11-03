@@ -510,6 +510,10 @@
     "dialogDescription": "Create a group and invite your friends to join",
     "title": "Group title",
     "titlePlaceholder": "Enter group title here.",
+    "groupCode": "Group code",
+    "groupCodeDescription": "The group code is a unique 6-character string that is automatically generated for your group. This code will be used to invite others to join your group.",
+    "groupCodeCopySuccess": "Group code copied successfully",
+    "groupCodeCopyError": "Failed to copy group code",
     "description": "Group description",
     "descriptionPlaceholder": "Enter group description here.",
     "type": "General Access",
@@ -606,7 +610,7 @@
   "commentPhotoSection": {
     "replyButton": "Reply",
     "commentForm": "Write a comment",
-    "replyForm": "Write a reply...",
+    "replyForm": "Write a reply for",
     "noComment": "No comment yet."
   },
   "outGroup": {
@@ -774,5 +778,12 @@
       "copy": "Copy",
       "copied": "Copied"
     }
+  },
+  "pagination": {
+    "previousLabel": "Go to previous page",
+    "nextLabel": "Go to next page",
+    "previous": "Previous",
+    "next": "Next",
+    "morePages": "More pages"
   }
 }

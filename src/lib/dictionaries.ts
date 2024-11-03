@@ -1,13 +1,14 @@
 import 'server-only';
 import { Locale } from './define';
 import { cookies } from 'next/headers';
+import { cache } from 'react';
 
 const dictionaries = {
   en: () => import('../dictionaries/en.json').then((module) => module.default),
   vi: () => import('../dictionaries/vi.json').then((module) => module.default),
 };
 
-export const getDictionary = async (locale?: Locale) => {
+export const getDictionary = cache(async (locale?: Locale) => {
   if (locale) {
     return dictionaries[locale]();
   }
@@ -15,4 +16,4 @@ export const getDictionary = async (locale?: Locale) => {
   const langCookie = cookieStore.get('lang');
   const lang = (langCookie ? langCookie.value : 'en') as Locale;
   return dictionaries[lang]();
-};
+});

@@ -155,6 +155,7 @@ export type GroupInfo = {
   description: string;
   groupImg: string;
   type: string;
+  groupCode: string;
 };
 
 export type GroupSetting = {

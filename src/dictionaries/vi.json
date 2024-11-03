@@ -509,6 +509,10 @@
     "dialogDescription": "Tạo một nhóm mới và mời bạn bè của bạn cùng tham gia",
     "title": "Tên nhóm",
     "titlePlaceholder": "Nhâp tên nhóm ở đây.",
+    "groupCode": "Mã nhóm",
+    "groupCodeDescription": "Mã nhóm là một chuỗi 6 ký tự duy nhất được tạo tự động cho nhóm của bạn. Mã này sẽ được sử dụng để mời người khác tham gia nhóm của bạn.",
+    "groupCodeCopySuccess": "Đã sao chép mã nhóm",
+    "groupCodeCopyError": "Lỗi khi sao chép mã nhóm",
     "description": "Mô tả nhóm",
     "descriptionPlaceholder": "Nhâp mô tả nhóm ở đây.",
     "type": "Phạm vi truy cập",
@@ -773,5 +777,12 @@
       "copy": "Sao chép",
       "copied": "Đã sao chép"
     }
+  },
+  "pagination": {
+    "previousLabel": "Đi đến trang trước",
+    "nextLabel": "Đi đến trang tiếp",
+    "previous": "Trước",
+    "next": "Tiếp",
+    "morePages": "Nhiều trang hơn"
   }
 }

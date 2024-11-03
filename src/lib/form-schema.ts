@@ -123,6 +123,7 @@ export const getUpdateGroupSettingSchema = (lang: Locale) => {
       allow_share_album: z.boolean(),
       allow_share_photo: z.boolean(),
     }),
+    groupCode: z.string().optional(),
   });
 };
 export const getUpdateAlbumSettingSchema = (lang: Locale) => {

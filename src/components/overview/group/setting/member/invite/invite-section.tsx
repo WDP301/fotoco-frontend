@@ -14,7 +14,7 @@ export default async function InviteSection({ groupId }: { groupId: string }) {
       {groupSetting.setting.role === 'OWNER' ||
       groupSetting.setting.allow_invite ? (
         <div className="flex justify-center items-center gap-5">
-          <InviteMember groupId={groupId} />
+          <InviteMember groupId={groupId} groupSetting={groupSetting} />
           {/* <SearchUsers groupId={groupId} /> */}
         </div>
       ) : (

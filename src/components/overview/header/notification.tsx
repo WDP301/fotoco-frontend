@@ -64,7 +64,11 @@ export default function Notification({ user }: { user: User }) {
   useEffect(() => {
     if (!socket) return;
 
-    const handleNotification = (data: any) => {
+    const handleNotification = (data: {
+      except: string;
+      notification: UserNotification;
+    }) => {
+      console.log('>>>>>>>>New notification:', data);
       const { except, notification } = data;
 
       if (except !== user._id) {

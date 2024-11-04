@@ -7,12 +7,14 @@ import React, {
   useEffect,
   useState,
 } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface AuthContextProps {
   user: User | null;
   loading: boolean;
   error: Error | null;
   updateUser: (user: User) => void;
+  refreshUser: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
@@ -49,8 +51,22 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(newUser);
   };
 
+  const refreshUser = async () => {
+    setLoading(true);
+    try {
+      const userData = await getUser(true);
+      setUser(userData);
+    } catch (err) {
+      setError(err as Error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loading, error, updateUser }}>
+    <AuthContext.Provider
+      value={{ user, loading, error, updateUser, refreshUser }}
+    >
       {children}
     </AuthContext.Provider>
   );

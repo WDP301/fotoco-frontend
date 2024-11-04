@@ -5,7 +5,11 @@ import { cookies } from 'next/headers';
 
 const customFetch = async (
   input: RequestInfo,
-  init?: RequestInit
+  init?: RequestInit,
+  cacheOptions?: {
+    revalidate?: number | boolean;
+    cache?: 'no-store' | 'force-cache';
+  }
 ): Promise<Response> => {
   const accessToken = cookies().get('access-token')?.value;
 
@@ -19,6 +23,14 @@ const customFetch = async (
   const fetchConfig: RequestInit = {
     ...init,
     headers,
+    next: {
+      revalidate:
+        typeof cacheOptions?.revalidate === 'number' ||
+        cacheOptions?.revalidate === false
+          ? cacheOptions.revalidate
+          : undefined,
+    },
+    cache: cacheOptions?.cache,
   };
 
   // Add base URL if the input is a relative path
@@ -38,8 +50,6 @@ const customFetch = async (
 
     return response;
   } catch (error) {
-    // Handle request error
-    console.error('Fetch request failed:', error);
     throw error;
   }
 };

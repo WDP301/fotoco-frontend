@@ -57,7 +57,7 @@ export default function GroupSettingForm({
         type: group.type as 'PUBLIC' | 'PRIVATE' | 'HIDDEN',
         groupCode: group.groupCode,
         title: group.title,
-        description: !group.description ? 'No description' : group.description,
+        description: group.description,
         groupImg: group.groupImg,
       },
     }

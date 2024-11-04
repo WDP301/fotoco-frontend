@@ -1,15 +1,14 @@
 'use client';
-
-import AcceptInviteToGroup from '@/components/overview/group/invite/accept-invite';
+import AcceptInviteToAlbum from '@/components/overview/album/invite/accept-invite';
 import { useLanguage } from '@/components/provider/language-provider';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Button } from '@/components/ui/button';
-import { getGroupInfo } from '@/lib/data';
-import { GroupInfo } from '@/lib/define';
+import { getAlbumInfo } from '@/lib/data';
+import { AlbumInfo } from '@/lib/define';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-export default function AcceptInviteToGroupPage({
+export default function AcceptInviteToAlbumPage({
   params,
   searchParams,
 }: {
@@ -18,15 +17,15 @@ export default function AcceptInviteToGroupPage({
 }) {
   const { dict } = useLanguage();
   const [showAcceptInvite, setShowAcceptInvite] = useState(false);
-  const [groupInfo, setGroupInfo] = useState({} as GroupInfo);
+  const [albumInfo, setAlbumInfo] = useState({} as AlbumInfo);
 
   useEffect(() => {
-    const fetchGroupInfo = async () => {
-      const response = await getGroupInfo(params.id);
-      setGroupInfo(response);
+    const fetchAlbumInfo = async () => {
+      const response = await getAlbumInfo(params.id);
+      setAlbumInfo(response);
     };
 
-    fetchGroupInfo();
+    fetchAlbumInfo();
   }, [params.id, searchParams.inviteToken]);
 
   const handleAcceptInviteClick = () => {
@@ -36,27 +35,27 @@ export default function AcceptInviteToGroupPage({
   return (
     <div>
       <h2 className="text-center">
-        {dict.group.invite.title} {groupInfo?.title}
+        {dict.album.invite.title} {albumInfo?.title}
       </h2>
       <div className="mx-auto sm:max-w-60">
         <AspectRatio ratio={3 / 4} className="round-lg bg-muted ">
           <Image
-            alt={groupInfo?.title}
-            src={groupInfo?.groupImg || '/background/default-vertical.jpg'}
+            alt={albumInfo?.title}
+            src={'/background/default-vertical.jpg'}
             fill
             className="h-full w-full rounded-lg object-cover"
           />
         </AspectRatio>
       </div>
       {showAcceptInvite ? (
-        <AcceptInviteToGroup
-          groupId={params.id}
+        <AcceptInviteToAlbum
+          albumId={params.id}
           inviteToken={searchParams.inviteToken}
         />
       ) : (
         <div className="flex justify-center">
           <Button onClick={handleAcceptInviteClick} className="my-2">
-            {dict.button.joinGroup}
+            {dict.button.joinAlbum}
           </Button>
         </div>
       )}

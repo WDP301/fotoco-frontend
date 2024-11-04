@@ -8,6 +8,7 @@ import { LanguageProvider } from '@/components/provider/language-provider';
 import { Toaster } from 'sonner';
 import { SocketIoProvider } from '@/components/provider/socket-io-provider';
 import { AuthProvider } from '@/components/provider/auth-provider';
+import NextTopLoader from 'nextjs-toploader';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -31,6 +32,7 @@ export default function RootLayout({
       <body
         className={`${fontSans.variable} min-h-screen bg-background font-sans antialiased transition-colors duration-1000`}
       >
+        <NextTopLoader color="#7289da" />
         <AuthProvider>
           <SocketIoProvider>
             <LanguageProvider>

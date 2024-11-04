@@ -126,6 +126,31 @@ export const getUpdateGroupSettingSchema = (lang: Locale) => {
     groupCode: z.string().optional(),
   });
 };
+export const getUpdateAlbumSettingSchema = (lang: Locale) => {
+  const { createAlbumSchema: messages } = getValidationMessages(lang);
+
+  return z.object({
+    title: z
+      .string({ required_error: messages.title.required })
+      .min(3, { message: messages.title.min })
+      .max(50, { message: messages.title.max }),
+
+    description: z
+      .string()
+      .optional()
+      .refine((val) => val === undefined || val === '' || val.length >= 10, {
+        message: messages.description.min,
+      })
+      .refine((val) => val === undefined || val === '' || val.length <= 300, {
+        message: messages.description.max,
+      }),
+    setting: z.object({
+      allow_invite: z.boolean(),
+      allow_share_album: z.boolean(),
+      allow_share_photo: z.boolean(),
+    }),
+  });
+};
 
 export const getCreateAlbumSchema = (lang: Locale) => {
   const { createAlbumSchema: messages } = getValidationMessages(lang);
@@ -166,6 +191,16 @@ export const getInviteGroupMemberSchema = (lang: Locale) => {
       .string({ required_error: messages.email.required })
       .email({ message: messages.email.invalid }),
     role: z.enum(['MEMBER', 'OWNER']),
+  });
+};
+export const getInviteAlbumMemberSchema = (lang: Locale) => {
+  const { inviteAlbumMemberSchema: messages } = getValidationMessages(lang);
+
+  return z.object({
+    email: z
+      .string({ required_error: messages.email.required })
+      .email({ message: messages.email.invalid }),
+    role: z.enum(['MEMBER', 'OWNER', 'CONTRIBUTOR']),
   });
 };
 

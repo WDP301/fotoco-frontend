@@ -164,7 +164,7 @@ export default function Notification({ user }: { user: User }) {
                       <span className="mt-2">
                         {interpolateString(getPath(dict, noti?.content?.text), {
                           fullName: noti?.content?.from.fullName,
-                        })}
+                        }) || noti?.content?.text}
                       </span>
 
                       <div className="text-xs text-slate-400 mt-2">

@@ -590,7 +590,7 @@
     "description": "Mô tả trang thông báo",
     "toast": {
       "title": "Bạn có thông báo mới từ {{fullName}} (@{{username}})",
-      "seeMore": "Xem tất cả thông báo"
+      "seeMore": "Xem chi tiết"
     }
   },
   "role": {

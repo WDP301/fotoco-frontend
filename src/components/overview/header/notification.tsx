@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { User, UserNotification } from '@/lib/define';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useMemo } from 'react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { getUserNotifications, markNotificationAsSeen } from '@/lib/action';
 import {
@@ -34,26 +34,37 @@ export default function Notification({ user }: { user: User }) {
   const { dict } = useLanguage();
   const [notification, setNotification] = useState<UserNotification[]>([]);
 
+  const unseenCount = useMemo(
+    () => notification?.filter((noti) => !noti.seen.includes(user._id)).length,
+    [notification, user._id]
+  );
+
   const handleSeenNoti = useCallback(
     async (noti: UserNotification) => {
-      setNotification((prevNotifications) =>
-        prevNotifications.map((notificationItem) => {
-          if (notificationItem._id === noti._id) {
-            if (notificationItem.seen.includes(user._id))
+      try {
+        setNotification((prevNotifications) =>
+          prevNotifications.map((notificationItem) => {
+            if (notificationItem._id === noti._id) {
+              if (notificationItem.seen.includes(user._id))
+                return notificationItem;
+              notificationItem.seen.push(user._id);
               return notificationItem;
-            notificationItem.seen.push(user._id);
+            }
             return notificationItem;
-          }
-          return notificationItem;
-        })
-      );
-      await markNotificationAsSeen(noti._id);
+          })
+        );
+        await markNotificationAsSeen(noti._id);
+      } catch (error) {
+        console.error('Failed to mark notification as seen:', error);
+      }
     },
     [setNotification, user._id]
   );
 
   useEffect(() => {
-    socket?.subscribe('notification', (data) => {
+    if (!socket) return;
+
+    const handleNotification = (data: any) => {
       const { except, notification } = data;
 
       if (except !== user._id) {
@@ -72,7 +83,7 @@ export default function Notification({ user }: { user: User }) {
               fullName: content?.from.fullName,
             }),
             action: {
-              label: 'See more',
+              label: dict.noti.toast.seeMore,
               onClick: () => {
                 handleSeenNoti(notification);
                 router.push(notification.redirectUrl);
@@ -81,14 +92,21 @@ export default function Notification({ user }: { user: User }) {
           }
         );
       }
-    });
+    };
+
+    socket.subscribe('notification', handleNotification);
   }, [socket, dict, handleSeenNoti, router, user._id]);
 
   useEffect(() => {
-    // Fetch notifications when the component mounts
-    getUserNotifications().then((data) => {
-      setNotification(data);
-    });
+    const fetchNotifications = async () => {
+      try {
+        const data = await getUserNotifications();
+        setNotification(data);
+      } catch (error) {
+        console.error('Failed to fetch notifications:', error);
+      }
+    };
+    fetchNotifications();
   }, []);
 
   return (
@@ -100,11 +118,7 @@ export default function Notification({ user }: { user: User }) {
               <Bell size={24} />
             </button>
             <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
-              {notification?.filter((noti) => !noti.seen.includes(user._id))
-                .length > 9
-                ? '9+'
-                : notification?.filter((noti) => !noti.seen.includes(user._id))
-                    .length}
+              {unseenCount > 9 ? '9+' : unseenCount}
             </span>
           </div>
         </div>
@@ -118,10 +132,10 @@ export default function Notification({ user }: { user: User }) {
               {dict.noti.noNotification}
             </div>
           )}
-          {notification?.map((noti, index) => (
+          {notification?.map((noti) => (
             <Link
               href={noti.redirectUrl}
-              key={index}
+              key={noti._id}
               onClick={() => handleSeenNoti(noti)}
             >
               <DropdownMenuGroup>

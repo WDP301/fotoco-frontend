@@ -7,7 +7,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { useRouter } from 'next/navigation';
+import { getCookie } from 'cookies-next';
 
 interface AuthContextProps {
   user: User | null;
@@ -34,6 +34,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const fetchUser = async () => {
+      const accessToken = getCookie('access-token');
+      if (!accessToken) {
+        setLoading(false);
+        return;
+      }
       try {
         const userData = await getUser();
         setUser(userData);

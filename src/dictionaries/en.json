@@ -449,6 +449,8 @@
     "title": "Photos",
     "description": "Photo List page description",
     "reactedPhoto": "{{fullName}} reacted to the photo",
+    "commentedPhoto": "{{fullName}} commented on the photo",
+    "repliedComment": "{{fullName}} replied to the comment",
     "upload": {
       "title": "Upload Photo",
       "heading": "Upload your photo",

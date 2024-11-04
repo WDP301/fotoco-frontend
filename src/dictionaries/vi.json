@@ -448,6 +448,8 @@
     "title": "Ảnh",
     "description": "Mô tả trang danh sách ảnh",
     "reactedPhoto": "{{fullName}} đã yêu thích ảnh của bạn",
+    "commentedPhoto": "{{fullName}} đã bình luận ảnh của bạn",
+    "repliedComment": "{{fullName}} đã trả lời bình luận của bạn",
     "upload": {
       "title": "Tải ảnh lên",
       "heading": "Tải ảnh của bạn lên",

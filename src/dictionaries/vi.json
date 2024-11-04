@@ -714,5 +714,8 @@
     "previous": "Trước",
     "next": "Tiếp",
     "morePages": "Nhiều trang hơn"
+  },
+  "sharedAlbum": {
+    "sharedBy": "Chia sẻ bởi"
   }
 }

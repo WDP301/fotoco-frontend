@@ -714,5 +714,8 @@
     "previous": "Previous",
     "next": "Next",
     "morePages": "More pages"
+  },
+  "sharedAlbum": {
+    "sharedBy": "Shared by"
   }
 }

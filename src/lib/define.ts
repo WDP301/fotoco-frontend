@@ -177,6 +177,7 @@ export type AlbumInfo = {
   photosCount: number;
   createdAt: string;
   updatedAt: string;
+  allowShareAlbum: boolean;
 };
 
 export type GroupUser = {
@@ -273,6 +274,7 @@ export type PhotoResponse = {
   prevPhoto?: string;
   nextPhoto?: string;
   isReacted: boolean;
+  allowSharePhoto: boolean;
 };
 
 export type PhotoDetails = {
@@ -359,5 +361,28 @@ export type SharedPhoto = {
 };
 
 export type SharedAlbum = {
-  
+  success: boolean
+  album: {
+    title: string
+  }
+  photos: {
+    owner: {
+      fullName: string
+      img: string
+    }
+    title: string
+    url: string
+  }[]
+  shareUser: {
+    fullName: string
+    img: string
+  }
+  pageMeta: {
+    totalPages: number
+    page: number
+    totalElements: number
+    pageSize: number
+    hasNext: boolean
+    hasPrev: boolean
+  }
 }

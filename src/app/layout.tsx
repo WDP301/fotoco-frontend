@@ -32,7 +32,7 @@ export default function RootLayout({
       <body
         className={`${fontSans.variable} min-h-screen bg-background font-sans antialiased transition-colors duration-1000`}
       >
-        <NextTopLoader color="#7289da" />
+        <NextTopLoader color="#7289da" showSpinner={false} />
         <AuthProvider>
           <SocketIoProvider>
             <LanguageProvider>

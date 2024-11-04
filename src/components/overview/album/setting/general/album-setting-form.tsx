@@ -45,7 +45,7 @@ export default function AlbumSettingForm({
           // allow_share_photo: albumSetting.setting.allow_share_photo || false,
         },
         title: album.title,
-        description: !album.description ? 'No description' : album.description,
+        description: album.description,
       },
     }
   );

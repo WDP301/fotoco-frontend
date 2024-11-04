@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npm i && next dev",
+    "dev": "npm i && NODE_TLS_REJECT_UNAUTHORIZED=0 next dev --experimental-https",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

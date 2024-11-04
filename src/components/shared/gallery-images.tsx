@@ -11,6 +11,7 @@ import {
 import Image from 'next/image';
 import { Photo } from '@/lib/define';
 import Link from 'next/link';
+import SpinLoading from './spin-loading';
 
 interface GalleryProps {
   photos: Photo[];
@@ -120,7 +121,7 @@ const Gallery = ({ photos, currentPhoto }: GalleryProps) => {
   }, [mainApi, thumbnailApi, initialIndex]);
 
   if (!photos || photos.length === 0) {
-    return <div>Loading...</div>; // Or a suitable loading indicator
+    return <SpinLoading />;
   }
 
   return (

@@ -36,12 +36,18 @@ function objectToQueryString(params: Record<string, any>): string {
   return new URLSearchParams(params).toString();
 }
 
-export const getUser = async () => {
+export const getUser = async (forceRefresh = false) => {
   try {
-    const response = await customFetch('/users/me', {
-      method: 'GET',
-      next: { revalidate: 3600 },
-    })
+    const response = await customFetch(
+      '/users/me',
+      {
+        method: 'GET',
+      },
+      {
+        revalidate: forceRefresh ? 0 : 3600,
+        cache: forceRefresh ? 'no-store' : undefined,
+      }
+    )
       .then((res) => res.json())
       .catch(() => null);
 
@@ -53,7 +59,7 @@ export const getUser = async () => {
       return response.user;
     }
   } catch (error) {
-    console.error('Error fetching user data:', error);
+    // console.error('Error fetching user data:', error);
     return {} as User;
   }
 };
@@ -447,4 +453,3 @@ export const getSearchGroupMembers = async (
     return [] as SearchUser[];
   }
 };
-

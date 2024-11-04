@@ -62,7 +62,7 @@ function centerAspectCrop(
 export function ProfileForm({ user }: { user: User }) {
   const router = useRouter();
   const { dict } = useLanguage();
-  const { updateUser } = useAuth();
+  const { updateUser, refreshUser } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
 
   const [isImageChanged, setIsImageChanged] = useState(false);
@@ -194,6 +194,7 @@ export function ProfileForm({ user }: { user: User }) {
       const result = await updateUserProfile(data);
       if (result.isSuccess) {
         updateUser(result.data);
+        await refreshUser();
         toast.success(dict.editProfile.profile.message.success);
         router.push('/edit-profile');
         router.refresh();

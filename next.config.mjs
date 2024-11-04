@@ -33,6 +33,7 @@ const nextConfig = {
     API_URL: process.env.API_URL || 'http://localhost:4000/api/v1',
     SOCKET_URL: process.env.SOCKET_URL || 'http://localhost:4000',
     FRONTEND_SITE_NAME: process.env.FRONTEND_SITE_NAME || 'Fotoco',
+    FRONTEND_URL: process.env.FRONTEND_URL || 'http://localhost:3000',
   },
 };
 

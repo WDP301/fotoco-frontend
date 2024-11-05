@@ -25,7 +25,7 @@ export function SocketIoProvider({ children }: Props) {
     if (user) {
       socket?.client?.connect();
     }
-  }, [user]);
+  }, [user, socket?.connected]);
 
   return (
     <SocketContext.Provider
@@ -46,7 +46,7 @@ function useSocketClient() {
   if (typeof window === "undefined") return;
 
   const config = {
-    url: process.env.SOCKET_URL || "http://localhost:4000",
+    url: process.env.SOCKET_URL || "",
     path: "/socket",
     onConnected: () => {
       setConnected(true);

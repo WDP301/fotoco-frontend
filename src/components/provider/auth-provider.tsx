@@ -8,7 +8,6 @@ import React, {
   useState,
 } from 'react';
 import { getCookie } from 'cookies-next';
-import { revalidateTag } from 'next/cache';
 
 interface AuthContextProps {
   user: User | null;

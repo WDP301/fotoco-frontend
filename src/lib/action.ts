@@ -187,7 +187,7 @@ export const logout = async () => {
     cookies().delete('access-token');
     cookies().delete('refresh-token');
     cookies().delete('signature');
-    cookies().delete('lang');
+    // cookies().delete('lang');  // cause bug: Uncaught Error: dictionaries[lang] is not a function
     await http.delete('/auth/logout', { data: { refreshToken, signature } });
     return {
       isSuccess: true,

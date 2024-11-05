@@ -235,7 +235,7 @@ export function ProfileForm({ user }: { user: User }) {
                   <FormLabel className="text-primary">
                     {dict.editProfile.profile.form.image.label}
                   </FormLabel>
-                  <label htmlFor="image">
+                  <label htmlFor="image" className="cursor-pointer">
                     {dict.editProfile.profile.form.image.chooseFile}
                   </label>
                 </div>

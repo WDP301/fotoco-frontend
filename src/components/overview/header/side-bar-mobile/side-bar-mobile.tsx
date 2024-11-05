@@ -18,6 +18,7 @@ import AvatarPicture from '@/components/shared/avatar-picture';
 import { useLanguage } from '@/components/provider/language-provider';
 import HeaderActionPopover from '../action/header-action-popover';
 import Notification from '../notification';
+import { useState } from 'react';
 
 type PageProps = {
   label: string;
@@ -25,6 +26,7 @@ type PageProps = {
 };
 
 export function SideBarMobile({ user }: { user: User }) {
+  const [open, setOpen] = useState(false);
   const { dict } = useLanguage();
 
   const pages: PageProps[] = [
@@ -36,6 +38,10 @@ export function SideBarMobile({ user }: { user: User }) {
       label: dict.header.mainNav.pricing,
       path: '/pricing',
     },
+    {
+      label: dict.header.mainNav.settings,
+      path: '/edit-profile',
+    },
   ];
   if (!user) {
     return (
@@ -45,7 +51,7 @@ export function SideBarMobile({ user }: { user: User }) {
     );
   }
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button variant="hidden">
           <HamburgerMenuIcon className="w-5 h-5" />
@@ -74,6 +80,7 @@ export function SideBarMobile({ user }: { user: User }) {
                 key={page.path}
                 href={page.path}
                 className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground"
+                onClick={() => setOpen(false)}
               >
                 <>
                   <div className="text-center">

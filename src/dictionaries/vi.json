@@ -118,7 +118,8 @@
   "header": {
     "mainNav": {
       "aboutUs": "Về chúng tôi",
-      "pricing": "Giá cả"
+      "pricing": "Giá cả",
+      "settings": "Cài đặt"
     },
     "action": {
       "title": "Hành động"

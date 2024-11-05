@@ -7,7 +7,8 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { useRouter } from 'next/navigation';
+import { getCookie } from 'cookies-next';
+import { revalidateTag } from 'next/cache';
 
 interface AuthContextProps {
   user: User | null;
@@ -34,6 +35,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const fetchUser = async () => {
+      const accessToken = getCookie('access-token');
+      if (!accessToken) {
+        setLoading(false);
+        return;
+      }
       try {
         const userData = await getUser();
         setUser(userData);
@@ -54,6 +60,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const refreshUser = async () => {
     setLoading(true);
     try {
+      await revalidateTag(`user`);
       const userData = await getUser(true);
       setUser(userData);
     } catch (err) {

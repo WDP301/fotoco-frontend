@@ -25,7 +25,7 @@ export function SocketIoProvider({ children }: Props) {
     if (user) {
       socket?.client?.connect();
     }
-  }, [user, socket]);
+  }, [user]);
 
   return (
     <SocketContext.Provider

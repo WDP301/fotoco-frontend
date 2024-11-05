@@ -11,7 +11,7 @@ export default function TabListGroupSection() {
     setParams('filter', filter);
   };
   return (
-    <TabsList className="grid grid-cols-2 w-[400px]">
+    <TabsList className="grid grid-cols-2 max-w-[400px] overflow-x-auto">
       <TabsTrigger value="mine" onClick={() => handleTabChange('mine')}>
         {dict.filterOptions.mine}
       </TabsTrigger>

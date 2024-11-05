@@ -25,6 +25,7 @@ import {
   AlbumSetting,
   SearchAlbumMembersParams,
   AlbumUser,
+  PublicGroupInfo,
   SharedAlbum,
 } from './define';
 import { getPlaiceholder } from 'plaiceholder';
@@ -45,7 +46,7 @@ export const getUser = async (forceRefresh = false) => {
         method: 'GET',
       },
       {
-        revalidate: forceRefresh ? 0 : 3600,
+        revalidate: 3600,
         tags: ['user'],
       }
     )
@@ -144,6 +145,20 @@ export const getGroupInfo = async (groupId: string) => {
     return response as GroupInfo;
   } catch {
     return {} as GroupInfo;
+  }
+};
+
+export const getPublicGroupInfo = async (groupId: string) => {
+  try {
+    const response = await customFetch(`/public/${groupId}`, {
+      method: 'GET',
+      next: { revalidate: 3600 },
+    })
+      .then((res) => res.json())
+      .catch(() => null);
+    return response as PublicGroupInfo;
+  } catch {
+    return {} as PublicGroupInfo;
   }
 };
 

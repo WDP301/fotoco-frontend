@@ -49,6 +49,9 @@ export type User = {
   createdAt: string;
   updatedAt: string;
   __v: number;
+  setting: {
+    lang: string;
+  };
 };
 
 export type Group = {
@@ -156,6 +159,13 @@ export type GroupInfo = {
   groupImg: string;
   type: string;
   groupCode: string;
+};
+
+export type PublicGroupInfo = {
+  title: string;
+  description: string;
+  groupImg: string;
+  type: string;
 };
 
 export type GroupSetting = {

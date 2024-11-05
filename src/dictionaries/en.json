@@ -118,7 +118,8 @@
   "header": {
     "mainNav": {
       "aboutUs": "About Us",
-      "pricing": "Pricing"
+      "pricing": "Pricing",
+      "settings": "Settings"
     },
     "action": {
       "title": "Actions"

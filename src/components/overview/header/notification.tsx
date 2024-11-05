@@ -68,7 +68,6 @@ export default function Notification({ user }: { user: User }) {
       except: string;
       notification: UserNotification;
     }) => {
-      console.log('>>>>>>>>New notification:', data);
       const { except, notification } = data;
 
       if (except !== user._id) {

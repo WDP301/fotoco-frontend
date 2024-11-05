@@ -6,6 +6,7 @@ import './globals.css';
 import { ThemeProvider } from '@/components/provider/theme-provider';
 import { LanguageProvider } from '@/components/provider/language-provider';
 import { SocketIoProvider } from '@/components/provider/socket-io-provider';
+import { AuthProvider } from '@/components/provider/auth-provider';
 import NextTopLoader from 'nextjs-toploader';
 import Toast from '@/components/toast/toast';
 
@@ -38,9 +39,11 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <NextTopLoader color="#7289da" showSpinner={false} />
-          <SocketIoProvider>
-            <LanguageProvider>{children}</LanguageProvider>
-          </SocketIoProvider>
+          <AuthProvider>
+            <SocketIoProvider>
+              <LanguageProvider>{children}</LanguageProvider>
+            </SocketIoProvider>
+          </AuthProvider>
           <Toast />
         </ThemeProvider>
       </body>

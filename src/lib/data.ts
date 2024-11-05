@@ -45,7 +45,7 @@ export const getUser = async (forceRefresh = false) => {
       },
       {
         revalidate: forceRefresh ? 0 : 3600,
-        cache: forceRefresh ? 'no-store' : undefined,
+        tags: ['user'],
       }
     )
       .then((res) => res.json())

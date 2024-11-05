@@ -9,6 +9,7 @@ const customFetch = async (
   cacheOptions?: {
     revalidate?: number | boolean;
     cache?: 'no-store' | 'force-cache';
+    tags?: string[];
   }
 ): Promise<Response> => {
   const accessToken = cookies().get('access-token')?.value;
@@ -29,6 +30,7 @@ const customFetch = async (
         cacheOptions?.revalidate === false
           ? cacheOptions.revalidate
           : undefined,
+      tags: cacheOptions?.tags,
     },
     cache: cacheOptions?.cache,
   };

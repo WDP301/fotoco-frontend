@@ -7,6 +7,7 @@ import { CornerDownRight, SendHorizontal } from "lucide-react";
 import AvatarPicture from "@/components/shared/avatar-picture";
 import { commentPhoto, replyComment } from "@/lib/action";
 import { useLanguage } from "@/components/provider/language-provider";
+import { useRouter } from "next/navigation";
 
 interface CommentFormProps {
   showIcon?: boolean;
@@ -24,6 +25,7 @@ const CommentForm = forwardRef<CommentFormRef, CommentFormProps>(({ showIcon, re
   const [comment, setComment] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { dict } = useLanguage();
+  const route = useRouter();
 
   useImperativeHandle(ref, () => ({
     focusTextArea: () => {
@@ -57,6 +59,7 @@ const CommentForm = forwardRef<CommentFormRef, CommentFormProps>(({ showIcon, re
     } else {
       console.log(response.error);
     }
+    route.refresh();
   };
 
   return (

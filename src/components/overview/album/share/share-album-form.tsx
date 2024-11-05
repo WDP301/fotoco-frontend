@@ -39,7 +39,7 @@ export function ShareAlbumForm({albumId}: {albumId: string}) {
         const response = await shareAlbum(albumId, timeInSeconds);
         setLoading(false);
         if (response.isSuccess) {
-            setShareLink(`${siteConfig.url}/album/share/${response.data.shareAlbumToken}`);
+            setShareLink(`${siteConfig.url}/shared/album/${response.data.shareAlbumToken}`);
         }
     };
 

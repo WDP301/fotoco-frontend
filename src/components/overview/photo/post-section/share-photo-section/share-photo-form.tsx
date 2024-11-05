@@ -39,7 +39,7 @@ export function SharePhotoForm({ photoId }: { photoId: string }) {
         const response = await sharePhoto(photoId, timeInSeconds);
         setLoading(false);
         if (response.isSuccess) {
-            setShareLink(`${siteConfig.url}/photo/share/${response.data.sharePhotoToken}`);
+            setShareLink(`${siteConfig.url}/shared/photo/${response.data.sharePhotoToken}`);
         }
     };
 

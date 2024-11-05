@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Settings } from 'lucide-react';
 import AlbumNotFound from '../album-not-found';
 import { BasicTooltip } from '@/components/shared/basic-tooltip';
+import ShareAlbumDialog from '../share/share-album-dialog';
 
 export default async function AlbumInfo({ albumId }: { albumId: string }) {
   const album = await getAlbumInfo(albumId);
@@ -40,11 +41,16 @@ export default async function AlbumInfo({ albumId }: { albumId: string }) {
           <h1>{album.title}</h1>
         </BasicTooltip>
 
-        <Link href={`/albums/${albumId}/settings`}>
-          <Button variant="ghost">
-            <Settings />
-          </Button>
-        </Link>
+        <div className="flex items-center space-x-2">
+          <Link href={`/albums/${albumId}/settings`}>
+            <Button variant="ghost">
+              <Settings />
+            </Button>
+          </Link>
+          {album.allowShareAlbum && (
+            <ShareAlbumDialog albumId={albumId} />
+          )}
+        </div>
       </div>
     </div>
   );

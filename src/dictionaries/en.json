@@ -768,7 +768,12 @@
       "button": "Create Link",
       "loading": "Creating link...",
       "copy": "Copy",
-      "copied": "Copied"
+      "copied": "Copied",
+      "choices":{
+        "days": "Day(s)",
+        "weeks": "Week(s)",
+        "months": "Month(s)"
+      }
     }
   },
   "sharePhotoDetails": {
@@ -790,5 +795,21 @@
   },
   "sharedAlbum": {
     "sharedBy": "Shared by"
+  },
+  "shareAlbumDialog": {
+    "title": "Share album in",
+    "description": "You can share albums with any of your friends, even if they don't have a Fotoco account.",
+    "sharePhotoForm": {
+      "label": "Share this album for",
+      "button": "Create Link",
+      "loading": "Creating link...",
+      "copy": "Copy",
+      "copied": "Copied",
+      "choices":{
+        "days": "Day(s)",
+        "weeks": "Week(s)",
+        "months": "Month(s)"
+      }
+    }
   }
 }

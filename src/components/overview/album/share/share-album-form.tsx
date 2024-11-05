@@ -11,19 +11,19 @@ import {
 import { Form, FormField, FormItem, FormLabel, FormControl } from "@/components/ui/form"
 import { useForm } from "react-hook-form"
 import { convertTimeToSecond } from "@/lib/utils"
-import { sharePhoto } from "@/lib/action";
+import { shareAlbum } from "@/lib/action";
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Copy } from "lucide-react";
 import { useState } from "react";
 import { siteConfig } from '@/config/site';
 
-export function SharePhotoForm({ photoId }: { photoId: string }) {
+export function ShareAlbumForm({albumId}: {albumId: string}) {
     
     const { dict } = useLanguage();
     const [loading, setLoading] = useState(false);
     const [shareLink, setShareLink] = useState<string | null>(null);
-    const [copyButtonTooltipText, setCopyButtonTooltipText] = useState(dict.sharePhotoDialog.sharePhotoForm.copy);
+    const [copyButtonTooltipText, setCopyButtonTooltipText] = useState(dict.shareAlbumDialog.shareAlbumForm.copy);
     const [showTooltip, setShowTooltip] = useState(false);
 
     const form = useForm({
@@ -33,23 +33,23 @@ export function SharePhotoForm({ photoId }: { photoId: string }) {
         },
     });
 
-    const handleCreateSharePhotoLink = async (data: { timeValue: number; timeUnit: string }) => {
+    const handleCreateShareAlbumLink = async (data: { timeValue: number; timeUnit: string }) => {
         setLoading(true);
         const timeInSeconds = convertTimeToSecond(data.timeValue, data.timeUnit);
-        const response = await sharePhoto(photoId, timeInSeconds);
+        const response = await shareAlbum(albumId, timeInSeconds);
         setLoading(false);
         if (response.isSuccess) {
-            setShareLink(`${siteConfig.url}/photo/share/${response.data.sharePhotoToken}`);
+            setShareLink(`${siteConfig.url}/album/share/${response.data.shareAlbumToken}`);
         }
     };
 
     const handleCopy = () => {
         if (shareLink) {
             navigator.clipboard.writeText(shareLink).then(() => {
-                setCopyButtonTooltipText(dict.sharePhotoDialog.sharePhotoForm.copied);
+                setCopyButtonTooltipText(dict.shareAlbumDialog.shareAlbumForm.copied);
                 setShowTooltip(true);
                 setTimeout(() => {
-                    setCopyButtonTooltipText(dict.sharePhotoDialog.sharePhotoForm.copy);
+                    setCopyButtonTooltipText(dict.shareAlbumDialog.shareAlbumForm.copy);
                     setShowTooltip(false);
                 }, 2000);
             });
@@ -91,10 +91,10 @@ export function SharePhotoForm({ photoId }: { photoId: string }) {
                 </div>
             ) : (
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(handleCreateSharePhotoLink)} className="w-2/3 space-y-4">
+                    <form onSubmit={form.handleSubmit(handleCreateShareAlbumLink)} className="w-2/3 space-y-4">
                         <div className="flex items-center space-x-2">
                             <FormLabel className="whitespace-nowrap">
-                                {dict.sharePhotoDialog.sharePhotoForm.label}
+                                {dict.shareAlbumDialog.shareAlbumForm.label}
                             </FormLabel>
                             <FormField
                                 control={form.control}
@@ -131,9 +131,9 @@ export function SharePhotoForm({ photoId }: { photoId: string }) {
                                                     <SelectValue placeholder="Select unit" />
                                                 </SelectTrigger>
                                                 <SelectContent>
-                                                    <SelectItem value="days">{dict.sharePhotoDialog.sharePhotoForm.choices.days}</SelectItem>
-                                                    <SelectItem value="weeks">{dict.sharePhotoDialog.sharePhotoForm.choices.weeks}</SelectItem>
-                                                    <SelectItem value="months">{dict.sharePhotoDialog.sharePhotoForm.choices.months}</SelectItem>
+                                                    <SelectItem value="days">{dict.shareAlbumDialog.shareAlbumForm.choices.days}</SelectItem>
+                                                    <SelectItem value="weeks">{dict.shareAlbumDialog.shareAlbumForm.choices.weeks}</SelectItem>
+                                                    <SelectItem value="months">{dict.shareAlbumDialog.shareAlbumForm.choices.months}</SelectItem>
                                                 </SelectContent>
                                             </Select>
                                         </FormControl>
@@ -149,7 +149,7 @@ export function SharePhotoForm({ photoId }: { photoId: string }) {
                         )}
 
                         <Button type="submit" disabled={loading}>
-                            {loading ? dict.sharePhotoDialog.sharePhotoForm.loading : dict.sharePhotoDialog.sharePhotoForm.button}
+                            {loading ? dict.shareAlbumDialog.shareAlbumForm.loading : dict.shareAlbumDialog.shareAlbumForm.button}
                         </Button>
                     </form>
                 </Form>

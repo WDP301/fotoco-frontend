@@ -16,6 +16,8 @@ import { ModeToggle } from '../mode-toggle';
 import { User } from '@/lib/define';
 import AvatarPicture from '@/components/shared/avatar-picture';
 import { useLanguage } from '@/components/provider/language-provider';
+import HeaderActionPopover from '../action/header-action-popover';
+import Notification from '../notification';
 
 type PageProps = {
   label: string;
@@ -82,6 +84,16 @@ export function SideBarMobile({ user }: { user: User }) {
                 </>
               </Link>
             ))}
+            <div className="text-center">
+              <Separator className="my-2" />
+              <HeaderActionPopover />
+              <Separator className="my-2" />
+            </div>
+            <Separator className="my-2" />
+            <div className="self-center">
+              <Notification user={user} />
+            </div>
+            <Separator className="my-2" />
           </div>
         </div>
         <div className="text-center">

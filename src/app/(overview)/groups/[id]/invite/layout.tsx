@@ -1,4 +1,4 @@
-import { getGroupInfo } from '@/lib/data';
+import { getPublicGroupInfo } from '@/lib/data';
 import { getDictionary } from '@/lib/dictionaries';
 import { Metadata } from 'next';
 
@@ -7,7 +7,7 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const group = await getGroupInfo(params.id);
+  const group = await getPublicGroupInfo(params.id);
   const dict = await getDictionary();
 
   if (!group) {

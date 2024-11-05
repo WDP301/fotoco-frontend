@@ -161,6 +161,13 @@ export type GroupInfo = {
   groupCode: string;
 };
 
+export type PublicGroupInfo = {
+  title: string;
+  description: string;
+  groupImg: string;
+  type: string;
+};
+
 export type GroupSetting = {
   setting: {
     role: string;

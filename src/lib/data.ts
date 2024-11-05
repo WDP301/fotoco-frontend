@@ -25,6 +25,7 @@ import {
   AlbumSetting,
   SearchAlbumMembersParams,
   AlbumUser,
+  PublicGroupInfo,
 } from './define';
 import { getPlaiceholder } from 'plaiceholder';
 
@@ -143,6 +144,20 @@ export const getGroupInfo = async (groupId: string) => {
     return response as GroupInfo;
   } catch {
     return {} as GroupInfo;
+  }
+};
+
+export const getPublicGroupInfo = async (groupId: string) => {
+  try {
+    const response = await customFetch(`/public/${groupId}`, {
+      method: 'GET',
+      next: { revalidate: 3600 },
+    })
+      .then((res) => res.json())
+      .catch(() => null);
+    return response as PublicGroupInfo;
+  } catch {
+    return {} as PublicGroupInfo;
   }
 };
 

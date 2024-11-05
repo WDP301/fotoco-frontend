@@ -85,6 +85,7 @@ const OtherOauth = () => {
         variant="outline"
         className="flex-1"
         onClick={() => handleAuth('google')}
+        disabled={isConnecting !== ''}
       >
         {isConnecting === 'google' && (
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />

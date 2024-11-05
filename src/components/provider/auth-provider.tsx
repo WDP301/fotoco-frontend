@@ -14,7 +14,6 @@ interface AuthContextProps {
   user: User | null;
   loading: boolean;
   error: Error | null;
-  updateUser: (user: User) => void;
   refreshUser: () => Promise<void>;
 }
 
@@ -53,14 +52,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     fetchUser();
   }, []);
 
-  const updateUser = (newUser: User) => {
-    setUser(newUser);
-  };
-
   const refreshUser = async () => {
     setLoading(true);
     try {
-      await revalidateTag(`user`);
       const userData = await getUser(true);
       setUser(userData);
     } catch (err) {
@@ -72,7 +66,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, loading, error, updateUser, refreshUser }}
+      value={{ user, loading, error, refreshUser }}
     >
       {children}
     </AuthContext.Provider>

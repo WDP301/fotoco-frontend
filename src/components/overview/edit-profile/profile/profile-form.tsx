@@ -18,7 +18,6 @@ import { toast } from 'sonner';
 import { User } from '@/lib/define';
 import { useRef, useState } from 'react';
 import { updateUserProfile, uploadImage } from '@/lib/action';
-import { Plus, Trash2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import ReactCrop, {
   Crop,
@@ -36,6 +35,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { getProfileFormSchema } from '@/lib/form-schema';
 import { useLanguage } from '@/components/provider/language-provider';
 import { useAuth } from '@/components/provider/auth-provider';
+import { revalidateTag } from 'next/cache';
 
 type ProfileFormValues = z.infer<ReturnType<typeof getProfileFormSchema>>;
 
@@ -62,7 +62,7 @@ function centerAspectCrop(
 export function ProfileForm({ user }: { user: User }) {
   const router = useRouter();
   const { dict } = useLanguage();
-  const { updateUser, refreshUser } = useAuth();
+  const { refreshUser } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
 
   const [isImageChanged, setIsImageChanged] = useState(false);
@@ -193,7 +193,6 @@ export function ProfileForm({ user }: { user: User }) {
 
       const result = await updateUserProfile(data);
       if (result.isSuccess) {
-        updateUser(result.data);
         await refreshUser();
         toast.success(dict.editProfile.profile.message.success);
         router.push('/edit-profile');

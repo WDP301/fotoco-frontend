@@ -19,6 +19,7 @@ import { cookies } from 'next/headers';
 import { AuthResponse, User, UserJWT, UserNotification } from './define';
 import { v4 as uuidv4 } from 'uuid';
 import { base64Decode } from './utils';
+import { revalidateTag } from 'next/cache';
 
 const MAX_AGE_REFRESH_TOKEN = 60 * 60 * 24 * 90;
 
@@ -685,6 +686,7 @@ export const updateUserProfile = async (
         bio,
       })
       .then((res) => {
+        revalidateTag('user');
         return {
           isSuccess: true,
           error: '',

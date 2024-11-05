@@ -44,7 +44,7 @@ export const getUser = async (forceRefresh = false) => {
         method: 'GET',
       },
       {
-        revalidate: forceRefresh ? 0 : 3600,
+        revalidate: 3600,
         tags: ['user'],
       }
     )

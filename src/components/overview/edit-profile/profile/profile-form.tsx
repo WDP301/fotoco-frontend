@@ -34,8 +34,6 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { getProfileFormSchema } from '@/lib/form-schema';
 import { useLanguage } from '@/components/provider/language-provider';
-import { useAuth } from '@/components/provider/auth-provider';
-import { revalidateTag } from 'next/cache';
 
 type ProfileFormValues = z.infer<ReturnType<typeof getProfileFormSchema>>;
 
@@ -62,7 +60,6 @@ function centerAspectCrop(
 export function ProfileForm({ user }: { user: User }) {
   const router = useRouter();
   const { dict } = useLanguage();
-  const { refreshUser } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
 
   const [isImageChanged, setIsImageChanged] = useState(false);
@@ -193,7 +190,6 @@ export function ProfileForm({ user }: { user: User }) {
 
       const result = await updateUserProfile(data);
       if (result.isSuccess) {
-        await refreshUser();
         toast.success(dict.editProfile.profile.message.success);
         router.push('/edit-profile');
         router.refresh();

@@ -14,24 +14,24 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { Separator } from '@/components/ui/separator';
-import { useAuth } from '@/components/provider/auth-provider';
 import { DeletePhotoDialog } from './edit-photo/delete-photo-dialog';
 import SharePhotoDialog from './share-photo-section/share-photo-dialog';
+import { getUser } from '@/lib/data';
 
 interface Post {
   id: number;
   userId: number;
   body: string;
 }
-export default function Post({
+export default async function Post({
   onCommentIconClick,
   photo,
 }: {
   onCommentIconClick: () => void;
   photo: PhotoResponse;
 }) {
+  const user = await getUser();
   const { dict } = useLanguage();
-  const { user } = useAuth();
 
   return (
     <>

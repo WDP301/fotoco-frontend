@@ -799,7 +799,7 @@
   "shareAlbumDialog": {
     "title": "Share album in",
     "description": "You can share albums with any of your friends, even if they don't have a Fotoco account.",
-    "sharePhotoForm": {
+    "shareAlbumForm": {
       "label": "Share this album for",
       "button": "Create Link",
       "loading": "Creating link...",

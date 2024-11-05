@@ -49,6 +49,9 @@ export type User = {
   createdAt: string;
   updatedAt: string;
   __v: number;
+  setting: {
+    lang: string;
+  };
 };
 
 export type Group = {

@@ -186,6 +186,7 @@ export const logout = async () => {
     cookies().delete('access-token');
     cookies().delete('refresh-token');
     cookies().delete('signature');
+    cookies().delete('lang');
     await http.delete('/auth/logout', { data: { refreshToken, signature } });
     return {
       isSuccess: true,

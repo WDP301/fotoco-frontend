@@ -812,5 +812,11 @@
         "months": "Tháng"
       }
     }
+  },
+  "userNav": {
+    "group": "Nhóm",
+    "profile": "Hồ sơ",
+    "settings": "Cài đặt",
+    "logout": "Đăng xuất"
   }
 }

@@ -10,9 +10,11 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { User } from '@/lib/define';
+import { getDictionary } from '@/lib/dictionaries';
 import Link from 'next/link';
 
-export function UserNav({ user }: { user: User }) {
+export async function UserNav({ user }: { user: User }) {
+  const dict = await getDictionary();
   return (
     <>
       <DropdownMenu>
@@ -35,24 +37,18 @@ export function UserNav({ user }: { user: User }) {
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem asChild className="cursor-pointer">
-              <Link href={'/groups'}>Group</Link>
+              <Link href={'/groups'}>{dict.userNav.group}</Link>
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem asChild className="cursor-pointer">
-              <Link href={'/profile'}>Profile</Link>
-            </DropdownMenuItem>
-          </DropdownMenuGroup>
-          <DropdownMenuSeparator />
-          <DropdownMenuGroup>
-            <DropdownMenuItem asChild className="cursor-pointer">
-              <Link href={'/edit-profile'}>Setting</Link>
+              <Link href={'/edit-profile'}>{dict.userNav.settings}</Link>
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>
-            <Link href={'/logout'}>Logout</Link>
+            <Link href={'/logout'}>{dict.userNav.logout}</Link>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

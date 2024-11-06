@@ -813,5 +813,11 @@
         "months": "Month(s)"
       }
     }
+  },
+  "userNav": {
+    "group": "Group",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Logout"
   }
 }

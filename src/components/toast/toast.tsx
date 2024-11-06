@@ -7,7 +7,6 @@ type ToasterProps = React.ComponentProps<typeof Toaster>;
 
 export default function Toast() {
   const { theme = 'system' } = useTheme();
-  console.log('theme:', theme);
   return (
     <Toaster
       position="bottom-left"

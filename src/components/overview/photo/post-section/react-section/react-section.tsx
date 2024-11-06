@@ -10,11 +10,9 @@ import { getReactListByPhotoId } from "@/lib/data";
 
 export default function ReactSection({
     photo,
-    isLiked,
     onCommentIconClick,
 } : {
     photo: PhotoResponse
-    isLiked: boolean
     onCommentIconClick: () => void,
 }) {
     const router = useRouter();
@@ -58,7 +56,7 @@ export default function ReactSection({
                 ): (
                     <HeartFilledIcon onClick={handleReact} className="h-5 w-5 mr-2 hover:text-primary cursor-pointer transition-colors duration-200" />
                 )}
-                <ReactList 
+                <ReactList
                     reactsCount={reactsCount}
                     photoId={photo?.photo._id}
                     onReactUpdate={handleReactUpdate}

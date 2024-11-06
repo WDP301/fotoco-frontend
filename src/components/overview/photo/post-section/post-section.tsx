@@ -24,6 +24,7 @@ export default function PostSection({
   const [photo, setPhoto] = useState<PhotoResponse | null>(initialPhoto);
   const [comments, setComments] = useState<Comment[]>([]);
   const [refreshKey, setRefreshKey] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const handleCommentIconClick = () => {
     commentFormRef.current?.focusTextArea();
@@ -33,8 +34,10 @@ export default function PostSection({
     if (photo?.photo._id) {
       getPhotoDetails(photo.photo._id, searchParams).then(setPhoto);
       const fetchComments = async () => {
+        setLoading(true);
         const { comments } = await getCommentsByPhotoId(photo.photo._id);
         setComments(comments as Comment[]);
+        setLoading(false);
       };
       fetchComments();
     }
@@ -71,7 +74,13 @@ export default function PostSection({
           <Post onCommentIconClick={handleCommentIconClick} photo={photo} />
         </div>
         <div className="overflow-auto mb-4">
-          <CommentList key={refreshKey} comments={comments} photoId = {photo.photo._id} onSuccess={handleCommentSuccess} />
+          {loading ? (
+            <div className="flex justify-center my-4">
+              <SpinLoading />
+            </div>
+          ) : (
+            <CommentList key={refreshKey} comments={comments} photoId={photo.photo._id} onSuccess={handleCommentSuccess} />
+          )}
         </div>
       </ScrollArea>
       <div className="sticky bottom-3 w-full bg-[var(--comment-form)]">

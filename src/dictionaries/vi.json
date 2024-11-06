@@ -768,7 +768,12 @@
       "button": "Tạo đường dẫn",
       "loading": "Đang tạo đường dẫn",
       "copy": "Sao chép",
-      "copied": "Đã sao chép"
+      "copied": "Đã sao chép",
+      "choices": {
+        "days": "Ngày",
+        "weeks": "Tuần",
+        "months": "Tháng"
+      }
     }
   },
   "sharePhotoDetails": {
@@ -787,5 +792,26 @@
     "previous": "Trước",
     "next": "Tiếp",
     "morePages": "Nhiều trang hơn"
+  },
+  "sharedAlbum": {
+    "sharedBy": "Chia sẻ bởi"
+  },
+  "shareAlbumDialog": {
+    "title": "Chia sẻ album trong",
+    "description": "Bạn có thể chia sẻ album với bất kỳ người bạn nào của mình, ngay cả khi họ không có tài khoản Fotoco.",
+    "shareAlbumForm": {
+      "label": "Chia sẻ album này trong",
+      "button": "Tạo đường dẫn",
+      "loading": "Đang tạo đường dẫn",
+      "copy": "Sao chép",
+      "copied": "Đã sao chép",
+      "choices": {
+        "days": "Ngày",
+        "weeks": "Tuần",
+        "months": "Tháng"
+      }
+    }
   }
 }
+
+

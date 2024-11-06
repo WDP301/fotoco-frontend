@@ -30,9 +30,10 @@ export default function PhotoCarousel({
             document.exitFullscreen();
         } else {
             imageContainerRef.current.requestFullscreen();
+            imageContainerRef.current.classList.add('flex', 'items-center', 'justify-center');
         }
     }
-};
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -71,7 +72,7 @@ export default function PhotoCarousel({
 
   return (
     <div className="relative flex items-center justify-center bg-black w-full h-screen group">
-      <div ref={imageContainerRef} className="inline-block items-center justify-center overflow-hidden">
+      <div ref={imageContainerRef} className="flex items-center justify-center overflow-hidden">
         <div
           className={cn(
             dimensions.width > dimensions.height ? 'md:w-full' : 'md:h-[100vh]',
@@ -80,7 +81,7 @@ export default function PhotoCarousel({
         >
           <Image
             src={photo?.photo.url || '/background/default-vertical.jpg'}
-            width={dimensions.width}
+            width= {dimensions.width}
             height={dimensions.height}
             alt={photo?.photo.title || 'Photo'}
             className="max-h-screen max-w-full object-contain"

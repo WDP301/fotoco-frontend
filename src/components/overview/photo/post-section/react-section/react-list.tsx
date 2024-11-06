@@ -10,7 +10,7 @@ import {
 import { formatNumber, getDateFormatted } from "@/lib/utils"
 import AvatarPicture from "@/components/shared/avatar-picture"
 import { getReactListByPhotoId } from "@/lib/data"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { React } from "@/lib/define"
 import { useLanguage } from "@/components/provider/language-provider"
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -27,20 +27,23 @@ export default function ReactList({
 
     const {dict} = useLanguage();
     const [reacts, setReacts] = useState<React[]>([]);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-    useEffect(() => {
-        const getReacts = async () => {
-            const reacts = await getReactListByPhotoId(photoId);
-            setReacts(reacts);``
-            onReactUpdate();
+    const handleDialogOpenChange = (open: boolean) => {
+        setIsDialogOpen(open);
+        if (open) {
+            loadReacts();
         }
-        getReacts();
-    }, [photoId]);
-    
+    };
+
+    const loadReacts = async () => {
+        const reacts = await getReactListByPhotoId(photoId);
+        setReacts(reacts);
+        onReactUpdate();
+    };
 
     return (
-        <>
-        <Dialog>
+        <Dialog onOpenChange={handleDialogOpenChange}>
             <DialogTrigger>
                 <div className="font-semibold hover:text-primary transition-colors duration-200">{formatNumber(reactsCount)}</div>
             </DialogTrigger>
@@ -71,6 +74,5 @@ export default function ReactList({
                 )}
             </DialogContent>
         </Dialog>
-        </>
     )
 }

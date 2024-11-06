@@ -26,6 +26,7 @@ import {
   SearchAlbumMembersParams,
   AlbumUser,
   PublicGroupInfo,
+  SharedAlbum,
 } from './define';
 import { getPlaiceholder } from 'plaiceholder';
 
@@ -468,3 +469,17 @@ export const getSearchGroupMembers = async (
     return [] as SearchUser[];
   }
 };
+
+export const getSharedAlbum = async (shareAlbumToken: string) => {
+  try {
+    const queryString = objectToQueryString({ shareAlbumToken });
+    const response = await customFetch(`/albums/share?${queryString}`, {
+      method: 'GET',
+    })
+      .then((res) => res.json())
+      .catch(() => null);
+    return  response as SharedAlbum;
+  } catch (error) {
+    return {} as SharedAlbum;
+  }
+}

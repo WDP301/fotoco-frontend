@@ -1,5 +1,6 @@
 'use client';
 
+import { Icons } from '@/components/icons/icons';
 import { useLanguage } from '@/components/provider/language-provider';
 import GroupTypeIcon from '@/components/shared/group-type-icon';
 import { Button } from '@/components/ui/button';
@@ -393,7 +394,12 @@ export default function GroupSettingForm({
           </div>
         </div>
         {groupSetting.setting.role === 'OWNER' && (
-          <Button type="submit">{dict.button.updateGroup}</Button>
+          <Button type="submit" disabled={isLoading}>
+            {isLoading && (
+              <Icons.spinner className=" mr-2 h-4 w-4 animate-spin" />
+            )}
+            {dict.button.updateGroup}
+          </Button>
         )}
       </form>
     </Form>

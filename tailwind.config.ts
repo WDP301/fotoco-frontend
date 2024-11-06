@@ -14,7 +14,7 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    container: {
+    authcontainer: {
       center: true,
       padding: '2rem',
       screens: {

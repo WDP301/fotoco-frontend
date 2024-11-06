@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState, useMemo, useCallback} from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import {
   Carousel,
   CarouselContent,
@@ -11,22 +11,27 @@ import {
 import Image from 'next/image';
 import { SharedAlbum } from '@/lib/define';
 import ListPagination from '@/components/shared/list-pagination';
+import { fetchPhotoSize } from '@/lib/utils';
 
-const SharedGalleryView = ({ sharedAlbum }: {sharedAlbum: SharedAlbum}) => {
+const SharedGalleryView = ({ sharedAlbum }: { sharedAlbum: SharedAlbum }) => {
   const [mainApi, setMainApi] = useState<CarouselApi>();
   const [thumbnailApi, setThumbnailApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
+  const [dimensions, setDimensions] = useState({ width: 1000, height: 1000 });
 
-  const handleFullscreen = (index: number) => {
+  const handleFullscreen = useCallback(async (index: number) => {
     const imageContainer = document.getElementById(`image-container-${index}`);
     if (imageContainer) {
       if (document.fullscreenElement) {
         document.exitFullscreen();
       } else {
         imageContainer.requestFullscreen();
+  
+        const size = await fetchPhotoSize(sharedAlbum.photos[index].url);
+        setDimensions(size);
       }
     }
-  };
+  }, [sharedAlbum, setDimensions]);
 
   const handleClick = useCallback(
     (index: number) => {
@@ -61,21 +66,21 @@ const SharedGalleryView = ({ sharedAlbum }: {sharedAlbum: SharedAlbum}) => {
     () =>
       sharedAlbum.photos.map((photo, index) => (
         <CarouselItem key={index}>
-            <div id={`image-container-${index}`} className="w-full h-[75vh] flex justify-center">
-                <Image
-                className="object-contain h-full"
-                src={photo.url}
-                alt={`Photo ${index}: ${photo?.title || 'Photo'}`}
-                width={1000}
-                height={1000}
-                quality={100}
-                priority={true}
-                onClick={() => handleFullscreen(index)}
-                />
-            </div>
+          <div id={`image-container-${index}`} className="w-full h-[75vh] flex justify-center">
+            <Image
+              className="object-contain h-full"
+              src={photo.url}
+              alt={`Photo ${index}: ${photo?.title || 'Photo'}`}
+              width={dimensions.width}
+              height={dimensions.height}
+              quality={100}
+              priority={true}
+              onClick={() => handleFullscreen(index)}
+            />
+          </div>
         </CarouselItem>
       )),
-    [sharedAlbum.photos]
+    [sharedAlbum.photos, dimensions, handleFullscreen]
   );
 
   const thumbnailImages = useMemo(

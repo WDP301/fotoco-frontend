@@ -31,7 +31,7 @@ export default async function AuthLayout({
         href="/"
         className={cn(
           buttonVariants({ variant: 'ghost' }),
-          'absolute lg:hidden left-4 top-4'
+          'absolute lg:hidden left-4 top-4 md:left-8 md:top-8'
         )}
       >
         {dict.home}

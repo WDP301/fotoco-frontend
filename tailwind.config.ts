@@ -4,7 +4,7 @@ import { fontFamily } from 'tailwindcss/defaultTheme';
 
 const {
   default: flattenColorPalette,
-} = require("tailwindcss/lib/util/flattenColorPalette");
+} = require('tailwindcss/lib/util/flattenColorPalette');
 
 const config: Config = {
   darkMode: ['class'],
@@ -14,6 +14,13 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    container: {
+      center: true,
+      padding: '2rem',
+      screens: {
+        '2xl': '1400px',
+      },
+    },
     extend: {
       backgroundImage: (theme) => ({
         auth: `var(--auth-image)`,
@@ -103,10 +110,10 @@ const config: Config = {
         },
         aurora: {
           from: {
-            backgroundPosition: "50% 50%, 50% 50%",
+            backgroundPosition: '50% 50%, 50% 50%',
           },
           to: {
-            backgroundPosition: "350% 50%, 350% 50%",
+            backgroundPosition: '350% 50%, 350% 50%',
           },
         },
       },
@@ -115,7 +122,7 @@ const config: Config = {
         'accordion-up': 'accordion-up 0.2s ease-out',
         marquee: 'marquee var(--duration) infinite linear',
         'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
-        aurora: "aurora 60s linear infinite",
+        aurora: 'aurora 60s linear infinite',
       },
     },
   },
@@ -123,13 +130,13 @@ const config: Config = {
 };
 
 function addVariablesForColors({ addBase, theme }: any) {
-  let allColors = flattenColorPalette(theme("colors"));
+  let allColors = flattenColorPalette(theme('colors'));
   let newVars = Object.fromEntries(
     Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
   );
- 
+
   addBase({
-    ":root": newVars,
+    ':root': newVars,
   });
 }
 

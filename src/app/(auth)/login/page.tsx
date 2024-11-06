@@ -28,7 +28,9 @@ export default async function LoginPage() {
           <OtherOauth />
           <div className="flex items-center gap-4">
             <Separator className="flex-1" />
-            <span className="text-muted-foreground">{dict.common.orContinueWith}</span>
+            <span className="text-muted-foreground">
+              {dict.common.orContinueWith}
+            </span>
             <Separator className="flex-1" />
           </div>
           <UserAuthLoginForm />

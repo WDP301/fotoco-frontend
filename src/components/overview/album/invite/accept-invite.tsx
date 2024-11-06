@@ -1,10 +1,13 @@
 'use client';
+
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { useLanguage } from '@/components/provider/language-provider';
-import { acceptInviteToAlbum } from '@/lib/action';
-import { useEffect, useState } from 'react';
-import RedirectToAlbum from './redirect-to-album';
+import { acceptInviteToAlbum, acceptInviteToGroup } from '@/lib/action';
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
+import { useState } from 'react';
+import { useLanguage } from '@/components/provider/language-provider';
+import { useRouter } from 'next/navigation';
+import { Button } from '@/components/ui/button';
+import { Icons } from '@/components/icons/icons';
 
 export default function AcceptInviteToAlbum({
   albumId,
@@ -17,20 +20,30 @@ export default function AcceptInviteToAlbum({
   const [result, setResult] = useState<
     { error?: string; errorType?: string; isSuccess?: boolean } | undefined
   >(undefined);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
-  useEffect(() => {
+  const handleAcceptInvite = () => {
+    setIsLoading(true);
     acceptInviteToAlbum(albumId, inviteToken)
       .then((res) => {
-        setResult(res);
+        if (res.isSuccess) {
+          router.push(`/albums/${albumId}`);
+        } else {
+          setResult(res);
+        }
       })
       .catch((err) => {
         setResult({ error: err.message, isSuccess: false });
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-  }, [albumId, inviteToken]);
+  };
 
   return (
     <>
-      {!result?.isSuccess ? (
+      {result?.error ? (
         <Alert variant="destructive" className="my-5 sm:max-w-80 mx-auto">
           <ExclamationTriangleIcon className="h-4 w-4" />
           <AlertTitle>{dict.error.title}</AlertTitle>
@@ -39,7 +52,12 @@ export default function AcceptInviteToAlbum({
           </AlertDescription>
         </Alert>
       ) : (
-        <RedirectToAlbum albumId={albumId} />
+        <Button disabled={isLoading} onClick={handleAcceptInvite}>
+          {isLoading && (
+            <Icons.spinner className=" mr-2 h-4 w-4 animate-spin" />
+          )}
+          {dict.button.joinAlbum}
+        </Button>
       )}
     </>
   );

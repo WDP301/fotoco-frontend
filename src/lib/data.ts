@@ -27,6 +27,7 @@ import {
   AlbumUser,
   PublicGroupInfo,
   SharedAlbum,
+  PublicAlbumInfo,
 } from './define';
 import { getPlaiceholder } from 'plaiceholder';
 
@@ -159,6 +160,20 @@ export const getPublicGroupInfo = async (groupId: string) => {
     return response as PublicGroupInfo;
   } catch {
     return {} as PublicGroupInfo;
+  }
+};
+
+export const getPublicAlbumInfo = async (albumId: string) => {
+  try {
+    const response = await customFetch(`/public/albums/${albumId}`, {
+      method: 'GET',
+      next: { revalidate: 3600 },
+    })
+      .then((res) => res.json())
+      .catch(() => null);
+    return response as PublicAlbumInfo;
+  } catch {
+    return {} as PublicAlbumInfo;
   }
 };
 
@@ -478,8 +493,8 @@ export const getSharedAlbum = async (shareAlbumToken: string) => {
     })
       .then((res) => res.json())
       .catch(() => null);
-    return  response as SharedAlbum;
+    return response as SharedAlbum;
   } catch (error) {
     return {} as SharedAlbum;
   }
-}
+};

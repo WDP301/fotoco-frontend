@@ -442,7 +442,8 @@
     },
     "invite": {
       "title": "Mời tham gia album",
-      "description": "Mời tham gia album"
+      "description": "Mời tham gia album",
+      "fromGroup": "Mời tham gia album từ nhóm {{groupName}}"
     }
   },
   "photo": {
@@ -813,5 +814,3 @@
     }
   }
 }
-
-

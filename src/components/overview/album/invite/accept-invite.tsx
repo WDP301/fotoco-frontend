@@ -8,6 +8,7 @@ import { useLanguage } from '@/components/provider/language-provider';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/icons/icons';
+import { useSocket } from '@/hooks/use-socket';
 
 export default function AcceptInviteToAlbum({
   albumId,
@@ -21,6 +22,7 @@ export default function AcceptInviteToAlbum({
     { error?: string; errorType?: string; isSuccess?: boolean } | undefined
   >(undefined);
   const [isLoading, setIsLoading] = useState(false);
+  const socket = useSocket();
   const router = useRouter();
 
   const handleAcceptInvite = () => {
@@ -28,6 +30,7 @@ export default function AcceptInviteToAlbum({
     acceptInviteToAlbum(albumId, inviteToken)
       .then((res) => {
         if (res.isSuccess) {
+          socket?.reconnect();
           router.push(`/albums/${albumId}`);
         } else {
           setResult(res);

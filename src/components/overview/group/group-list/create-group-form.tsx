@@ -37,6 +37,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import GroupTypeIcon from '@/components/shared/group-type-icon';
+import { useSocket } from '@/hooks/use-socket';
 
 export default function CreateGroupForm({
   setOpen,
@@ -45,6 +46,7 @@ export default function CreateGroupForm({
 }) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const socket = useSocket();
   const { dict } = useLanguage();
 
   const form = useForm<z.infer<ReturnType<typeof getCreateGroupSchema>>>({
@@ -66,6 +68,7 @@ export default function CreateGroupForm({
     } else {
       toast.success(dict.createGroup.message.success);
       setOpen(false);
+      socket?.reconnect();
       router.push('/groups');
     }
     setIsLoading(false);

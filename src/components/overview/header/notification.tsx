@@ -62,7 +62,7 @@ export default function Notification({ user }: { user: User }) {
   );
 
   useEffect(() => {
-    if (!socket) return;
+    if (!socket?.connected) return;
 
     const handleNotification = (data: {
       except: string;
@@ -98,7 +98,7 @@ export default function Notification({ user }: { user: User }) {
     };
 
     socket.subscribe('notification', handleNotification);
-  }, [socket, dict, handleSeenNoti, router, user._id]);
+  });
 
   useEffect(() => {
     const fetchNotifications = async () => {

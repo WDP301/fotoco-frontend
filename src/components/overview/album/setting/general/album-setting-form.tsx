@@ -33,6 +33,7 @@ export default function AlbumSettingForm({
   album: AlbumInfo;
   albumId: string;
 }) {
+  console.log('test');
   const { dict } = useLanguage();
   const [isLoading, setIsLoading] = useState(false);
   const form = useForm<z.infer<ReturnType<typeof getUpdateAlbumSettingSchema>>>(
@@ -40,16 +41,15 @@ export default function AlbumSettingForm({
       resolver: zodResolver(getUpdateAlbumSettingSchema(dict.lang)),
       defaultValues: {
         setting: {
-          allow_invite: albumSetting.setting.allow_invite || true,
-          // allow_share_album: albumSetting.setting.allow_share_album || false,
-          // allow_share_photo: albumSetting.setting.allow_share_photo || false,
+          allow_invite: albumSetting.setting.allow_invite || false,
+          allow_share_album: albumSetting.setting.allow_share_album || false,
+          allow_share_photo: albumSetting.setting.allow_share_photo || false,
         },
         title: album.title,
         description: !album.description ? 'No description' : album.description,
       },
     }
   );
-
   const handleUpdateAlbum = async (
     values: z.infer<ReturnType<typeof getUpdateAlbumSettingSchema>>
   ) => {
@@ -59,9 +59,9 @@ export default function AlbumSettingForm({
       toast.error(result?.error);
     } else {
       form.setValue('setting', {
-        allow_invite: result?.data?.allow_invite || false,
-        allow_share_album: result.data?.allow_share_album || false,
-        allow_share_photo: result.data?.allow_share_photo || false,
+        allow_invite: result.data.allow_invite || false,
+        allow_share_album: result.data.allow_share_album || false,
+        allow_share_photo: result.data.allow_share_photo || false,
       });
 
       toast.success(dict.album.setting.general.message.success);

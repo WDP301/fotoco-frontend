@@ -422,5 +422,6 @@ export type SharedAlbum = {
     pageSize: number
     hasNext: boolean
     hasPrev: boolean
-  }
+  },
+  expiredTime: string
 }

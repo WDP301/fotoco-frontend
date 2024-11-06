@@ -438,11 +438,12 @@ export type SharedAlbum = {
     img: string;
   };
   pageMeta: {
-    totalPages: number;
-    page: number;
-    totalElements: number;
-    pageSize: number;
-    hasNext: boolean;
-    hasPrev: boolean;
-  };
-};
+    totalPages: number
+    page: number
+    totalElements: number
+    pageSize: number
+    hasNext: boolean
+    hasPrev: boolean
+  },
+  expiredTime: string
+}

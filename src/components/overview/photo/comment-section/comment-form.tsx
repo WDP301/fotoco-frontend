@@ -7,92 +7,92 @@ import { CornerDownRight, SendHorizontal } from "lucide-react";
 import AvatarPicture from "@/components/shared/avatar-picture";
 import { commentPhoto, replyComment } from "@/lib/action";
 import { useLanguage } from "@/components/provider/language-provider";
-import { useRouter } from "next/navigation";
 
 interface CommentFormProps {
   showIcon?: boolean;
   replyTo?: string;
   replyToId?: string;
   photoId: string;
-  onSuccess?: () => void;
+  onSuccess?: (newComment: any) => void;
 }
 
 interface CommentFormRef {
   focusTextArea: () => void;
 }
 
-const CommentForm = forwardRef<CommentFormRef, CommentFormProps>(({ showIcon, replyTo, replyToId, photoId, onSuccess }, ref) => {
-  const [comment, setComment] = useState("");
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const { dict } = useLanguage();
-  const route = useRouter();
+const CommentForm = forwardRef<CommentFormRef, CommentFormProps>(
+  ({ showIcon, replyTo, replyToId, photoId, onSuccess }, ref) => {
+    const [comment, setComment] = useState("");
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
+    const { dict } = useLanguage();
 
-  useImperativeHandle(ref, () => ({
-    focusTextArea: () => {
-      textareaRef.current?.focus();
-    },
-  }));
+    useImperativeHandle(ref, () => ({
+      focusTextArea: () => {
+        textareaRef.current?.focus();
+      },
+    }));
 
-  const [user, setUser] = useState<User | null>(null);
-  useEffect(() => {
-    (async () => {
-      const user = (await getUser()) as User;
-      setUser(user);
-    })();
-  }, []);
+    const [user, setUser] = useState<User | null>(null);
+    useEffect(() => {
+      (async () => {
+        const user = (await getUser()) as User;
+        setUser(user);
+      })();
+    }, []);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
 
-    let response;
-    if (replyTo && replyToId) {
-      response = await replyComment(photoId, replyToId, comment);
-    } else {
-      response = await commentPhoto(photoId, comment);
-    }
-
-    if (response.isSuccess) {
-      setComment("");
-      if (onSuccess) {
-        onSuccess();
+      let response;
+      if (replyTo && replyToId) {
+        response = await replyComment(photoId, replyToId, comment);
+      } else {
+        response = await commentPhoto(photoId, comment);
       }
-    } else {
-      console.log(response.error);
-    }
-    route.refresh();
-  };
 
-  return (
-    <>
-      <form className="relative" onSubmit={handleSubmit}>
-        <div className="grid gap-4">
-          <div className="flex gap-4 items-start">
-            {showIcon && (
-              <CornerDownRight className="h-6 w-6 text-muted-foreground" />
-            )}
-            <AvatarPicture src={user?.img || ''} />
-            <Textarea
-              ref={textareaRef}
-              className="p-2 pr-10 resize-none w-full scrollbar-hide"
-              placeholder={replyTo ? `${dict.commentPhotoSection.replyForm} ${replyTo}...` : dict.commentPhotoSection.commentForm}
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-            />
-            
-            {comment.trim() && (
-              <button 
-                type="submit" 
-                className="absolute right-2 bottom-2 text-primary"
-              >
-                <SendHorizontal className="h-5 w-5" />
-              </button>
-            )}
+      if (response.isSuccess) {
+        setComment("");
+        if (onSuccess) {
+          onSuccess(response);
+        }
+      }
+    };
+
+    return (
+      <>
+        <form className="relative" onSubmit={handleSubmit}>
+          <div className="grid gap-4">
+            <div className="flex gap-4 items-start">
+              {showIcon && (
+                <CornerDownRight className="h-6 w-6 text-muted-foreground" />
+              )}
+              <AvatarPicture src={user?.img || ''} />
+              <Textarea
+                ref={textareaRef}
+                className="p-2 pr-10 resize-none w-full scrollbar-hide"
+                placeholder={
+                  replyTo
+                    ? `${dict.commentPhotoSection.replyForm} ${replyTo}...`
+                    : dict.commentPhotoSection.commentForm
+                }
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+              />
+              {comment.trim() && (
+                <button 
+                  type="submit" 
+                  className="absolute right-2 bottom-2 text-primary"
+                >
+                  <SendHorizontal className="h-5 w-5" />
+                </button>
+              )}
+            </div>
           </div>
-        </div>
-      </form>
-    </>
-  );
-});
+        </form>
+      </>
+    );
+  }
+);
 
 CommentForm.displayName = "CommentForm";
 export default CommentForm;

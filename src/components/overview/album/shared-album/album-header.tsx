@@ -1,5 +1,6 @@
 import { SharedAlbum } from "@/lib/define";
 import { getDictionary } from "@/lib/dictionaries";
+import { getDateFormatted } from "@/lib/utils";
 
 export default async function SharedAlbumHeader({sharedAlbum}: {sharedAlbum: SharedAlbum}) {
     
@@ -13,6 +14,10 @@ export default async function SharedAlbumHeader({sharedAlbum}: {sharedAlbum: Sha
             <div className="flex items-start space-x-2">
                 <p className="text-muted-foreground">{dict.sharedAlbum.sharedBy}</p>
                 <div className="font-semibold">{sharedAlbum.shareUser.fullName}</div> 
+            </div>
+            <div className="flex items-start space-x-2">
+                <p className="text-muted-foreground">{dict.sharedAlbum.expiredTime}</p>
+                <div className="font-semibold">{getDateFormatted(sharedAlbum.expiredTime, dict.lang as "en" | "vi")}</div> 
             </div>
         </div>
     )

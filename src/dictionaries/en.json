@@ -796,7 +796,8 @@
     "morePages": "More pages"
   },
   "sharedAlbum": {
-    "sharedBy": "Shared by"
+    "sharedBy": "Shared by",
+    "expiredTime": "Expired time"
   },
   "shareAlbumDialog": {
     "title": "Share album in",

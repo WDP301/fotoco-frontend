@@ -795,7 +795,8 @@
     "morePages": "Nhiều trang hơn"
   },
   "sharedAlbum": {
-    "sharedBy": "Chia sẻ bởi"
+    "sharedBy": "Chia sẻ bởi",
+    "expiredTime": "Thời gian hết hạn"
   },
   "shareAlbumDialog": {
     "title": "Chia sẻ album trong",

@@ -1,4 +1,4 @@
-import { getAlbumInfo } from '@/lib/data';
+import { getAlbumInfo, getPublicAlbumInfo } from '@/lib/data';
 import { getDictionary } from '@/lib/dictionaries';
 import { Metadata } from 'next';
 
@@ -7,7 +7,7 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const album = await getAlbumInfo(params.id);
+  const album = await getPublicAlbumInfo(params.id);
   const dict = await getDictionary();
 
   if (!album) {

@@ -403,7 +403,8 @@
     "uploadedPhoto": "Photo uploaded by {{fullName}}",
     "invite": {
       "title": "Accept Invite to Album",
-      "description": "Accept Invite to Album"
+      "description": "Accept Invite to Album",
+      "fromGroup": "Invite to join album from group {{groupName}}"
     },
     "setting": {
       "title": "Album Settings",
@@ -770,7 +771,7 @@
       "loading": "Creating link...",
       "copy": "Copy",
       "copied": "Copied",
-      "choices":{
+      "choices": {
         "days": "Day(s)",
         "weeks": "Week(s)",
         "months": "Month(s)"
@@ -807,7 +808,7 @@
       "loading": "Creating link...",
       "copy": "Copy",
       "copied": "Copied",
-      "choices":{
+      "choices": {
         "days": "Day(s)",
         "weeks": "Week(s)",
         "months": "Month(s)"

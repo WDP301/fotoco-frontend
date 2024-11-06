@@ -44,6 +44,7 @@ export default async function AcceptInviteToGroupPage({
                 }
               </p>
             </div>
+            <p className="line-clamp-2">{group.description}</p>
             <div className="mt-4">
               <AcceptInviteToGroup
                 groupId={params.id}

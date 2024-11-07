@@ -50,6 +50,7 @@ export default function PhotoDateRangePicker() {
             initialDateTo={new Date()}
             align="start"
             showCompare={false}
+            disabled={(date) => date > new Date()}
           />
         </div>
       </div>

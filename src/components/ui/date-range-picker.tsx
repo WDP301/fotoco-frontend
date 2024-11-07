@@ -24,6 +24,39 @@ import { cn } from '@/lib/utils';
 import { useLanguage } from '../provider/language-provider';
 import { vi, enUS } from 'date-fns/locale';
 
+type Matcher =
+  | boolean
+  | ((date: Date) => boolean)
+  | Date
+  | Date[]
+  | DateRangeType
+  | DateBefore
+  | DateAfter
+  | DateInterval
+  | DayOfWeek;
+/** A matcher to match a day falling after the specified date, with the date not included. */
+type DateAfter = {
+  after: Date;
+};
+/** A matcher to match a day falling before the specified date, with the date not included. */
+type DateBefore = {
+  before: Date;
+};
+/** A matcher to match a day falling before and/or after two dates, where the dates are not included. */
+type DateInterval = {
+  before: Date;
+  after: Date;
+};
+/** A matcher to match a range of dates. The range can be open. Differently from {@link DateInterval}, the dates here are included. */
+type DateRangeType = {
+  from: Date | undefined;
+  to?: Date | undefined;
+};
+/** A matcher to match a date being one of the specified days of the week (`0-6`, where `0` is Sunday). */
+type DayOfWeek = {
+  dayOfWeek: number[];
+};
+
 export interface DateRangePickerProps {
   /** Click handler for applying the updates from DateRangePicker. */
   onUpdate?: (values: { range: DateRange; rangeCompare?: DateRange }) => void;
@@ -39,6 +72,8 @@ export interface DateRangePickerProps {
   align?: 'start' | 'center' | 'end';
   /** Option for showing compare feature */
   showCompare?: boolean;
+  /** Option for disabling the date range picker */
+  disabled?: Matcher | Matcher[] | undefined;
 }
 
 const formatDate = (date: Date, locale: string = 'en-us'): string => {
@@ -84,6 +119,7 @@ export const DateRangePicker: FC<DateRangePickerProps> & {
   onUpdate,
   align = 'end',
   showCompare = true,
+  disabled = undefined,
 }): JSX.Element => {
   const { dict } = useLanguage();
   const locale = dict.lang;
@@ -524,6 +560,7 @@ export const DateRangePicker: FC<DateRangePickerProps> & {
                     )
                   }
                   locale={locale === 'vi' ? vi : enUS}
+                  disabled={disabled}
                 />
               </div>
             </div>

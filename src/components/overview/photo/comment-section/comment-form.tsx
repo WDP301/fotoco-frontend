@@ -23,6 +23,7 @@ interface CommentFormRef {
 const CommentForm = forwardRef<CommentFormRef, CommentFormProps>(
   ({ showIcon, replyTo, replyToId, photoId, onSuccess }, ref) => {
     const [comment, setComment] = useState("");
+    const [isCoolDown, setIsCoolDown] = useState(false);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     const { dict } = useLanguage();
 
@@ -42,7 +43,8 @@ const CommentForm = forwardRef<CommentFormRef, CommentFormProps>(
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-
+      if (isCoolDown) return;
+      setIsCoolDown(true);
       let response;
       if (replyTo && replyToId) {
         response = await replyComment(photoId, replyToId, comment);
@@ -56,6 +58,7 @@ const CommentForm = forwardRef<CommentFormRef, CommentFormProps>(
           onSuccess(response);
         }
       }
+      setIsCoolDown(false);
     };
 
     return (
@@ -77,11 +80,13 @@ const CommentForm = forwardRef<CommentFormRef, CommentFormProps>(
                 }
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
+                disabled={isCoolDown}
               />
               {comment.trim() && (
                 <button 
                   type="submit" 
                   className="absolute right-2 bottom-2 text-primary"
+                  disabled={isCoolDown}
                 >
                   <SendHorizontal className="h-5 w-5" />
                 </button>

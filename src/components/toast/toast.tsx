@@ -9,7 +9,7 @@ export default function Toast() {
   const { theme = 'system' } = useTheme();
   return (
     <Toaster
-      position="bottom-left"
+      position="top-center"
       richColors
       theme={theme as ToasterProps['theme']}
       toastOptions={{

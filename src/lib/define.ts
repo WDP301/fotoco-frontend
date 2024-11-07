@@ -83,7 +83,7 @@ export type RecentPhoto = {
   title: string;
   url: string;
   tags: string[];
-  viewedAt: string;
+  viewedAt?: string;
 };
 
 export enum SearchParams {
@@ -438,12 +438,12 @@ export type SharedAlbum = {
     img: string;
   };
   pageMeta: {
-    totalPages: number
-    page: number
-    totalElements: number
-    pageSize: number
-    hasNext: boolean
-    hasPrev: boolean
-  },
-  expiredTime: string
-}
+    totalPages: number;
+    page: number;
+    totalElements: number;
+    pageSize: number;
+    hasNext: boolean;
+    hasPrev: boolean;
+  };
+  expiredTime: string;
+};

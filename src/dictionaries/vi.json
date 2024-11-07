@@ -331,7 +331,8 @@
   },
   "breadcrumb": {
     "home": "Trang chủ",
-    "group": "Nhóm"
+    "group": "Nhóm",
+    "recentView": "Xem gần đây"
   },
   "group": {
     "title": "Nhóm",
@@ -820,5 +821,30 @@
     "profile": "Hồ sơ",
     "settings": "Cài đặt",
     "logout": "Đăng xuất"
+  },
+  "recentView": {
+    "title": "Xem gần đây",
+    "description": "Mô tả trang xem gần đây",
+    "noRecentView": "Không có gì để hiển thị",
+    "presets": {
+      "today": "Hôm nay",
+      "yesterday": "Hôm qua",
+      "last7": "7 ngày qua",
+      "last14": "14 ngày qua",
+      "last30": "30 ngày qua",
+      "thisWeek": "Tuần này",
+      "lastWeek": "Tuần trước",
+      "thisMonth": "Tháng này",
+      "lastMonth": "Tháng trước"
+    },
+    "action": {
+      "cancel": "Hủy",
+      "update": "Cập nhật"
+    }
+  },
+  "dateInput": {
+    "month": "MM",
+    "day": "DD",
+    "year": "YYYY"
   }
 }

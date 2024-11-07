@@ -498,3 +498,26 @@ export const getSharedAlbum = async (shareAlbumToken: string) => {
     return {} as SharedAlbum;
   }
 };
+
+export const getPhotosByPhotosList = async (
+  photos: { photoId: string; viewedAt: string }[]
+) => {
+  try {
+    const queryString = objectToQueryString({
+      photosId: photos.map((p) => p.photoId).join(','),
+    });
+    const response = await customFetch(`/photos/list-by-ids?${queryString}`, {
+      method: 'GET',
+    })
+      .then((res) => res.json())
+      .catch(() => null);
+    const photosList = response.photos as RecentPhoto[];
+
+    return photosList.map((photo) => {
+      const viewedAt = photos.find((p) => p.photoId === photo._id)?.viewedAt;
+      return { ...photo, viewedAt } as RecentPhoto;
+    });
+  } catch (error) {
+    return [] as RecentPhoto[];
+  }
+};

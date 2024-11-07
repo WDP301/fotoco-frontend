@@ -146,8 +146,8 @@ export const getUpdateAlbumSettingSchema = (lang: Locale) => {
       }),
     setting: z.object({
       allow_invite: z.boolean(),
-      allow_share_album: z.boolean(),
-      allow_share_photo: z.boolean(),
+      // allow_share_album: z.boolean(),
+      // allow_share_photo: z.boolean(),
     }),
   });
 };

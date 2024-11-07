@@ -40,7 +40,7 @@ export default function AlbumSettingForm({
       resolver: zodResolver(getUpdateAlbumSettingSchema(dict.lang)),
       defaultValues: {
         setting: {
-          allow_invite: albumSetting.setting.allow_invite || true,
+          allow_invite: albumSetting.setting.allow_invite || false,
           // allow_share_album: albumSetting.setting.allow_share_album || false,
           // allow_share_photo: albumSetting.setting.allow_share_photo || false,
         },
@@ -55,13 +55,14 @@ export default function AlbumSettingForm({
   ) => {
     setIsLoading(true);
     const result = await updateAlbum(albumId, values);
+    console.log(result);
     if (!result?.isSuccess) {
       toast.error(result?.error);
     } else {
       form.setValue('setting', {
-        allow_invite: result?.data?.allow_invite || false,
-        allow_share_album: result.data?.allow_share_album || false,
-        allow_share_photo: result.data?.allow_share_photo || false,
+        allow_invite: result.data.allow_invite || false,
+        // allow_share_album: result.data?.allow_share_album || false,
+        // allow_share_photo: result.data?.allow_share_photo || false,
       });
 
       toast.success(dict.album.setting.general.message.success);
@@ -173,7 +174,7 @@ export default function AlbumSettingForm({
               )}
             />
 
-            <FormField
+            {/* <FormField
               name="setting.allow_share_album"
               control={form.control}
               render={({ field }) => (
@@ -197,8 +198,8 @@ export default function AlbumSettingForm({
                   </FormControl>
                 </FormItem>
               )}
-            />
-            <FormField
+            /> */}
+            {/* <FormField
               name="setting.allow_share_photo"
               control={form.control}
               render={({ field }) => (
@@ -222,7 +223,7 @@ export default function AlbumSettingForm({
                   </FormControl>
                 </FormItem>
               )}
-            />
+            /> */}
           </div>
         </div>
         {albumSetting.setting.role === 'OWNER' && (

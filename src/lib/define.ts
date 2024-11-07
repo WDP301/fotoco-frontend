@@ -209,8 +209,8 @@ export type AlbumSetting = {
   setting: {
     role: string;
     allow_invite?: boolean;
-    allow_share_album?: boolean;
-    allow_share_photo?: boolean;
+    // allow_share_album?: boolean;
+    // allow_share_photo?: boolean;
   };
 };
 

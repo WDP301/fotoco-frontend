@@ -588,8 +588,8 @@ export const updateAlbum = async (
         error: '',
         data: res.data.setting as {
           allow_invite?: boolean;
-          allow_share_album?: boolean;
-          allow_share_photo?: boolean;
+          // allow_share_album?: boolean;
+          // allow_share_photo?: boolean;
         },
       };
     })
@@ -599,8 +599,8 @@ export const updateAlbum = async (
         error: error?.response?.data?.message || 'Unknown error',
         data: {} as {
           allow_invite?: boolean;
-          allow_share_album?: boolean;
-          allow_share_photo?: boolean;
+          // allow_share_album?: boolean;
+          // allow_share_photo?: boolean;
         },
       };
     });

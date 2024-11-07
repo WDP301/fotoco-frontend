@@ -796,7 +796,8 @@
   },
   "sharedAlbum": {
     "sharedBy": "Chia sẻ bởi",
-    "expiredTime": "Thời gian hết hạn"
+    "expiredTime": "Thời gian hết hạn",
+    "noPhotos": "Hiện tại album này chưa có ảnh nào, nhưng đừng lo! Các thành viên sẽ sớm chia sẻ những bức ảnh tuyệt vời tại đây. Hãy quay lại sau nhé!"
   },
   "shareAlbumDialog": {
     "title": "Chia sẻ album trong",

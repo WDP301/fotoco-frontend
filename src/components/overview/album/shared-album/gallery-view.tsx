@@ -12,12 +12,14 @@ import Image from 'next/image';
 import { SharedAlbum } from '@/lib/define';
 import ListPagination from '@/components/shared/list-pagination';
 import { fetchPhotoSize } from '@/lib/utils';
+import { useLanguage } from '@/components/provider/language-provider';
 
 const SharedGalleryView = ({ sharedAlbum }: { sharedAlbum: SharedAlbum }) => {
   const [mainApi, setMainApi] = useState<CarouselApi>();
   const [thumbnailApi, setThumbnailApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [dimensions, setDimensions] = useState({ width: 1000, height: 1000 });
+  const { dict } = useLanguage();
 
   const handleFullscreen = useCallback(async (index: number) => {
     const imageContainer = document.getElementById(`image-container-${index}`);
@@ -135,15 +137,39 @@ const SharedGalleryView = ({ sharedAlbum }: { sharedAlbum: SharedAlbum }) => {
 
   return (
     <div className="w-full px-24">
-      <Carousel setApi={setMainApi} className="w-full">
-        <CarouselContent>{mainImage}</CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
-      <Carousel setApi={setThumbnailApi}>
-        <CarouselContent className="m-2">{thumbnailImages}</CarouselContent>
-      </Carousel>
-      <ListPagination meta={sharedAlbum.pageMeta} bookmark="album-name" />
+      {sharedAlbum.photos.length === 0 ? (
+        <div className="flex flex-col justify-center">
+          <div className="flex flex-col gap-10">
+            <div className="flex justify-center ">
+            <Image
+              src="/not-found/no-photos.png"
+              alt="No Photos"
+              width={400}
+              height={400}
+              className="rounded-md object-cover"
+            />
+            </div>
+            <div className="flex flex-col gap-3">
+              <div className="text-center text-xl">
+                  {dict.sharedAlbum.noPhotos}
+              </div>
+            </div>
+          </div>
+        </div>
+      ): (
+        <>
+          <Carousel setApi={setMainApi} className="w-full">
+            <CarouselContent>{mainImage}</CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+          <Carousel setApi={setThumbnailApi}>
+            <CarouselContent className="m-2">{thumbnailImages}</CarouselContent>
+          </Carousel>
+          <ListPagination meta={sharedAlbum.pageMeta} bookmark="album-name" />
+        </>
+      )}
+
     </div>
   );
 };

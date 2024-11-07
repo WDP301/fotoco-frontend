@@ -797,7 +797,8 @@
   },
   "sharedAlbum": {
     "sharedBy": "Shared by",
-    "expiredTime": "Expired time"
+    "expiredTime": "Expired time",
+    "noPhotos": "This album currently has no photos, but do not worry! Contributors will soon share some amazing photos here. Please check back later!"
   },
   "shareAlbumDialog": {
     "title": "Share album in",

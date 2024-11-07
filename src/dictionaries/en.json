@@ -332,7 +332,8 @@
   },
   "breadcrumb": {
     "home": "Home",
-    "group": "Groups"
+    "group": "Groups",
+    "recentView": "Recent View"
   },
   "group": {
     "title": "Groups",
@@ -821,5 +822,30 @@
     "profile": "Profile",
     "settings": "Settings",
     "logout": "Logout"
+  },
+  "recentView": {
+    "title": "Recent View",
+    "description": "Recent View page description",
+    "noRecentView": "No recent view",
+    "presets": {
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "last7": "Last 7 days",
+      "last14": "Last 14 days",
+      "last30": "Last 30 days",
+      "thisWeek": "This Week",
+      "lastWeek": "Last Week",
+      "thisMonth": "This Month",
+      "lastMonth": "Last Month"
+    },
+    "action": {
+      "cancel": "Cancel",
+      "update": "Update"
+    }
+  },
+  "dateInput": {
+    "month": "MM",
+    "day": "DD",
+    "year": "YYYY"
   }
 }

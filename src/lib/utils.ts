@@ -160,3 +160,28 @@ export function convertTimeToSecond(value: number, unit: string) {
       return value;
   }
 }
+
+const VIEW_HISTORY_KEY = 'photoViewHistory';
+const MAX_HISTORY_LENGTH = 300;
+
+export function addToPhotoViewHistory(photoId: string) {
+  const history = JSON.parse(localStorage.getItem(VIEW_HISTORY_KEY) || '[]');
+  const timestamp = new Date().toISOString();
+  const filteredHistory = history.filter(
+    (entry: any) => entry.photoId !== photoId
+  );
+  filteredHistory.push({ photoId, viewedAt: timestamp });
+  const updatedHistory = filteredHistory.slice(-MAX_HISTORY_LENGTH);
+  localStorage.setItem(VIEW_HISTORY_KEY, JSON.stringify(updatedHistory));
+}
+
+export function getPhotoViewHistory(dateFrom?: Date, dateTo?: Date) {
+  const history = JSON.parse(localStorage.getItem(VIEW_HISTORY_KEY) || '[]');
+  const fromDate = dateFrom ? dateFrom : new Date(0);
+  const toDate = dateTo ? dateTo : new Date();
+
+  return history.filter((entry: any) => {
+    const viewedAt = new Date(entry.viewedAt);
+    return viewedAt >= fromDate && viewedAt <= toDate;
+  });
+}

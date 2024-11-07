@@ -180,17 +180,8 @@ export function getPhotoViewHistory(dateFrom?: Date, dateTo?: Date) {
   const fromDate = dateFrom ? dateFrom : new Date(0);
   const toDate = dateTo ? dateTo : new Date();
 
-  console.log(
-    '>>>>>>>',
-    history.filter((entry: any) => {
-      const viewedAt = new Date(entry.viewedAt);
-      return viewedAt >= fromDate && viewedAt <= toDate;
-    })
-  );
-
   return history.filter((entry: any) => {
     const viewedAt = new Date(entry.viewedAt);
-    console.log('>>>>>>>>>>>>>>>', viewedAt, fromDate, toDate);
     return viewedAt >= fromDate && viewedAt <= toDate;
   });
 }

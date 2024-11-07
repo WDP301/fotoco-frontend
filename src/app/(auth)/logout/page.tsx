@@ -11,8 +11,9 @@ export default function LogoutPage() {
 
   useEffect(() => {
     logout().then(() => {
+      localStorage.clear();
       socket?.disconnect();
-      router.push('/login'); // redirect to login after logout
+      router.push('/login');
     });
   }, [router, socket]);
 

@@ -3,10 +3,11 @@ import { Textarea } from "@/components/ui/textarea";
 import React, { useState, forwardRef, useImperativeHandle, useRef, useEffect } from "react";
 import { User } from "@/lib/define";
 import { getUser } from "@/lib/data";
-import { CornerDownRight, SendHorizontal } from "lucide-react";
+import { CornerDownRight, Loader, SendHorizontal } from "lucide-react";
 import AvatarPicture from "@/components/shared/avatar-picture";
 import { commentPhoto, replyComment } from "@/lib/action";
 import { useLanguage } from "@/components/provider/language-provider";
+import SpinLoading from "@/components/shared/spin-loading";
 
 interface CommentFormProps {
   showIcon?: boolean;
@@ -88,7 +89,11 @@ const CommentForm = forwardRef<CommentFormRef, CommentFormProps>(
                   className="absolute right-2 bottom-2 text-primary"
                   disabled={isCoolDown}
                 >
-                  <SendHorizontal className="h-5 w-5" />
+                  {!isCoolDown ? (
+                    <SendHorizontal className="h-5 w-5" />
+                  ) : (
+                    <Loader className="h-5 w-5 animate-spin" />
+                  )}
                 </button>
               )}
             </div>

@@ -118,7 +118,8 @@
   "header": {
     "mainNav": {
       "aboutUs": "About Us",
-      "pricing": "Pricing"
+      "pricing": "Pricing",
+      "settings": "Settings"
     },
     "action": {
       "title": "Actions"
@@ -287,7 +288,8 @@
     "changeLanguage": "Change Language",
     "changeTheme": "Change Theme",
     "saveChanges": "Save Changes",
-    "delete": "Delete"
+    "delete": "Delete",
+    "logoutAll": "Logout All"
   },
   "joinGroup": {
     "title": "Join Group",
@@ -331,7 +333,8 @@
   },
   "breadcrumb": {
     "home": "Home",
-    "group": "Groups"
+    "group": "Groups",
+    "recentView": "Recent View"
   },
   "group": {
     "title": "Groups",
@@ -402,7 +405,8 @@
     "uploadedPhoto": "Photo uploaded by {{fullName}}",
     "invite": {
       "title": "Accept Invite to Album",
-      "description": "Accept Invite to Album"
+      "description": "Accept Invite to Album",
+      "fromGroup": "Invite to join album from group {{groupName}}"
     },
     "setting": {
       "title": "Album Settings",
@@ -449,6 +453,8 @@
     "title": "Photos",
     "description": "Photo List page description",
     "reactedPhoto": "{{fullName}} reacted to the photo",
+    "commentedPhoto": "{{fullName}} commented on the photo",
+    "repliedComment": "{{fullName}} replied to the comment",
     "upload": {
       "title": "Upload Photo",
       "heading": "Upload your photo",
@@ -695,7 +701,15 @@
     },
     "security": {
       "title": "Security",
-      "description": "Update your password and secure your account."
+      "description": "Update your password and secure your account.",
+      "logOutAll": {
+        "title": "Logout from all devices",
+        "description": "If you think your account has been compromised, you can log out from all devices. This will log you out from all devices and you will need to log in again",
+        "dialog": {
+          "title": "Logout all",
+          "description": "I understand that I will be logged out from all devices"
+        }
+      }
     },
     "appearance": {
       "title": "Appearance",
@@ -766,7 +780,18 @@
       "button": "Create Link",
       "loading": "Creating link...",
       "copy": "Copy",
-      "copied": "Copied"
+      "copied": "Copied",
+      "choices": {
+        "days": "Day(s)",
+        "weeks": "Week(s)",
+        "months": "Month(s)"
+      },
+      "rules":{
+        "required": "Time value is required.",
+        "min": "Minimum value is 1.",
+        "max": "Maximum value is 100."
+      },
+      "error": "You cannot share this photo because you do not have permission to perform this action. Please check your access permissions or contact the group owner for assistance."
     }
   },
   "sharePhotoDetails": {
@@ -785,5 +810,63 @@
     "previous": "Previous",
     "next": "Next",
     "morePages": "More pages"
+  },
+  "sharedAlbum": {
+    "sharedBy": "Shared by",
+    "expiredTime": "Expired time",
+    "noPhotos": "This album currently has no photos, but do not worry! Contributors will soon share some amazing photos here. Please check back later!"
+  },
+  "shareAlbumDialog": {
+    "title": "Share album in",
+    "description": "You can share albums with any of your friends, even if they don't have a Fotoco account.",
+    "shareAlbumForm": {
+      "label": "Share this album for",
+      "button": "Create Link",
+      "loading": "Creating link...",
+      "copy": "Copy",
+      "copied": "Copied",
+      "choices": {
+        "days": "Day(s)",
+        "weeks": "Week(s)",
+        "months": "Month(s)"
+      },
+      "rules":{
+        "required": "Time value is required.",
+        "min": "Minimum value is 1.",
+        "max": "Maximum value is 100."
+      },
+      "error": "You cannot share this album because you do not have permission to perform this action. Please check your access permissions or contact the group owner for assistance."
+    }
+  },
+  "userNav": {
+    "group": "Group",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "recentView": {
+    "title": "Recent View",
+    "description": "Recent View page description",
+    "noRecentView": "No recent view",
+    "presets": {
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "last7": "Last 7 days",
+      "last14": "Last 14 days",
+      "last30": "Last 30 days",
+      "thisWeek": "This Week",
+      "lastWeek": "Last Week",
+      "thisMonth": "This Month",
+      "lastMonth": "Last Month"
+    },
+    "action": {
+      "cancel": "Cancel",
+      "update": "Update"
+    }
+  },
+  "dateInput": {
+    "month": "MM",
+    "day": "DD",
+    "year": "YYYY"
   }
 }

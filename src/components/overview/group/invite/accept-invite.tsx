@@ -3,9 +3,12 @@
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { acceptInviteToGroup } from '@/lib/action';
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
-import Redirect from './redirect-to-group';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useLanguage } from '@/components/provider/language-provider';
+import { useRouter } from 'next/navigation';
+import { Button } from '@/components/ui/button';
+import { Icons } from '@/components/icons/icons';
+import { useSocket } from '@/hooks/use-socket';
 
 export default function AcceptInviteToGroup({
   groupId,
@@ -18,20 +21,32 @@ export default function AcceptInviteToGroup({
   const [result, setResult] = useState<
     { error?: string; errorType?: string; isSuccess?: boolean } | undefined
   >(undefined);
+  const [isLoading, setIsLoading] = useState(false);
+  const socket = useSocket();
+  const router = useRouter();
 
-  useEffect(() => {
+  const handleAcceptInvite = () => {
+    setIsLoading(true);
     acceptInviteToGroup(groupId, inviteToken)
       .then((res) => {
-        setResult(res);
+        if (res.isSuccess) {
+          socket?.reconnect();
+          router.push(`/groups/${groupId}`);
+        } else {
+          setResult(res);
+        }
       })
       .catch((err) => {
         setResult({ error: err.message, isSuccess: false });
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-  }, [groupId, inviteToken]);
+  };
 
   return (
     <>
-      {!result?.isSuccess ? (
+      {result?.error ? (
         <Alert variant="destructive" className="my-5 sm:max-w-80 mx-auto">
           <ExclamationTriangleIcon className="h-4 w-4" />
           <AlertTitle>{dict.error.title}</AlertTitle>
@@ -40,7 +55,12 @@ export default function AcceptInviteToGroup({
           </AlertDescription>
         </Alert>
       ) : (
-        <Redirect groupId={groupId} />
+        <Button disabled={isLoading} onClick={handleAcceptInvite}>
+          {isLoading && (
+            <Icons.spinner className=" mr-2 h-4 w-4 animate-spin" />
+          )}
+          {dict.button.joinGroup}
+        </Button>
       )}
     </>
   );

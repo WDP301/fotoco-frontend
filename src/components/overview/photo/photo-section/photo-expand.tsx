@@ -24,7 +24,6 @@ export default function PhotoExpand({
   searchParams: SearchPhotoParams;
   currentPhotoId: string;
 }) {
-  const { push } = useRouter();
   const [open, setOpen] = useState(false);
 
   return (
@@ -35,7 +34,7 @@ export default function PhotoExpand({
       }}
     >
       <DialogTrigger asChild className="cursor-pointer">
-        <button className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity p-2 rounded-full hover:bg-gray-800">
+        <button className="text-white absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity p-2 rounded-full hover:bg-gray-800">
           <Expand className="h-6 w-6" />
         </button>
       </DialogTrigger>

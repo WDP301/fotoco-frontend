@@ -19,6 +19,7 @@ import { cookies } from 'next/headers';
 import { AuthResponse, User, UserJWT, UserNotification } from './define';
 import { v4 as uuidv4 } from 'uuid';
 import { base64Decode } from './utils';
+import { revalidateTag } from 'next/cache';
 
 const MAX_AGE_REFRESH_TOKEN = 60 * 60 * 24 * 90;
 
@@ -97,7 +98,8 @@ export const active = async (token: string, active: string) => {
 const handleStoreUserCredentials = (
   signature: string,
   accessToken: string,
-  refreshToken: string
+  refreshToken: string,
+  lang: string = 'en'
 ): void => {
   const payload = base64Decode(accessToken.split('.')[1]);
   const cookie = cookies();
@@ -111,17 +113,19 @@ const handleStoreUserCredentials = (
     expires: expiryDate,
     httpOnly: false,
   });
+  cookie.set('lang', lang);
 };
 
 export const oauthSuccess = (
   signature: string,
   accessToken: string,
-  refreshToken: string
+  refreshToken: string,
+  lang: string = 'en'
 ): Promise<void> => {
   // Fix change to promise to handle the case router push before the cookie is set
   return new Promise((resolve) => {
     setTimeout(() => {
-      handleStoreUserCredentials(signature, accessToken, refreshToken);
+      handleStoreUserCredentials(signature, accessToken, refreshToken, lang);
       resolve();
     }, 0);
   });
@@ -141,9 +145,9 @@ export const login = async (
         signature,
       })
       .then((res) => {
-        const { accessToken, refreshToken } = res.data;
+        const { accessToken, refreshToken, lang } = res.data;
 
-        handleStoreUserCredentials(signature, accessToken, refreshToken);
+        handleStoreUserCredentials(signature, accessToken, refreshToken, lang);
 
         return {
           isSuccess: true,
@@ -186,6 +190,7 @@ export const logout = async () => {
     cookies().delete('access-token');
     cookies().delete('refresh-token');
     cookies().delete('signature');
+    // cookies().delete('lang');  // cause bug: Uncaught Error: dictionaries[lang] is not a function
     await http.delete('/auth/logout', { data: { refreshToken, signature } });
     return {
       isSuccess: true,
@@ -208,7 +213,12 @@ export const joinGroup = async (
     .post('/groups/join', {
       groupCode: code,
     })
-    .then(() => {
+    .then((res) => {
+      const cookieStore = cookies();
+      const signature = cookieStore.get('signature');
+      revalidateTag(`groups-${signature}`);
+      revalidateTag(`group-${res.data?._id}-${signature}`);
+      revalidateTag(`group-${res.data?._id}-members`);
       return {
         isSuccess: true,
         error: '',
@@ -239,6 +249,9 @@ export const createGroup = async (
       type: formData.type,
     })
     .then(() => {
+      const cookieStore = cookies();
+      const signature = cookieStore.get('signature');
+      revalidateTag(`groups-${signature}`);
       return {
         isSuccess: true,
         error: '',
@@ -269,6 +282,9 @@ export const createAlbum = async (
       description,
     })
     .then(() => {
+      const cookieStore = cookies();
+      const signature = cookieStore.get('signature');
+      revalidateTag(`albums-${groupId}-${signature}`);
       return {
         isSuccess: true,
         error: '',
@@ -318,6 +334,9 @@ export const commentPhoto = async (photoId: string, content: string) => {
       content,
     })
     .then((res) => {
+      // TODO: revalidate photos list cache (not really necessary)
+      revalidateTag(`photo-${photoId}`);
+      revalidateTag(`comments-${photoId}`);
       return {
         isSuccess: true,
         error: '',
@@ -343,6 +362,9 @@ export const replyComment = async (
       content,
     })
     .then((res) => {
+      // TODO: revalidate photos list cache (not really necessary)
+      revalidateTag(`photo-${photoId}`);
+      revalidateTag(`comments-${photoId}`);
       return {
         isSuccess: true,
         error: '',
@@ -367,6 +389,11 @@ export const acceptInviteToGroup = async (
       params: { inviteToken },
     })
     .then((res) => {
+      const cookieStore = cookies();
+      const signature = cookieStore.get('signature');
+      revalidateTag(`groups-${signature}`);
+      revalidateTag(`group-${groupId}-${signature}`);
+      revalidateTag(`group-${groupId}-members`);
       return {
         isSuccess: true,
         error: '',
@@ -382,6 +409,7 @@ export const acceptInviteToGroup = async (
 };
 export const acceptInviteToAlbum = async (
   albumId: string,
+  groupId: string,
   inviteToken: string
 ) => {
   const response = await http
@@ -389,6 +417,12 @@ export const acceptInviteToAlbum = async (
       params: { inviteToken },
     })
     .then((res) => {
+      const cookieStore = cookies();
+      const signature = cookieStore.get('signature');
+      revalidateTag(`albums-${signature}`);
+      revalidateTag(`album-${albumId}-${signature}`);
+      revalidateTag(`albums-${groupId}-${signature}`);
+      revalidateTag(`album-${albumId}-members`);
       return {
         isSuccess: true,
         error: '',
@@ -465,6 +499,10 @@ export const outGroup = async (groupId: string, userId: string) => {
   const response = await http
     .put(`groups/${groupId}/out/${userId}`, undefined)
     .then((res) => {
+      const cookieStore = cookies();
+      const signature = cookieStore.get('signature');
+      revalidateTag(`group-${groupId}-${signature}`);
+      revalidateTag(`group-${groupId}-members`);
       return {
         isSuccess: true,
         error: '',
@@ -483,6 +521,9 @@ export const outAlbum = async (albumId: string, userId: string) => {
   const response = await http
     .put(`albums/${albumId}/out/${userId}`, undefined)
     .then((res) => {
+      const cookieStore = cookies();
+      const signature = cookieStore.get('signature');
+      revalidateTag(`album-${albumId}-${signature}`);
       return {
         isSuccess: true,
         error: '',
@@ -501,6 +542,9 @@ export const reactPhoto = async (photoId: string) => {
   const response = await http
     .post(`/photos/${photoId}/react`)
     .then((res) => {
+      // TODO: revalidate photos list cache (not really necessary)
+      revalidateTag(`photo-${photoId}`);
+      revalidateTag(`reacts-${photoId}`);
       return {
         isSuccess: true,
         error: '',
@@ -538,6 +582,10 @@ export const updateGroup = async (
       setting,
     })
     .then((res) => {
+      revalidateTag(`group-${groupId}`);
+      revalidateTag(`group-${groupId}-setting`);
+      // Update group setting need revalidate data of all albums in group. Read TODO in getAlbumInfo to change later
+      revalidateTag(`albums`);
       return {
         isSuccess: true,
         error: '',
@@ -581,13 +629,14 @@ export const updateAlbum = async (
       setting,
     })
     .then((res) => {
+      revalidateTag(`album-${albumId}`);
       return {
         isSuccess: true,
         error: '',
         data: res.data.setting as {
           allow_invite?: boolean;
-          allow_share_album?: boolean;
-          allow_share_photo?: boolean;
+          // allow_share_album?: boolean;
+          // allow_share_photo?: boolean;
         },
       };
     })
@@ -597,8 +646,8 @@ export const updateAlbum = async (
         error: error?.response?.data?.message || 'Unknown error',
         data: {} as {
           allow_invite?: boolean;
-          allow_share_album?: boolean;
-          allow_share_photo?: boolean;
+          // allow_share_album?: boolean;
+          // allow_share_photo?: boolean;
         },
       };
     });
@@ -629,6 +678,7 @@ export const changeLanguage = async (language: string) => {
 
 export const editPhoto = async (
   photoId: string,
+  albumId: string,
   formData: z.infer<ReturnType<typeof getUpdatePhotoFormSchema>>
 ) => {
   const { title, tags } = formData;
@@ -638,6 +688,8 @@ export const editPhoto = async (
       tags,
     })
     .then(() => {
+      revalidateTag(`photos-${albumId}`);
+      revalidateTag(`photo-${photoId}`);
       return {
         isSuccess: true,
         error: '',
@@ -652,10 +704,11 @@ export const editPhoto = async (
   return response;
 };
 
-export const deletePhoto = async (photoId: string) => {
+export const deletePhoto = async (photoId: string, albumId: string) => {
   return await http
     .delete(`/photos/${photoId}`)
     .then((res) => {
+      revalidateTag(`photos-${albumId}`);
       return {
         isSuccess: true,
         error: '',
@@ -684,6 +737,9 @@ export const updateUserProfile = async (
         bio,
       })
       .then((res) => {
+        const cookieStore = cookies();
+        const signature = cookieStore.get('signature');
+        revalidateTag(`user-${signature}`);
         return {
           isSuccess: true,
           error: '',
@@ -740,6 +796,28 @@ export const uploadImage = async (formData: FormData) => {
 export const sharePhoto = async (photoId: string, time: number) => {
   const response = await http
     .post(`/photos/${photoId}/share`, {
+      time,
+    })
+    .then((res) => {
+      return {
+        isSuccess: true,
+        error: '',
+        data: res.data,
+      };
+    })
+    .catch((error) => {
+      return {
+        isSuccess: false,
+        error: error?.response?.data?.message || 'Unknown error',
+        data: null,
+      };
+    });
+  return response;
+};
+
+export const shareAlbum = async (albumId: string, time: number) => {
+  const response = await http
+    .post(`/albums/${albumId}/share`, {
       time,
     })
     .then((res) => {

@@ -28,8 +28,6 @@ const appearanceFormSchema = z.object({
 
 type AppearanceFormValues = z.infer<typeof appearanceFormSchema>;
 
-// This can come from your database or API.
-
 export function AppearanceForm() {
   const { dict } = useLanguage();
   const { setTheme, theme } = useTheme();
@@ -41,7 +39,7 @@ export function AppearanceForm() {
   });
 
   function onSubmit(data: AppearanceFormValues) {
-    data.theme === 'light' ? setTheme('light') : setTheme('dark');
+    setTheme(data.theme);
     setCurrentTheme(data.theme);
     toast.success(dict.editProfile.appearance.theme.message.success);
   }
@@ -64,7 +62,7 @@ export function AppearanceForm() {
               <RadioGroup
                 onValueChange={field.onChange}
                 defaultValue={field.value}
-                className="grid max-w-sm md:max-w-md grid-cols-1 md:grid-cols-2 gap-8 pt-2"
+                className="grid max-w-md md:max-w-lg grid-cols-1 md:grid-cols-3 gap-8 pt-2"
               >
                 <FormItem>
                   <FormLabel className="[&:has([data-state=checked])>div]:border-primary text-primary">
@@ -122,7 +120,37 @@ export function AppearanceForm() {
                       </div>
                     </div>
                     <span className="block w-full p-2 text-center font-normal">
-                      {dict.modeToggle.light}
+                      {dict.modeToggle.dark}
+                    </span>
+                  </FormLabel>
+                </FormItem>
+                <FormItem>
+                  <FormLabel className="[&:has([data-state=checked])>div]:border-primary text-primary">
+                    <FormControl>
+                      <RadioGroupItem
+                        value="system"
+                        className="sr-only"
+                        onClick={() => setSelectedTheme('system')}
+                      />
+                    </FormControl>
+                    <div className="items-center rounded-md border-2 border-muted p-1 hover:border-accent transition-all duration-300">
+                      <div className="space-y-2 rounded-sm bg-gradient-to-r from-black to-white p-2">
+                        <div className="space-y-2 rounded-md bg-gradient-to-r from-black to-white p-2 shadow-lg">
+                          <div className="h-2 w-[80px] rounded-lg bg-gradient-to-r from-slate-800 to-[#ecedef] animate-pulse" />
+                          <div className="h-2 w-[100px] rounded-lg bg-gradient-to-r from-slate-800 to-[#ecedef] animate-pulse" />
+                        </div>
+                        <div className="flex items-center space-x-2 rounded-md bg-gradient-to-r from-black to-white p-2 shadow-lg">
+                          <div className="h-4 w-4 rounded-full bg-gradient-to-r from-slate-800 animate-pulse" />
+                          <div className="h-2 w-[100px] rounded-lg bg-gradient-to-r from-slate-800 to-[#ecedef] animate-pulse" />
+                        </div>
+                        <div className="flex items-center space-x-2 rounded-md bg-gradient-to-r from-black to-white p-2 shadow-lg">
+                          <div className="h-4 w-4 rounded-full bg-gradient-to-r from-slate-800 animate-pulse" />
+                          <div className="h-2 w-[100px] rounded-lg bg-gradient-to-r from-slate-800 to-[#ecedef] animate-pulse" />
+                        </div>
+                      </div>
+                    </div>
+                    <span className="block w-full p-2 text-center font-normal">
+                      {dict.modeToggle.system}
                     </span>
                   </FormLabel>
                 </FormItem>

@@ -16,6 +16,8 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
+import { useSocket } from '@/hooks/use-socket';
+import { Icons } from '@/components/icons/icons';
 
 export default function OutAlbumDialog({
   albumId,
@@ -28,6 +30,7 @@ export default function OutAlbumDialog({
   const [isLoading, setIsLoading] = useState(false);
   const [checkbox, setCheckbox] = useState(false);
   const { dict } = useLanguage();
+  const socket = useSocket();
 
   const handleCheckboxChange = (event: any) => {
     setCheckbox(!checkbox);
@@ -39,6 +42,7 @@ export default function OutAlbumDialog({
     if (!result?.isSuccess) {
       toast.error(result?.error);
     } else {
+      socket?.reconnect();
       toast.success(dict.outAlbum.message.success);
       router.refresh();
     }
@@ -82,6 +86,9 @@ export default function OutAlbumDialog({
             variant="destructive"
             onClick={handleOutAlbum}
           >
+            {isLoading && (
+              <Icons.spinner className=" mr-2 h-4 w-4 animate-spin" />
+            )}
             {dict.outAlbum.buttonConfirm}
           </Button>
         </DialogFooter>

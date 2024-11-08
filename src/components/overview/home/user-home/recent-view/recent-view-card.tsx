@@ -38,7 +38,7 @@ export function RecentViewCard({ photo }: { photo: RecentPhoto }) {
             {photo?.title}
           </h1>
           <p className="font-normal text-sm text-gray-50 relative z-10 my-4 line-clamp-1">
-            {getDateFormatted(photo?.viewedAt, dict.lang)}
+            {photo?.viewedAt && getDateFormatted(photo?.viewedAt, dict.lang)}
           </p>
         </div>
       </div>

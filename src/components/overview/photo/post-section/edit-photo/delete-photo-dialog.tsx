@@ -27,7 +27,7 @@ export function DeletePhotoDialog({ photo }: { photo: PhotoDetails }) {
 
   const handleDeletePhoto = async () => {
     setIsLoading(true);
-    const result = await deletePhoto(photo._id);
+    const result = await deletePhoto(photo._id, photo.belonging);
     if (result?.isSuccess) {
       toast.success(dict.photoDetail.delete.message.success);
       router.push(`/albums/${photo.belonging}`);

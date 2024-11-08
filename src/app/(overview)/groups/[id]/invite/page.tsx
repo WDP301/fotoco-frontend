@@ -1,65 +1,59 @@
-'use client';
-
 import AcceptInviteToGroup from '@/components/overview/group/invite/accept-invite';
-import { useLanguage } from '@/components/provider/language-provider';
+import GroupTypeIcon from '@/components/shared/group-type-icon';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
-import { Button } from '@/components/ui/button';
-import { getGroupInfo } from '@/lib/data';
-import { GroupInfo } from '@/lib/define';
+import { Card } from '@/components/ui/card';
+import { getPublicGroupInfo } from '@/lib/data';
+import { getDictionary } from '@/lib/dictionaries';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
 
-export default function AcceptInviteToGroupPage({
+export default async function AcceptInviteToGroupPage({
   params,
   searchParams,
 }: {
   params: { id: string };
   searchParams: { inviteToken: string };
 }) {
-  const { dict } = useLanguage();
-  const [showAcceptInvite, setShowAcceptInvite] = useState(false);
-  const [groupInfo, setGroupInfo] = useState({} as GroupInfo);
-
-  useEffect(() => {
-    const fetchGroupInfo = async () => {
-      const response = await getGroupInfo(params.id);
-      setGroupInfo(response);
-    };
-
-    fetchGroupInfo();
-  }, [params.id, searchParams.inviteToken]);
-
-  const handleAcceptInviteClick = () => {
-    setShowAcceptInvite(true);
-  };
+  const group = await getPublicGroupInfo(params.id);
+  const dict = await getDictionary();
 
   return (
-    <div>
-      <h2 className="text-center">
-        {dict.group.invite.title} {groupInfo?.title}
-      </h2>
-      <div className="mx-auto sm:max-w-60">
-        <AspectRatio ratio={3 / 4} className="round-lg bg-muted ">
-          <Image
-            alt={groupInfo?.title}
-            src={groupInfo?.groupImg || '/background/default-vertical.jpg'}
-            fill
-            className="h-full w-full rounded-lg object-cover"
-          />
-        </AspectRatio>
-      </div>
-      {showAcceptInvite ? (
-        <AcceptInviteToGroup
-          groupId={params.id}
-          inviteToken={searchParams.inviteToken}
-        />
-      ) : (
-        <div className="flex justify-center">
-          <Button onClick={handleAcceptInviteClick} className="my-2">
-            {dict.button.joinGroup}
-          </Button>
+    <div className="flex items-center justify-center p-4">
+      <Card className="shadow-lg overflow-hidden max-w-4xl w-full">
+        <div className="flex flex-col sm:flex-row items-center sm:items-start">
+          <div className="sm:w-1/3">
+            <AspectRatio ratio={3 / 4} className="rounded-lg bg-muted">
+              <Image
+                alt={group?.title}
+                src={group?.groupImg || '/background/default-vertical.jpg'}
+                fill
+                className="h-full w-full rounded-lg object-cover"
+              />
+            </AspectRatio>
+          </div>
+          <div className="sm:w-2/3 sm:pl-8 mt-4 sm:mt-0 p-4">
+            <h2 className="text-center sm:text-left text-2xl font-bold">
+              {dict.group.invite.title}: {group?.title}
+            </h2>
+            <div className="flex gap-2 items-center mt-2">
+              <GroupTypeIcon type={group.type} className="inline h-4 w-4" />
+              <p>
+                {
+                  dict.group.type[
+                    group.type.toLowerCase() as keyof typeof dict.group.type
+                  ]
+                }
+              </p>
+            </div>
+            <p className="line-clamp-2">{group.description}</p>
+            <div className="mt-4">
+              <AcceptInviteToGroup
+                groupId={params.id}
+                inviteToken={searchParams.inviteToken}
+              />
+            </div>
+          </div>
         </div>
-      )}
+      </Card>
     </div>
   );
 }

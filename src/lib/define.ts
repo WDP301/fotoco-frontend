@@ -49,6 +49,9 @@ export type User = {
   createdAt: string;
   updatedAt: string;
   __v: number;
+  setting: {
+    lang: string;
+  };
 };
 
 export type Group = {
@@ -80,7 +83,7 @@ export type RecentPhoto = {
   title: string;
   url: string;
   tags: string[];
-  viewedAt: string;
+  viewedAt?: string;
 };
 
 export enum SearchParams {
@@ -158,6 +161,35 @@ export type GroupInfo = {
   groupCode: string;
 };
 
+export type PublicGroupInfo = {
+  title: string;
+  description: string;
+  groupImg: string;
+  type: string;
+};
+
+export interface Root {
+  success: boolean;
+  _id: string;
+  group: Group;
+  description: string;
+  status: string;
+  title: string;
+  lastPhotos: string[];
+}
+
+export type PublicAlbumInfo = {
+  _id: string;
+  group: {
+    _id: string;
+    title: string;
+  };
+  status: string;
+  title: string;
+  description: string;
+  lastPhotos: string[];
+};
+
 export type GroupSetting = {
   setting: {
     role: string;
@@ -177,8 +209,8 @@ export type AlbumSetting = {
   setting: {
     role: string;
     allow_invite?: boolean;
-    allow_share_album?: boolean;
-    allow_share_photo?: boolean;
+    // allow_share_album?: boolean;
+    // allow_share_photo?: boolean;
   };
 };
 
@@ -194,6 +226,7 @@ export type AlbumInfo = {
   photosCount: number;
   createdAt: string;
   updatedAt: string;
+  allowShareAlbum: boolean;
 };
 
 export type GroupUser = {
@@ -301,6 +334,7 @@ export type PhotoResponse = {
   prevPhoto?: string;
   nextPhoto?: string;
   isReacted: boolean;
+  allowSharePhoto: boolean;
 };
 
 export type PhotoDetails = {
@@ -382,6 +416,34 @@ export type SharedPhoto = {
     url: string;
     mimeType: string;
     fileSize: number;
+  };
+  expiredTime: string;
+};
+
+export type SharedAlbum = {
+  success: boolean;
+  album: {
+    title: string;
+  };
+  photos: {
+    owner: {
+      fullName: string;
+      img: string;
+    };
+    title: string;
+    url: string;
+  }[];
+  shareUser: {
+    fullName: string;
+    img: string;
+  };
+  pageMeta: {
+    totalPages: number;
+    page: number;
+    totalElements: number;
+    pageSize: number;
+    hasNext: boolean;
+    hasPrev: boolean;
   };
   expiredTime: string;
 };

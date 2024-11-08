@@ -118,7 +118,8 @@
   "header": {
     "mainNav": {
       "aboutUs": "Về chúng tôi",
-      "pricing": "Giá cả"
+      "pricing": "Giá cả",
+      "settings": "Cài đặt"
     },
     "action": {
       "title": "Hành động"
@@ -286,7 +287,8 @@
     "changeLanguage": "Thay đổi ngôn ngữ",
     "changeTheme": "Thay đổi chủ đề",
     "saveChanges": "Lưu thay đổi",
-    "delete": "Xóa"
+    "delete": "Xóa",
+    "logoutAll": "Đăng xuất tất cả"
   },
   "joinGroup": {
     "title": "Tham gia nhóm",
@@ -330,7 +332,8 @@
   },
   "breadcrumb": {
     "home": "Trang chủ",
-    "group": "Nhóm"
+    "group": "Nhóm",
+    "recentView": "Xem gần đây"
   },
   "group": {
     "title": "Nhóm",
@@ -441,13 +444,16 @@
     },
     "invite": {
       "title": "Mời tham gia album",
-      "description": "Mời tham gia album"
+      "description": "Mời tham gia album",
+      "fromGroup": "Mời tham gia album từ nhóm {{groupName}}"
     }
   },
   "photo": {
     "title": "Ảnh",
     "description": "Mô tả trang danh sách ảnh",
     "reactedPhoto": "{{fullName}} đã yêu thích ảnh của bạn",
+    "commentedPhoto": "{{fullName}} đã bình luận ảnh của bạn",
+    "repliedComment": "{{fullName}} đã trả lời bình luận của bạn",
     "upload": {
       "title": "Tải ảnh lên",
       "heading": "Tải ảnh của bạn lên",
@@ -590,7 +596,7 @@
     "description": "Mô tả trang thông báo",
     "toast": {
       "title": "Bạn có thông báo mới từ {{fullName}} (@{{username}})",
-      "seeMore": "Xem tất cả thông báo"
+      "seeMore": "Xem chi tiết"
     }
   },
   "role": {
@@ -694,7 +700,15 @@
     },
     "security": {
       "title": "Bảo mật",
-      "description": "Quản lý mật khẩu và cài đặt bảo mật khác của tài khoản của bạn."
+      "description": "Quản lý mật khẩu và cài đặt bảo mật khác của tài khoản của bạn.",
+      "logOutAll": {
+        "title": "Đăng xuất khỏi tất cả thiết bị",
+        "description": "Nếu bạn nghĩ tài khoản của mình đã bị xâm phạm, bạn có thể đăng xuất khỏi tất cả các thiết bị. Thao tác này sẽ đăng xuất bạn khỏi tất cả các thiết bị và bạn sẽ cần phải đăng nhập lại",
+        "dialog": {
+          "title": "Đăng xuất tất cả",
+          "description": "Tôi hiểu rằng tôi sẽ bị đăng xuất khỏi tất cả các thiết bị"
+        }
+      }
     },
     "appearance": {
       "title": "Giao diện",
@@ -718,8 +732,8 @@
     }
   },
   "reactList": {
-    "title": "Danh sách react",
-    "description": "Danh sách người dùng đã tương tác với ảnh này thông qua react.",
+    "title": "Danh sách yêu thích ảnh",
+    "description": "Danh sách người dùng đã bày tỏ sự yêu thích với ảnh này thông qua việc thả tim ảnh.",
     "noReaction": "Chưa có react nào."
   },
   "photoDetail": {
@@ -765,7 +779,18 @@
       "button": "Tạo đường dẫn",
       "loading": "Đang tạo đường dẫn",
       "copy": "Sao chép",
-      "copied": "Đã sao chép"
+      "copied": "Đã sao chép",
+      "choices": {
+        "days": "Ngày",
+        "weeks": "Tuần",
+        "months": "Tháng"
+      },
+      "rules":{
+        "required": "Vui lòng điền giá trị thời gian.",
+        "min": "Giá trị thấp nhất là 1.",
+        "max": "Giá trị cao nhất là 100."
+      },
+      "error": "Bạn không thể chia sẻ ảnh này vì bạn không có quyền thực hiện thao tác này. Vui lòng kiểm tra lại quyền truy cập của bạn hoặc liên hệ với chủ nhóm để được hỗ trợ."
     }
   },
   "sharePhotoDetails": {
@@ -784,5 +809,63 @@
     "previous": "Trước",
     "next": "Tiếp",
     "morePages": "Nhiều trang hơn"
+  },
+  "sharedAlbum": {
+    "sharedBy": "Chia sẻ bởi",
+    "expiredTime": "Thời gian hết hạn",
+    "noPhotos": "Hiện tại album này chưa có ảnh nào, nhưng đừng lo! Các thành viên sẽ sớm chia sẻ những bức ảnh tuyệt vời tại đây. Hãy quay lại sau nhé!"
+  },
+  "shareAlbumDialog": {
+    "title": "Chia sẻ album trong",
+    "description": "Bạn có thể chia sẻ album với bất kỳ người bạn nào của mình, ngay cả khi họ không có tài khoản Fotoco.",
+    "shareAlbumForm": {
+      "label": "Chia sẻ album này trong",
+      "button": "Tạo đường dẫn",
+      "loading": "Đang tạo đường dẫn",
+      "copy": "Sao chép",
+      "copied": "Đã sao chép",
+      "choices": {
+        "days": "Ngày",
+        "weeks": "Tuần",
+        "months": "Tháng"
+      },
+      "rules":{
+        "required": "Vui lòng điền giá trị thời gian.",
+        "min": "Giá trị thấp nhất là 1.",
+        "max": "Giá trị cao nhất là 100."
+      },
+      "error": "Bạn không thể chia sẻ album này vì bạn không có quyền thực hiện thao tác này. Vui lòng kiểm tra lại quyền truy cập của bạn hoặc liên hệ với chủ nhóm để được hỗ trợ."
+    }
+  },
+  "userNav": {
+    "group": "Nhóm",
+    "profile": "Hồ sơ",
+    "settings": "Cài đặt",
+    "logout": "Đăng xuất"
+  },
+  "recentView": {
+    "title": "Xem gần đây",
+    "description": "Mô tả trang xem gần đây",
+    "noRecentView": "Không có gì để hiển thị",
+    "presets": {
+      "today": "Hôm nay",
+      "yesterday": "Hôm qua",
+      "last7": "7 ngày qua",
+      "last14": "14 ngày qua",
+      "last30": "30 ngày qua",
+      "thisWeek": "Tuần này",
+      "lastWeek": "Tuần trước",
+      "thisMonth": "Tháng này",
+      "lastMonth": "Tháng trước"
+    },
+    "action": {
+      "cancel": "Hủy",
+      "update": "Cập nhật"
+    }
+  },
+  "dateInput": {
+    "month": "MM",
+    "day": "DD",
+    "year": "YYYY"
   }
 }

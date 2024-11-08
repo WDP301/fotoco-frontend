@@ -1,16 +1,38 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
-import { getRecentViewPhotos } from '@/lib/data';
-import { getDictionary } from '@/lib/dictionaries';
+import { getPhotosByPhotosList } from '@/lib/data';
 import Link from 'next/link';
 import { RecentViewCard } from './recent-view-card';
+import { useLanguage } from '@/components/provider/language-provider';
+import { useEffect, useState } from 'react';
+import { RecentPhoto } from '@/lib/define';
+import { getPhotoViewHistory } from '@/lib/utils';
+import GroupListLoading from '@/components/overview/group/loading/group-list-loading';
 
-export default async function RecentViewList() {
-  const { photos } = await getRecentViewPhotos({ page: 1, pageSize: 8 });
-  const dict = await getDictionary();
+export default function RecentViewList() {
+  const { dict } = useLanguage();
+  const [photos, setPhotos] = useState<RecentPhoto[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      const { photos } = getPhotoViewHistory();
+      const photosViewHistory = photos.slice(0, 5);
+      const result = await getPhotosByPhotosList(photosViewHistory);
+
+      setPhotos(result);
+      setLoading(false);
+    })();
+  }, []);
+  if (loading) {
+    return <GroupListLoading />;
+  }
   if (!photos || photos.length === 0) {
     return (
       <div className="flex justify-center items-center h-24">
-        {dict.errorMessage.noPhotoFound}
+        {dict.recentView.noRecentView}
       </div>
     );
   }
@@ -23,7 +45,7 @@ export default async function RecentViewList() {
       </div>
       <div className=" w-full flex justify-center my-5">
         <Button asChild>
-          <Link href="/recent-views">{dict.userHome.home.viewAllPhotos}</Link>
+          <Link href="/recent-view">{dict.userHome.home.viewAllPhotos}</Link>
         </Button>
       </div>
     </div>

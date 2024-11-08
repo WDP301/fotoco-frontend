@@ -17,6 +17,7 @@ import { Label } from "@/components/ui/label"
 import { Copy } from "lucide-react";
 import { useState } from "react";
 import { siteConfig } from '@/config/site';
+import { toast } from "sonner";
 
 export function SharePhotoForm({ photoId }: { photoId: string }) {
     
@@ -39,7 +40,9 @@ export function SharePhotoForm({ photoId }: { photoId: string }) {
         const response = await sharePhoto(photoId, timeInSeconds);
         setLoading(false);
         if (response.isSuccess) {
-            setShareLink(`${siteConfig.url}/photo/share/${response.data.sharePhotoToken}`);
+            setShareLink(`${siteConfig.url}/shared/photo/${response.data.sharePhotoToken}`);
+        }else{
+          toast.error(dict.sharePhotoDialog.sharePhotoForm.error)
         }
     };
 
@@ -100,8 +103,9 @@ export function SharePhotoForm({ photoId }: { photoId: string }) {
                                 control={form.control}
                                 name="timeValue"
                                 rules={{ 
-                                    required: 'Time value is required.',
-                                    min: { value: 1, message: 'Minimum value is 1.' }
+                                    required: { value: true, message: dict.sharePhotoDialog.sharePhotoForm.rules.required },
+                                    min: { value: 1, message: dict.sharePhotoDialog.sharePhotoForm.rules.min },
+                                    max: { value: 100, message: dict.sharePhotoDialog.sharePhotoForm.rules.max },
                                 }}
                                 render={({ field }) => (
                                     <FormItem className="flex items-center space-x-2">
@@ -109,8 +113,6 @@ export function SharePhotoForm({ photoId }: { photoId: string }) {
                                             <Input
                                                 {...field}
                                                 type="number"
-                                                max={100}
-                                                min={1}
                                                 className="w-16"
                                             />
                                         </FormControl>
@@ -131,9 +133,9 @@ export function SharePhotoForm({ photoId }: { photoId: string }) {
                                                     <SelectValue placeholder="Select unit" />
                                                 </SelectTrigger>
                                                 <SelectContent>
-                                                    <SelectItem value="days">Day(s)</SelectItem>
-                                                    <SelectItem value="weeks">Week(s)</SelectItem>
-                                                    <SelectItem value="months">Month(s)</SelectItem>
+                                                    <SelectItem value="days">{dict.sharePhotoDialog.sharePhotoForm.choices.days}</SelectItem>
+                                                    <SelectItem value="weeks">{dict.sharePhotoDialog.sharePhotoForm.choices.weeks}</SelectItem>
+                                                    <SelectItem value="months">{dict.sharePhotoDialog.sharePhotoForm.choices.months}</SelectItem>
                                                 </SelectContent>
                                             </Select>
                                         </FormControl>

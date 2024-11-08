@@ -1,7 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useFieldArray, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { cn } from '@/lib/utils';
 import {
@@ -18,7 +18,6 @@ import { toast } from 'sonner';
 import { User } from '@/lib/define';
 import { useRef, useState } from 'react';
 import { updateUserProfile, uploadImage } from '@/lib/action';
-import { Plus, Trash2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import ReactCrop, {
   Crop,
@@ -62,7 +61,7 @@ function centerAspectCrop(
 export function ProfileForm({ user }: { user: User }) {
   const router = useRouter();
   const { dict } = useLanguage();
-  const { updateUser } = useAuth();
+  const { refreshUser } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
 
   const [isImageChanged, setIsImageChanged] = useState(false);
@@ -193,7 +192,7 @@ export function ProfileForm({ user }: { user: User }) {
 
       const result = await updateUserProfile(data);
       if (result.isSuccess) {
-        updateUser(result.data);
+        await refreshUser();
         toast.success(dict.editProfile.profile.message.success);
         router.push('/edit-profile');
         router.refresh();
@@ -234,7 +233,7 @@ export function ProfileForm({ user }: { user: User }) {
                   <FormLabel className="text-primary">
                     {dict.editProfile.profile.form.image.label}
                   </FormLabel>
-                  <label htmlFor="image">
+                  <label htmlFor="image" className="cursor-pointer">
                     {dict.editProfile.profile.form.image.chooseFile}
                   </label>
                 </div>

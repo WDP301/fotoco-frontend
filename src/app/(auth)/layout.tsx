@@ -26,12 +26,12 @@ export default async function AuthLayout({
   const dict = await getDictionary();
 
   return (
-    <div className="container relative min-h-[100vh] flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+    <div className="authcontainer relative min-h-[100vh] flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-2 lg:px-0">
       <Link
         href="/"
         className={cn(
           buttonVariants({ variant: 'ghost' }),
-          'absolute lg:hidden left-4 top-4'
+          'absolute lg:hidden left-4 top-4 md:left-8 md:top-8'
         )}
       >
         {dict.home}

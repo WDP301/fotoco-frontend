@@ -52,7 +52,7 @@ export default function SharedPhoto({ photo }: { photo: SharedPhoto }) {
         <>
             <div className="relative flex items-center justify-center bg-black w-full h-screen">
                 
-                <div ref={imageContainerRef} className="inline-block items-center justify-center overflow-hidden">
+                <div ref={imageContainerRef} className="flex items-center justify-center overflow-hidden">
                     <div
                         className={cn(
                             dimensions.width > dimensions.height ? 'md:w-full' : 'md:h-[100vh]',

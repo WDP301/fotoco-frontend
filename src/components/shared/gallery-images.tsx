@@ -11,6 +11,7 @@ import {
 import Image from 'next/image';
 import { Photo } from '@/lib/define';
 import Link from 'next/link';
+import SpinLoading from './spin-loading';
 
 interface GalleryProps {
   photos: Photo[];
@@ -73,7 +74,11 @@ const Gallery = ({ photos, currentPhoto }: GalleryProps) => {
           onClick={() => handleClick(index)}
         >
           <Image
-            className={`${index === current ? 'border-primary border-2 rounded-lg' : 'rounded-lg'}`}
+            className={`${
+              index === current
+                ? 'border-primary border-2 rounded-lg'
+                : 'rounded-lg'
+            }`}
             src={photo.url}
             fill
             sizes="100px"
@@ -86,35 +91,37 @@ const Gallery = ({ photos, currentPhoto }: GalleryProps) => {
   );
 
   useEffect(() => {
-    if (!mainApi || !thumbnailApi) {
-      return;
+    if (mainApi && thumbnailApi && initialIndex !== undefined) {
+      const handleTopSelect = () => {
+        const selected = mainApi.selectedScrollSnap();
+        setCurrent(selected);
+        thumbnailApi.scrollTo(selected);
+      };
+
+      const handleBottomSelect = () => {
+        const selected = thumbnailApi.selectedScrollSnap();
+        setCurrent(selected);
+        mainApi.scrollTo(selected);
+      };
+
+      mainApi.on('select', handleTopSelect);
+      thumbnailApi.on('select', handleBottomSelect);
+
+      // Scroll to the initial index when the component mounts
+      mainApi.scrollTo(initialIndex);
+      thumbnailApi.scrollTo(initialIndex);
+      setCurrent(initialIndex);
+
+      return () => {
+        mainApi.off('select', handleTopSelect);
+        thumbnailApi.off('select', handleBottomSelect);
+      };
     }
-
-    const handleTopSelect = () => {
-      const selected = mainApi.selectedScrollSnap();
-      setCurrent(selected);
-      thumbnailApi.scrollTo(selected);
-    };
-
-    const handleBottomSelect = () => {
-      const selected = thumbnailApi.selectedScrollSnap();
-      setCurrent(selected);
-      mainApi.scrollTo(selected);
-    };
-
-    mainApi.on('select', handleTopSelect);
-    thumbnailApi.on('select', handleBottomSelect);
-
-    // Scroll to the initial index when the component mounts
-    mainApi.scrollTo(initialIndex);
-    thumbnailApi.scrollTo(initialIndex);
-    setCurrent(initialIndex);
-
-    return () => {
-      mainApi.off('select', handleTopSelect);
-      thumbnailApi.off('select', handleBottomSelect);
-    };
   }, [mainApi, thumbnailApi, initialIndex]);
+
+  if (!photos || photos.length === 0) {
+    return <SpinLoading />;
+  }
 
   return (
     <div className="w-full">

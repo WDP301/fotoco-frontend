@@ -23,6 +23,7 @@ import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button";
 import { Icons } from '@/components/icons/icons';
 import { Textarea } from "@/components/ui/textarea"
+import { useSocket } from "@/hooks/use-socket";
 
 export default function CreateAlbumForm({
     groupId,
@@ -34,6 +35,7 @@ export default function CreateAlbumForm({
 
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
+    const socket = useSocket();
     const { dict } = useLanguage();
 
 
@@ -53,6 +55,7 @@ export default function CreateAlbumForm({
         }else{
           toast.success(dict.createAlbum.message.success);
           setOpen(false);
+          socket?.reconnect();
           router.refresh();
         }
         setIsLoading(false);

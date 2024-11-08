@@ -19,6 +19,7 @@ import { updateAlbum } from '@/lib/action';
 import { AlbumInfo, AlbumSetting } from '@/lib/define';
 import { getUpdateAlbumSettingSchema } from '@/lib/form-schema';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { revalidateTag } from 'next/cache';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -33,7 +34,6 @@ export default function AlbumSettingForm({
   album: AlbumInfo;
   albumId: string;
 }) {
-  console.log('test');
   const { dict } = useLanguage();
   const [isLoading, setIsLoading] = useState(false);
   const form = useForm<z.infer<ReturnType<typeof getUpdateAlbumSettingSchema>>>(
@@ -42,11 +42,11 @@ export default function AlbumSettingForm({
       defaultValues: {
         setting: {
           allow_invite: albumSetting.setting.allow_invite || false,
-          allow_share_album: albumSetting.setting.allow_share_album || false,
-          allow_share_photo: albumSetting.setting.allow_share_photo || false,
+          // allow_share_album: albumSetting.setting.allow_share_album || false,
+          // allow_share_photo: albumSetting.setting.allow_share_photo || false,
         },
         title: album.title,
-        description: !album.description ? 'No description' : album.description,
+        description: album.description,
       },
     }
   );
@@ -60,10 +60,9 @@ export default function AlbumSettingForm({
     } else {
       form.setValue('setting', {
         allow_invite: result.data.allow_invite || false,
-        allow_share_album: result.data.allow_share_album || false,
-        allow_share_photo: result.data.allow_share_photo || false,
+        // allow_share_album: result.data?.allow_share_album || false,
+        // allow_share_photo: result.data?.allow_share_photo || false,
       });
-
       toast.success(dict.album.setting.general.message.success);
     }
     setIsLoading(false);
@@ -173,7 +172,7 @@ export default function AlbumSettingForm({
               )}
             />
 
-            <FormField
+            {/* <FormField
               name="setting.allow_share_album"
               control={form.control}
               render={({ field }) => (
@@ -197,8 +196,8 @@ export default function AlbumSettingForm({
                   </FormControl>
                 </FormItem>
               )}
-            />
-            <FormField
+            /> */}
+            {/* <FormField
               name="setting.allow_share_photo"
               control={form.control}
               render={({ field }) => (
@@ -222,7 +221,7 @@ export default function AlbumSettingForm({
                   </FormControl>
                 </FormItem>
               )}
-            />
+            /> */}
           </div>
         </div>
         {albumSetting.setting.role === 'OWNER' && (

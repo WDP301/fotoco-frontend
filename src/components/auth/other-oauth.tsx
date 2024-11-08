@@ -51,14 +51,21 @@ const OtherOauth = () => {
               if (searchParams.error) {
                 throw new Error(searchParams.error);
               }
-              const { signature, accessToken, refreshToken } = searchParams;
+              const {
+                signature,
+                accessToken,
+                refreshToken,
+                lang = 'en',
+              } = searchParams;
               if (!signature || !accessToken || !refreshToken) {
                 throw new Error('Invalid data response');
               }
 
-              oauthSuccess(signature, accessToken, refreshToken).then(() => {
-                router.push(callbackUrl);
-              });
+              oauthSuccess(signature, accessToken, refreshToken, lang).then(
+                () => {
+                  router.push(callbackUrl);
+                }
+              );
             } catch (error: any) {
               toast.error(error.message);
             } finally {
@@ -85,6 +92,7 @@ const OtherOauth = () => {
         variant="outline"
         className="flex-1"
         onClick={() => handleAuth('google')}
+        disabled={isConnecting !== ''}
       >
         {isConnecting === 'google' && (
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />

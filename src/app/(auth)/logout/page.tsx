@@ -11,8 +11,11 @@ export default function LogoutPage() {
 
   useEffect(() => {
     logout().then(() => {
+      localStorage.clear();
       socket?.disconnect();
-      router.push('/login'); // redirect to login after logout
+      // TODO: This is a hack to force a full page reload, fix later
+      window.location.href = '/login';
+      // router.push('/login');
     });
   }, [router, socket]);
 

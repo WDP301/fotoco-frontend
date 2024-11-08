@@ -5,9 +5,11 @@ import { Inter as FontSans } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/provider/theme-provider';
 import { LanguageProvider } from '@/components/provider/language-provider';
-import { Toaster } from 'sonner';
 import { SocketIoProvider } from '@/components/provider/socket-io-provider';
 import { AuthProvider } from '@/components/provider/auth-provider';
+import NextTopLoader from 'nextjs-toploader';
+import Toast from '@/components/toast/toast';
+import { cn } from '@/lib/utils';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -29,23 +31,25 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${fontSans.variable} min-h-screen bg-background font-sans antialiased transition-colors duration-1000`}
+        className={cn(
+          'min-h-screen bg-background font-sans antialiased transition-colors duration-1000',
+          fontSans.variable
+        )}
       >
-        <AuthProvider>
-          <SocketIoProvider>
-            <LanguageProvider>
-              <ThemeProvider
-                attribute="class"
-                defaultTheme="system"
-                enableSystem
-                disableTransitionOnChange
-              >
-                {children}
-              </ThemeProvider>
-            </LanguageProvider>
-          </SocketIoProvider>
-        </AuthProvider>
-        <Toaster />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <NextTopLoader color="#7289da" showSpinner={false} />
+          <AuthProvider>
+            <SocketIoProvider>
+              <LanguageProvider>{children}</LanguageProvider>
+            </SocketIoProvider>
+          </AuthProvider>
+          <Toast />
+        </ThemeProvider>
       </body>
     </html>
   );

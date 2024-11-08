@@ -21,6 +21,7 @@ import { useRouter } from 'next/navigation';
 import { cn, interpolateString } from '@/lib/utils';
 import { useLanguage } from '@/components/provider/language-provider';
 import { siteConfig } from '@/config/site';
+import { revalidateTag } from 'next/cache';
 
 interface ProgressBarProps extends React.ComponentPropsWithoutRef<'div'> {
   progress: number;
@@ -320,10 +321,10 @@ export default function PhotoUploadForm({
               {dict.photo.upload.filesToUpload}
             </p>
             <div className="space-y-2 pr-3">
-              {filesToUpload.map((fileUploadProgress) => {
+              {filesToUpload.map((fileUploadProgress, index) => {
                 return (
                   <div
-                    key={fileUploadProgress.File.lastModified}
+                    key={index}
                     className="flex justify-between gap-2 rounded-lg overflow-hidden border border-slate-100 group hover:pr-0 pr-2"
                   >
                     <div className="flex items-center flex-1 p-2">
@@ -372,10 +373,10 @@ export default function PhotoUploadForm({
             {dict.photo.upload.uploadedFiles}
           </p>
           <div className="space-y-2 pr-3">
-            {uploadedFiles.map((file) => {
+            {uploadedFiles.map((file, index) => {
               return (
                 <div
-                  key={file.lastModified}
+                  key={index}
                   className="flex justify-between gap-2 rounded-lg overflow-hidden border border-slate-100 group hover:pr-0 pr-2 hover:border-slate-300 transition-all"
                 >
                   <div className="flex items-center flex-1 p-2">

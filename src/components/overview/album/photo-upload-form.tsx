@@ -21,6 +21,7 @@ import { useRouter } from 'next/navigation';
 import { cn, interpolateString } from '@/lib/utils';
 import { useLanguage } from '@/components/provider/language-provider';
 import { siteConfig } from '@/config/site';
+import { revalidateTag } from 'next/cache';
 
 interface ProgressBarProps extends React.ComponentPropsWithoutRef<'div'> {
   progress: number;

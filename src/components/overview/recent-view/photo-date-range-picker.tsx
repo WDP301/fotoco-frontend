@@ -53,7 +53,7 @@ export default function PhotoDateRangePicker() {
     (async () => {
       const dateFrom = searchParams.get('from')
         ? new Date(searchParams.get('from') as string)
-        : new Date(0);
+        : new Date();
       const dateTo = searchParams.get('to')
         ? new Date(searchParams.get('to') as string)
         : new Date();

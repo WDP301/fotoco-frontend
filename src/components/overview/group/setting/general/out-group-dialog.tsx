@@ -1,5 +1,6 @@
 'use client';
 
+import { Icons } from '@/components/icons/icons';
 import { useLanguage } from '@/components/provider/language-provider';
 // import { useSocket } from '@/components/socket-io-provider';
 import { Button } from '@/components/ui/button';
@@ -85,6 +86,9 @@ export default function OutGroupDialog({
             variant="destructive"
             onClick={handleOutGroup}
           >
+            {isLoading && (
+              <Icons.spinner className=" mr-2 h-4 w-4 animate-spin" />
+            )}
             {dict.outGroup.buttonConfirm}
           </Button>
         </DialogFooter>

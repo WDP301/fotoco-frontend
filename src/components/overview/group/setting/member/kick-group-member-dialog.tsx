@@ -60,12 +60,6 @@ export function KickGroupMemberDialog({
   };
   return (
     <>
-      {/* {result?.error && (
-                <Alert variant="destructive">
-                    <AlertTitle>Error</AlertTitle>
-                    <AlertDescription>{result.error}</AlertDescription>
-                </Alert>
-            )} */}
       <Dialog>
         <DialogTrigger asChild>
           <div className=" w-full flex justify-between relative select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 cursor-pointer hover:bg-accent hover:text-accent-foreground">

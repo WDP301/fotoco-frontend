@@ -17,6 +17,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useSocket } from '@/hooks/use-socket';
+import { Icons } from '@/components/icons/icons';
 
 export default function OutAlbumDialog({
   albumId,
@@ -85,6 +86,9 @@ export default function OutAlbumDialog({
             variant="destructive"
             onClick={handleOutAlbum}
           >
+            {isLoading && (
+              <Icons.spinner className=" mr-2 h-4 w-4 animate-spin" />
+            )}
             {dict.outAlbum.buttonConfirm}
           </Button>
         </DialogFooter>

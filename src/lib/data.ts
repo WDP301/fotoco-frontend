@@ -258,7 +258,7 @@ export const getAlbumInfo = async (albumId: string) => {
       {
         revalidate: 3600,
         // TODO: Need to use tag `albums-${groupId}` instead of albums and change revalidateTag(`albums`) in updateGroup function to revalidateTag(`albums-${groupId}`)
-        tags: [`album-${albumId}-${signature}`, `albums`],
+        tags: [`album-${albumId}-${signature}`, `albums`, `album-${albumId}`],
       }
     )
       .then((res) => res.json())

@@ -19,6 +19,7 @@ import { updateAlbum } from '@/lib/action';
 import { AlbumInfo, AlbumSetting } from '@/lib/define';
 import { getUpdateAlbumSettingSchema } from '@/lib/form-schema';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { revalidateTag } from 'next/cache';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -49,7 +50,6 @@ export default function AlbumSettingForm({
       },
     }
   );
-
   const handleUpdateAlbum = async (
     values: z.infer<ReturnType<typeof getUpdateAlbumSettingSchema>>
   ) => {
@@ -63,7 +63,6 @@ export default function AlbumSettingForm({
         // allow_share_album: result.data?.allow_share_album || false,
         // allow_share_photo: result.data?.allow_share_photo || false,
       });
-
       toast.success(dict.album.setting.general.message.success);
     }
     setIsLoading(false);

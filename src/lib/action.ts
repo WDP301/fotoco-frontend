@@ -580,6 +580,9 @@ export const updateGroup = async (
     })
     .then((res) => {
       revalidateTag(`group-${groupId}`);
+      revalidateTag(`group-${groupId}-setting`);
+      // Update group setting need revalidate data of all albums in group. Read TODO in getAlbumInfo to change later
+      revalidateTag(`albums`);
       return {
         isSuccess: true,
         error: '',

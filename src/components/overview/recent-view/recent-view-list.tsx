@@ -1,9 +1,7 @@
 'use client';
 
 import { useLanguage } from '@/components/provider/language-provider';
-import { Button } from '@/components/ui/button';
 import { RecentPhoto } from '@/lib/define';
-import Link from 'next/link';
 import { RecentViewCard } from '../home/user-home/recent-view/recent-view-card';
 import GroupListLoading from '../group/loading/group-list-loading';
 

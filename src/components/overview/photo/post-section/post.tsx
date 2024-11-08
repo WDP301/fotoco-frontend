@@ -67,13 +67,10 @@ export default function Post({
                   )}
 
                   {user?._id !== photo?.photo.owner._id && (
-                    <>
-                      <Separator className="my-1" />
-                      <div className=" w-full flex justify-between relative select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 cursor-pointer hover:bg-accent hover:text-accent-foreground">
-                        <div>Report</div>
-                        <Flag className="w-5 h-5" />
-                      </div>
-                    </>
+                    <div className=" w-full flex justify-between relative select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 cursor-pointer hover:bg-accent hover:text-accent-foreground">
+                      <div>Report</div>
+                      <Flag className="w-5 h-5" />
+                    </div>
                   )}
                 </div>
               </div>
@@ -97,10 +94,7 @@ export default function Post({
       )}
       <div className="flex flex-col justify-between py-3 w-1/2">
         <div className="flex items-center w-full">
-          <ReactSection
-            photo={photo}
-            onCommentIconClick={onCommentIconClick}
-          />
+          <ReactSection photo={photo} onCommentIconClick={onCommentIconClick} />
           {photo?.allowSharePhoto && (
             <div className="mr-4">
               <SharePhotoDialog photoId={photo?.photo._id} />

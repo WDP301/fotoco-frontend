@@ -26,12 +26,16 @@ export default function PhotoCarousel({
 
   const handleFullscreen = () => {
     if (imageContainerRef.current) {
-        if (document.fullscreenElement) {
-            document.exitFullscreen();
-        } else {
-            imageContainerRef.current.requestFullscreen();
-            imageContainerRef.current.classList.add('flex', 'items-center', 'justify-center');
-        }
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else {
+        imageContainerRef.current.requestFullscreen();
+        imageContainerRef.current.classList.add(
+          'flex',
+          'items-center',
+          'justify-center'
+        );
+      }
     }
   };
 
@@ -45,7 +49,10 @@ export default function PhotoCarousel({
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) {
+      if (
+        event.target instanceof HTMLInputElement ||
+        event.target instanceof HTMLTextAreaElement
+      ) {
         return;
       }
       if (event.key === 'Escape') {
@@ -72,7 +79,10 @@ export default function PhotoCarousel({
 
   return (
     <div className="relative flex items-center justify-center bg-black w-full h-screen group">
-      <div ref={imageContainerRef} className="flex items-center justify-center overflow-hidden">
+      <div
+        ref={imageContainerRef}
+        className="flex items-center justify-center overflow-hidden"
+      >
         <div
           className={cn(
             dimensions.width > dimensions.height ? 'md:w-full' : 'md:h-[100vh]',
@@ -81,7 +91,7 @@ export default function PhotoCarousel({
         >
           <Image
             src={photo?.photo.url || '/background/default-vertical.jpg'}
-            width= {dimensions.width}
+            width={dimensions.width}
             height={dimensions.height}
             alt={photo?.photo.title || 'Photo'}
             className="max-h-screen max-w-full object-contain"
@@ -91,7 +101,7 @@ export default function PhotoCarousel({
       </div>
       {photo?.prevPhoto && (
         <Link href={`/photos/${photo?.prevPhoto}?${queryString}`}>
-          <button className="text-white absolute left-2 opacity-0  hover: group-hover:opacity-100 transition-opacity rounded-full hover:bg-gray-800 ">
+          <button className="text-white absolute left-2 opacity-0  group-hover:opacity-100 transition-opacity rounded-full hover:bg-gray-800">
             <ChevronLeft className="h-10 w-10" />
           </button>
         </Link>

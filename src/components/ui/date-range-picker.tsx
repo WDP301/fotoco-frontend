@@ -20,9 +20,10 @@ import {
   ChevronDownIcon,
   CheckIcon,
 } from '@radix-ui/react-icons';
-import { cn } from '@/lib/utils';
+import { cn, createUrl } from '@/lib/utils';
 import { useLanguage } from '../provider/language-provider';
 import { vi, enUS } from 'date-fns/locale';
+import { useRouter } from 'next/navigation';
 
 type Matcher =
   | boolean
@@ -121,6 +122,7 @@ export const DateRangePicker: FC<DateRangePickerProps> & {
   showCompare = true,
   disabled = undefined,
 }): JSX.Element => {
+  const router = useRouter();
   const { dict } = useLanguage();
   const locale = dict.lang;
   // Define presets
@@ -592,6 +594,13 @@ export const DateRangePicker: FC<DateRangePickerProps> & {
           </Button>
           <Button
             onClick={() => {
+              const searchParams = new URLSearchParams(location.search);
+              const pathName = location.pathname;
+              searchParams.delete('page');
+              searchParams.delete('pageSize');
+              searchParams.set('from', range.from.toISOString());
+              searchParams.set('to', range.to?.toISOString() ?? '');
+              router.push(createUrl(pathName, searchParams), { scroll: false });
               setIsOpen(false);
               if (
                 !areRangesEqual(range, openedRangeRef.current) ||

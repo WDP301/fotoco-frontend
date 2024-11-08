@@ -18,7 +18,8 @@ export default function RecentViewList() {
   useEffect(() => {
     (async () => {
       setLoading(true);
-      const photosViewHistory = getPhotoViewHistory().slice(0, 10);
+      const { photos } = getPhotoViewHistory();
+      const photosViewHistory = photos.slice(0, 10);
       const result = await getPhotosByPhotosList(photosViewHistory);
 
       setPhotos(result);

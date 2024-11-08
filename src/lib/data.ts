@@ -506,17 +506,30 @@ export const getPhotosByPhotosList = async (
     const queryString = objectToQueryString({
       photosId: photos.map((p) => p.photoId).join(','),
     });
-    const response = await customFetch(`/photos/list-by-ids?${queryString}`, {
-      method: 'GET',
-    })
+    const response = await customFetch(
+      `/photos/list-by-ids?${queryString}`,
+      {
+        method: 'GET',
+      },
+      {
+        revalidate: 3600,
+      }
+    )
       .then((res) => res.json())
       .catch(() => null);
     const photosList = response.photos as RecentPhoto[];
 
-    return photosList.map((photo) => {
-      const viewedAt = photos.find((p) => p.photoId === photo._id)?.viewedAt;
-      return { ...photo, viewedAt } as RecentPhoto;
-    });
+    return photosList
+      .map((photo) => {
+        const viewedAt = photos.find((p) => p.photoId === photo._id)?.viewedAt;
+        return { ...photo, viewedAt } as RecentPhoto;
+      })
+      .sort((a, b) => {
+        return (
+          new Date(b.viewedAt ?? 0).getTime() -
+          new Date(a.viewedAt ?? 0).getTime()
+        );
+      });
   } catch (error) {
     return [] as RecentPhoto[];
   }

@@ -287,7 +287,8 @@
     "changeLanguage": "Thay đổi ngôn ngữ",
     "changeTheme": "Thay đổi chủ đề",
     "saveChanges": "Lưu thay đổi",
-    "delete": "Xóa"
+    "delete": "Xóa",
+    "logoutAll": "Đăng xuất tất cả"
   },
   "joinGroup": {
     "title": "Tham gia nhóm",
@@ -699,7 +700,15 @@
     },
     "security": {
       "title": "Bảo mật",
-      "description": "Quản lý mật khẩu và cài đặt bảo mật khác của tài khoản của bạn."
+      "description": "Quản lý mật khẩu và cài đặt bảo mật khác của tài khoản của bạn.",
+      "logOutAll": {
+        "title": "Đăng xuất khỏi tất cả thiết bị",
+        "description": "Nếu bạn nghĩ tài khoản của mình đã bị xâm phạm, bạn có thể đăng xuất khỏi tất cả các thiết bị. Thao tác này sẽ đăng xuất bạn khỏi tất cả các thiết bị và bạn sẽ cần phải đăng nhập lại",
+        "dialog": {
+          "title": "Đăng xuất tất cả",
+          "description": "Tôi hiểu rằng tôi sẽ bị đăng xuất khỏi tất cả các thiết bị"
+        }
+      }
     },
     "appearance": {
       "title": "Giao diện",

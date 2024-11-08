@@ -60,7 +60,7 @@ export function LanguageForm({ lang }: { lang: string }) {
           name="language"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>
+              <FormLabel className="text-primary">
                 {dict.editProfile.appearance.language.title}
               </FormLabel>
               <Select

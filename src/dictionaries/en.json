@@ -288,7 +288,8 @@
     "changeLanguage": "Change Language",
     "changeTheme": "Change Theme",
     "saveChanges": "Save Changes",
-    "delete": "Delete"
+    "delete": "Delete",
+    "logoutAll": "Logout All"
   },
   "joinGroup": {
     "title": "Join Group",
@@ -700,7 +701,15 @@
     },
     "security": {
       "title": "Security",
-      "description": "Update your password and secure your account."
+      "description": "Update your password and secure your account.",
+      "logOutAll": {
+        "title": "Logout from all devices",
+        "description": "If you think your account has been compromised, you can log out from all devices. This will log you out from all devices and you will need to log in again",
+        "dialog": {
+          "title": "Logout all",
+          "description": "I understand that I will be logged out from all devices"
+        }
+      }
     },
     "appearance": {
       "title": "Appearance",

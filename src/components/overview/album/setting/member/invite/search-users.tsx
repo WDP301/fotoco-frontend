@@ -71,7 +71,7 @@ export function SearchUsers({
     }, 500);
 
     return () => clearTimeout(delayDebounceFn);
-  }, [inputValue]);
+  }, [inputValue, groupId]);
 
   return (
     <div>

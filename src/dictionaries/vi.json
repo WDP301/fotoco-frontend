@@ -784,7 +784,13 @@
         "days": "Ngày",
         "weeks": "Tuần",
         "months": "Tháng"
-      }
+      },
+      "rules":{
+        "required": "Vui lòng điền giá trị thời gian.",
+        "min": "Giá trị thấp nhất là 1.",
+        "max": "Giá trị cao nhất là 100."
+      },
+      "error": "Bạn không thể chia sẻ ảnh này vì bạn không có quyền thực hiện thao tác này. Vui lòng kiểm tra lại quyền truy cập của bạn hoặc liên hệ với chủ nhóm để được hỗ trợ."
     }
   },
   "sharePhotoDetails": {
@@ -822,7 +828,13 @@
         "days": "Ngày",
         "weeks": "Tuần",
         "months": "Tháng"
-      }
+      },
+      "rules":{
+        "required": "Vui lòng điền giá trị thời gian.",
+        "min": "Giá trị thấp nhất là 1.",
+        "max": "Giá trị cao nhất là 100."
+      },
+      "error": "Bạn không thể chia sẻ album này vì bạn không có quyền thực hiện thao tác này. Vui lòng kiểm tra lại quyền truy cập của bạn hoặc liên hệ với chủ nhóm để được hỗ trợ."
     }
   },
   "userNav": {

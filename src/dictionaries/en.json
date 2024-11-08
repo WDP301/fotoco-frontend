@@ -785,7 +785,13 @@
         "days": "Day(s)",
         "weeks": "Week(s)",
         "months": "Month(s)"
-      }
+      },
+      "rules":{
+        "required": "Time value is required.",
+        "min": "Minimum value is 1.",
+        "max": "Maximum value is 100."
+      },
+      "error": "You cannot share this photo because you do not have permission to perform this action. Please check your access permissions or contact the group owner for assistance."
     }
   },
   "sharePhotoDetails": {
@@ -823,7 +829,13 @@
         "days": "Day(s)",
         "weeks": "Week(s)",
         "months": "Month(s)"
-      }
+      },
+      "rules":{
+        "required": "Time value is required.",
+        "min": "Minimum value is 1.",
+        "max": "Maximum value is 100."
+      },
+      "error": "You cannot share this album because you do not have permission to perform this action. Please check your access permissions or contact the group owner for assistance."
     }
   },
   "userNav": {

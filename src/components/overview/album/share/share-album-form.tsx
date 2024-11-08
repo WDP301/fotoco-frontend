@@ -17,6 +17,7 @@ import { Label } from "@/components/ui/label"
 import { Copy } from "lucide-react";
 import { useState } from "react";
 import { siteConfig } from '@/config/site';
+import { toast } from "sonner";
 
 export function ShareAlbumForm({albumId}: {albumId: string}) {
     
@@ -40,6 +41,8 @@ export function ShareAlbumForm({albumId}: {albumId: string}) {
         setLoading(false);
         if (response.isSuccess) {
             setShareLink(`${siteConfig.url}/shared/album/${response.data.shareAlbumToken}`);
+        }else {
+          toast.error(dict.shareAlbumDialog.shareAlbumForm.error)
         }
     };
 
@@ -100,8 +103,9 @@ export function ShareAlbumForm({albumId}: {albumId: string}) {
                                 control={form.control}
                                 name="timeValue"
                                 rules={{ 
-                                    required: 'Time value is required.',
-                                    min: { value: 1, message: 'Minimum value is 1.' }
+                                    required: { value: true, message: dict.shareAlbumDialog.shareAlbumForm.rules.required },
+                                    min: { value: 1, message: dict.shareAlbumDialog.shareAlbumForm.rules.min },
+                                    max: { value: 100, message: dict.shareAlbumDialog.shareAlbumForm.rules.max },
                                 }}
                                 render={({ field }) => (
                                     <FormItem className="flex items-center space-x-2">
@@ -109,8 +113,6 @@ export function ShareAlbumForm({albumId}: {albumId: string}) {
                                             <Input
                                                 {...field}
                                                 type="number"
-                                                max={100}
-                                                min={1}
                                                 className="w-16"
                                             />
                                         </FormControl>

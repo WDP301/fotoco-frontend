@@ -214,9 +214,16 @@ export const getPublicAlbumInfo = async (albumId: string) => {
 
 export const getGroupSetting = async (groupId: string) => {
   try {
-    const response = await customFetch(`/groups/${groupId}/setting`, {
-      method: 'GET',
-    })
+    const response = await customFetch(
+      `/groups/${groupId}/setting`,
+      {
+        method: 'GET',
+      },
+      {
+        revalidate: 3600,
+        tags: [`group-${groupId}-setting`],
+      }
+    )
       .then((res) => res.json())
       .catch(() => null);
     return response as GroupSetting;
@@ -250,7 +257,8 @@ export const getAlbumInfo = async (albumId: string) => {
       },
       {
         revalidate: 3600,
-        tags: [`album-${albumId}-${signature}`, `album-${albumId}`],
+        // TODO: Need to use tag `albums-${groupId}` instead of albums and change revalidateTag(`albums`) in updateGroup function to revalidateTag(`albums-${groupId}`)
+        tags: [`album-${albumId}-${signature}`, `albums`],
       }
     )
       .then((res) => res.json())

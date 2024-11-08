@@ -96,7 +96,7 @@ export default function Post({
         <div className="flex items-center w-full">
           <ReactSection photo={photo} onCommentIconClick={onCommentIconClick} />
           {photo?.allowSharePhoto && (
-            <div className="mr-4">
+            <div className="mr-4 cursor-pointer">
               <SharePhotoDialog photoId={photo?.photo._id} />
             </div>
           )}

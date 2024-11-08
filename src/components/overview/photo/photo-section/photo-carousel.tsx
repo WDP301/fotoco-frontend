@@ -119,7 +119,7 @@ export default function PhotoCarousel({
         searchParams={searchParams}
       />
       <Link href={`/albums/${photo?.photo.belonging}?${queryString}`}>
-        <button className="absolute top-2 left-2 p-2 rounded-full hover:bg-gray-800">
+        <button className="text-white absolute top-2 left-2 p-2 rounded-full hover:bg-gray-800">
           <XIcon className="h-7 w-7" />
         </button>
       </Link>

@@ -58,15 +58,13 @@ export default function Post({
             <PopoverContent className="w-52 m-0 p-1">
               <div className="grid ">
                 <div className="grid grid-cols-1 ">
-                  {user?._id === photo?.photo.owner._id && (
+                  {user?._id === photo?.photo.owner._id ? (
                     <>
                       <EditPhotoDialog photo={photo.photo} />
                       <Separator className="my-1" />
                       <DeletePhotoDialog photo={photo.photo} />
                     </>
-                  )}
-
-                  {user?._id !== photo?.photo.owner._id && (
+                  ) : (
                     <div className=" w-full flex justify-between relative select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 cursor-pointer hover:bg-accent hover:text-accent-foreground">
                       <div>Report</div>
                       <Flag className="w-5 h-5" />

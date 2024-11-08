@@ -98,7 +98,8 @@ export const active = async (token: string, active: string) => {
 const handleStoreUserCredentials = (
   signature: string,
   accessToken: string,
-  refreshToken: string
+  refreshToken: string,
+  lang: string = 'en'
 ): void => {
   const payload = base64Decode(accessToken.split('.')[1]);
   const cookie = cookies();
@@ -112,17 +113,19 @@ const handleStoreUserCredentials = (
     expires: expiryDate,
     httpOnly: false,
   });
+  cookie.set('lang', lang);
 };
 
 export const oauthSuccess = (
   signature: string,
   accessToken: string,
-  refreshToken: string
+  refreshToken: string,
+  lang: string = 'en'
 ): Promise<void> => {
   // Fix change to promise to handle the case router push before the cookie is set
   return new Promise((resolve) => {
     setTimeout(() => {
-      handleStoreUserCredentials(signature, accessToken, refreshToken);
+      handleStoreUserCredentials(signature, accessToken, refreshToken, lang);
       resolve();
     }, 0);
   });
@@ -142,9 +145,9 @@ export const login = async (
         signature,
       })
       .then((res) => {
-        const { accessToken, refreshToken } = res.data;
+        const { accessToken, refreshToken, lang } = res.data;
 
-        handleStoreUserCredentials(signature, accessToken, refreshToken);
+        handleStoreUserCredentials(signature, accessToken, refreshToken, lang);
 
         return {
           isSuccess: true,

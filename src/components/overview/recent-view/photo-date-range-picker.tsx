@@ -54,6 +54,7 @@ export default function PhotoDateRangePicker() {
       const dateFrom = searchParams.get('from')
         ? new Date(searchParams.get('from') as string)
         : new Date();
+      dateFrom.setHours(0, 0, 0, 0);
       const dateTo = searchParams.get('to')
         ? new Date(searchParams.get('to') as string)
         : new Date();

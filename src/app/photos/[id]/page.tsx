@@ -1,11 +1,11 @@
-import PhotoNotFound from "@/components/overview/photo/photo-not-found";
-import PhotoCarousel from "@/components/overview/photo/photo-section/photo-carousel"
-import PostSection from "@/components/overview/photo/post-section/post-section"
-import { siteConfig } from "@/config/site";
-import { getPhotoDetails } from "@/lib/data";
-import { SearchPhotoParams } from "@/lib/define";
-import { getDictionary } from "@/lib/dictionaries";
-import { Metadata } from "next";
+import PhotoNotFound from '@/components/overview/photo/photo-not-found';
+import PhotoCarousel from '@/components/overview/photo/photo-section/photo-carousel';
+import PostSection from '@/components/overview/photo/post-section/post-section';
+import { siteConfig } from '@/config/site';
+import { getPhotoDetails } from '@/lib/data';
+import { SearchPhotoParams } from '@/lib/define';
+import { getDictionary } from '@/lib/dictionaries';
+import { Metadata } from 'next';
 
 type Pros = {
   params: { id: string };
@@ -52,12 +52,11 @@ export default async function PhotoDetailsPage({
           <PhotoCarousel photo={photo} searchParams={searchParams} />
         </div>
       </div>
-    
       <div className="w-full lg:w-1/4 flex flex-col p-4">
         <div className="grid gap-1.5">
           <PostSection photo={photo} searchParams={searchParams} />
         </div>
       </div>
     </div>
-  )
+  );
 }

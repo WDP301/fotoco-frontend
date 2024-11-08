@@ -1,16 +1,17 @@
+'use client';
+
 import LogoSite from '@/components/overview/logo-site';
 import { ModeToggle } from './mode-toggle';
 import { MainNav } from './main-nav';
 import ButtonLogin from './button-login';
-import { User } from '@/lib/define';
 import { UserNav } from './user-nav';
 import { SideBarMobile } from './side-bar-mobile/side-bar-mobile';
 import HeaderActionPopover from './action/header-action-popover';
-import { getUser } from '@/lib/data';
 import Notification from './notification';
+import { useAuth } from '@/components/provider/auth-provider';
 
-export default async function HeaderSite() {
-  const user = (await getUser()) as User;
+export default function HeaderSite() {
+  const { user } = useAuth();
 
   return (
     <header className="md:px-12 sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -35,7 +36,7 @@ export default async function HeaderSite() {
           </div>
         </div>
         <div className="ml-auto block sm:hidden">
-          <SideBarMobile user={user} />
+          {user && <SideBarMobile user={user} />}
         </div>
       </div>
     </header>

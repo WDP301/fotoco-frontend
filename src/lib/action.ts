@@ -686,7 +686,9 @@ export const updateUserProfile = async (
         bio,
       })
       .then((res) => {
-        revalidateTag('user');
+        const cookieStore = cookies();
+        const signature = cookieStore.get('signature');
+        revalidateTag(`user-${signature}`);
         return {
           isSuccess: true,
           error: '',

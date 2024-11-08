@@ -23,6 +23,7 @@ import { GroupInfo, GroupMember, User } from '@/lib/define';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { useLanguage } from '@/components/provider/language-provider';
+import { useSocket } from '@/hooks/use-socket';
 export function KickGroupMemberDialog({
   groupId,
   userId,
@@ -38,6 +39,7 @@ export function KickGroupMemberDialog({
     { error?: string; errorType?: string; isSuccess?: boolean } | undefined
   >(undefined);
   const { dict } = useLanguage();
+  const socket = useSocket();
 
   const handleCheckboxChange = (event: any) => {
     setCheckbox(!checkbox);
@@ -49,9 +51,7 @@ export function KickGroupMemberDialog({
     if (!result?.isSuccess) {
       setResult(result);
     } else {
-      // if (socket && result?.data?.receivers) {
-      //     socket.emit('sendNotification', result?.data);
-      // }
+      socket?.reconnect();
       toast.success(dict.kickMember.message.success);
       setResult({ isSuccess: true });
       router.refresh();

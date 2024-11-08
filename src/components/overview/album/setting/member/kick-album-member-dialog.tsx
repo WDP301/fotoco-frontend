@@ -22,6 +22,7 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { useLanguage } from '@/components/provider/language-provider';
 import { outAlbum } from '@/lib/action';
+import { useSocket } from '@/hooks/use-socket';
 export function KickAlbumMemberDialog({
   albumId,
   userId,
@@ -37,6 +38,7 @@ export function KickAlbumMemberDialog({
     { error?: string; errorType?: string; isSuccess?: boolean } | undefined
   >(undefined);
   const { dict } = useLanguage();
+  const socket = useSocket();
 
   const handleCheckboxChange = (event: any) => {
     setCheckbox(!checkbox);
@@ -48,6 +50,7 @@ export function KickAlbumMemberDialog({
     if (!result?.isSuccess) {
       setResult(result);
     } else {
+      socket?.reconnect();
       toast.success(dict.kickMember.message.success);
       setResult({ isSuccess: true });
       router.refresh();

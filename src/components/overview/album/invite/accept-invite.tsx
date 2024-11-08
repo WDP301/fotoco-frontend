@@ -1,7 +1,7 @@
 'use client';
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { acceptInviteToAlbum, acceptInviteToGroup } from '@/lib/action';
+import { acceptInviteToAlbum } from '@/lib/action';
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
 import { useState } from 'react';
 import { useLanguage } from '@/components/provider/language-provider';

@@ -1,17 +1,18 @@
 import { CircleAlert, CircleCheck, Info, TriangleAlert } from 'lucide-react';
-import { useTheme } from 'next-themes';
+// import { useTheme } from 'next-themes';
 import { Toaster } from 'sonner';
 import { Icons } from '../icons/icons';
 
 type ToasterProps = React.ComponentProps<typeof Toaster>;
 
 export default function Toast() {
-  const { theme = 'system' } = useTheme();
+  // const { theme = 'system' } = useTheme();
   return (
     <Toaster
       position="top-center"
       richColors
-      theme={theme as ToasterProps['theme']}
+      // theme={theme as ToasterProps['theme']}
+      theme="light"
       toastOptions={{
         closeButton: true,
       }}

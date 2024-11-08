@@ -260,7 +260,6 @@ export default function PhotoUploadForm({
       try {
         await Promise.all(fileUploadBatch);
         toast.success(dict.photo.upload.success);
-        revalidateTag(`photos-${albumId}`);
         setOpen(false);
         router.refresh();
       } catch (error: any) {

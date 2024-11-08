@@ -399,11 +399,12 @@ export const getPhotosByAlbumId = async (
       `/albums/${albumId}/photos?${queryString}`,
       {
         method: 'GET',
-      },
-      {
-        revalidate: 3600,
-        tags: [`photos-${albumId}-${signature}`, `photos-${albumId}`],
       }
+      // TODO: Need to revalidate tag `photos-${albumId}` after upload photos then uncomment this
+      // {
+      //   revalidate: 3600,
+      //   tags: [`photos-${albumId}-${signature}`, `photos-${albumId}`],
+      // }
     )
       .then((res) => res.json())
       .catch(() => null);

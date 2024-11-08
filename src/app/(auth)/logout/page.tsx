@@ -13,7 +13,9 @@ export default function LogoutPage() {
     logout().then(() => {
       localStorage.clear();
       socket?.disconnect();
-      router.push('/login');
+      // TODO: This is a hack to force a full page reload, fix later
+      window.location.href = '/login';
+      // router.push('/login');
     });
   }, [router, socket]);
 

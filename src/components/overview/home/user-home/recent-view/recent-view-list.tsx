@@ -19,7 +19,7 @@ export default function RecentViewList() {
     (async () => {
       setLoading(true);
       const { photos } = getPhotoViewHistory();
-      const photosViewHistory = photos.slice(0, 10);
+      const photosViewHistory = photos.slice(0, 5);
       const result = await getPhotosByPhotosList(photosViewHistory);
 
       setPhotos(result);

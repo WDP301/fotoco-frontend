@@ -94,10 +94,18 @@ const pageMetaDefault = {
 
 export const getAllGroup = async (searchParams: SearchGroupParams) => {
   const queryString = objectToQueryString(searchParams);
-  const response = await customFetch(`/groups?${queryString}`, {
-    method: 'GET',
-    // next: { revalidate: 60 },
-  })
+  const cookieStore = cookies();
+  const signature = cookieStore.get('signature');
+  const response = await customFetch(
+    `/groups?${queryString}`,
+    {
+      method: 'GET',
+    },
+    {
+      revalidate: 3600,
+      tags: [`groups-${signature}`, 'groups'],
+    }
+  )
     .then((res) => res.json())
     .catch(() => null);
 
@@ -140,10 +148,18 @@ export const getRecentViewPhotos = async (
 
 export const getGroupInfo = async (groupId: string) => {
   try {
-    const response = await customFetch(`/groups/${groupId}`, {
-      method: 'GET',
-      // next: { revalidate: 120 },
-    })
+    const cookieStore = cookies();
+    const signature = cookieStore.get('signature');
+    const response = await customFetch(
+      `/groups/${groupId}`,
+      {
+        method: 'GET',
+      },
+      {
+        revalidate: 3600,
+        tags: [`group-${groupId}-${signature}`, `group-${groupId}`],
+      }
+    )
       .then((res) => res.json())
       .catch(() => null);
     return response as GroupInfo;
@@ -154,10 +170,18 @@ export const getGroupInfo = async (groupId: string) => {
 
 export const getPublicGroupInfo = async (groupId: string) => {
   try {
-    const response = await customFetch(`/public/${groupId}`, {
-      method: 'GET',
-      next: { revalidate: 3600 },
-    })
+    const cookieStore = cookies();
+    const signature = cookieStore.get('signature');
+    const response = await customFetch(
+      `/public/${groupId}`,
+      {
+        method: 'GET',
+      },
+      {
+        revalidate: 3600,
+        tags: [`group-${groupId}-${signature}`, `group-${groupId}`],
+      }
+    )
       .then((res) => res.json())
       .catch(() => null);
     return response as PublicGroupInfo;
@@ -168,10 +192,18 @@ export const getPublicGroupInfo = async (groupId: string) => {
 
 export const getPublicAlbumInfo = async (albumId: string) => {
   try {
-    const response = await customFetch(`/public/albums/${albumId}`, {
-      method: 'GET',
-      next: { revalidate: 3600 },
-    })
+    const cookieStore = cookies();
+    const signature = cookieStore.get('signature');
+    const response = await customFetch(
+      `/public/albums/${albumId}`,
+      {
+        method: 'GET',
+      },
+      {
+        revalidate: 3600,
+        tags: [`album-${albumId}-${signature}`, `album-${albumId}`],
+      }
+    )
       .then((res) => res.json())
       .catch(() => null);
     return response as PublicAlbumInfo;
@@ -184,7 +216,6 @@ export const getGroupSetting = async (groupId: string) => {
   try {
     const response = await customFetch(`/groups/${groupId}/setting`, {
       method: 'GET',
-      // next: { revalidate: 120 },
     })
       .then((res) => res.json())
       .catch(() => null);
@@ -210,10 +241,18 @@ export const getAlbumSetting = async (albumId: string) => {
 
 export const getAlbumInfo = async (albumId: string) => {
   try {
-    const response = await customFetch(`/albums/${albumId}`, {
-      method: 'GET',
-      // next: { revalidate: 120 },
-    })
+    const cookieStore = cookies();
+    const signature = cookieStore.get('signature');
+    const response = await customFetch(
+      `/albums/${albumId}`,
+      {
+        method: 'GET',
+      },
+      {
+        revalidate: 3600,
+        tags: [`album-${albumId}-${signature}`, `album-${albumId}`],
+      }
+    )
       .then((res) => res.json())
       .catch(() => null);
     return response as AlbumInfo;
@@ -228,11 +267,19 @@ export const getGroupMembers = async (
 ) => {
   try {
     const queryString = objectToQueryString(searchParams);
+    const cookieStore = cookies();
+    const signature = cookieStore.get('signature');
     const response = await customFetch(
       `/groups/${groupId}/members?${queryString}`,
       {
         method: 'GET',
-        // next: { revalidate: 3600 },
+      },
+      {
+        revalidate: 3600,
+        tags: [
+          `group-${groupId}-members-${signature}`,
+          `group-${groupId}-members`,
+        ],
       }
     )
       .then((res) => res.json())
@@ -263,11 +310,19 @@ export const getAlbumMembers = async (
 ) => {
   try {
     const queryString = objectToQueryString(searchParams);
+    const cookieStore = cookies();
+    const signature = cookieStore.get('signature');
     const response = await customFetch(
       `/albums/${albumId}/members?${queryString}`,
       {
         method: 'GET',
-        // next: { revalidate: 3600 },
+      },
+      {
+        revalidate: 3600,
+        tags: [
+          `album-${albumId}-members-${signature}`,
+          `album-${albumId}-members`,
+        ],
       }
     )
       .then((res) => res.json())
@@ -298,11 +353,16 @@ export const getAlbumsByGroupId = async (
 ) => {
   try {
     const queryString = objectToQueryString(searchParams);
+    const cookieStore = cookies();
+    const signature = cookieStore.get('signature');
     const response = await customFetch(
       `/groups/${groupId}/albums?${queryString}`,
       {
         method: 'GET',
-        // next: { revalidate: 3600 },
+      },
+      {
+        revalidate: 3600,
+        tags: [`albums-${groupId}-${signature}`, `albums-${groupId}`],
       }
     )
       .then((res) => res.json())
@@ -333,11 +393,16 @@ export const getPhotosByAlbumId = async (
 ) => {
   try {
     const queryString = objectToQueryString(searchParams);
+    const cookieStore = cookies();
+    const signature = cookieStore.get('signature');
     const response = await customFetch(
       `/albums/${albumId}/photos?${queryString}`,
       {
         method: 'GET',
-        // next: { revalidate: 3600 },
+      },
+      {
+        revalidate: 3600,
+        tags: [`photos-${albumId}-${signature}`, `photos-${albumId}`],
       }
     )
       .then((res) => res.json())
@@ -388,9 +453,18 @@ export const getPhotoDetails = async (
 ) => {
   try {
     const queryString = objectToQueryString(SearchPhotoParams);
-    const response = await customFetch(`/photos/${photoId}?${queryString}`, {
-      method: 'GET',
-    })
+    const cookieStore = cookies();
+    const signature = cookieStore.get('signature');
+    const response = await customFetch(
+      `/photos/${photoId}?${queryString}`,
+      {
+        method: 'GET',
+      },
+      {
+        revalidate: 3600,
+        tags: [`photo-${photoId}-${signature}`, `photo-${photoId}`],
+      }
+    )
       .then((res) => res.json())
       .catch((error) => null);
     return response as PhotoResponse;
@@ -401,9 +475,18 @@ export const getPhotoDetails = async (
 
 export const getCommentsByPhotoId = async (photoId: string) => {
   try {
-    const response = await customFetch(`/photos/${photoId}/comments`, {
-      method: 'GET',
-    })
+    const cookieStore = cookies();
+    const signature = cookieStore.get('signature');
+    const response = await customFetch(
+      `/photos/${photoId}/comments`,
+      {
+        method: 'GET',
+      },
+      {
+        revalidate: 3600,
+        tags: [`comments-${photoId}-${signature}`, `comments-${photoId}`],
+      }
+    )
       .then((res) => res.json())
       .catch((error) => null);
     return {
@@ -436,6 +519,8 @@ export const getReactListByPhotoId = async (
   lastReactLoadId?: string
 ) => {
   try {
+    const cookieStore = cookies();
+    const signature = cookieStore.get('signature');
     const queryString = lastReactLoadId
       ? `?lastReactLoadId=${lastReactLoadId}`
       : '';
@@ -443,6 +528,10 @@ export const getReactListByPhotoId = async (
       `/photos/${photoId}/reacts${queryString}`,
       {
         method: 'GET',
+      },
+      {
+        revalidate: 3600,
+        tags: [`reacts-${photoId}-${signature}`, `reacts-${photoId}`],
       }
     )
       .then((res) => res.json())

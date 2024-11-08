@@ -115,7 +115,7 @@ export default async function AcceptInviteToAlbumPage({
             </p>
             <div className="mt-6">
               <AcceptInviteToAlbum
-                albumId={params.id}
+                album={album}
                 inviteToken={searchParams.inviteToken}
               />
             </div>

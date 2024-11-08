@@ -52,7 +52,7 @@ export function EditPhotoDialog({ photo }: { photo: PhotoDetails }) {
     data: z.infer<ReturnType<typeof getUpdatePhotoFormSchema>>
   ) {
     setIsLoading(true);
-    const result = await editPhoto(photo._id, data);
+    const result = await editPhoto(photo._id, photo.belonging, data);
     if (result.isSuccess) {
       router.refresh();
       toast.success(dict.photoDetail.edit.message.success);

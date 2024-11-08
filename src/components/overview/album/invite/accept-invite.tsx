@@ -9,12 +9,13 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/icons/icons';
 import { useSocket } from '@/hooks/use-socket';
+import { PublicAlbumInfo } from '@/lib/define';
 
 export default function AcceptInviteToAlbum({
-  albumId,
+  album,
   inviteToken,
 }: {
-  albumId: string;
+  album: PublicAlbumInfo;
   inviteToken: string;
 }) {
   const { dict } = useLanguage();
@@ -27,11 +28,11 @@ export default function AcceptInviteToAlbum({
 
   const handleAcceptInvite = () => {
     setIsLoading(true);
-    acceptInviteToAlbum(albumId, inviteToken)
+    acceptInviteToAlbum(album._id, album.group._id, inviteToken)
       .then((res) => {
         if (res.isSuccess) {
           socket?.reconnect();
-          router.push(`/albums/${albumId}`);
+          router.push(`/albums/${album._id}`);
         } else {
           setResult(res);
         }

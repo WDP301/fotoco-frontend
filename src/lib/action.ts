@@ -210,7 +210,12 @@ export const joinGroup = async (
     .post('/groups/join', {
       groupCode: code,
     })
-    .then(() => {
+    .then((res) => {
+      const cookieStore = cookies();
+      const signature = cookieStore.get('signature');
+      revalidateTag(`groups-${signature}`);
+      revalidateTag(`group-${res.data?._id}-${signature}`);
+      revalidateTag(`group-${res.data?._id}-members`);
       return {
         isSuccess: true,
         error: '',
@@ -241,6 +246,9 @@ export const createGroup = async (
       type: formData.type,
     })
     .then(() => {
+      const cookieStore = cookies();
+      const signature = cookieStore.get('signature');
+      revalidateTag(`groups-${signature}`);
       return {
         isSuccess: true,
         error: '',
@@ -271,6 +279,9 @@ export const createAlbum = async (
       description,
     })
     .then(() => {
+      const cookieStore = cookies();
+      const signature = cookieStore.get('signature');
+      revalidateTag(`albums-${groupId}-${signature}`);
       return {
         isSuccess: true,
         error: '',
@@ -320,6 +331,9 @@ export const commentPhoto = async (photoId: string, content: string) => {
       content,
     })
     .then((res) => {
+      // TODO: revalidate photos list cache (not really necessary)
+      revalidateTag(`photo-${photoId}`);
+      revalidateTag(`comments-${photoId}`);
       return {
         isSuccess: true,
         error: '',
@@ -345,6 +359,9 @@ export const replyComment = async (
       content,
     })
     .then((res) => {
+      // TODO: revalidate photos list cache (not really necessary)
+      revalidateTag(`photo-${photoId}`);
+      revalidateTag(`comments-${photoId}`);
       return {
         isSuccess: true,
         error: '',
@@ -369,6 +386,11 @@ export const acceptInviteToGroup = async (
       params: { inviteToken },
     })
     .then((res) => {
+      const cookieStore = cookies();
+      const signature = cookieStore.get('signature');
+      revalidateTag(`groups-${signature}`);
+      revalidateTag(`group-${groupId}-${signature}`);
+      revalidateTag(`group-${groupId}-members`);
       return {
         isSuccess: true,
         error: '',
@@ -384,6 +406,7 @@ export const acceptInviteToGroup = async (
 };
 export const acceptInviteToAlbum = async (
   albumId: string,
+  groupId: string,
   inviteToken: string
 ) => {
   const response = await http
@@ -391,6 +414,12 @@ export const acceptInviteToAlbum = async (
       params: { inviteToken },
     })
     .then((res) => {
+      const cookieStore = cookies();
+      const signature = cookieStore.get('signature');
+      revalidateTag(`albums-${signature}`);
+      revalidateTag(`album-${albumId}-${signature}`);
+      revalidateTag(`albums-${groupId}-${signature}`);
+      revalidateTag(`album-${albumId}-members`);
       return {
         isSuccess: true,
         error: '',
@@ -467,6 +496,10 @@ export const outGroup = async (groupId: string, userId: string) => {
   const response = await http
     .put(`groups/${groupId}/out/${userId}`, undefined)
     .then((res) => {
+      const cookieStore = cookies();
+      const signature = cookieStore.get('signature');
+      revalidateTag(`group-${groupId}-${signature}`);
+      revalidateTag(`group-${groupId}-members`);
       return {
         isSuccess: true,
         error: '',
@@ -485,6 +518,9 @@ export const outAlbum = async (albumId: string, userId: string) => {
   const response = await http
     .put(`albums/${albumId}/out/${userId}`, undefined)
     .then((res) => {
+      const cookieStore = cookies();
+      const signature = cookieStore.get('signature');
+      revalidateTag(`album-${albumId}-${signature}`);
       return {
         isSuccess: true,
         error: '',
@@ -503,6 +539,9 @@ export const reactPhoto = async (photoId: string) => {
   const response = await http
     .post(`/photos/${photoId}/react`)
     .then((res) => {
+      // TODO: revalidate photos list cache (not really necessary)
+      revalidateTag(`photo-${photoId}`);
+      revalidateTag(`reacts-${photoId}`);
       return {
         isSuccess: true,
         error: '',
@@ -540,6 +579,7 @@ export const updateGroup = async (
       setting,
     })
     .then((res) => {
+      revalidateTag(`group-${groupId}`);
       return {
         isSuccess: true,
         error: '',
@@ -583,6 +623,7 @@ export const updateAlbum = async (
       setting,
     })
     .then((res) => {
+      revalidateTag(`album-${albumId}`);
       return {
         isSuccess: true,
         error: '',
@@ -631,6 +672,7 @@ export const changeLanguage = async (language: string) => {
 
 export const editPhoto = async (
   photoId: string,
+  albumId: string,
   formData: z.infer<ReturnType<typeof getUpdatePhotoFormSchema>>
 ) => {
   const { title, tags } = formData;
@@ -640,6 +682,8 @@ export const editPhoto = async (
       tags,
     })
     .then(() => {
+      revalidateTag(`photos-${albumId}`);
+      revalidateTag(`photo-${photoId}`);
       return {
         isSuccess: true,
         error: '',
@@ -654,10 +698,11 @@ export const editPhoto = async (
   return response;
 };
 
-export const deletePhoto = async (photoId: string) => {
+export const deletePhoto = async (photoId: string, albumId: string) => {
   return await http
     .delete(`/photos/${photoId}`)
     .then((res) => {
+      revalidateTag(`photos-${albumId}`);
       return {
         isSuccess: true,
         error: '',

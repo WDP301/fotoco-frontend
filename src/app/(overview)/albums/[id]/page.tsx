@@ -43,7 +43,6 @@ export default async function AlbumPage({
 }) {
   const dict = await getDictionary();
   const albumSetting = await getAlbumSetting(params.id);
-  console.log(albumSetting);
 
   const selectOptions = [
     {

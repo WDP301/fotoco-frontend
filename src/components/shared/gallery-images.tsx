@@ -27,7 +27,6 @@ const Gallery = ({ photos, currentPhoto }: GalleryProps) => {
   const initialIndex = useMemo(() => {
     if (!currentPhoto) return 0;
     const index = photos.findIndex((photo) => photo._id === currentPhoto._id);
-    console.log('Initial Index:', index);
     return index !== -1 ? index : 0;
   }, [currentPhoto, photos]);
 

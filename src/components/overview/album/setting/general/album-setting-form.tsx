@@ -55,7 +55,6 @@ export default function AlbumSettingForm({
   ) => {
     setIsLoading(true);
     const result = await updateAlbum(albumId, values);
-    console.log(result);
     if (!result?.isSuccess) {
       toast.error(result?.error);
     } else {

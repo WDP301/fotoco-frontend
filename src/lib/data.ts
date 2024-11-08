@@ -30,6 +30,7 @@ import {
   PublicAlbumInfo,
 } from './define';
 import { getPlaiceholder } from 'plaiceholder';
+import { cookies } from 'next/headers';
 
 function delay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -41,6 +42,8 @@ function objectToQueryString(params: Record<string, any>): string {
 
 export const getUser = async (forceRefresh = false) => {
   try {
+    const cookieStore = cookies();
+    const signature = cookieStore.get('signature');
     const response = await customFetch(
       '/users/me',
       {
@@ -48,7 +51,7 @@ export const getUser = async (forceRefresh = false) => {
       },
       {
         revalidate: 3600,
-        tags: ['user'],
+        tags: [`user-${signature}`, 'user'],
       }
     )
       .then((res) => res.json())

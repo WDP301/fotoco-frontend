@@ -1,7 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useFieldArray, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { cn } from '@/lib/utils';
 import {
@@ -35,7 +35,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { getProfileFormSchema } from '@/lib/form-schema';
 import { useLanguage } from '@/components/provider/language-provider';
 import { useAuth } from '@/components/provider/auth-provider';
-import { revalidateTag } from 'next/cache';
 
 type ProfileFormValues = z.infer<ReturnType<typeof getProfileFormSchema>>;
 

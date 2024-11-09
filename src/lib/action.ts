@@ -285,6 +285,8 @@ export const createAlbum = async (
       const cookieStore = cookies();
       const signature = cookieStore.get('signature');
       revalidateTag(`albums-${groupId}-${signature}`);
+      // TODO: revalidate tag for album list (for owner only, albums-${groupId} is revalidate for all members, fix later)
+      revalidateTag(`albums-${groupId}`);
       return {
         isSuccess: true,
         error: '',

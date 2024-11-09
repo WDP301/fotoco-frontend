@@ -1,4 +1,5 @@
 import AlbumHeader from '@/components/overview/album/album-header/album-header';
+import AlbumNotFound from '@/components/overview/album/album-not-found';
 import { PhotoListLoading } from '@/components/overview/album/loading/photo-list-loading';
 import PhotoGalleryView from '@/components/overview/album/photo-gallery-view';
 import PhotoList from '@/components/overview/album/photo-list';
@@ -8,7 +9,7 @@ import FilterSelect from '@/components/shared/filter-selection';
 import SearchBadge from '@/components/shared/search-badge';
 import SearchBar from '@/components/shared/search-bar';
 import SortSelect from '@/components/shared/sort-select';
-import { getAlbumInfo, getAlbumSetting } from '@/lib/data';
+import { getAlbumInfo, getAlbumSetting, getGroupInfo } from '@/lib/data';
 import { FilterOption, SearchPhotoParams, SortOption } from '@/lib/define';
 import { getDictionary } from '@/lib/dictionaries';
 import { Metadata } from 'next';
@@ -43,6 +44,13 @@ export default async function AlbumPage({
 }) {
   const dict = await getDictionary();
   const albumSetting = await getAlbumSetting(params.id);
+  const album = await getAlbumInfo(params.id);
+
+  if (!album) {
+    return <AlbumNotFound />;
+  }
+
+  const group = await getGroupInfo(album.group._id);
 
   const selectOptions = [
     {
@@ -77,10 +85,11 @@ export default async function AlbumPage({
           <h3>{dict.photo.title}</h3>
           <div className="flex flex-col md:flex-row items-center space-y-2 md:space-x-2 md:space-y-0">
             <div className="flex gap-2">
-              {(albumSetting?.setting?.role === 'OWNER' ||
-                albumSetting?.setting?.role === 'CONTRIBUTOR') && (
-                <PhotoUploadDialog albumId={params.id} />
-              )}
+              {group.type !== 'HIDDEN' &&
+                (albumSetting?.setting?.role === 'OWNER' ||
+                  albumSetting?.setting?.role === 'CONTRIBUTOR') && (
+                  <PhotoUploadDialog albumId={params.id} />
+                )}
               <SortSelect
                 variant="ghost"
                 sort={searchParams.sort}

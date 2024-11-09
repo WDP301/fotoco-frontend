@@ -56,7 +56,9 @@ export default async function GroupMembersList({
                         <div>{dict.button.profile}</div>
                         <SquareUserRound className="w-4 h-4" />
                       </div>
-                      {user._id !== me?._id && user.role !== 'owner' && (
+                      {user._id !== me?._id 
+                      // && user.role !== 'owner'
+                       && (
                         <><KickGroupMemberDialog
                           groupId={
                             groupId

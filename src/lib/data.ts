@@ -325,13 +325,13 @@ export const getAlbumMembers = async (
       {
         method: 'GET',
       },
-      {
-        revalidate: 3600,
-        tags: [
-          `album-${albumId}-members-${signature}`,
-          `album-${albumId}-members`,
-        ],
-      }
+      // {
+      //   revalidate: 3600,
+      //   tags: [
+      //     `album-${albumId}-members-${signature}`,
+      //     `album-${albumId}-members`,
+      //   ],
+      // }
     )
       .then((res) => res.json())
       .catch(() => null);
@@ -368,10 +368,10 @@ export const getAlbumsByGroupId = async (
       {
         method: 'GET',
       },
-      {
-        revalidate: 3600,
-        tags: [`albums-${groupId}-${signature}`, `albums-${groupId}`],
-      }
+      // {
+      //   revalidate: 3600,
+      //   tags: [`albums-${groupId}-${signature}`, `albums-${groupId}`],
+      // }
     )
       .then((res) => res.json())
       .catch(() => null);

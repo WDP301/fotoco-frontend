@@ -63,7 +63,9 @@ const OtherOauth = () => {
 
               oauthSuccess(signature, accessToken, refreshToken, lang).then(
                 () => {
-                  router.push(callbackUrl);
+                  // TODO: For now, we use window.location.href, but we should use router.push
+                  window.location.href = callbackUrl;
+                  // router.push(callbackUrl);
                 }
               );
             } catch (error: any) {

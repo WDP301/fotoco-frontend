@@ -1,5 +1,6 @@
 'use client';
 
+import { Icons } from '@/components/icons/icons';
 import { useLanguage } from '@/components/provider/language-provider';
 import { Button } from '@/components/ui/button';
 import {
@@ -225,7 +226,13 @@ export default function AlbumSettingForm({
           </div>
         </div>
         {albumSetting.setting.role === 'OWNER' && (
-          <Button type="submit">{dict.button.updateAlbum}</Button>
+          <Button type="submit" disabled={isLoading}>
+            {' '}
+            {isLoading && (
+              <Icons.spinner className=" mr-2 h-4 w-4 animate-spin" />
+            )}
+            {dict.button.updateAlbum}
+          </Button>
         )}
       </form>
     </Form>

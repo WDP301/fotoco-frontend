@@ -11,7 +11,11 @@ import Notification from './notification';
 import { useAuth } from '@/components/provider/auth-provider';
 
 export default function HeaderSite() {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return null;
+  }
 
   return (
     <header className="md:px-12 sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">

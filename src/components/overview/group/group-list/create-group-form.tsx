@@ -190,7 +190,8 @@ export default function CreateGroupForm({
                             <div>{dict.createGroup.private}</div>
                           </div>
                         </SelectItem>
-                        <SelectItem
+                        {/* Hide hidden tye in create group */}
+                        {/* <SelectItem
                           value="HIDDEN"
                           title={dict.createGroup.tooltipContent.hidden}
                         >
@@ -203,7 +204,7 @@ export default function CreateGroupForm({
                               <div>{dict.createGroup.hidden}</div>
                             </div>
                           </div>
-                        </SelectItem>
+                        </SelectItem> */}
                       </SelectContent>
                     </Select>
                     <FormMessage />

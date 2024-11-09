@@ -471,7 +471,8 @@ export const getPhotoDetails = async (
       },
       {
         revalidate: 3600,
-        tags: [`photo-${photoId}-${signature}`, `photo-${photoId}`],
+        // TODO: Need to revalidate tag `photo-${groupId}` instead of photos
+        tags: [`photo-${photoId}-${signature}`, `photo-${photoId}`, 'photos'],
       }
     )
       .then((res) => res.json())

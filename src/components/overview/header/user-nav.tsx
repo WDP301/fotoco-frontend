@@ -1,3 +1,4 @@
+import { useLanguage } from '@/components/provider/language-provider';
 import AvatarPicture from '@/components/shared/avatar-picture';
 import { Button } from '@/components/ui/button';
 import {
@@ -10,11 +11,10 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { User } from '@/lib/define';
-import { getDictionary } from '@/lib/dictionaries';
 import Link from 'next/link';
 
-export async function UserNav({ user }: { user: User }) {
-  const dict = await getDictionary();
+export function UserNav({ user }: { user: User }) {
+  const { dict } = useLanguage();
   return (
     <>
       <DropdownMenu>

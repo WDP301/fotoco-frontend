@@ -58,7 +58,9 @@ export default async function AlbumMembersList({
                         <div>{dict.button.profile}</div>
                         <SquareUserRound className="w-4 h-4" />
                       </div>
-                      {user._id !== me?._id && user.role !== 'owner' && (
+                      {user._id !== me?._id 
+                      // && user.role !== 'owner' 
+                      && (
                         <KickAlbumMemberDialog
                           albumId={albumId}
                           userId={user._id}

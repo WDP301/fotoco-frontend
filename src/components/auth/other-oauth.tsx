@@ -9,11 +9,13 @@ import { openCenteredWindowPopup } from '@/lib/utils';
 import { oauthSuccess } from '@/lib/action';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { toast } from 'sonner';
+import { useAuth } from '../provider/auth-provider';
 
 const INTERVAL_CHECK_CONNECT_TIMER = 500;
 
 const OtherOauth = () => {
   const router = useRouter();
+  const { refreshUser } = useAuth();
   const [isConnecting, setIsConnecting] = useState('');
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl') || '/';
@@ -62,7 +64,9 @@ const OtherOauth = () => {
               }
 
               oauthSuccess(signature, accessToken, refreshToken, lang).then(
-                () => {
+                async () => {
+                  // TODO: user after refesh is undefined, fix later
+                  await refreshUser();
                   // TODO: For now, we use window.location.href, but we should use router.push
                   window.location.href = callbackUrl;
                   // router.push(callbackUrl);
